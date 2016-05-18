@@ -15,4 +15,4 @@ launchSettings.json
 project.lock.json
 
 # 3rd party libraries
-/wwwroot/lib/
+/src/TDiary/wwwroot/lib
