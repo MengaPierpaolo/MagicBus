@@ -8,3 +8,4 @@ bin/
 *.user
 
 launchSettings.json
+project.lock.json
