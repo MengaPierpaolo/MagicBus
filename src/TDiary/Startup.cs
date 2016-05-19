@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace TDiary
 {
@@ -10,8 +11,10 @@ namespace TDiary
             services.AddMvc();            
         }
         
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddDebug(LogLevel.Warning); // Only my Logs for now.
+            
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
