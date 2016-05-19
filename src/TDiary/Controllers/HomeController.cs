@@ -4,7 +4,6 @@ namespace TDiary
 {
     public class HomeController : Controller
     {
-        [HttpGet("/")]
         public IActionResult Index() 
         {
             var vm = new HomeViewModel()
