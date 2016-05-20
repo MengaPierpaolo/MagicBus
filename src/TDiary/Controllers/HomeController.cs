@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using TDiary.ViewModels;
 
 namespace TDiary
 {
@@ -16,21 +17,13 @@ namespace TDiary
         {
             _logger.LogWarning("Index Called. And I Wanted to log the fact here!");
             
-            var vm = new HomeViewModel()
+            var vm = new HomeViewModel("ASP.Net Core - TDiary")
             {
-                Title = "ASP.Net Core - TDiary",
                 Heading = "Funky App!",
                 Message = "Hello There Groovy ASP.NET Core MVC!"
             };
 
             return View(vm);    
         }
-    }
-    
-    public class HomeViewModel
-    {
-        public string Title { get; internal set; }
-        public string Heading { get; set; }
-        public string Message { get; internal set; }
     }
 }
