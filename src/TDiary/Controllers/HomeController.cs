@@ -1,7 +1,6 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using TDiary.Model;
 using TDiary.ViewModels;
 
 namespace TDiary
@@ -19,36 +18,16 @@ namespace TDiary
         
         public IActionResult Index() 
         {
-            _logger.LogWarning("Index Called. And I Wanted to log the fact here!");
+            _logger.LogInformation("Index Called. And I Wanted to log the fact here!");
 
-            // test EF                      
-            var l = _context.Tests.ToList();  
-            var title = l.LastOrDefault().SomeText ?? "";
-                        
-            var vm = new HomeViewModel(title)
+            var vm = new HomeViewModel("Hello World")
             {
                 Heading = "Funky App!",
-                Message = "Hello There Groovy ASP.NET Core MVC!"
+                Message = "Hello There Groovy ASP.NET Core MVC!",
+                EFTests = _context.Tests.ToList()
             };
             
             return View(vm);    
-        }
-        
-        public IActionResult AddSomething()
-        {
-            // allow to run more than once (HACK)
-            var l = _context.Tests.ToList();  
-            var last = l.LastOrDefault().Id;
-            
-            // create an entry in ef
-            var t = new Test();
-            t.Id = last+1;
-            t.SomeText = string.Format("Blah Blah {0}", t.Id.ToString());
-            
-            _context.Add(t);
-            _context.SaveChanges();
-            
-            return RedirectToAction("Index");
         }
     }
 }

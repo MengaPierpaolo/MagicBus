@@ -23,6 +23,11 @@
         <h1>@Model.Heading</h1>
         <p>@Model.Message</p>
     </div>
+    <div>
+        <!-- Ooh Taghelpers! -->
+        <select asp-items="Model.EFTestsAsSelectListItems"></select>
+        <a asp-controller="EFTest" asp-action="Add">Add Something</a>
+    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

@@ -3,7 +3,7 @@ using TDiary.Model;
 
 public class TestContext : DbContext 
 {
-    public DbSet<Test> Tests { get; set; }
+    public DbSet<EFTest> Tests { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
