@@ -4,13 +4,19 @@
       "version": "1.0.0-rc2-3002702",
       "type": "platform"
     },
-    "Microsoft.AspNetCore.Diagnostics": "1.0.0-rc2-final",
+
     "Microsoft.Extensions.Logging": "1.0.0-rc2-final",
     "Microsoft.Extensions.Logging.Debug": "1.0.0-rc2-final",
-    "Microsoft.AspNetCore.StaticFiles": "1.0.0-rc2-final",
-    "Microsoft.AspNetCore.Mvc": "1.0.0-rc2-final",
+
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-rc2-final",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-rc2-final",
+    "Microsoft.AspNetCore.Diagnostics": "1.0.0-rc2-final",
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0-rc2-final",
+    "Microsoft.AspNetCore.Mvc": "1.0.0-rc2-final",
+    "Microsoft.AspNetCore.Razor.Tools": {
+      "version": "1.0.0-preview1-final",
+      "type": "build"
+    },
     
     "Microsoft.EntityFrameworkCore.SQLite": "1.0.0-rc2-final",
     "Microsoft.EntityFrameworkCore.Tools": {
@@ -21,6 +27,10 @@
 
   "tools": {
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
+      "version": "1.0.0-preview1-final",
+      "imports": "portable-net45+win8+dnxcore50"
+    },
+    "Microsoft.AspNetCore.Razor.Tools": {
       "version": "1.0.0-preview1-final",
       "imports": "portable-net45+win8+dnxcore50"
     },
