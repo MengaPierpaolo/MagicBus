@@ -9,7 +9,8 @@ namespace TDiary
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();            
+            services.AddMvc();
+            services.AddDbContext<TestContext>();         
         }
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
