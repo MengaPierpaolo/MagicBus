@@ -3,6 +3,7 @@
 
 ## Notes
 1. Can be edited using Visual Studio 2015 Update 2, or VSCode 1.1
+2. Note: this uses EF to SQLite.  run: dotnet ef database update from the command line or use the package manager console to run: Update-Database
 
 ## Requirements
 ### Visual Studio
@@ -22,6 +23,3 @@
 ### Client Dependencies
 1. bootstrap 3.3.6
 2. jquery 1.11.2 +
-
-## Setup notes
-1. Note: this uses EF to SQLite.  run: dotnet ef database update from the command line or use the package manager console to run: Update-Database
