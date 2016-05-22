@@ -1,8 +1,11 @@
 @model TDiary.Model.EFTest
 
-<p>Add an EF test object</p>
+<div class="jumbotron">
+    <h1>Add an EF Object</h1>
+    <p>Go on, you know you want to!</p>
+</div>
 
-<form asp-action="Add">
-    <input asp-for="SomeText">
-    <input type="submit">
+<form asp-action="Add" class="form-inline">
+    <input type="text" class="form-control" asp-for="SomeText">
+    <input type="submit" class="btn btn-primary">
 </form>

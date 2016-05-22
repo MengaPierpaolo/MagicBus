@@ -20,10 +20,10 @@ namespace TDiary
         {
             _logger.LogInformation("Index Called. And I Wanted to log the fact here!");
 
-            var vm = new HomeViewModel("Hello World")
+            var vm = new HomeViewModel("Funky App")
             {
-                Heading = "Funky App!",
-                Message = "Hello There Groovy ASP.NET Core MVC!",
+                Heading = "Hello There Groovy ASP.NET Core MVC!",
+                Message = string.Format("Last Added Item: {0}", _context.Tests.LastOrDefault().SomeText ?? string.Empty),
                 EFTests = _context.Tests.ToList()
             };
             

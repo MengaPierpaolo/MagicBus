@@ -22,3 +22,6 @@
 ### Client Dependencies
 1. bootstrap 3.3.6
 2. jquery 1.11.2 +
+
+## Setup notes
+1. Note: this uses EF to SQLite.  run: dotnet ef database update from the command line or use the package manager console to run: Update-Database
