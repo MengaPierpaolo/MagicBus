@@ -5,6 +5,9 @@
       "type": "platform"
     },
 
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0-rc2-final",
+
     "Microsoft.Extensions.Logging": "1.0.0-rc2-final",
     "Microsoft.Extensions.Logging.Debug": "1.0.0-rc2-final",
 
@@ -67,7 +70,8 @@
     "include": [
       "wwwroot",
       "Views",
-      "web.config"
+      "web.config",
+      "appsettings.json"
     ]
   },
 

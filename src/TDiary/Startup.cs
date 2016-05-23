@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -7,10 +8,23 @@ namespace TDiary
 {
     public class Startup
     {
+        // Allow configuration via appsetting.json
+        public IConfigurationRoot Configuration { get; }
+        
+        public Startup(IHostingEnvironment environment)
+        {
+            var configBuilder = new ConfigurationBuilder()
+                .SetBasePath(environment.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            
+            Configuration = configBuilder.Build();
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.AddDbContext<TestContext>();
             services.AddMvc();
-            services.AddDbContext<TestContext>();         
         }
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

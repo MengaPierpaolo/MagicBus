@@ -1,12 +1,22 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using TDiary.Model;
 
-public class TestContext : DbContext 
+namespace TDiary
 {
-    public DbSet<EFTest> Tests { get; set; }
-    
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public class TestContext : DbContext 
     {
-        optionsBuilder.UseSqlite("Filename=./test.db");
+        private readonly IOptions<AppSettings> _options;
+        public TestContext(IOptions<AppSettings> options)
+        {
+            _options = options;
+        }
+        
+        public DbSet<EFTest> Tests { get; set; }
+        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite(_options.Value.ConnectionString);
+        }
     }
 }
