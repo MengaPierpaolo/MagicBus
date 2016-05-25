@@ -6,8 +6,6 @@
         "obj/": true,
         
         "Properties" : true, // This or the next two
-        //"Properties/launchSettings.json": true, // VS launch file
-        //"Properties/PublishProfiles/" : true, // VS Publish Profiles
         
         "*.user": true, // VS user settings files
         "*.xproj": true, // VS Project Files
