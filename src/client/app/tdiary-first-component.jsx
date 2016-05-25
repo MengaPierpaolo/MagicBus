@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/lib/Button';
 
 class FirstComponent extends React.Component {
 
@@ -16,8 +17,12 @@ class FirstComponent extends React.Component {
   render() {
     return (
       <div>
-        Do Something : <span>{this.state.somethingGroovy}</span>
-        <div><button onClick={this.onClickMe}>Click Me</button></div>
+        Do Something else : <span>{this.state.somethingGroovy}</span>
+        <div>
+        <Button bsStyle="primary" bsSize="small" onClick={this.onClickMe}>
+          Something
+        </Button>
+        </div>
       </div>
     );
   }
