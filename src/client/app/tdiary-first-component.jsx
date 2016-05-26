@@ -10,18 +10,19 @@ class FirstComponent extends React.Component {
   }
 
   onClickMe () {
-    let stuff = this.state.somethingGroovy + 'Clicked ';
+    let stuff = this.state.somethingGroovy + ' Not THAT amazing.  ';
     this.setState({somethingGroovy: stuff});
   }
 
   render() {
     return (
       <div>
-        Do Something else : <span>{this.state.somethingGroovy}</span>
+        <label>Click this button to do something amazing!</label>
         <div>
         <Button bsStyle="primary" bsSize="small" onClick={this.onClickMe}>
-          Something
+          Something Amazing
         </Button>
+        <span>{this.state.somethingGroovy}</span>
         </div>
       </div>
     );
