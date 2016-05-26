@@ -5,7 +5,8 @@ import { SomethingGroovy } from './SomethingGroovy'
 @Component({
   selector: 'something-groovy-list',
   template: `
-    <h1>A List of Stuff (Clickable)</h1>
+    <form class="form-inline">
+    <label>A List of Stuff (Clickable)</label>
     <ul>
       <li *ngFor="let something of someData" (click)="clickMe(something)">
           <span>{{something.Title}}</span>
@@ -13,7 +14,8 @@ import { SomethingGroovy } from './SomethingGroovy'
           <span>{{something.SubTitle}}</span>
       </li>
     </ul>
-    <h2 *ngIf="selectedSomething">{{selectedSomething.Title}}</h2>
+    <label *ngIf="selectedSomething">{{selectedSomething.Title}}</label>
+    </form>
     `,
 })
 

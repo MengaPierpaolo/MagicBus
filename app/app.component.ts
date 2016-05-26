@@ -13,12 +13,23 @@ import { DataService } from './data.service'
 @Component({
   selector: 'my-app',
   template: `
-    <h1>{{something.Title}}</h1>
-    <h1>{{something.SubTitle}}</h1>
-    <h3>{{something.Editable}}</h3>
-    <input [(ngModel)]="something.Editable">
-    <hr />
-    <something-groovy-list [someData]="getApplicationData()">
+    <div class="jumbotron">
+      <h1>{{something.Title}}</h1>
+      <p>{{something.SubTitle}}</p>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <form class="form-inline">
+          <p><label>See how the Editing of this:</label></p>
+          <p><input [(ngModel)]="something.Editable" class="form-control"></p>
+          <p><label>changes this: </label></p>
+          <p>{{something.Editable}}</p>
+        </form>
+      </div>
+      <div class="col-sm-6">
+        <something-groovy-list [someData]="getApplicationData()"></something-groovy-list>
+      </div>
+    </div>
     `,
     directives: [SomethingGroovyListComponent],
     providers: [DataService]
@@ -28,9 +39,9 @@ export class AppComponent {
   constructor(private dataService: DataService)  {}
 
   something: SomethingGroovy = {
-    Title: "Hmmm ng2",
-    SubTitle: "Working Examples",
-    Editable: "Edit Me"
+    Title: "Funky App",
+    SubTitle: "Hello there Groovy Angular2 App!",
+    Editable: "Editable Model Binding"
   }
 
   getApplicationData() : SomethingGroovy[] {
