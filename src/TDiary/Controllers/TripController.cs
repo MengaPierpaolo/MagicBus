@@ -1,33 +1,34 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TDiary.Model;
 
 namespace TDiary 
 {
-    public class TripController : Controller
+    public class TripController : DiaryController
     {
         private readonly ILogger<TripController> _logger;
-        private readonly DiaryContext _context;
         
-        public TripController(ILogger<TripController> logger, DiaryContext context)
+        public TripController(DiaryContext context, ILogger<TripController> logger) : base(context)
         {
-            _context = context;
             _logger = logger;
         }
         
         public IActionResult Add()
         {
-            _logger.LogInformation("User Requested to Add an EF test object");
+            _logger.LogInformation("User about to add a Trip");
             return View();
         }
         
         [HttpPost]
         public IActionResult Add(Trip vm)
         {
-            _context.Trips.Add(new Trip { Snippet = vm.Snippet });
+            var tripDate = DateTime.Now; 
+            
+            _context.Trips.Add(new Trip(tripDate) { From = vm.From, To = vm.To });
             _context.SaveChanges();
 
-            _logger.LogInformation("User Added a Trip");
+            _logger.LogInformation("User added a Trip");
             
             return RedirectToAction("Index", "Home");
         }

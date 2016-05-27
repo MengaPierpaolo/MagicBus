@@ -1,0 +1,14 @@
+@model TDiary.Model.Chow
+
+<div class="jumbotron">
+    <h1>Had some Chow?</h1>
+    <p>Yum, add it to the list!</p>
+</div>
+
+<div class="content">
+<form asp-action="Add" class="form-inline">     
+    <label>Plate description:</label> 
+    <input type="text" class="form-control" asp-for="Description" autocomplete="off"> 
+    <input type="submit" class="form-control btn btn-primary" value="Add It!"> 
+</form> 
+</div>

@@ -3,31 +3,31 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TDiary.ViewModels;
 using System.Collections.Generic;
+using TDiary.Model;
 
 namespace TDiary
 {
-    public class HomeController : Controller
+    public class HomeController : DiaryController
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly DiaryContext _context;
         
-        public HomeController(ILogger<HomeController> logger, DiaryContext context)
+        public HomeController(DiaryContext context, ILogger<HomeController> logger) : base(context)
         {
             _logger = logger;
-            _context = context;
         }
         
         public IActionResult Index() 
         {
             _logger.LogInformation("Index Called. And I Wanted to log the fact here!");
 
-            var data = _context.Trips.ToList() ?? new List<Model.Trip>();
+            List<DiaryItem> data = _context.Chows.Cast<DiaryItem>().ToList();
+            data.AddRange(_context.Trips.Cast<DiaryItem>().ToList());
+            data.AddRange(_context.Sights.Cast<DiaryItem>().ToList());
 
             var vm = new HomeViewModel("Magic Bus")
             {
                 Heading = "Your groovy new travel diary!",
-                Message = string.Format("Last Added Item: {0}", data.Count==0 ? "New Account!": data.LastOrDefault().Snippet),
-                Trips = data.OrderByDescending(t => t.Date).ToList()
+                Experiences = data
             };
             
             return View(vm);    

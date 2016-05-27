@@ -1,0 +1,14 @@
+@model TDiary.Model.Sight
+
+<div class="jumbotron">
+    <h1>What a sight!</h1>
+    <p>You've seen something funky?</p>
+</div>
+
+<div class="content">
+<form asp-action="Add" class="form-inline"> 
+    <label>Yes! It was called:</label> 
+    <input type="text" class="form-control" asp-for="Name" autocomplete="off"> 
+    <input type="submit" class="form-control btn btn-primary" value="Add It!"> 
+</form> 
+</div>

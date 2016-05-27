@@ -1,14 +1,16 @@
 @model TDiary.Model.Trip
 
 <div class="jumbotron">
-    <h1>Add a Trip</h1>
-    <p>Go on, you know you want to!</p>
+    <h1>Life's a Journey!</h1>
+    <p>Add your travel detail.</p>
 </div>
 
 <div class="content">
 <form asp-action="Add" class="form-inline"> 
-    <label>Trip Summary:</label> 
-    <input type="text" class="form-control" asp-for="Snippet" autocomplete="off"> 
+    <label>From:</label> 
+    <input type="text" class="form-control" asp-for="From" autocomplete="off"> 
+    <label>To:</label> 
+    <input type="text" class="form-control" asp-for="To" autocomplete="off"> 
     <input type="submit" class="form-control btn btn-primary" value="Add It!"> 
 </form> 
 </div>
