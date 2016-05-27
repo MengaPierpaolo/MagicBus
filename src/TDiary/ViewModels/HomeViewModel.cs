@@ -16,8 +16,6 @@ namespace TDiary.ViewModels
 
         public string Heading { get; set; }
 
-        public string Message { get; set; }
-
         public IList<Trip> Trips { get; set; }
     }
 }

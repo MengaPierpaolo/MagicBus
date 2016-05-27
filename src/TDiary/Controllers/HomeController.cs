@@ -27,7 +27,7 @@ namespace TDiary
             {
                 Heading = "Your groovy new travel diary!",
                 Message = string.Format("Last Added Item: {0}", data.Count==0 ? "New Account!": data.LastOrDefault().Snippet),
-                Trips = data
+                Trips = data.OrderByDescending(t => t.Date).ToList()
             };
             
             return View(vm);    
