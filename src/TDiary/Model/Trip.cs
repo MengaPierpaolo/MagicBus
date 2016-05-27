@@ -4,10 +4,9 @@ namespace TDiary.Model {
     
     public class Trip : DiaryItem 
     {
-        public Trip() { }
-        public Trip(DateTime diaryDate) : base(diaryDate)
-        {
-        }
+        public Trip(){}
+        
+        public Trip(DateTime diaryDate) : base(diaryDate) {}
 
         public override string Activity
         {
@@ -20,5 +19,7 @@ namespace TDiary.Model {
         public string From { get; set; }
         
         public string To { get; set; }
+        
+        public string By { get; set; }
     }
 }

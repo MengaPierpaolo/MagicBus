@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using TDiary.Model;
 
-namespace TDiary.ViewModels
+namespace TDiary.ViewModel
 {
     public class HomeViewModel
     {
@@ -16,6 +15,6 @@ namespace TDiary.ViewModels
 
         public string Heading { get; set; }
 
-        public IList<DiaryItem> Experiences { get; set; }
+        public IEnumerable<Activity> Activities { get; set; }
     }
 }

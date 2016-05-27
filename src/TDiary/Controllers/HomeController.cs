@@ -1,9 +1,8 @@
 using System.Linq;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using TDiary.ViewModels;
-using System.Collections.Generic;
-using TDiary.Model;
+using TDiary.ViewModel;
 
 namespace TDiary
 {
@@ -18,16 +17,15 @@ namespace TDiary
         
         public IActionResult Index() 
         {
-            _logger.LogInformation("Index Called. And I Wanted to log the fact here!");
-
-            List<DiaryItem> data = _context.Chows.Cast<DiaryItem>().ToList();
-            data.AddRange(_context.Trips.Cast<DiaryItem>().ToList());
-            data.AddRange(_context.Sights.Cast<DiaryItem>().ToList());
+            List<Activity> data = new List<Activity>();
+            data.AddRange(_context.Chows.Select(c => new ChowViewModel { Date = c.Date, Description = c.Description, Experience = c.Activity }));
+            data.AddRange(_context.Trips.Select(t => new TripViewModel { Date = t.Date, From = t.From, To = t.To, Experience = t.Activity }));
+            data.AddRange(_context.Sights.Select(s => new SightViewModel { Date = s.Date, Name = s.Name, Experience = s.Activity }));
 
             var vm = new HomeViewModel("Magic Bus")
             {
                 Heading = "Your groovy new travel diary!",
-                Experiences = data
+                Activities = data.OrderByDescending(e => e.Date)
             };
             
             return View(vm);    

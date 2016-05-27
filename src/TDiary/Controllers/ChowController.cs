@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TDiary.Model;
+using TDiary.ViewModel;
 
 namespace TDiary
 {
@@ -20,7 +21,7 @@ namespace TDiary
         }
         
         [HttpPost]
-        public IActionResult Add(Chow vm)
+        public IActionResult Add(ChowViewModel vm)
         {
             var chowDate = DateTime.Now;
             

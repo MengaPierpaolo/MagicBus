@@ -1,10 +1,11 @@
 using System;
+using TDiary.Model.Interface;
 
 namespace TDiary.Model
 {
-    public abstract class DiaryItem
+    public abstract class DiaryItem : IExperienceable
     {
-        public DiaryItem() { }
+        public DiaryItem(){}
         
         public DiaryItem(DateTime diaryDate)
         {

@@ -1,4 +1,4 @@
-﻿@model TDiary.ViewModels.HomeViewModel
+﻿@model TDiary.ViewModel.HomeViewModel
 
 <div class="jumbotron">
     <h1>@Model.Title</h1>
@@ -15,9 +15,9 @@
         </div>
         <div class="col-sm-6">  
         <label>Recent experiences:</label>
-            @foreach (var i in Model.Experiences)
+            @foreach (var i in Model.Activities)
             {
-                <div>@i.Activity</div>
+                <div>@i.Experience</div>
             }   
         </div>
     </div>

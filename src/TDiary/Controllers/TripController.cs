@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using TDiary.Model;
+using TDiary.ViewModel;
 
 namespace TDiary 
 {
@@ -16,16 +19,23 @@ namespace TDiary
         
         public IActionResult Add()
         {
-            _logger.LogInformation("User about to add a Trip");
-            return View();
+            _logger.LogInformation("User started to add a Trip");
+            
+            var vm = new TripViewModel { Transport = new List<SelectListItem> {
+                new SelectListItem { Value = "1", Text = "Bus" },                 
+                new SelectListItem { Value = "2", Text = "Train" },                 
+                new SelectListItem { Value = "3", Text = "Plane" }                 
+            }};
+            
+            return View(vm);
         }
         
         [HttpPost]
-        public IActionResult Add(Trip vm)
+        public IActionResult Add(TripViewModel vm)
         {
             var tripDate = DateTime.Now; 
             
-            _context.Trips.Add(new Trip(tripDate) { From = vm.From, To = vm.To });
+            _context.Trips.Add(new Trip(tripDate) { From = vm.From, To = vm.To, By = vm.ModeOfTransport });
             _context.SaveChanges();
 
             _logger.LogInformation("User added a Trip");

@@ -1,4 +1,4 @@
-@model TDiary.Model.Trip
+@model TDiary.ViewModel.TripViewModel
 
 <div class="jumbotron">
     <h1>Life's a Journey!</h1>
@@ -7,10 +7,12 @@
 
 <div class="content">
 <form asp-action="Add" class="form-inline"> 
-    <label>From:</label> 
+    <label>From:</label>
     <input type="text" class="form-control" asp-for="From" autocomplete="off"> 
-    <label>To:</label> 
-    <input type="text" class="form-control" asp-for="To" autocomplete="off"> 
+    <label>To:</label>
+    <input type="text" class="form-control" asp-for="To" autocomplete="off">
+    <label>By:</label>
+    <select asp-for="ModeOfTransport" asp-items="Model.Transport"></select>
     <input type="submit" class="form-control btn btn-primary" value="Add It!"> 
 </form> 
 </div>

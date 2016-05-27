@@ -4,7 +4,7 @@ namespace TDiary.Model
 {
     public class Chow : DiaryItem
     {
-        public Chow() {}
+        public Chow(){}
         
         public Chow(DateTime diaryDate) : base(diaryDate) {}
 

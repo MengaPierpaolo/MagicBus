@@ -4,7 +4,7 @@ namespace TDiary.Model
 {
     public class Sight : DiaryItem
     {
-        public Sight() {}
+        public Sight(){}
         
         public Sight(DateTime diaryDate) : base(diaryDate)
         {
