@@ -4,15 +4,15 @@ using TDiary.Model;
 
 namespace TDiary
 {
-    public class TestContext : DbContext 
+    public class DiaryContext : DbContext 
     {
         private readonly IOptions<AppSettings> _options;
-        public TestContext(IOptions<AppSettings> options)
+        public DiaryContext(IOptions<AppSettings> options)
         {
             _options = options;
         }
         
-        public DbSet<EFTest> Tests { get; set; }
+        public DbSet<Trip> Trips { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

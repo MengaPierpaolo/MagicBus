@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using TDiary.Model;
 
 namespace TDiary.ViewModels
@@ -14,25 +12,12 @@ namespace TDiary.ViewModels
             _title = title;
         }
 
-        public string Title {
-            get
-            {
-                return _title;
-            }
-        }
+        public string Title => _title;
 
         public string Heading { get; set; }
+
         public string Message { get; set; }
-        public IList<EFTest> EFTests { get; set; }
-        public IEnumerable<SelectListItem> EFTestsAsSelectListItems {
-            get
-            {
-                return EFTests.Select(u => new SelectListItem
-                {
-                    Text = u.SomeText,
-                    Value = u.Id.ToString()
-                });
-            }
-        }
+
+        public IList<Trip> Trips { get; set; }
     }
 }

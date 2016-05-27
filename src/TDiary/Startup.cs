@@ -8,7 +8,6 @@ namespace TDiary
 {
     public class Startup
     {
-        // Allow configuration via appsetting.json
         public IConfigurationRoot Configuration { get; }
         
         public Startup(IHostingEnvironment environment)
@@ -23,7 +22,7 @@ namespace TDiary
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-            services.AddDbContext<TestContext>();
+            services.AddDbContext<DiaryContext>();
             services.AddMvc();
         }
         

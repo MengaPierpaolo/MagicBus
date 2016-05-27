@@ -1,0 +1,14 @@
+@model TDiary.Model.Trip
+
+<div class="jumbotron">
+    <h1>Add a Trip</h1>
+    <p>Go on, you know you want to!</p>
+</div>
+
+<div class="content">
+<form asp-action="Add" class="form-inline"> 
+    <label>Trip Summary:</label> 
+    <input type="text" class="form-control" asp-for="Snippet"> 
+    <input type="submit" class="form-control btn btn-primary" value="Add It!"> 
+</form> 
+</div>

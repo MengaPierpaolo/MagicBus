@@ -9,9 +9,9 @@ namespace TDiary
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly TestContext _context;
+        private readonly DiaryContext _context;
         
-        public HomeController(ILogger<HomeController> logger, TestContext context)
+        public HomeController(ILogger<HomeController> logger, DiaryContext context)
         {
             _logger = logger;
             _context = context;
@@ -21,13 +21,13 @@ namespace TDiary
         {
             _logger.LogInformation("Index Called. And I Wanted to log the fact here!");
 
-            var data = _context.Tests.ToList() ?? new List<Model.EFTest>();
+            var data = _context.Trips.ToList() ?? new List<Model.Trip>();
 
-            var vm = new HomeViewModel("Funky App")
+            var vm = new HomeViewModel("Magic Bus")
             {
-                Heading = "Hello There Groovy ASP.NET Core MVC!",
-                Message = string.Format("Last Added Item: {0}", data.Count==0 ? "Fresh Database!": data.LastOrDefault().SomeText),
-                EFTests = data
+                Heading = "Your groovy new travel diary!",
+                Message = string.Format("Last Added Item: {0}", data.Count==0 ? "New Account!": data.LastOrDefault().Snippet),
+                Trips = data
             };
             
             return View(vm);    

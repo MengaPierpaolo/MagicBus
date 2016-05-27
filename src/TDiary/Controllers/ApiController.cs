@@ -7,16 +7,16 @@ namespace TDiary
 {
     public class ApiController : Controller
     {
-        private readonly TestContext _context;
+        private readonly DiaryContext _context;
         
-        public ApiController(TestContext context)
+        public ApiController(DiaryContext context)
         {
             _context = context;
         }
         
-        public IEnumerable<EFTest> GetSomeData()
+        public IEnumerable<Trip> AllTrips()
         {
-            return _context.Tests.ToList();
+            return _context.Trips.ToList();
         }
     }
 }

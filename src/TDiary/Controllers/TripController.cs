@@ -4,12 +4,12 @@ using TDiary.Model;
 
 namespace TDiary 
 {
-    public class EFTestController : Controller
+    public class TripController : Controller
     {
-        private readonly ILogger<EFTestController> _logger;
-        private readonly TestContext _context;
+        private readonly ILogger<TripController> _logger;
+        private readonly DiaryContext _context;
         
-        public EFTestController(ILogger<EFTestController> logger, TestContext context)
+        public TripController(ILogger<TripController> logger, DiaryContext context)
         {
             _context = context;
             _logger = logger;
@@ -22,12 +22,12 @@ namespace TDiary
         }
         
         [HttpPost]
-        public IActionResult Add(EFTest vm)
+        public IActionResult Add(Trip vm)
         {
-            _context.Tests.Add(new EFTest { SomeText = vm.SomeText });
+            _context.Trips.Add(new Trip { Snippet = vm.Snippet });
             _context.SaveChanges();
 
-            _logger.LogInformation("User Added an EF test object");
+            _logger.LogInformation("User Added a Trip");
             
             return RedirectToAction("Index", "Home");
         }

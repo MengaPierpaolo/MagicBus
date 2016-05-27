@@ -1,28 +1,31 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TDiary.Migrations
 {
-    [DbContext(typeof(TestContext))]
-    [Migration("20160521080650_Second")]
-    partial class Second
+    [DbContext(typeof(DiaryContext))]
+    [Migration("20160527023256_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rc2-20901");
 
-            modelBuilder.Entity("TDiary.Model.EFTest", b =>
+            modelBuilder.Entity("TDiary.Model.Trip", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("SomeText");
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("Snippet");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tests");
+                    b.ToTable("Trips");
                 });
         }
     }

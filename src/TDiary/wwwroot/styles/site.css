@@ -1,0 +1,12 @@
+.container-fluid .jumbotron {
+    padding-left: 10px;    
+}
+
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    padding-left: 10px;
+}
