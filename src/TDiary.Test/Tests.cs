@@ -1,4 +1,4 @@
-﻿using TDiary.ViewModels;
+﻿using TDiary.ViewModel;
 using Xunit;
 
 namespace MyFirstDotNetCoreTests
