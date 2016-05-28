@@ -1,5 +1,6 @@
 .container-fluid .jumbotron {
-    padding-left: 10px;    
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .container-fluid {
@@ -9,4 +10,5 @@
 
 .content {
     padding-left: 10px;
+    padding-right: 10px;
 }

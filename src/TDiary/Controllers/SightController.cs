@@ -17,17 +17,20 @@ namespace TDiary
         
         public IActionResult Add()
         {
-            return View();
+            return View(new SightViewModel());
         }
         
         [HttpPost]
         public IActionResult Add(SightViewModel vm)
         {
-            var visitDate = DateTime.Now;
+            if (vm.SubmitButtonUsed == "Add it!")
+            {
+                var visitDate = DateTime.Now;
+                
+                _context.Sights.Add(new Sight(visitDate) { Name = vm.Name });
+                _context.SaveChanges();
+            }
             
-            _context.Sights.Add(new Sight(visitDate) { Name = vm.Name });
-            _context.SaveChanges();
-
             return RedirectToAction("Index", "Home");
         }
     }

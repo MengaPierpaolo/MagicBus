@@ -6,39 +6,44 @@ using Microsoft.Extensions.Logging;
 using TDiary.Model;
 using TDiary.ViewModel;
 
-namespace TDiary 
+namespace TDiary
 {
     public class TripController : DiaryController
     {
         private readonly ILogger<TripController> _logger;
-        
+
         public TripController(DiaryContext context, ILogger<TripController> logger) : base(context)
         {
             _logger = logger;
         }
-        
+
         public IActionResult Add()
         {
             _logger.LogInformation("User started to add a Trip");
-            
-            var vm = new TripViewModel { Transport = new List<SelectListItem> {
-                new SelectListItem { Value = "1", Text = "Bus" },                 
-                new SelectListItem { Value = "2", Text = "Train" },                 
-                new SelectListItem { Value = "3", Text = "Plane" }                 
+
+            var vm = new TripViewModel
+            {
+                Transport = new List<SelectListItem> {
+                new SelectListItem { Value = "1", Text = "Bus" },
+                new SelectListItem { Value = "2", Text = "Train" },
+                new SelectListItem { Value = "3", Text = "Plane" }
             }};
-            
+
             return View(vm);
         }
-        
+
         [HttpPost]
         public IActionResult Add(TripViewModel vm)
         {
-            var tripDate = DateTime.Now; 
-            
-            _context.Trips.Add(new Trip(tripDate) { From = vm.From, To = vm.To, By = vm.ModeOfTransport });
-            _context.SaveChanges();
+            if (vm.SubmitButtonUsed == "Add it!")
+            {
+                var tripDate = DateTime.Now;
 
-            _logger.LogInformation("User added a Trip");
+                _context.Trips.Add(new Trip(tripDate) { From = vm.From, To = vm.To, By = vm.ModeOfTransport });
+                _context.SaveChanges();
+
+                _logger.LogInformation("User added a Trip");
+            }
             
             return RedirectToAction("Index", "Home");
         }

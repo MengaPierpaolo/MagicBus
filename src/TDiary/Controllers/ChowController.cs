@@ -17,19 +17,21 @@ namespace TDiary
         
         public IActionResult Add() 
         {
-            return View();
+            return View(new ChowViewModel());
         }
         
         [HttpPost]
         public IActionResult Add(ChowViewModel vm)
         {
-            var chowDate = DateTime.Now;
-            
-            _context.Chows.Add(new Chow(chowDate) { Description = vm.Description });
-            _context.SaveChanges();
-            
-            _logger.LogInformation("User added some Chow");
-            
+            if (vm.SubmitButtonUsed == "Add it!")
+            {
+                var chowDate = DateTime.Now;
+                
+                _context.Chows.Add(new Chow(chowDate) { Description = vm.Description });
+                _context.SaveChanges();
+                
+                _logger.LogInformation("User added some Chow");
+            }            
             return RedirectToAction("Index", "Home");
         }
     }

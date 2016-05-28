@@ -6,13 +6,24 @@
 </div>
 
 <div class="content">
-<form asp-action="Add" class="form-inline"> 
-    <label>From:</label>
-    <input type="text" class="form-control" asp-for="From" autocomplete="off"> 
-    <label>To:</label>
-    <input type="text" class="form-control" asp-for="To" autocomplete="off">
-    <label>By:</label>
-    <select asp-for="ModeOfTransport" asp-items="Model.Transport"></select>
-    <input type="submit" class="form-control btn btn-primary" value="Add It!"> 
-</form> 
+    <form class="form" role="form" asp-action="Add"> 
+        <div class="form-group">
+            <label>On:</label>
+            <input class="form-control" type="text" asp-for="Date" autocomplete="off"> 
+        </div>
+        <div class="form-group">
+            <label>From:</label>
+            <input class="form-control" type="text" asp-for="From" autocomplete="off"> 
+        </div>
+        <div class="form-group">
+            <label>To:</label>
+            <input class="form-control" type="text" asp-for="To" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <label>By:</label>
+            <select class="form-control" asp-for="ModeOfTransport" asp-items="Model.Transport"></select>
+        </div>
+        <input name="submitButtonUsed" type="submit" class="btn btn-primary" value="Add it!"> 
+        <input name="submitButtonUsed" type="submit" class="btn btn-info" value="Changed my mind"> 
+    </form> 
 </div>
