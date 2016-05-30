@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TDiary.Model;
@@ -25,9 +24,7 @@ namespace TDiary
         {
             if (vm.SubmitButtonUsed == "Add it!")
             {
-                var visitDate = DateTime.Now;
-                
-                _context.Sights.Add(new Sight(visitDate) { Name = vm.Name });
+                _context.Experiences.Add(new Sight(vm.Date) { Name = vm.Name });
                 _context.SaveChanges();
             }
             

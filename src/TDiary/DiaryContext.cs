@@ -13,13 +13,20 @@ namespace TDiary
             _options = options;
         }
         
-        public DbSet<Trip> Trips { get; set; }
-        public DbSet<Chow> Chows { get; set; }
-        public DbSet<Sight> Sights { get; set; }
+        public DbSet<DiaryItem> Experiences { get; set; }
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(_options.Value.ConnectionString);
+        }
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Trip>().ToTable("Trip");
+            modelBuilder.Entity<Chow>().ToTable("Chow");
+            modelBuilder.Entity<Sight>().ToTable("Sight");
+                    
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

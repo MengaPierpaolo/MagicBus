@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TDiary.Model;
@@ -25,9 +24,7 @@ namespace TDiary
         {
             if (vm.SubmitButtonUsed == "Add it!")
             {
-                var chowDate = DateTime.Now;
-                
-                _context.Chows.Add(new Chow(chowDate) { Description = vm.Description });
+                _context.Experiences.Add(new Chow(vm.Date) { Description = vm.Description });
                 _context.SaveChanges();
                 
                 _logger.LogInformation("User added some Chow");

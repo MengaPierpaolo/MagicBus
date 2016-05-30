@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TDiary.ViewModel;
+using TDiary.Model;
 
 namespace TDiary
 {
@@ -18,9 +19,9 @@ namespace TDiary
         public IActionResult Index() 
         {
             List<Activity> data = new List<Activity>();
-            data.AddRange(_context.Chows.Select(c => new ChowViewModel { Date = c.Date, Description = c.Description, Experience = c.Activity }));
-            data.AddRange(_context.Trips.Select(t => new TripViewModel { Date = t.Date, From = t.From, To = t.To, Experience = t.Activity }));
-            data.AddRange(_context.Sights.Select(s => new SightViewModel { Date = s.Date, Name = s.Name, Experience = s.Activity }));
+            data.AddRange(_context.Experiences.OfType<Chow>().Select(c => new ChowViewModel { Date = c.Date, Description = c.Description, Experience = c.Activity }));
+            data.AddRange(_context.Experiences.OfType<Trip>().Select(t => new TripViewModel { Date = t.Date, From = t.From, To = t.To, Experience = t.Activity }));
+            data.AddRange(_context.Experiences.OfType<Sight>().Select(s => new SightViewModel { Date = s.Date, Name = s.Name, Experience = s.Activity }));
 
             var vm = new HomeViewModel("Magic Bus")
             {

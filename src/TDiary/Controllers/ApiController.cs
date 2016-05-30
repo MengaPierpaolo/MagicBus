@@ -14,9 +14,9 @@ namespace TDiary
             _context = context;
         }
         
-        public IEnumerable<Trip> AllTrips()
+        public IEnumerable<DiaryItem> AllExperiences()
         {
-            return _context.Trips.ToList();
+            return _context.Experiences.ToList();
         }
     }
 }

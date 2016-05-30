@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -37,9 +36,7 @@ namespace TDiary
         {
             if (vm.SubmitButtonUsed == "Add it!")
             {
-                var tripDate = DateTime.Now;
-
-                _context.Trips.Add(new Trip(tripDate) { From = vm.From, To = vm.To, By = vm.ModeOfTransport });
+                _context.Experiences.Add(new Trip(vm.Date) { From = vm.From, To = vm.To, By = vm.ModeOfTransport });
                 _context.SaveChanges();
 
                 _logger.LogInformation("User added a Trip");
