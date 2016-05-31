@@ -4,13 +4,14 @@ namespace TDiary.Model
 {
     public class Sight : DiaryItem
     {
-        public Sight(){}
+        internal Sight() {}
         
-        public Sight(DateTime diaryDate) : base(diaryDate)
+        public Sight(DateTime diaryDate, string name) : base(diaryDate)
         {
+            Name = name;
         }
 
-        public override string Activity
+        public override string Experience
         {
             get
             {
@@ -18,6 +19,6 @@ namespace TDiary.Model
             }
         }
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
     }
 }

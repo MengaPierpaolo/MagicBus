@@ -10,14 +10,17 @@
         <div class="form-group">
             <label>On:</label>
             <input class="form-control" type="text" asp-for="Date" autocomplete="off"> 
+            <span asp-validation-for="Date" class="text-danger" />
         </div>
         <div class="form-group">
             <label>From:</label>
-            <input class="form-control" type="text" asp-for="From" autocomplete="off"> 
+            <input class="form-control" type="text" asp-for="From" autocomplete="off">
+            <span asp-validation-for="From" class="text-danger" /> 
         </div>
         <div class="form-group">
             <label>To:</label>
             <input class="form-control" type="text" asp-for="To" autocomplete="off">
+            <span asp-validation-for="To" class="text-danger" />
         </div>
         <div class="form-group">
             <label>By:</label>

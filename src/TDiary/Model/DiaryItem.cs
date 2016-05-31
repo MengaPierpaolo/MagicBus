@@ -6,20 +6,19 @@ namespace TDiary.Model
 {
     public abstract class DiaryItem : IExperienceable
     {
-        public DiaryItem(){}
+        internal DiaryItem(){}
         
         public DiaryItem(DateTime diaryDate)
         {
             Date = diaryDate;
         }
         
-        // [Key]
         public int Id { get; set; }
         
-        // [Required]
-        // [DataType(DataType.Date)]
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime Date { get; private set; }
         
-        public abstract string Activity { get; }
+        public abstract string Experience { get; }
     }
 }

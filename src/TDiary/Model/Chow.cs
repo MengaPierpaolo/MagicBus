@@ -4,11 +4,13 @@ namespace TDiary.Model
 {
     public class Chow : DiaryItem
     {
-        public Chow(){}
+        internal Chow(){}
         
-        public Chow(DateTime diaryDate) : base(diaryDate) {}
+        public Chow(DateTime diaryDate, string productConsumed) : base(diaryDate) {
+            Description = productConsumed;
+        }
 
-        public override string Activity
+        public override string Experience
         {
             get
             {
@@ -16,6 +18,6 @@ namespace TDiary.Model
             }
         }
 
-        public string Description { get; set; }
+        public string Description { get; private set; }
     }
 }

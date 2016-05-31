@@ -9,11 +9,13 @@
     <form class="form" role="form" asp-action="Add">
         <div class="form-group">
             <label>On:</label>
-            <input class="form-control" type="text" asp-for="Date" autocomplete="off"> 
+            <input class="form-control" type="text" asp-for="Date" autocomplete="off">
+            <span asp-validation-for="Date" class="text-danger" />
         </div>
         <div class="form-group">     
             <label>Plate description:</label> 
             <input type="text" class="form-control" asp-for="Description" autocomplete="off">
+            <span asp-validation-for="Description" class="text-danger" />
         </div> 
         <input name="SubmitButtonUsed" type="submit" class="btn btn-primary" value="Add it!"> 
         <input name="SubmitButtonUsed" type="submit" class="btn btn-info" value="Changed my mind"> 

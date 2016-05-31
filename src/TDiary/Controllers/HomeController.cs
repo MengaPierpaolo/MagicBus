@@ -19,9 +19,9 @@ namespace TDiary
         public IActionResult Index() 
         {
             List<Activity> data = new List<Activity>();
-            data.AddRange(_context.Experiences.OfType<Chow>().Select(c => new ChowViewModel { Date = c.Date, Description = c.Description, Experience = c.Activity }));
-            data.AddRange(_context.Experiences.OfType<Trip>().Select(t => new TripViewModel { Date = t.Date, From = t.From, To = t.To, Experience = t.Activity }));
-            data.AddRange(_context.Experiences.OfType<Sight>().Select(s => new SightViewModel { Date = s.Date, Name = s.Name, Experience = s.Activity }));
+            data.AddRange(_context.Experiences.OfType<Chow>().Select(c => new ChowViewModel { Date = c.Date, Description = c.Description, Experience = c.Experience }));
+            data.AddRange(_context.Experiences.OfType<Trip>().Select(t => new TripViewModel { Date = t.Date, From = t.From, To = t.To, Experience = t.Experience }));
+            data.AddRange(_context.Experiences.OfType<Sight>().Select(s => new SightViewModel { Date = s.Date, Name = s.Name, Experience = s.Experience }));
 
             var vm = new HomeViewModel("Magic Bus")
             {

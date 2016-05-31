@@ -1,14 +1,12 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using TDiary;
 
 namespace TDiary.Migrations
 {
     [DbContext(typeof(DiaryContext))]
-    [Migration("20160530131554_Initial")]
+    [Migration("20160531100556_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

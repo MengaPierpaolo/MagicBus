@@ -26,7 +26,8 @@ namespace TDiary
                 new SelectListItem { Value = "1", Text = "Bus" },
                 new SelectListItem { Value = "2", Text = "Train" },
                 new SelectListItem { Value = "3", Text = "Plane" }
-            }};
+            }
+            };
 
             return View(vm);
         }
@@ -36,12 +37,18 @@ namespace TDiary
         {
             if (vm.SubmitButtonUsed == "Add it!")
             {
-                _context.Experiences.Add(new Trip(vm.Date) { From = vm.From, To = vm.To, By = vm.ModeOfTransport });
-                _context.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    _context.Experiences.Add(new Trip(vm.Date, vm.From, vm.To, vm.ModeOfTransport));
+                    _context.SaveChanges();
 
-                _logger.LogInformation("User added a Trip");
+                    _logger.LogInformation("User added a Trip");
+                    return RedirectToAction("Index", "Home");
+                }
+             
+                // TODO: Rebuild vm
+                return View(vm);
             }
-            
             return RedirectToAction("Index", "Home");
         }
     }

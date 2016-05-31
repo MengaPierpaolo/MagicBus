@@ -1,11 +1,11 @@
-.container-fluid .jumbotron {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
 .container-fluid {
     margin: 0;
     padding: 0;
+}
+
+.container-fluid .jumbotron {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .content {

@@ -8,26 +8,34 @@ namespace TDiary
     public class SightController : DiaryController
     {
         private readonly ILogger<SightController> _logger;
-        
+
         public SightController(DiaryContext context, ILogger<SightController> logger) : base(context)
         {
             _logger = logger;
         }
-        
+
         public IActionResult Add()
         {
             return View(new SightViewModel());
         }
-        
+
         [HttpPost]
         public IActionResult Add(SightViewModel vm)
         {
             if (vm.SubmitButtonUsed == "Add it!")
             {
-                _context.Experiences.Add(new Sight(vm.Date) { Name = vm.Name });
-                _context.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    _context.Experiences.Add(new Sight(vm.Date, vm.Name));
+                    _context.SaveChanges();
+
+                    return RedirectToAction("Index", "Home");
+                }
+
+                // TODO: Rebuild vm
+                return View(vm);
             }
-            
+
             return RedirectToAction("Index", "Home");
         }
     }

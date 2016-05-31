@@ -1,12 +1,27 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace TDiary.ViewModel
 {
-    public class Activity 
+    public class Activity
     {
-        public DateTime Date { get; set; } = DateTime.Now;
-        
-        public string Experience { get; internal set; }
+        private DateTime _date = DateTime.UtcNow;
+
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime Date
+        {
+            get
+            {
+                return _date;
+            }
+            set
+            {
+                _date = value;
+            }
+        }
+
+        public string Experience { get; set; }
         
         public string SubmitButtonUsed { get; set; }
     }
