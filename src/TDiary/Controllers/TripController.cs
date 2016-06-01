@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,8 +18,7 @@ namespace TDiary
 
         public IActionResult Add()
         {
-            _logger.LogInformation("User started to add a Trip");
-
+            _logger.LogInformation("User is adding a Trip");
             return View(new TripViewModel());
         }
 
@@ -45,6 +43,7 @@ namespace TDiary
 
         public IActionResult Edit(int id)
         {
+            _logger.LogInformation("User is editing a Trip");
             var vm = _context.Experiences.OfType<Trip>()
                 .Where(d => d.Id == id)
                 .Select(d => new TripViewModel() { Id = d.Id, From = d.From, To = d.To, ModeOfTransport = d.By })
@@ -60,10 +59,11 @@ namespace TDiary
             {
                 if (ModelState.IsValid)
                 {
-                    _context.Attach(new Trip(vm.Date, vm.From, vm.To, vm.ModeOfTransport) { Id = vm.Id })
+                    _context.Attach(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.ModeOfTransport))
                         .State = EntityState.Modified;
 
                     _context.SaveChanges();
+                    _logger.LogInformation("User edited a Trip");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -75,10 +75,10 @@ namespace TDiary
         
         public IActionResult Delete(int id)
         {
-            var item = new Trip(DateTime.UtcNow, string.Empty, string.Empty, ModeOfTransport.Bus ) { Id = id };
-            _context.Entry(item).State = EntityState.Deleted;
+            _context.Entry(Trip.Create(id)).State = EntityState.Deleted;
             _context.SaveChanges();
-            
+            _logger.LogInformation("User deleted a Trip");
+
             return RedirectToAction("Index", "Home");
         }
     }

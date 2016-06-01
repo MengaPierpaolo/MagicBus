@@ -11,8 +11,7 @@ namespace TDiary.Model
             Date = diaryDate;
         }
         
-        // TODO: Hide this from API user
-        public int Id { get; set; }
+        public int Id { get; internal set; }
         
         public DateTime Date { get; private set; }
         

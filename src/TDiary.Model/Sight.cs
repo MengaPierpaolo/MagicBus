@@ -23,5 +23,15 @@ namespace TDiary.Model
         }
 
         public string Location { get; set; }
+
+        public static Sight Create(int id)
+        {
+            return new Sight() { Id = id };
+        }
+
+        public static Sight Create(int id, DateTime diaryDate, string name, string location)
+        {
+            return new Sight(diaryDate, name) { Id = id, Location = location };
+        }
     }
 }

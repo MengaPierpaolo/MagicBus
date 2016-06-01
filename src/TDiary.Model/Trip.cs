@@ -25,5 +25,15 @@ namespace TDiary.Model {
                 return string.Format("You went from {0} to {1} by {2}", From, To, By.ToString().ToLower());
             }
         }
+
+        public static Trip Create(int id)
+        {
+            return new Trip() { Id = id };
+        }
+
+        public static Trip Create(int id, DateTime diaryDate, string from, string to, ModeOfTransport by)
+        {
+            return new Trip(diaryDate, from, to, by) { Id = id };
+        }
     }
 }

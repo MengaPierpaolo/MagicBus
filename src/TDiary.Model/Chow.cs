@@ -23,5 +23,15 @@ namespace TDiary.Model
         }
 
         public string Location { get; set; }
+
+        public static Chow Create(int id)
+        {
+            return new Chow() { Id = id };
+        }
+
+        public static Chow Create(int id, DateTime diaryDate, string productConsumed, string location)
+        {
+            return new Chow(diaryDate, productConsumed) { Id = id, Location = location };
+        }
     }
 }

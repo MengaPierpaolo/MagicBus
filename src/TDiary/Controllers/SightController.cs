@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +18,8 @@ namespace TDiary
 
         public IActionResult Add()
         {
+            _logger.LogInformation("User is adding a Sight");
+
             return View(new SightViewModel());
         }
 
@@ -31,6 +32,7 @@ namespace TDiary
                 {
                     _context.Experiences.Add(new Sight(vm.Date, vm.Name) { Location = vm.Location });
                     _context.SaveChanges();
+                    _logger.LogInformation("User added a Sight");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -44,6 +46,8 @@ namespace TDiary
         
         public IActionResult Edit(int id)
         {
+            _logger.LogInformation("User is editing a Sight");
+
             var vm = _context.Experiences.OfType<Sight>()
                 .Where(d => d.Id == id)
                 .Select(d => new SightViewModel() { Id = d.Id, Location = d.Location, Name = d.Name })
@@ -59,10 +63,11 @@ namespace TDiary
             {
                 if (ModelState.IsValid)
                 {
-                    _context.Attach(new Sight(vm.Date, vm.Name) { Id = vm.Id, Location = vm.Location })
+                    _context.Attach(Sight.Create(vm.Id, vm.Date, vm.Name, vm.Location))
                         .State = EntityState.Modified;
 
                     _context.SaveChanges();
+                    _logger.LogInformation("User edited a Sight");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -74,10 +79,10 @@ namespace TDiary
         
         public IActionResult Delete(int id)
         {
-            var item = new Sight(DateTime.UtcNow, string.Empty ) { Id = id };
-            _context.Entry(item).State = EntityState.Deleted;
+            _context.Entry(Sight.Create(id)).State = EntityState.Deleted;
             _context.SaveChanges();
-            
+            _logger.LogInformation("User deleted a Sight");
+
             return RedirectToAction("Index", "Home");
         }
     }

@@ -28,7 +28,7 @@ namespace TDiary
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddDebug(LogLevel.Warning); // Only my Logs for now.
+            loggerFactory.AddDebug(LogLevel.Information); // Only my Logs for now.
             
             app.UseStaticFiles();
             

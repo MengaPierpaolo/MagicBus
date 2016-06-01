@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +18,7 @@ namespace TDiary
 
         public IActionResult Add()
         {
+            _logger.LogInformation("User is adding some Chow");
             return View(new ChowViewModel());
         }
 
@@ -43,6 +43,8 @@ namespace TDiary
 
         public IActionResult Edit(int id)
         {
+            _logger.LogInformation("User is editing some Chow");
+
             var vm = _context.Experiences.OfType<Chow>()
                 .Where(e => e.Id == id)
                 .Select(c => new ChowViewModel { Id = c.Id, Date = c.Date, Location = c.Location, Description = c.Description, Experience = c.Experience })
@@ -59,12 +61,13 @@ namespace TDiary
                 if (ModelState.IsValid)
                 {
                     _context.Experiences
-                        .Attach(new Chow(vm.Date, vm.Description) { Id = vm.Id, Location = vm.Location })
+                        .Attach(Chow.Create(vm.Id, vm.Date, vm.Description, vm.Location))
                         .State = EntityState.Modified;
             
                     _context.SaveChanges();
+                    _logger.LogInformation("User edited some Chow");
 
-                   return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 
                 return View(vm);
@@ -75,10 +78,10 @@ namespace TDiary
         
         public IActionResult Delete(int id)
         {
-            var item = new Chow(DateTime.UtcNow, string.Empty ) { Id = id };
-            _context.Entry(item).State = EntityState.Deleted;
+            _context.Entry(Chow.Create(id)).State = EntityState.Deleted;
             _context.SaveChanges();
-            
+            _logger.LogInformation("User deleted some Chow");
+
             return RedirectToAction("Index", "Home");
         }
     }
