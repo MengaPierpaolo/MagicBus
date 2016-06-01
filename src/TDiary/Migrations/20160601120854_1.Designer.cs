@@ -1,13 +1,15 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using TDiary;
 
 namespace TDiary.Migrations
 {
     [DbContext(typeof(DiaryContext))]
-    [Migration("20160531100556_Initial")]
-    partial class Initial
+    [Migration("20160601120854_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,6 +39,8 @@ namespace TDiary.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("Location");
+
                     b.ToTable("Chow");
 
                     b.HasDiscriminator().HasValue("Chow");
@@ -45,6 +49,8 @@ namespace TDiary.Migrations
             modelBuilder.Entity("TDiary.Model.Sight", b =>
                 {
                     b.HasBaseType("TDiary.Model.DiaryItem");
+
+                    b.Property<string>("Location");
 
                     b.Property<string>("Name");
 
@@ -57,7 +63,7 @@ namespace TDiary.Migrations
                 {
                     b.HasBaseType("TDiary.Model.DiaryItem");
 
-                    b.Property<string>("By");
+                    b.Property<int>("By");
 
                     b.Property<string>("From");
 

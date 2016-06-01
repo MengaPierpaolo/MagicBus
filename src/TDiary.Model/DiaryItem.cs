@@ -1,9 +1,8 @@
 using System;
-using TDiary.Model.Interface;
 
 namespace TDiary.Model
 {
-    public abstract class DiaryItem : IExperienceable
+    public abstract class DiaryItem
     {
         internal DiaryItem(){}
         

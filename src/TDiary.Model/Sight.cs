@@ -2,10 +2,10 @@ using System;
 
 namespace TDiary.Model
 {
-    public class Sight : DiaryItem
+    public class Sight : DiaryItem, ILocatable
     {
-        internal Sight() {}
-        
+        internal Sight() { }
+
         public Sight(DateTime diaryDate, string name) : base(diaryDate)
         {
             Name = name;
@@ -17,8 +17,11 @@ namespace TDiary.Model
         {
             get
             {
-                return string.Format("You saw {0}", Name);
+                var n = Name + (Location == string.Empty ? string.Empty : " in " + Location);
+                return string.Format("You saw {0}", n);
             }
         }
+
+        public string Location { get; set; }
     }
 }

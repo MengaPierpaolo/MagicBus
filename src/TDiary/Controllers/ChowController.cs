@@ -29,7 +29,7 @@ namespace TDiary
             {
                 if (ModelState.IsValid)
                 {
-                    _context.Experiences.Add(new Chow(vm.Date, vm.Description));
+                    _context.Experiences.Add(new Chow(vm.Date, vm.Description) { Location = vm.Location });
                     _context.SaveChanges();
 
                     _logger.LogInformation("User added some Chow");
@@ -45,7 +45,7 @@ namespace TDiary
         {
             var vm = _context.Experiences.OfType<Chow>()
                 .Where(e => e.Id == id)
-                .Select(c => new ChowViewModel { Id = c.Id, Date = c.Date, Description = c.Description, Experience = c.Experience })
+                .Select(c => new ChowViewModel { Id = c.Id, Date = c.Date, Location = c.Location, Description = c.Description, Experience = c.Experience })
                 .First();
 
             return View(vm);
@@ -59,7 +59,7 @@ namespace TDiary
                 if (ModelState.IsValid)
                 {
                     _context.Experiences
-                        .Attach(new Chow(vm.Date, vm.Description) { Id = vm.Id })
+                        .Attach(new Chow(vm.Date, vm.Description) { Id = vm.Id, Location = vm.Location })
                         .State = EntityState.Modified;
             
                     _context.SaveChanges();
@@ -81,6 +81,5 @@ namespace TDiary
             
             return RedirectToAction("Index", "Home");
         }
-
     }
 }

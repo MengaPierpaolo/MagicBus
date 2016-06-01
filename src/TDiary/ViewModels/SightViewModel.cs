@@ -5,7 +5,10 @@ namespace TDiary.ViewModel
     public class SightViewModel : Activity
     {
         [Required]
-        [Display(Name = "Sight Name")]
+        [Display(Name = "You saw")]
         public string Name { get; set; }
+        
+        [Display(Name = "When you were in")]
+        public string Location { get; set; }
     }
 }

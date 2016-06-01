@@ -29,7 +29,7 @@ namespace TDiary
             {
                 if (ModelState.IsValid)
                 {
-                    _context.Experiences.Add(new Sight(vm.Date, vm.Name));
+                    _context.Experiences.Add(new Sight(vm.Date, vm.Name) { Location = vm.Location });
                     _context.SaveChanges();
 
                     return RedirectToAction("Index", "Home");
@@ -46,7 +46,7 @@ namespace TDiary
         {
             var vm = _context.Experiences.OfType<Sight>()
                 .Where(d => d.Id == id)
-                .Select(d => new SightViewModel() { Id = d.Id, Name = d.Name })
+                .Select(d => new SightViewModel() { Id = d.Id, Location = d.Location, Name = d.Name })
                 .First();
 
             return View(vm);
@@ -59,7 +59,7 @@ namespace TDiary
             {
                 if (ModelState.IsValid)
                 {
-                    _context.Attach(new Sight(vm.Date, vm.Name) { Id = vm.Id })
+                    _context.Attach(new Sight(vm.Date, vm.Name) { Id = vm.Id, Location = vm.Location })
                         .State = EntityState.Modified;
 
                     _context.SaveChanges();
@@ -80,6 +80,5 @@ namespace TDiary
             
             return RedirectToAction("Index", "Home");
         }
-
     }
 }

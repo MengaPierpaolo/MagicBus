@@ -2,11 +2,12 @@ using System;
 
 namespace TDiary.Model
 {
-    public class Chow : DiaryItem
+    public class Chow : DiaryItem, ILocatable
     {
-        internal Chow(){}
-        
-        public Chow(DateTime diaryDate, string productConsumed) : base(diaryDate) {
+        internal Chow() { }
+
+        public Chow(DateTime diaryDate, string productConsumed) : base(diaryDate)
+        {
             Description = productConsumed;
         }
 
@@ -16,8 +17,11 @@ namespace TDiary.Model
         {
             get
             {
-                return string.Format("You consumed {0}", Description);
+                var d = Description + (Location == string.Empty ? string.Empty : " in " + Location);
+                return string.Format("You consumed {0}", d);
             }
         }
+
+        public string Location { get; set; }
     }
 }

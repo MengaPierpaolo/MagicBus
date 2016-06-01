@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TDiary.Migrations
 {
-    public partial class Initial : Migration
+    public partial class _1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,8 +17,9 @@ namespace TDiary.Migrations
                     Date = table.Column<DateTime>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true),
+                    Location = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    By = table.Column<string>(nullable: true),
+                    By = table.Column<int>(nullable: true),
                     From = table.Column<string>(nullable: true),
                     To = table.Column<string>(nullable: true)
                 },

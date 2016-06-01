@@ -1,6 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using TDiary;
 
 namespace TDiary.Migrations
 {
@@ -35,6 +38,8 @@ namespace TDiary.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("Location");
+
                     b.ToTable("Chow");
 
                     b.HasDiscriminator().HasValue("Chow");
@@ -43,6 +48,8 @@ namespace TDiary.Migrations
             modelBuilder.Entity("TDiary.Model.Sight", b =>
                 {
                     b.HasBaseType("TDiary.Model.DiaryItem");
+
+                    b.Property<string>("Location");
 
                     b.Property<string>("Name");
 
@@ -55,7 +62,7 @@ namespace TDiary.Migrations
                 {
                     b.HasBaseType("TDiary.Model.DiaryItem");
 
-                    b.Property<string>("By");
+                    b.Property<int>("By");
 
                     b.Property<string>("From");
 

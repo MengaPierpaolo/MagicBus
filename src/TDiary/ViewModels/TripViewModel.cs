@@ -6,7 +6,7 @@ namespace TDiary.ViewModel
     public class TripViewModel : Activity
     {
         [Required]
-        [Display(Name = "From")]
+        [Display(Name = "You travelled from")]
         public string From { get; set; }
 
         [Required]
