@@ -13,7 +13,9 @@ bin/
 # generated files
 launchSettings.json
 project.lock.json
-src/TDiary/Properties/PublishProfiles/*.ps1
 
-# 3rd party libraries
-/src/TDiary/wwwroot/lib
+# project specific
+src/TDiary/Properties/PublishProfiles/*.ps1
+src/TDiary/wwwroot/lib/
+src/**/.vscode/*
+!src/**/settings.json
