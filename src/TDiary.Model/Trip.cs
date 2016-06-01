@@ -12,6 +12,12 @@ namespace TDiary.Model {
             By = modeOfTransport;
         }
 
+        public string From { get; private set; }
+        
+        public string To { get; private set; }
+        
+        public string By { get; private set; }
+
         public override string Experience
         {
             get
@@ -19,11 +25,5 @@ namespace TDiary.Model {
                 return string.Format("You went from {0} to {1} by {2}", From, To, By);
             }
         }
-
-        public string From { get; private set; }
-        
-        public string To { get; private set; }
-        
-        public string By { get; private set; }
     }
 }

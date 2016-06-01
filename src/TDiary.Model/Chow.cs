@@ -10,6 +10,8 @@ namespace TDiary.Model
             Description = productConsumed;
         }
 
+        public string Description { get; private set; }
+
         public override string Experience
         {
             get
@@ -17,7 +19,5 @@ namespace TDiary.Model
                 return string.Format("You consumed {0}", Description);
             }
         }
-
-        public string Description { get; private set; }
     }
 }

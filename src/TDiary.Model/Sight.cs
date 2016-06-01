@@ -11,6 +11,8 @@ namespace TDiary.Model
             Name = name;
         }
 
+        public string Name { get; private set; }
+
         public override string Experience
         {
             get
@@ -18,7 +20,5 @@ namespace TDiary.Model
                 return string.Format("You saw {0}", Name);
             }
         }
-
-        public string Name { get; private set; }
     }
 }
