@@ -1,0 +1,10 @@
+{
+    "files.exclude": {
+        "obj/": true,
+        "bin/": true,
+        "Properties": true,
+        "*.lock.*": true,
+        "*.xproj": true,
+        "*.xproj.user": true
+    }
+}
