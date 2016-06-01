@@ -1,12 +1,13 @@
 @model TDiary.ViewModel.SightViewModel
 
 <div class="jumbotron">
-    <h1>What a sight!</h1>
-    <p>You've seen something funky</p>
+    <h1>Double Take?</h1>
+    <p>Change what you saw.</p>
 </div>
 
 <div class="content">
-    <form class="form" role="form" asp-action="Add">
+    <form class="form" role="form" asp-action="Edit">
+        <input type="hidden" asp-for="Id">
         @{
             Html.RenderPartial("_SightInfo", Model);
         }

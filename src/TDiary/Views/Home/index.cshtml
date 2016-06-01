@@ -13,12 +13,18 @@
         <a asp-action="Add" asp-controller="Chow" class="btn btn-primary">Had some chow</a>
         <a asp-action="Add" asp-controller="Sight" class="btn btn-primary">Seen something funky</a>
         </div>
-        <div class="col-sm-6">  
-        <label>Recent experiences:</label>
+        <div class="col-sm-6">
+        @if(Model.ShowRecentExperiences)
+        {
+            <label>Recent experiences:</label>
             @foreach (var i in Model.Activities)
             {
-                <div>@i.Experience</div>
+                <div>
+                    <a class="delete-cross" asp-action="Delete" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" title="Delete this @i.ExperienceType">X</a>
+                    <a asp-action="Edit" asp-controller="@i.ExperienceType" asp-route-id="@i.Id">@i.Experience</a>
+                </div>
             }   
+        }
         </div>
     </div>
 <div>

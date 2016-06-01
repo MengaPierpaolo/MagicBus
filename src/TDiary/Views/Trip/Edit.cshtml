@@ -1,12 +1,13 @@
 @model TDiary.ViewModel.TripViewModel
 
 <div class="jumbotron">
-    <h1>Life's a Journey!</h1>
-    <p>Add your travel detail.</p>
+    <h1>Lost?</h1>
+    <p>Edit your travel detail.</p>
 </div>
 
 <div class="content">
-    <form class="form" role="form" asp-action="Add"> 
+    <form class="form" role="form" asp-action="Edit"> 
+        <input type="hidden" asp-for="Id">
         @{
             Html.RenderPartial("_TripInfo", Model);
         }

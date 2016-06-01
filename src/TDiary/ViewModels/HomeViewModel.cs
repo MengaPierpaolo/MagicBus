@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace TDiary.ViewModel
 {
@@ -16,5 +17,13 @@ namespace TDiary.ViewModel
         public string Heading { get; set; }
 
         public IEnumerable<Activity> Activities { get; set; }
+
+        public bool ShowRecentExperiences
+        {
+            get
+            {
+                return Activities.ToList().Count > 0;
+            }
+        }
     }
 }

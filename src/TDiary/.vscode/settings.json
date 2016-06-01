@@ -5,6 +5,8 @@
         "bin/": true,
         "obj/": true,
         
+        "wwwroot/lib/": true, // bower components
+        
         "Properties" : true, // This or the next two
         
         "*.user": true, // VS user settings files

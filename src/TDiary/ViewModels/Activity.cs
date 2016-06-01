@@ -5,6 +5,7 @@ namespace TDiary.ViewModel
 {
     public class Activity
     {
+        public int Id { get; set; }
         private DateTime _date = DateTime.UtcNow;
 
         [Required]
@@ -23,7 +24,16 @@ namespace TDiary.ViewModel
         }
 
         public string Experience { get; set; }
-        
+
+        public string ExperienceType
+        {
+            get
+            {
+                var t = this.GetType().Name; 
+                return t.Substring(0, t.IndexOf("ViewModel"));
+            }
+        }
+
         public string SubmitButtonUsed { get; set; }
     }
 }

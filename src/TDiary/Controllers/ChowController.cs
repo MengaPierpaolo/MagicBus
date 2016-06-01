@@ -1,4 +1,7 @@
+using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TDiary.Model;
 using TDiary.ViewModel;
@@ -22,7 +25,7 @@ namespace TDiary
         [HttpPost]
         public IActionResult Add(ChowViewModel vm)
         {
-            if (vm.SubmitButtonUsed == "Add it!")
+            if (vm.SubmitButtonUsed == "Save it!")
             {
                 if (ModelState.IsValid)
                 {
@@ -37,5 +40,47 @@ namespace TDiary
             }
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult Edit(int id)
+        {
+            var vm = _context.Experiences.OfType<Chow>()
+                .Where(e => e.Id == id)
+                .Select(c => new ChowViewModel { Id = c.Id, Date = c.Date, Description = c.Description, Experience = c.Experience })
+                .First();
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(ChowViewModel vm)
+        {
+            if (vm.SubmitButtonUsed == "Save it!")
+            {
+                if (ModelState.IsValid)
+                {
+                    _context.Experiences
+                        .Attach(new Chow(vm.Date, vm.Description) { Id = vm.Id })
+                        .State = EntityState.Modified;
+            
+                    _context.SaveChanges();
+
+                   return RedirectToAction("Index", "Home");
+                }
+                
+                return View(vm);
+            }
+            
+            return RedirectToAction("Index", "Home");
+        }
+        
+        public IActionResult Delete(int id)
+        {
+            var item = new Chow(DateTime.UtcNow, string.Empty ) { Id = id };
+            _context.Entry(item).State = EntityState.Deleted;
+            _context.SaveChanges();
+            
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

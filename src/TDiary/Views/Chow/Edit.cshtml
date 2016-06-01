@@ -1,12 +1,13 @@
 @model TDiary.ViewModel.ChowViewModel
 
 <div class="jumbotron">
-    <h1>Had some Chow?</h1>
-    <p>Yum, add it to the list!</p>
+    <h1>Got your Chow mixed up?</h1>
+    <p>Edit the details then!</p>
 </div>
 
 <div class="content">
-    <form class="form" asp-action="Add">
+    <form class="form" asp-action="Edit">
+        <input type="hidden" asp-for="Id">
         @{
             Html.RenderPartial("_ChowInfo", Model);
         }

@@ -1,4 +1,7 @@
+using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TDiary.Model;
 using TDiary.ViewModel;
@@ -22,7 +25,7 @@ namespace TDiary
         [HttpPost]
         public IActionResult Add(SightViewModel vm)
         {
-            if (vm.SubmitButtonUsed == "Add it!")
+            if (vm.SubmitButtonUsed == "Save it!")
             {
                 if (ModelState.IsValid)
                 {
@@ -37,5 +40,46 @@ namespace TDiary
 
             return RedirectToAction("Index", "Home");
         }
+        
+        
+        public IActionResult Edit(int id)
+        {
+            var vm = _context.Experiences.OfType<Sight>()
+                .Where(d => d.Id == id)
+                .Select(d => new SightViewModel() { Id = d.Id, Name = d.Name })
+                .First();
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(SightViewModel vm)
+        {
+            if (vm.SubmitButtonUsed == "Save it!")
+            {
+                if (ModelState.IsValid)
+                {
+                    _context.Attach(new Sight(vm.Date, vm.Name) { Id = vm.Id })
+                        .State = EntityState.Modified;
+
+                    _context.SaveChanges();
+
+                    return RedirectToAction("Index", "Home");
+                }
+                return View(vm);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+        
+        public IActionResult Delete(int id)
+        {
+            var item = new Sight(DateTime.UtcNow, string.Empty ) { Id = id };
+            _context.Entry(item).State = EntityState.Deleted;
+            _context.SaveChanges();
+            
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }
