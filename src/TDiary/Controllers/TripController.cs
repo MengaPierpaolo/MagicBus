@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using TDiary.Model;
 using TDiary.ViewModel;
@@ -21,8 +18,7 @@ namespace TDiary
         {
             _logger.LogInformation("User started to add a Trip");
 
-            var vm = new TripViewModel() { Transport = GetTransportList() };
-            return View(vm);
+            return View(new TripViewModel());
         }
 
         [HttpPost]
@@ -39,19 +35,9 @@ namespace TDiary
                     return RedirectToAction("Index", "Home");
                 }
 
-                vm.Transport = GetTransportList();
                 return View(vm);
             }
             return RedirectToAction("Index", "Home");
-        }
-
-        private IEnumerable<SelectListItem> GetTransportList()
-        {
-            return new List<SelectListItem> {
-                new SelectListItem { Value = "1", Text = "Bus" },
-                new SelectListItem { Value = "2", Text = "Train" },
-                new SelectListItem { Value = "3", Text = "Plane" }
-            };
         }
     }
 }

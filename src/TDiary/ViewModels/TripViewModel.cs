@@ -1,6 +1,5 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using TDiary.Model;
 
 namespace TDiary.ViewModel
 {
@@ -16,8 +15,6 @@ namespace TDiary.ViewModel
 
         [Required]
         [Display(Name = "By")]
-        public string ModeOfTransport { get; set; }
-
-        public IEnumerable<SelectListItem> Transport { get; set; }
+        public ModeOfTransport ModeOfTransport { get; set; }
     }
 }
