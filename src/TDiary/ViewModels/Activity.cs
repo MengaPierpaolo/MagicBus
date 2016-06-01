@@ -9,6 +9,7 @@ namespace TDiary.ViewModel
 
         [Required]
         [DataType(DataType.Date)]
+        [Display(Name = "On")]
         public DateTime Date
         {
             get

@@ -32,7 +32,6 @@ namespace TDiary
                     return RedirectToAction("Index", "Home");
                 }
 
-                // TODO: Rebuild vm
                 return View(vm);
             }
 

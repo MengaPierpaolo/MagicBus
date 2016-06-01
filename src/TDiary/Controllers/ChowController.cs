@@ -32,7 +32,7 @@ namespace TDiary
                     _logger.LogInformation("User added some Chow");
                     return RedirectToAction("Index", "Home");
                 }
-                // TODO: Rebuild vm
+
                 return View(vm);
             }
             return RedirectToAction("Index", "Home");
