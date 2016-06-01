@@ -6,7 +6,7 @@ namespace TDiary.Model {
     {
         internal Trip(){}
         
-        public Trip(DateTime diaryDate, string fromLocation, string toLocation, string modeOfTransport) : base(diaryDate) {
+        public Trip(DateTime diaryDate, string fromLocation, string toLocation, ModeOfTransport modeOfTransport) : base(diaryDate) {
             From = fromLocation;
             To = toLocation;
             By = modeOfTransport;
@@ -16,13 +16,13 @@ namespace TDiary.Model {
         
         public string To { get; private set; }
         
-        public string By { get; private set; }
+        public ModeOfTransport By { get; private set; }
 
         public override string Experience
         {
             get
             {
-                return string.Format("You went from {0} to {1} by {2}", From, To, By);
+                return string.Format("You went from {0} to {1} by {2}", From, To, By.ToString().ToLower());
             }
         }
     }
