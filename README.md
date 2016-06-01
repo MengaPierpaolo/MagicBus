@@ -1,11 +1,12 @@
 # TDiary
-## .NET Core RC2 Travel Diary Project
+# .NET Core RC2 Travel Diary Project
 
 ## Notes
 1. Can be edited using Visual Studio 2015 Update 2, or VSCode 1.1
 2. If wanting to debug, Visual Studio is still the best tool as VSCode support for multi project debugging is still TBD
 3. Uses EF to SQLite.  Please see initial setup instruction below.
 
+---
 ## Requirements
 ### Visual Studio
 1. Visual Studio 2015 Update 2
@@ -19,23 +20,24 @@
 ### Tools
 1. Node.js 4.4.*
 2. Bower
-3. Gulp
 
-### Client Dependencies
+### Client Dependencies in use
 1. bootstrap 3.3.6
 2. jquery 1.11.2 +
 3. jquery-validation
 4. jquery-validation-unotrusive
 
-### Initial setup instructions - VSCode (to automate)
+---
+## Initial setup instructions
+### VSCode (yet to automate)
 1. Clone the repo
-2. dotnet restore in \TDiary and \TDiary.Model
-3. dotnet build in \TDiary
-4. dotnet ef database update in \TDiary
-5. bower install in \TDiary
-6. dotnet run (or run in vscode)
+2. 'dotnet restore' in \TDiary and \TDiary.Model
+3. 'dotnet build' in \TDiary
+4. 'dotnet ef database update' in \TDiary
+5. 'bower install' in \TDiary
+6. 'dotnet run' (or run in vscode)
 
-### Initial setup instructions - Visual Studio
+### Visual Studio
 1. Clone the repo
 2. Open the .sln file
-3. 
+3. 'update-database' in package manager console
