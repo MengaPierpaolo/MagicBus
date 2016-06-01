@@ -4,7 +4,7 @@
 ## Notes
 1. Can be edited using Visual Studio 2015 Update 2, or VSCode 1.1
 2. If wanting to debug, Visual Studio is still the best tool as VSCode support for multi project debugging is still TBD
-3. Uses EF to SQLite.  run: dotnet ef database update from the command line or use the package manager console to run: Update-Database
+3. Uses EF to SQLite.  Please see initial setup instruction below.
 
 ## Requirements
 ### Visual Studio
@@ -26,3 +26,16 @@
 2. jquery 1.11.2 +
 3. jquery-validation
 4. jquery-validation-unotrusive
+
+### Initial setup instructions - VSCode (to automate)
+1. Clone the repo
+2. dotnet restore in \TDiary and \TDiary.Model
+3. dotnet build in \TDiary
+4. dotnet ef database update in \TDiary
+5. bower install in \TDiary
+6. dotnet run (or run in vscode)
+
+### Initial setup instructions - Visual Studio
+1. Clone the repo
+2. Open the .sln file
+3. 
