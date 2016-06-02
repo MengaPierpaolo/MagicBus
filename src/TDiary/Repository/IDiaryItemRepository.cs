@@ -4,9 +4,9 @@ namespace TDiary.Repository
 {
     public interface IDiaryItemRepository<T> where T : DiaryItem
     {
-        T Get(int id);
+        U Get<U>(int id) where U : DiaryItem; 
 
-        void AddNew(T item);
+        void Add(T item);
 
         void SaveChanges(T item);
 

@@ -10,7 +10,7 @@ namespace TDiary
     {
         private readonly ILogger<SightController> _logger;
 
-        public SightController(IDiaryItemRepository<Sight> repository, ILogger<SightController> logger) : base(repository)
+        public SightController(IDiaryItemRepository<DiaryItem> repository, ILogger<SightController> logger) : base(repository)
         {
             _logger = logger;
         }
@@ -28,7 +28,7 @@ namespace TDiary
             {
                 if (ModelState.IsValid)
                 {
-                    _repository.AddNew(new Sight(vm.Date, vm.Name) { Location = vm.Location });
+                    _repository.Add(new Sight(vm.Date, vm.Name) { Location = vm.Location });
                     _logger.LogInformation("User added a Sight");
 
                     return RedirectToAction("Index", "Home");
@@ -44,8 +44,8 @@ namespace TDiary
         {
             _logger.LogInformation("User is editing a Sight");
 
-            var d = _repository.Get(id);
-            var vm = new SightViewModel() { Id = d.Id, Location = d.Location, Name = d.Name };
+            var d = _repository.Get<Sight>(id);
+            var vm = new SightViewModel { Id = d.Id, Location = d.Location, Name = d.Name };
 
             return View(vm);
         }
@@ -57,9 +57,7 @@ namespace TDiary
             {
                 if (ModelState.IsValid)
                 {
-                    var s = Sight.Create(vm.Id, vm.Date, vm.Name, vm.Location);
-                    
-                    _repository.SaveChanges(s);
+                    _repository.SaveChanges(Sight.Create(vm.Id, vm.Date, vm.Name, vm.Location));
                     _logger.LogInformation("User edited a Sight");
 
                     return RedirectToAction("Index", "Home");
@@ -72,9 +70,7 @@ namespace TDiary
         
         public IActionResult Delete(int id)
         {
-            var s = Sight.Create(id);
-            
-            _repository.Delete(s);
+            _repository.Delete(Sight.Create(id));
             _logger.LogInformation("User deleted a Sight");
 
             return RedirectToAction("Index", "Home");

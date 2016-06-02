@@ -1,10 +1,10 @@
-using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using TDiary.Model;
 
 namespace TDiary.Repository
 {
-    public class DiaryItemRepository
+    public class DiaryItemRepository : IDiaryItemRepository<DiaryItem>
     {
         private readonly DiaryContext _context;
 
@@ -13,19 +13,29 @@ namespace TDiary.Repository
             _context = context;
         }
 
-        public IEnumerable<Chow> GetChows()
+        public void Add(DiaryItem item)
         {
-            return _context.Experiences.OfType<Chow>();
+            _context.Experiences.Add(item);
+            _context.SaveChanges();
         }
 
-        public IEnumerable<Trip> GetTrips()
+        public void Delete(DiaryItem chow)
         {
-            return _context.Experiences.OfType<Trip>();
+            _context.Entry(chow).State = EntityState.Deleted;
+            _context.SaveChanges();
         }
 
-        public IEnumerable<Sight> GetSights()
+        public U Get<U>(int id) where U : DiaryItem
         {
-            return _context.Experiences.OfType<Sight>();
+            return _context.Experiences.OfType<U>()
+                .Where(e => e.Id == id)
+                .First();
+        }
+
+        public void SaveChanges(DiaryItem item)
+        {
+            _context.Attach(item).State = EntityState.Modified;
+            _context.SaveChanges();
         }
     }
 }

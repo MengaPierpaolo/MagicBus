@@ -4,11 +4,11 @@ using TDiary.Repository;
 
 namespace TDiary
 {
-    public class DiaryController<T> : Controller where T : DiaryItem
+    public abstract class DiaryController<T> : Controller where T : DiaryItem
     {
-        protected IDiaryItemRepository<T> _repository;
+        protected IDiaryItemRepository<DiaryItem> _repository;
 
-        public DiaryController(IDiaryItemRepository<T> context)
+        public DiaryController(IDiaryItemRepository<DiaryItem> context)
         {
             _repository = context;
         }

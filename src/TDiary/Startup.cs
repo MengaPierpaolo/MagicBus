@@ -26,10 +26,8 @@ namespace TDiary
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddDbContext<DiaryContext>();
             
-            services.AddScoped<IDiaryItemRepository<Chow>, ChowRepository>();
-            services.AddScoped<IDiaryItemRepository<Trip>, TripRepository>();
-            services.AddScoped<IDiaryItemRepository<Sight>, SightRepository>();
-            services.AddScoped<DiaryItemRepository, DiaryItemRepository>();
+            services.AddScoped<IDiaryItemRepository<DiaryItem>, DiaryItemRepository>();
+            services.AddScoped<DiaryListItemRepository, DiaryListItemRepository>();
             
             services.AddMvc();
         }

@@ -10,7 +10,7 @@ namespace TDiary
     {
         private readonly ILogger<TripController> _logger;
 
-        public TripController(IDiaryItemRepository<Trip> repository, ILogger<TripController> logger) : base(repository)
+        public TripController(IDiaryItemRepository<DiaryItem> repository, ILogger<TripController> logger) : base(repository)
         {
             _logger = logger;
         }
@@ -28,7 +28,7 @@ namespace TDiary
             {
                 if (ModelState.IsValid)
                 {
-                    _repository.AddNew(new Trip(vm.Date, vm.From, vm.To, vm.ModeOfTransport));
+                    _repository.Add(new Trip(vm.Date, vm.From, vm.To, vm.ModeOfTransport));
                     _logger.LogInformation("User added a Trip");
 
                     return RedirectToAction("Index", "Home");
@@ -43,8 +43,8 @@ namespace TDiary
         {
             _logger.LogInformation("User is editing a Trip");
 
-            var d = _repository.Get(id);
-            var vm =  new TripViewModel() { Id = d.Id, From = d.From, To = d.To, ModeOfTransport = d.By };
+            var d = _repository.Get<Trip>(id);
+            var vm =  new TripViewModel { Id = d.Id, From = d.From, To = d.To, ModeOfTransport = d.By };
 
             return View(vm);
         }
@@ -56,9 +56,7 @@ namespace TDiary
             {
                 if (ModelState.IsValid)
                 {
-                    var t = Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.ModeOfTransport);
-                    
-                    _repository.SaveChanges(t);
+                    _repository.SaveChanges(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.ModeOfTransport));
                     _logger.LogInformation("User edited a Trip");
 
                     return RedirectToAction("Index", "Home");
@@ -71,9 +69,7 @@ namespace TDiary
         
         public IActionResult Delete(int id)
         {
-            var t = Trip.Create(id);
-            
-            _repository.Delete(t);
+            _repository.Delete(Trip.Create(id));
             _logger.LogInformation("User deleted a Trip");
 
             return RedirectToAction("Index", "Home");

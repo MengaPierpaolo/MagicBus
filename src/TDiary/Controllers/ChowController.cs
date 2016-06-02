@@ -10,7 +10,7 @@ namespace TDiary
     {
         private readonly ILogger<ChowController> _logger;
 
-        public ChowController(IDiaryItemRepository<Chow> repository, ILogger<ChowController> logger) : base(repository)
+        public ChowController(IDiaryItemRepository<DiaryItem> repository, ILogger<ChowController> logger) : base(repository)
         {
             _logger = logger;
         }
@@ -28,7 +28,7 @@ namespace TDiary
             {
                 if (ModelState.IsValid)
                 {
-                    _repository.AddNew(new Chow(vm.Date, vm.Description) { Location = vm.Location });
+                    _repository.Add(new Chow(vm.Date, vm.Description) { Location = vm.Location });
                     _logger.LogInformation("User added some Chow");
 
                     return RedirectToAction("Index", "Home");
@@ -43,7 +43,7 @@ namespace TDiary
         {
             _logger.LogInformation("User is editing some Chow");
 
-            var c = _repository.Get(id);
+            var c = _repository.Get<Chow>(id);
             var vm = new ChowViewModel { Id = c.Id, Date = c.Date, Location = c.Location, Description = c.Description, Experience = c.Experience };
 
             return View(vm);
@@ -56,9 +56,7 @@ namespace TDiary
             {
                 if (ModelState.IsValid)
                 {
-                    var c = Chow.Create(vm.Id, vm.Date, vm.Description, vm.Location);
-
-                    _repository.SaveChanges(c);
+                    _repository.SaveChanges(Chow.Create(vm.Id, vm.Date, vm.Description, vm.Location));
                     _logger.LogInformation("User edited some Chow");
 
                     return RedirectToAction("Index", "Home");
@@ -72,9 +70,7 @@ namespace TDiary
 
         public IActionResult Delete(int id)
         {
-            var c = Chow.Create(id);
- 
-            _repository.Delete(c);
+            _repository.Delete(Chow.Create(id));
             _logger.LogInformation("User deleted some Chow");
 
             return RedirectToAction("Index", "Home");
