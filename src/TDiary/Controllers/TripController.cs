@@ -10,7 +10,7 @@ namespace TDiary
     {
         private readonly ILogger<TripController> _logger;
 
-        public TripController(IDiaryItemRepository<DiaryItem> repository, ILogger<TripController> logger) : base(repository)
+        public TripController(IDiaryItemRepository repository, ILogger<TripController> logger) : base(repository)
         {
             _logger = logger;
         }

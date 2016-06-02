@@ -10,7 +10,7 @@ namespace TDiary
     {
         private readonly ILogger<ChowController> _logger;
 
-        public ChowController(IDiaryItemRepository<DiaryItem> repository, ILogger<ChowController> logger) : base(repository)
+        public ChowController(IDiaryItemRepository repository, ILogger<ChowController> logger) : base(repository)
         {
             _logger = logger;
         }

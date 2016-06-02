@@ -6,9 +6,9 @@ namespace TDiary
 {
     public abstract class DiaryController<T> : Controller where T : DiaryItem
     {
-        protected IDiaryItemRepository<DiaryItem> _repository;
+        protected IDiaryItemRepository _repository;
 
-        public DiaryController(IDiaryItemRepository<DiaryItem> context)
+        public DiaryController(IDiaryItemRepository context)
         {
             _repository = context;
         }

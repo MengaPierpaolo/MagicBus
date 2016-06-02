@@ -10,7 +10,7 @@ namespace TDiary
     {
         private readonly ILogger<SightController> _logger;
 
-        public SightController(IDiaryItemRepository<DiaryItem> repository, ILogger<SightController> logger) : base(repository)
+        public SightController(IDiaryItemRepository repository, ILogger<SightController> logger) : base(repository)
         {
             _logger = logger;
         }

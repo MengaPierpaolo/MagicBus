@@ -4,7 +4,7 @@ using TDiary.Model;
 
 namespace TDiary.Repository
 {
-    public class DiaryItemRepository : IDiaryItemRepository<DiaryItem>
+    public class DiaryItemRepository : IDiaryItemRepository
     {
         private readonly DiaryContext _context;
 
