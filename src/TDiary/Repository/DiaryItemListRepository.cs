@@ -17,20 +17,5 @@ namespace TDiary.Repository
         {
             return _context.Experiences.OrderByDescending(d => d.Date).Take(5);
         }
-
-        public IEnumerable<Chow> GetChows()
-        {
-            return _context.Experiences.OfType<Chow>();
-        }
-
-        public IEnumerable<Trip> GetTrips()
-        {
-            return _context.Experiences.OfType<Trip>();
-        }
-
-        public IEnumerable<Sight> GetSights()
-        {
-            return _context.Experiences.OfType<Sight>();
-        }
     }
 }
