@@ -1,14 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
+using TDiary.Model;
+using TDiary.Repository;
 
 namespace TDiary
 {
-    public class DiaryController : Controller
+    public class DiaryController<T> : Controller where T : DiaryItem
     {
-        protected readonly DiaryContext _context;
+        protected IDiaryItemRepository<T> _repository;
 
-        public DiaryController(DiaryContext context)
+        public DiaryController(IDiaryItemRepository<T> context)
         {
-            _context = context;
+            _repository = context;
         }
     }
 }

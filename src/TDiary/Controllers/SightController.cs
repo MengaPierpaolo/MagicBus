@@ -1,17 +1,16 @@
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TDiary.Model;
+using TDiary.Repository;
 using TDiary.ViewModel;
 
 namespace TDiary
 {
-    public class SightController : DiaryController
+    public class SightController : DiaryController<Sight>
     {
         private readonly ILogger<SightController> _logger;
 
-        public SightController(DiaryContext context, ILogger<SightController> logger) : base(context)
+        public SightController(IDiaryItemRepository<Sight> repository, ILogger<SightController> logger) : base(repository)
         {
             _logger = logger;
         }
@@ -19,7 +18,6 @@ namespace TDiary
         public IActionResult Add()
         {
             _logger.LogInformation("User is adding a Sight");
-
             return View(new SightViewModel());
         }
 
@@ -30,8 +28,7 @@ namespace TDiary
             {
                 if (ModelState.IsValid)
                 {
-                    _context.Experiences.Add(new Sight(vm.Date, vm.Name) { Location = vm.Location });
-                    _context.SaveChanges();
+                    _repository.AddNew(new Sight(vm.Date, vm.Name) { Location = vm.Location });
                     _logger.LogInformation("User added a Sight");
 
                     return RedirectToAction("Index", "Home");
@@ -43,15 +40,12 @@ namespace TDiary
             return RedirectToAction("Index", "Home");
         }
         
-        
         public IActionResult Edit(int id)
         {
             _logger.LogInformation("User is editing a Sight");
 
-            var vm = _context.Experiences.OfType<Sight>()
-                .Where(d => d.Id == id)
-                .Select(d => new SightViewModel() { Id = d.Id, Location = d.Location, Name = d.Name })
-                .First();
+            var d = _repository.Get(id);
+            var vm = new SightViewModel() { Id = d.Id, Location = d.Location, Name = d.Name };
 
             return View(vm);
         }
@@ -63,10 +57,9 @@ namespace TDiary
             {
                 if (ModelState.IsValid)
                 {
-                    _context.Attach(Sight.Create(vm.Id, vm.Date, vm.Name, vm.Location))
-                        .State = EntityState.Modified;
-
-                    _context.SaveChanges();
+                    var s = Sight.Create(vm.Id, vm.Date, vm.Name, vm.Location);
+                    
+                    _repository.SaveChanges(s);
                     _logger.LogInformation("User edited a Sight");
 
                     return RedirectToAction("Index", "Home");
@@ -79,8 +72,9 @@ namespace TDiary
         
         public IActionResult Delete(int id)
         {
-            _context.Entry(Sight.Create(id)).State = EntityState.Deleted;
-            _context.SaveChanges();
+            var s = Sight.Create(id);
+            
+            _repository.Delete(s);
             _logger.LogInformation("User deleted a Sight");
 
             return RedirectToAction("Index", "Home");

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using TDiary.Repository;
+using TDiary.Model;
 
 namespace TDiary
 {
@@ -23,6 +25,12 @@ namespace TDiary
         {
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddDbContext<DiaryContext>();
+            
+            services.AddScoped<IDiaryItemRepository<Chow>, ChowRepository>();
+            services.AddScoped<IDiaryItemRepository<Trip>, TripRepository>();
+            services.AddScoped<IDiaryItemRepository<Sight>, SightRepository>();
+            services.AddScoped<DiaryItemRepository, DiaryItemRepository>();
+            
             services.AddMvc();
         }
         

@@ -1,17 +1,16 @@
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TDiary.Model;
+using TDiary.Repository;
 using TDiary.ViewModel;
 
 namespace TDiary
 {
-    public class TripController : DiaryController
+    public class TripController : DiaryController<Trip>
     {
         private readonly ILogger<TripController> _logger;
 
-        public TripController(DiaryContext context, ILogger<TripController> logger) : base(context)
+        public TripController(IDiaryItemRepository<Trip> repository, ILogger<TripController> logger) : base(repository)
         {
             _logger = logger;
         }
@@ -29,10 +28,9 @@ namespace TDiary
             {
                 if (ModelState.IsValid)
                 {
-                    _context.Experiences.Add(new Trip(vm.Date, vm.From, vm.To, vm.ModeOfTransport));
-                    _context.SaveChanges();
-
+                    _repository.AddNew(new Trip(vm.Date, vm.From, vm.To, vm.ModeOfTransport));
                     _logger.LogInformation("User added a Trip");
+
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -44,10 +42,9 @@ namespace TDiary
         public IActionResult Edit(int id)
         {
             _logger.LogInformation("User is editing a Trip");
-            var vm = _context.Experiences.OfType<Trip>()
-                .Where(d => d.Id == id)
-                .Select(d => new TripViewModel() { Id = d.Id, From = d.From, To = d.To, ModeOfTransport = d.By })
-                .First();
+
+            var d = _repository.Get(id);
+            var vm =  new TripViewModel() { Id = d.Id, From = d.From, To = d.To, ModeOfTransport = d.By };
 
             return View(vm);
         }
@@ -59,10 +56,9 @@ namespace TDiary
             {
                 if (ModelState.IsValid)
                 {
-                    _context.Attach(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.ModeOfTransport))
-                        .State = EntityState.Modified;
-
-                    _context.SaveChanges();
+                    var t = Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.ModeOfTransport);
+                    
+                    _repository.SaveChanges(t);
                     _logger.LogInformation("User edited a Trip");
 
                     return RedirectToAction("Index", "Home");
@@ -75,8 +71,9 @@ namespace TDiary
         
         public IActionResult Delete(int id)
         {
-            _context.Entry(Trip.Create(id)).State = EntityState.Deleted;
-            _context.SaveChanges();
+            var t = Trip.Create(id);
+            
+            _repository.Delete(t);
             _logger.LogInformation("User deleted a Trip");
 
             return RedirectToAction("Index", "Home");
