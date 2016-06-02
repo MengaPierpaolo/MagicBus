@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/lib/Button';
 
-class FirstComponent extends React.Component {
+class ActivityList extends React.Component {
 
   constructor(props) {
     super(props);
@@ -17,9 +17,9 @@ class FirstComponent extends React.Component {
   render() {
     return (
       <div>
-        <label>Click this button to do something amazing!</label>
+        <label>Recent experiences</label>
         <div>
-        <Button bsStyle="primary" bsSize="small" onClick={this.onClickMe}>
+        <Button bsStyle="primary" onClick={this.onClickMe}>
           Something Amazing
         </Button>
         <span>{this.state.somethingGroovy}</span>
@@ -30,4 +30,4 @@ class FirstComponent extends React.Component {
 
 }
 
-export default FirstComponent;
+export default ActivityList;

@@ -1,24 +1,34 @@
-var webpack = require('webpack');
-var path = require('path');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
-var APP_DIR = path.resolve(__dirname, 'src/client/app');
-
-var config = {
-  entry: APP_DIR + '/tdiary-app.jsx',
+module.exports = {
+  entry: './src/app/app.jsx',
   output: {
-    path: BUILD_DIR,
+    path: __dirname + '/build',
     filename: 'bundle.js'
   },
-  module : {
-    loaders : [
+  resolve: {
+    extensions: ['', '.js', '.jsx']
+  },
+  module: {
+    loaders: [
       {
-        test : /\.jsx?/,
-        include : APP_DIR,
-        loader : 'babel'
+        test: /\.jsx?$/,
+        loader: 'babel',
+        exclude: /node_modules/,
+        query: {
+          cacheDirectory: true,
+          presets: ['react', 'es2015']
+        }
+      },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
       }
     ]
-  }
-};
-
-module.exports = config;
+  },
+  plugins: [
+    new ExtractTextPlugin("site.css", {
+      allChunks: true
+    })
+  ]
+}
