@@ -14,9 +14,9 @@ namespace TDiary
             _repository = repository;
         }
         
-        public IEnumerable<DiaryItem> AllExperiences()
+        public IEnumerable<DiaryItem> AllRecentExperiences()
         {
-            return _repository.GetRecentExperiences();
+            return _repository.GetRecentExperiences(PageSize.Fifteen);
         }
     }
 }

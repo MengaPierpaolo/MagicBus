@@ -13,9 +13,16 @@ namespace TDiary.Repository
             _context = context;
         }
 
-        public IEnumerable<DiaryItem> GetRecentExperiences()
+        public IEnumerable<DiaryItem> GetRecentExperiences(PageSize howMany)
         {
-            return _context.Experiences.OrderByDescending(d => d.Date).Take(5);
+            return _context.Experiences.OrderByDescending(d => d.Date).Take((int)howMany);
         }
+    }
+
+    public enum PageSize
+    {
+        Five = 5,
+        Ten = 10,
+        Fifteen = 15
     }
 }

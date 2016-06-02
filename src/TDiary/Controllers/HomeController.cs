@@ -21,7 +21,7 @@ namespace TDiary
         
         public IActionResult Index() 
         {
-            var data = _repository.GetRecentExperiences();
+            var data = _repository.GetRecentExperiences(PageSize.Ten);
             var returnData = new List<Activity>();
            
             returnData.AddRange(data.Where(i => i is Chow).Cast<Chow>().Select(c => new ChowViewModel { Id = c.Id, Date = c.Date, Description = c.Description, Experience = c.Experience }));
@@ -31,7 +31,7 @@ namespace TDiary
             var vm = new HomeViewModel("Magic Bus")
             {
                 Heading = "Your groovy new travel diary!",
-                Activities = returnData
+                Activities = returnData.OrderByDescending(a => a.Date)
             };
             
             return View(vm);    
