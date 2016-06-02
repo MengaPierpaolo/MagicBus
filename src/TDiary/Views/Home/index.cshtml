@@ -7,12 +7,13 @@
 
 <div class="content">
     <div class="row">
-        <div class="col-sm-6">  
+        <div class="col-sm-5">  
         <label>Wotcha been up to?</label><br>
-        <a asp-action="Add" asp-controller="Trip" class="btn btn-primary">Been on a trip</a>
-        <a asp-action="Add" asp-controller="Chow" class="btn btn-primary">Had some chow</a>
-        <a asp-action="Add" asp-controller="Sight" class="btn btn-primary">Seen something funky</a>
+        <a asp-action="Add" asp-controller="Trip" class="btn btn-primary btn-block">Been on a trip</a>
+        <a asp-action="Add" asp-controller="Chow" class="btn btn-primary btn-block">Had some chow</a>
+        <a asp-action="Add" asp-controller="Sight" class="btn btn-primary btn-block">Seen something funky</a>
         </div>
+        <div class="col-sm-1"></div>
         <div class="col-sm-6">
         @if(Model.ShowRecentExperiences)
         {
