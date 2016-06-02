@@ -27,7 +27,7 @@ namespace TDiary
             services.AddDbContext<DiaryContext>();
             
             services.AddScoped<IDiaryItemRepository<DiaryItem>, DiaryItemRepository>();
-            services.AddScoped<DiaryListItemRepository, DiaryListItemRepository>();
+            services.AddScoped<DiaryItemListRepository, DiaryItemListRepository>();
             
             services.AddMvc();
         }

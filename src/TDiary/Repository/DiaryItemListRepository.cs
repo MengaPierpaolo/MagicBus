@@ -4,11 +4,11 @@ using TDiary.Model;
 
 namespace TDiary.Repository
 {
-    public class DiaryListItemRepository
+    public class DiaryItemListRepository
     {
         private readonly DiaryContext _context;
 
-        public DiaryListItemRepository(DiaryContext context)
+        public DiaryItemListRepository(DiaryContext context)
         {
             _context = context;
         }

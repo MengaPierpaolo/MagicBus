@@ -26,16 +26,15 @@ namespace TDiary
         {
             if (vm.SubmitButtonUsed == "Save it!")
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    _repository.Add(new Trip(vm.Date, vm.From, vm.To, vm.ModeOfTransport));
-                    _logger.LogInformation("User added a Trip");
-
-                    return RedirectToAction("Index", "Home");
+                    return View(vm);
                 }
 
-                return View(vm);
+                _repository.Add(new Trip(vm.Date, vm.From, vm.To, vm.ModeOfTransport));
+                _logger.LogInformation("User added a Trip");
             }
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -44,7 +43,7 @@ namespace TDiary
             _logger.LogInformation("User is editing a Trip");
 
             var d = _repository.Get<Trip>(id);
-            var vm =  new TripViewModel { Id = d.Id, From = d.From, To = d.To, ModeOfTransport = d.By };
+            var vm = new TripViewModel { Id = d.Id, From = d.From, To = d.To, ModeOfTransport = d.By };
 
             return View(vm);
         }
@@ -54,19 +53,18 @@ namespace TDiary
         {
             if (vm.SubmitButtonUsed == "Save it!")
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    _repository.SaveChanges(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.ModeOfTransport));
-                    _logger.LogInformation("User edited a Trip");
-
-                    return RedirectToAction("Index", "Home");
+                    return View(vm);
                 }
-                return View(vm);
+                
+                _repository.SaveChanges(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.ModeOfTransport));
+                _logger.LogInformation("User edited a Trip");
             }
 
             return RedirectToAction("Index", "Home");
         }
-        
+
         public IActionResult Delete(int id)
         {
             _repository.Delete(Trip.Create(id));

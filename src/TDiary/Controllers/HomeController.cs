@@ -10,10 +10,10 @@ namespace TDiary
 {
     public class HomeController : Controller
     {
-        private readonly DiaryListItemRepository _repository;
+        private readonly DiaryItemListRepository _repository;
         private readonly ILogger<HomeController> _logger;
         
-        public HomeController(DiaryListItemRepository repository, ILogger<HomeController> logger)
+        public HomeController(DiaryItemListRepository repository, ILogger<HomeController> logger)
         {
             _repository = repository;
             _logger = logger;

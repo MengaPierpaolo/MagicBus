@@ -26,20 +26,18 @@ namespace TDiary
         {
             if (vm.SubmitButtonUsed == "Save it!")
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    _repository.Add(new Sight(vm.Date, vm.Name) { Location = vm.Location });
-                    _logger.LogInformation("User added a Sight");
-
-                    return RedirectToAction("Index", "Home");
+                    return View(vm);
                 }
 
-                return View(vm);
+                _repository.Add(new Sight(vm.Date, vm.Name) { Location = vm.Location });
+                _logger.LogInformation("User added a Sight");
             }
 
             return RedirectToAction("Index", "Home");
         }
-        
+
         public IActionResult Edit(int id)
         {
             _logger.LogInformation("User is editing a Sight");
@@ -55,19 +53,18 @@ namespace TDiary
         {
             if (vm.SubmitButtonUsed == "Save it!")
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    _repository.SaveChanges(Sight.Create(vm.Id, vm.Date, vm.Name, vm.Location));
-                    _logger.LogInformation("User edited a Sight");
-
-                    return RedirectToAction("Index", "Home");
+                    return View(vm);
                 }
-                return View(vm);
+
+                _repository.SaveChanges(Sight.Create(vm.Id, vm.Date, vm.Name, vm.Location));
+                _logger.LogInformation("User edited a Sight");
             }
 
             return RedirectToAction("Index", "Home");
         }
-        
+
         public IActionResult Delete(int id)
         {
             _repository.Delete(Sight.Create(id));

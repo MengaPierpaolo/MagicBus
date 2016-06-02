@@ -1,22 +1,22 @@
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
+using TDiary.Repository;
 
 namespace TDiary
 {
     public class ApiController : Controller
     {
-        private readonly DiaryContext _context;
+        private readonly DiaryItemListRepository _repository;
         
-        public ApiController(DiaryContext context)
+        public ApiController(DiaryItemListRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
         
         public IEnumerable<DiaryItem> AllExperiences()
         {
-            return _context.Experiences.ToList();
+            return _repository.GetRecentExperiences();
         }
     }
 }

@@ -26,16 +26,15 @@ namespace TDiary
         {
             if (vm.SubmitButtonUsed == "Save it!")
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    _repository.Add(new Chow(vm.Date, vm.Description) { Location = vm.Location });
-                    _logger.LogInformation("User added some Chow");
-
-                    return RedirectToAction("Index", "Home");
+                    return View(vm);
                 }
-
-                return View(vm);
+                
+                _repository.Add(new Chow(vm.Date, vm.Description) { Location = vm.Location });
+                _logger.LogInformation("User added some Chow");
             }
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -54,15 +53,13 @@ namespace TDiary
         {
             if (vm.SubmitButtonUsed == "Save it!")
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    _repository.SaveChanges(Chow.Create(vm.Id, vm.Date, vm.Description, vm.Location));
-                    _logger.LogInformation("User edited some Chow");
-
-                    return RedirectToAction("Index", "Home");
+                    return View(vm);
                 }
 
-                return View(vm);
+                _repository.SaveChanges(Chow.Create(vm.Id, vm.Date, vm.Description, vm.Location));
+                _logger.LogInformation("User edited some Chow");
             }
 
             return RedirectToAction("Index", "Home");
