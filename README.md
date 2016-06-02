@@ -1,8 +1,14 @@
 # TDiary.React
-React.js UI to Consume the API data served by .NET Core TDiary Project
+---
+A React.js UI to Consume the API data served by .NET Core TDiary Project
+---
+# System Requirements
+1. Node & npm
+2. `npm install webpack browser-sync -g`
 
-# Instructions
-1. Clone the rep
-2. npm install
-3. npm run dev
-4. Browse to index.html
+# Initial setup instructions
+1. Ensure the System Requirements are met
+2. Clone the rep
+3. `npm install`
+4. `npm run dev`
+5. Browse to index.html
