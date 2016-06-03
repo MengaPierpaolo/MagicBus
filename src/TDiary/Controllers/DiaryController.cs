@@ -6,11 +6,13 @@ namespace TDiary
 {
     public abstract class DiaryController<T> : Controller where T : DiaryItem
     {
+        protected ILocationProvider _locationProvider;
         protected IDiaryItemRepository _repository;
 
-        public DiaryController(IDiaryItemRepository context)
+        public DiaryController(IDiaryItemRepository context, ILocationProvider locationProvider)
         {
             _repository = context;
+            _locationProvider = locationProvider;
         }
     }
 }

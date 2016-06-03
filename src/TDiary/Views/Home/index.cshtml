@@ -8,16 +8,17 @@
 <div class="content">
     <div class="row">
         <div class="col-sm-5">  
-        <label>Wotcha been up to?</label><br>
+        <h3>What'ya been up to?</h3>
         <a asp-action="Add" asp-controller="Trip" class="btn btn-primary btn-block">Been on a trip</a>
         <a asp-action="Add" asp-controller="Chow" class="btn btn-primary btn-block">Had some chow</a>
-        <a asp-action="Add" asp-controller="Sight" class="btn btn-primary btn-block">Seen something funky</a>
+        <a asp-action="Add" asp-controller="Sight" class="btn btn-primary btn-block">Saw something funky</a>
+        <a href="#" onclick="javascript:alert('Sleeping on it')" class="btn btn-default btn-block">Took a noteworthy nap</a>
         </div>
         <div class="col-sm-1"></div>
         <div class="col-sm-6">
         @if(Model.ShowRecentExperiences)
         {
-            <label>Recent experiences:</label>
+            <h3>Recent experiences:</h3>
             @foreach (var i in Model.Activities)
             {
                 <div>

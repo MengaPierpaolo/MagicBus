@@ -16,7 +16,7 @@
 .delete-cross {
     padding-left: 5px;
     padding-right: 5px;
-    color: gray;
+    color: orangered;
     font-size: 1.1em;
 }
 
@@ -29,6 +29,10 @@ h1 {
 h2 {
     font-size: 1.2em;
     margin-top: 5px;
+}
+
+h3 {
+    font-size: 1.1em;
 }
 
 form{

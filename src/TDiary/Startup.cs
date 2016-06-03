@@ -28,6 +28,7 @@ namespace TDiary
             
             services.AddScoped<IDiaryItemRepository, DiaryItemRepository>();
             services.AddScoped<DiaryItemListRepository, DiaryItemListRepository>();
+            services.AddScoped<ILocationProvider, MostRecentLocationProvider>();
             
             services.AddMvc();
         }

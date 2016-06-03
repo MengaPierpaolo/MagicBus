@@ -10,7 +10,10 @@ namespace TDiary
     {
         private readonly ILogger<TripController> _logger;
 
-        public TripController(IDiaryItemRepository repository, ILogger<TripController> logger) : base(repository)
+        public TripController(
+            IDiaryItemRepository repository,
+            ILocationProvider locationProvider,
+            ILogger<TripController> logger) : base(repository, locationProvider)
         {
             _logger = logger;
         }
@@ -18,7 +21,7 @@ namespace TDiary
         public IActionResult Add()
         {
             _logger.LogInformation("User is adding a Trip");
-            return View(new TripViewModel());
+            return View(new TripViewModel() { From = _locationProvider.GetLastLocation() });
         }
 
         [HttpPost]
@@ -57,7 +60,7 @@ namespace TDiary
                 {
                     return View(vm);
                 }
-                
+
                 _repository.SaveChanges(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.ModeOfTransport));
                 _logger.LogInformation("User edited a Trip");
             }

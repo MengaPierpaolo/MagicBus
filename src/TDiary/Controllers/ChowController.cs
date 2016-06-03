@@ -10,7 +10,10 @@ namespace TDiary
     {
         private readonly ILogger<ChowController> _logger;
 
-        public ChowController(IDiaryItemRepository repository, ILogger<ChowController> logger) : base(repository)
+        public ChowController(
+            IDiaryItemRepository repository, 
+            ILocationProvider locationProvider, 
+            ILogger<ChowController> logger) : base(repository, locationProvider)
         {
             _logger = logger;
         }
@@ -18,7 +21,7 @@ namespace TDiary
         public IActionResult Add()
         {
             _logger.LogInformation("User is adding some Chow");
-            return View(new ChowViewModel());
+            return View(new ChowViewModel() {Location = _locationProvider.GetLastLocation()});
         }
 
         [HttpPost]

@@ -10,7 +10,10 @@ namespace TDiary
     {
         private readonly ILogger<SightController> _logger;
 
-        public SightController(IDiaryItemRepository repository, ILogger<SightController> logger) : base(repository)
+        public SightController(
+            IDiaryItemRepository repository, 
+            ILocationProvider locationProvider, 
+            ILogger<SightController> logger) : base(repository, locationProvider)
         {
             _logger = logger;
         }
@@ -18,7 +21,7 @@ namespace TDiary
         public IActionResult Add()
         {
             _logger.LogInformation("User is adding a Sight");
-            return View(new SightViewModel());
+            return View(new SightViewModel() { Location = _locationProvider.GetLastLocation()});
         }
 
         [HttpPost]
