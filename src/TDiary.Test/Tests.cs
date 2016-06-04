@@ -5,11 +5,11 @@ namespace MyFirstDotNetCoreTests
 {
     public class Class1
     {
-        [Fact]
-        public void PassingTest()
-        {
-            var sut = new HomeViewModel("Test");
-            Assert.Equal("Test", sut.Title);
-        }
+        //[Fact]
+        //public void PassingTest()
+        //{
+        //    var sut = new HomeViewModel("Test");
+        //    Assert.Equal("Test", sut.Title);
+        //}
     }
 }

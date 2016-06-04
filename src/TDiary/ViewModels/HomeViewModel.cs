@@ -3,20 +3,9 @@ using System.Linq;
 
 namespace TDiary.ViewModel
 {
-    public class HomeViewModel
+    public class HomeViewModel : PageViewModel
     {
-        private string _title;
-
-        public HomeViewModel(string title)
-        {
-            _title = title;
-        }
-
-        public string Title => _title;
-
-        public string Heading { get; set; }
-
-        public IEnumerable<Activity> Activities { get; set; }
+        public IEnumerable<ActivityViewModel> Activities { get; set; }
 
         public bool ShowRecentExperiences
         {

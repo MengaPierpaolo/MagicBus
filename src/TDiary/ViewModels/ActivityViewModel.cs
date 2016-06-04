@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TDiary.ViewModel
 {
-    public class Activity
+    public abstract class ActivityViewModel : PageViewModel
     {
         public int Id { get; set; }
         private DateTime _date = DateTime.UtcNow;
@@ -35,5 +35,13 @@ namespace TDiary.ViewModel
         }
 
         public string SubmitButtonUsed { get; set; }
+        
+        public bool SavePressed
+        {
+            get
+            {
+                return this.SubmitButtonUsed == "Save it!";
+            }
+        }
     }
 }

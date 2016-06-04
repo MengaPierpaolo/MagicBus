@@ -3,7 +3,7 @@ using TDiary.Model;
 
 namespace TDiary.ViewModel
 {
-    public class TripViewModel : Activity
+    public class TripViewModel : ActivityViewModel
     {
         [Required]
         [Display(Name = "You travelled from")]

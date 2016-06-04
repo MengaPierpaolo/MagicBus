@@ -2,7 +2,7 @@ using System;
 
 namespace TDiary.Model
 {
-    public class Chow : DiaryItem, ILocatable
+    public class Chow : DiaryItem, ILocatable, IDiaryItem
     {
         internal Chow() { }
 

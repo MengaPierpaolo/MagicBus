@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using TDiary.Repository;
 using TDiary.Model;
+using TDiary.ViewModel;
 
 namespace TDiary
 {
@@ -29,6 +30,10 @@ namespace TDiary
             services.AddScoped<IDiaryItemRepository, DiaryItemRepository>();
             services.AddScoped<DiaryItemListRepository, DiaryItemListRepository>();
             services.AddScoped<ILocationProvider, MostRecentLocationProvider>();
+
+            services.AddScoped<IViewModelProvider<Chow, ChowViewModel>, ChowViewModelProvider>();
+            services.AddScoped<IViewModelProvider<Sight, SightViewModel>, SightViewModelProvider>();
+            services.AddScoped<IViewModelProvider<Trip, TripViewModel>, TripViewModelProvider>();
             
             services.AddMvc();
         }

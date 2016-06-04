@@ -2,7 +2,7 @@ using System;
 
 namespace TDiary.Model
 {
-    public abstract class DiaryItem
+    public abstract class DiaryItem : IDiaryItem
     {
         internal DiaryItem(){}
         
@@ -16,5 +16,10 @@ namespace TDiary.Model
         public DateTime Date { get; private set; }
         
         public abstract string Experience { get; }
+    }
+    
+    public interface IDiaryItem
+    {
+        
     }
 }

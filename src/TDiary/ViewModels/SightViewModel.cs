@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TDiary.ViewModel
 {
-    public class SightViewModel : Activity
+    public class SightViewModel : ActivityViewModel
     {
         [Required]
         [Display(Name = "You saw")]
