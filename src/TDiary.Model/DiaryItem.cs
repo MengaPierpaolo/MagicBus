@@ -2,7 +2,7 @@ using System;
 
 namespace TDiary.Model
 {
-    public abstract class DiaryItem : IDiaryItem
+    public abstract class DiaryItem
     {
         internal DiaryItem(){}
         
@@ -15,11 +15,13 @@ namespace TDiary.Model
         
         public DateTime Date { get; private set; }
         
-        public abstract string Experience { get; }
-    }
-    
-    public interface IDiaryItem
-    {
+        public int SavePosition { get; internal set; }
         
+        public abstract string Experience { get; }
+        
+        public void MovePositionTo(int position) 
+        {
+            this.SavePosition = position;
+        }
     }
 }

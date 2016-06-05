@@ -4,6 +4,11 @@ namespace TDiary.Model
     {
         Bus = 1,
         Train,
-        Plane
+        Boat,
+        Plane,
+        Walk,
+        Bicycle,
+        TukTuk,
+        Skateboard
     }
 }

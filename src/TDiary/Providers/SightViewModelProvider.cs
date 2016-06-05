@@ -5,7 +5,7 @@ namespace TDiary
 {
     public class SightViewModelProvider : IViewModelProvider<Sight, SightViewModel>
     {
-        protected ILocationProvider _locationProvider;
+        private ILocationProvider _locationProvider;
 
         public SightViewModelProvider(ILocationProvider locationProvider)
         {
@@ -22,7 +22,7 @@ namespace TDiary
 
         public SightViewModel CreateEditViewModel(Sight item)
         {
-            var vm = new SightViewModel { Id = item.Id, Date = item.Date, Location = item.Location, Name = item.Name, Experience = item.Experience };
+            var vm = new SightViewModel { Id = item.Id, Date = item.Date, Location = item.Location, Name = item.Name, Experience = item.Experience, SavePosition = item.SavePosition };
             vm.Title = "Double Take?";
             vm.Heading = "Change what you saw.";
             return vm;

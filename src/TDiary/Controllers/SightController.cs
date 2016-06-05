@@ -48,7 +48,7 @@ namespace TDiary
                 if (!ModelState.IsValid) 
                     return View(vm);
 
-                _repository.SaveChanges(Sight.Create(vm.Id, vm.Date, vm.Name, vm.Location));
+                _repository.SaveChanges(Sight.Create(vm.Id, vm.Date, vm.Name, vm.Location, vm.SavePosition));
             }
             
             return RedirectToAction("Index", "Home");

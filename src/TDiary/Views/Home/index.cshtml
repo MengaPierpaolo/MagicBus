@@ -19,6 +19,8 @@
                 <div>
                     <a class="delete-cross" asp-action="Delete" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" title="Delete this @i.ExperienceType">X</a>
                     <a asp-action="Edit" asp-controller="@i.ExperienceType" asp-route-id="@i.Id">@i.Experience</a>
+                    <a class="" asp-action="OrderActivityUp" asp-route-activityId="@i.Id">+</a>
+                    <a class="" asp-action="OrderActivityDown" asp-route-activityId="@i.Id">-</a>
                 </div>
             }   
         }

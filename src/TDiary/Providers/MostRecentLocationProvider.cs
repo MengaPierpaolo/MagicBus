@@ -14,7 +14,10 @@ namespace TDiary
 
         public string GetLastLocation()
         {
-            var recentItem = _context.Experiences.OrderByDescending(di => di.Date).FirstOrDefault();
+            var recentItem = _context.Experiences
+                .OrderByDescending(di => di.Date)
+                .OrderByDescending(pos => pos.SavePosition)
+                .FirstOrDefault();
 
             if (recentItem != null)
             {

@@ -2,7 +2,7 @@ using System;
 
 namespace TDiary.Model
 {
-    public class Chow : DiaryItem, ILocatable, IDiaryItem
+    public class Chow : DiaryItem, ILocatable
     {
         internal Chow() { }
 
@@ -29,9 +29,9 @@ namespace TDiary.Model
             return new Chow() { Id = id };
         }
 
-        public static Chow Create(int id, DateTime diaryDate, string productConsumed, string location)
+        public static Chow Create(int id, DateTime diaryDate, string productConsumed, string location, int savePosition)
         {
-            return new Chow(diaryDate, productConsumed) { Id = id, Location = location };
+            return new Chow(diaryDate, productConsumed) { Id = id, Location = location, SavePosition = savePosition };
         }
     }
 }

@@ -15,6 +15,15 @@ namespace TDiary.Repository
 
         public void Add(DiaryItem item)
         {
+            var lastItem = _context.Experiences
+                .Where(i => i.Date.Date == item.Date.Date)
+                .OrderByDescending(i => i.SavePosition)
+                .FirstOrDefault();
+            
+            if (lastItem != null)
+            {
+                item.MovePositionTo(lastItem.SavePosition + 1);
+            }
             _context.Experiences.Add(item);
             _context.SaveChanges();
         }

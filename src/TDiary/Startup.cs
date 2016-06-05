@@ -30,6 +30,7 @@ namespace TDiary
             services.AddScoped<IDiaryItemRepository, DiaryItemRepository>();
             services.AddScoped<DiaryItemListRepository, DiaryItemListRepository>();
             services.AddScoped<ILocationProvider, MostRecentLocationProvider>();
+            services.AddScoped<IActivityOrderService, BasicActivityOrderService>();
 
             services.AddScoped<IViewModelProvider<Chow, ChowViewModel>, ChowViewModelProvider>();
             services.AddScoped<IViewModelProvider<Sight, SightViewModel>, SightViewModelProvider>();

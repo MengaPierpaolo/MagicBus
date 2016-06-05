@@ -5,7 +5,7 @@ namespace TDiary
 {
     public class ChowViewModelProvider : IViewModelProvider<Chow, ChowViewModel>
     {
-        protected ILocationProvider _locationProvider;
+        private ILocationProvider _locationProvider;
 
         public ChowViewModelProvider(ILocationProvider locationProvider)
         {
@@ -22,7 +22,7 @@ namespace TDiary
 
         public ChowViewModel CreateEditViewModel(Chow item)
         {
-            var vm = new ChowViewModel { Id = item.Id, Date = item.Date, Location = item.Location, Description = item.Description, Experience = item.Experience };
+            var vm = new ChowViewModel { Id = item.Id, Date = item.Date, Location = item.Location, Description = item.Description, Experience = item.Experience, SavePosition = item.SavePosition };
             vm.Title = "Chow mixed up?";
             vm.Heading = "Edit the details then!";
             return vm;

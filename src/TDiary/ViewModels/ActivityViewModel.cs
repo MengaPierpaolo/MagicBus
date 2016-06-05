@@ -43,5 +43,7 @@ namespace TDiary.ViewModel
                 return this.SubmitButtonUsed == "Save it!";
             }
         }
+
+        public int SavePosition { get; set; }
     }
 }

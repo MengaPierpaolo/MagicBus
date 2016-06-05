@@ -5,7 +5,7 @@ namespace TDiary
 {
     public class TripViewModelProvider : IViewModelProvider<Trip, TripViewModel>
     {
-        protected ILocationProvider _locationProvider;
+        private ILocationProvider _locationProvider;
 
         public TripViewModelProvider(ILocationProvider locationProvider)
         {
@@ -22,7 +22,7 @@ namespace TDiary
 
         public TripViewModel CreateEditViewModel(Trip item)
         {
-            var vm = new TripViewModel { Id = item.Id, From = item.From, To = item.To, ModeOfTransport = item.By };
+            var vm = new TripViewModel { Id = item.Id, Date = item.Date, From = item.From, To = item.To, ModeOfTransport = item.By, SavePosition = item.SavePosition };
             vm.Title = "Lost?";
             vm.Heading = "Edit your travel detail.";
             return vm;
