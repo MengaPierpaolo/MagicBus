@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HomeViewModel } from '../model/homeViewModel';
 
 @Component ({
+    moduleId: module.id,
     selector: 'page-title',
     template: `
     <div class="jumbotron">

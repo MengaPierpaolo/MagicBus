@@ -1,27 +1,29 @@
 import { Component } from '@angular/core';
+import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
+
 import { PageTitleComponent } from '../component/page-title.component';
-import { ExperienceListComponent } from '../component/experience-list'
+import { DashboardComponent } from '../component/dashboard.component';
+import { TripDetailComponent } from '../component/trip-editor.component';
+import { SightDetailComponent } from '../component/sight-editor.component';
+import { ChowDetailComponent } from '../component/chow-editor.component';
 
 @Component({
   selector: 'tdiary-app',
   template: `
-    <page-title></page-title>
-    <div class="content row">
-      <div class="col-sm-5">
-          <h3>What'ya been up to?</h3>
-          <button class="btn btn-primary btn-block">Been on a trip</button>
-          <button class="btn btn-primary btn-block">Had some chow</button>
-          <button class="btn btn-primary btn-block">Seen something funky</button>
-          <button class="btn btn-default btn-block">Took a noteworthy nap</button>
-      </div>
-      <div class="col-sm-1"></div>
-      <div class="col-sm-6">
-        <experience-list></experience-list>
-      </div>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
     </div>
     `,
-    directives: [PageTitleComponent, ExperienceListComponent]
+  directives: [ROUTER_DIRECTIVES, PageTitleComponent, DashboardComponent, TripDetailComponent],
+  providers: [
+    ROUTER_PROVIDERS
+  ]
 })
-
-export class AppComponent { 
-}
+@RouteConfig([
+  { path: '/Dashboard', name: 'Dashboard', component: DashboardComponent },
+  { path: '/Trip', name: 'Trip', component: TripDetailComponent },
+  { path: '/Sight', name: 'Sight', component: SightDetailComponent },
+  { path: '/Chow', name: 'Chow', component: ChowDetailComponent },
+  { path: '/', component: DashboardComponent }
+])
+export class AppComponent { }
