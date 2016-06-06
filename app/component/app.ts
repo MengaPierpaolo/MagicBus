@@ -1,41 +1,27 @@
 import { Component } from '@angular/core';
-import { HomeViewModel } from '../model/homeViewModel';
-import { ActivityViewModel } from '../model/activityViewModel';
+import { PageTitleComponent } from '../component/page-title.component';
 import { ExperienceListComponent } from '../component/experience-list'
-import { DataService } from '../service/data.service'
 
 @Component({
   selector: 'tdiary-app',
   template: `
-    <div class="jumbotron">
-      <h1>{{pageDetails.Title}}</h1>
-      <h2>{{pageDetails.SubTitle}}</h2>
-    </div>
+    <page-title></page-title>
     <div class="content row">
-      <div class="col-sm-6">
-          <label>Wotcha been up to?</label><br>
-          <button class="btn btn-primary">Been on a trip</button>
-          <button class="btn btn-primary">Had some chow</button>
-          <button class="btn btn-primary">Seen something funky</button>
+      <div class="col-sm-5">
+          <h3>What'ya been up to?</h3>
+          <button class="btn btn-primary btn-block">Been on a trip</button>
+          <button class="btn btn-primary btn-block">Had some chow</button>
+          <button class="btn btn-primary btn-block">Seen something funky</button>
+          <button class="btn btn-default btn-block">Took a noteworthy nap</button>
       </div>
+      <div class="col-sm-1"></div>
       <div class="col-sm-6">
-        <experience-list [activityData]="getApplicationData()"></experience-list>
+        <experience-list></experience-list>
       </div>
     </div>
     `,
-    directives: [ExperienceListComponent],
-    providers: [DataService]
+    directives: [PageTitleComponent, ExperienceListComponent]
 })
 
 export class AppComponent { 
-  constructor(private dataService: DataService)  {}
-
-  pageDetails: HomeViewModel = {
-    Title: "Magic Bus",
-    SubTitle: "Your groovy new travel diary - In Angular 2!"
-  }
-
-  getApplicationData() : ActivityViewModel[] {
-      return this.dataService.getRecentExperiences();
-  }  
 }

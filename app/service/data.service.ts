@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Activity } from '../model/activityViewModel'
+import { ActivityViewModel } from '../model/activityViewModel'
 
 @Injectable()
 export class DataService {
-    getRecentExperiences() : Activity[] {
+    getRecentExperiences() : ActivityViewModel[] {
         return STUFF;
     }
 }
 
-var STUFF: Activity[] = [
+var STUFF: ActivityViewModel[] = [
   { "Experience": "You saw monkeys in Brighton" },
   { "Experience": "You consumed cake in Seoul" },
   { "Experience": "You saw rare birds in Nagoya" },
