@@ -7,5 +7,7 @@ namespace TDiary
     {
         U CreateAddViewModel();
         U CreateEditViewModel(T item);
+        U RefreshAddViewModel(U item);
+        U RefreshEditViewModel(U item);
     }
 }

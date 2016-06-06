@@ -14,18 +14,31 @@ namespace TDiary
 
         public ChowViewModel CreateAddViewModel()
         {
-            var vm = new ChowViewModel() { Location = _locationProvider.GetLastLocation() };
-            vm.Title = "Had some Chow?";
-            vm.Heading = "Yum, add it to the list!";
-            return vm;
+            return new ChowViewModel() { Location = _locationProvider.GetLastLocation() }.WithAddTitles();
         }
 
         public ChowViewModel CreateEditViewModel(Chow item)
         {
-            var vm = new ChowViewModel { Id = item.Id, Date = item.Date, Location = item.Location, Description = item.Description, Experience = item.Experience, SavePosition = item.SavePosition };
-            vm.Title = "Chow mixed up?";
-            vm.Heading = "Edit the details then!";
-            return vm;
+            return new ChowViewModel
+            {
+                Id = item.Id,
+                Date = item.Date,
+                Location = item.Location,
+                Description = item.Description,
+                Experience = item.Experience,
+                SavePosition = item.SavePosition
+            }
+            .WithEditTitles();
+        }
+
+        public ChowViewModel RefreshAddViewModel(ChowViewModel item)
+        {
+            return item.WithAddTitles();
+        }
+
+        public ChowViewModel RefreshEditViewModel(ChowViewModel item)
+        {
+            return item.WithEditTitles();
         }
     }
 }

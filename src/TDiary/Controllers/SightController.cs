@@ -27,7 +27,7 @@ namespace TDiary
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid) 
-                    return View(vm);
+                    return View(_viewModelProvider.RefreshAddViewModel(vm));
 
                 _repository.Add(new Sight(vm.Date, vm.Name) { Location = vm.Location });
             }
@@ -46,7 +46,7 @@ namespace TDiary
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid) 
-                    return View(vm);
+                    return View(_viewModelProvider.RefreshEditViewModel(vm));
 
                 _repository.SaveChanges(Sight.Create(vm.Id, vm.Date, vm.Name, vm.Location, vm.SavePosition));
             }

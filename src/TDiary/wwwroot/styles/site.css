@@ -38,3 +38,7 @@ h3 {
 form{
     padding-bottom: 10px;
 }
+
+.validation-summary-errors{
+    margin-top: 15px; 
+}

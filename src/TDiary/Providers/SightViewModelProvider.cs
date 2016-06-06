@@ -14,18 +14,31 @@ namespace TDiary
 
         public SightViewModel CreateAddViewModel()
         {
-            var vm = new SightViewModel() { Location = _locationProvider.GetLastLocation() };
-            vm.Title = "What a sight!";
-            vm.Heading = "You've seen something funky";
-            return vm;
+            return new SightViewModel() { Location = _locationProvider.GetLastLocation() }.WithAddTitles();
         }
 
         public SightViewModel CreateEditViewModel(Sight item)
         {
-            var vm = new SightViewModel { Id = item.Id, Date = item.Date, Location = item.Location, Name = item.Name, Experience = item.Experience, SavePosition = item.SavePosition };
-            vm.Title = "Double Take?";
-            vm.Heading = "Change what you saw.";
-            return vm;
+            return new SightViewModel
+            {
+                Id = item.Id,
+                Date = item.Date,
+                Location = item.Location,
+                Name = item.Name,
+                Experience = item.Experience,
+                SavePosition = item.SavePosition
+            }
+            .WithEditTitles();
+        }
+
+        public SightViewModel RefreshEditViewModel(SightViewModel item)
+        {
+            return item.WithEditTitles();
+        }
+
+        public SightViewModel RefreshAddViewModel(SightViewModel item)
+        {
+            return item.WithAddTitles();
         }
     }
 }

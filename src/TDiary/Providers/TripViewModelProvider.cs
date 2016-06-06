@@ -11,21 +11,34 @@ namespace TDiary
         {
             _locationProvider = locationProvider;
         }
-        
+
         public TripViewModel CreateAddViewModel()
         {
-            var vm = new TripViewModel() { From = _locationProvider.GetLastLocation() };
-            vm.Title = "Life's a Journey!";
-            vm.Heading = "Add your travel detail.";
-            return vm;
+            return new TripViewModel() { From = _locationProvider.GetLastLocation() }.WithAddTitles();
         }
 
         public TripViewModel CreateEditViewModel(Trip item)
         {
-            var vm = new TripViewModel { Id = item.Id, Date = item.Date, From = item.From, To = item.To, ModeOfTransport = item.By, SavePosition = item.SavePosition };
-            vm.Title = "Lost?";
-            vm.Heading = "Edit your travel detail.";
-            return vm;
+            return new TripViewModel
+            {
+                Id = item.Id,
+                Date = item.Date,
+                From = item.From,
+                To = item.To,
+                ModeOfTransport = item.By,
+                SavePosition = item.SavePosition
+            }
+            .WithEditTitles();
+        }
+
+        public TripViewModel RefreshAddViewModel(TripViewModel item)
+        {
+            return item.WithAddTitles();
+        }
+
+        public TripViewModel RefreshEditViewModel(TripViewModel item)
+        {
+            return item.WithEditTitles();
         }
     }
 }

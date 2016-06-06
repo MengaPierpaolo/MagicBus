@@ -27,7 +27,7 @@ namespace TDiary
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid) 
-                    return View(vm);
+                    return View(_viewModelProvider.RefreshAddViewModel(vm));
 
                 _repository.Add(new Chow(vm.Date, vm.Description) { Location = vm.Location });
             }
@@ -46,7 +46,7 @@ namespace TDiary
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid)
-                    return View(vm);
+                    return View(_viewModelProvider.RefreshEditViewModel(vm));
 
                 _repository.SaveChanges(Chow.Create(vm.Id, vm.Date, vm.Description, vm.Location, vm.SavePosition));
             }

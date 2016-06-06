@@ -27,7 +27,7 @@ namespace TDiary
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid) 
-                    return View(vm);
+                    return View(_viewModelProvider.RefreshAddViewModel(vm));
 
                 _repository.Add(new Trip(vm.Date, vm.From, vm.To, vm.ModeOfTransport));
             }
@@ -46,7 +46,7 @@ namespace TDiary
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid) 
-                    return View(vm);
+                    return View(_viewModelProvider.RefreshEditViewModel(vm));
 
                 _repository.SaveChanges(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.ModeOfTransport, vm.SavePosition));
             }
