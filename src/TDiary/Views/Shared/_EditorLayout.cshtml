@@ -1,0 +1,16 @@
+
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+@RenderBody()
+
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datepicker({
+                format: "dd/mm/yyyy",
+                todayHighlight: true,
+                autoclose: true
+            });
+        });
+    </script>
+}

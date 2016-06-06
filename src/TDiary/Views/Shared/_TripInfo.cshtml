@@ -1,11 +1,7 @@
 @model TDiary.ViewModel.TripViewModel
 
 <input type="hidden" asp-for="SavePosition">
-<div class="form-group">
-    <label asp-for="Date"></label>
-    <input class="form-control" type="text" asp-for="Date" autocomplete="off"> 
-    <span asp-validation-for="Date" class="text-danger" />
-</div>
+@Html.EditorFor(m => m.Date)
 <div class="form-group">
     <label asp-for="From"></label>
     <input class="form-control" type="text" asp-for="From" autocomplete="off">
@@ -20,6 +16,5 @@
     <label asp-for="ModeOfTransport"></label>
     <select asp-for="ModeOfTransport" asp-items="Html.GetEnumSelectList<TDiary.Model.ModeOfTransport>()" class="form-control"></select>
 </div>
-<div asp-validation-summary="All"></div>
 <input name="submitButtonUsed" type="submit" class="btn btn-primary" value="Save it!"> 
 <input name="submitButtonUsed" type="submit" class="btn btn-info" value="Changed my mind" formnovalidate> 

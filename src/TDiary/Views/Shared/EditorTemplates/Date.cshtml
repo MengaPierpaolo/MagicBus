@@ -1,0 +1,12 @@
+@model System.DateTime
+
+<div class="form-group">
+    <label asp-for="@Model"></label>
+    <div class="input-group date" id="datetimepicker1">
+        <input type="text" asp-for="@Model" class="form-control" />
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+    <span asp-validation-for="@Model" class="text-danger" />
+</div>
