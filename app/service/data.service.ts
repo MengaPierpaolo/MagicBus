@@ -9,8 +9,8 @@ export class DataService {
 }
 
 var STUFF: ActivityViewModel[] = [
-  { "Experience": "You saw monkeys in Brighton" },
-  { "Experience": "You consumed cake in Seoul" },
-  { "Experience": "You saw rare birds in Nagoya" },
-  { "Experience": "You went from Nagoya to Seoul by plane" }
+  { "ExperienceType" : "Trip", "Experience": "You saw monkeys in Brighton" },
+  { "ExperienceType" : "Trip", "Experience": "You consumed cake in Seoul" },
+  { "ExperienceType" : "Trip", "Experience": "You saw rare birds in Nagoya" },
+  { "ExperienceType" : "Trip", "Experience": "You went from Nagoya to Seoul by plane" }
 ];

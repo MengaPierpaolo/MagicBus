@@ -47,7 +47,7 @@ import { Trip } from '../model/trip';
 })
 export class TripDetailComponent {
   constructor(private router: Router) {
-    this.model = new Trip(new Date(), '', '', 'Bus');
+    this.model = new Trip('', '', '', 'Bus');
   }
 
   model: Trip;
@@ -55,10 +55,10 @@ export class TripDetailComponent {
 
   onSubmit() {
     // TODO: Save
-    this.router.navigate(['/Dashboard']);
+    this.router.navigateByUrl('/Dashboard');
   }
 
   goBack() {
-    this.router.navigate(['/Dashboard']);
+    this.router.navigateByUrl('/Dashboard');
   }
 }

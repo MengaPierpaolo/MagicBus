@@ -42,7 +42,7 @@ import { Sight } from '../model/sight';
 export class SightDetailComponent {
     constructor(
     private router: Router) {
-    this.model = new Sight(new Date(), '', '');
+    this.model = new Sight('', '', '');
   }
 
   model: Sight;

@@ -3,7 +3,6 @@ import { NgForm } from '@angular/common';
 import { Router } from '@angular/router-deprecated';
 
 import { PageTitleComponent } from '../component/page-title.component';
-import { ActivityDate } from '../component/activity-date.component';
 import { Chow } from '../model/chow';
 
 @Component({
@@ -42,7 +41,7 @@ import { Chow } from '../model/chow';
 })
 export class ChowDetailComponent {
   constructor(private router: Router) {
-    this.model = new Chow(new Date(), '', '');
+    this.model = new Chow('', '', '');
   }
 
   model: Chow;

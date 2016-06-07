@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-
+import { ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router';
 import { ActivityViewModel } from '../model/activityViewModel'
 import { DataService } from '../service/data.service';
 
@@ -10,12 +10,13 @@ import { DataService } from '../service/data.service';
     <h3>Recent experiences:</h3>
       <div *ngFor="let activity of activityData">
           <a href="#" (click)="clickMe(activity)" class="delete-cross">X</a>
-          <a href="#" (click)="clickMe(activity)">{{activity.Experience}}</a>
+          <a href="/Trip">{{activity.Experience}}</a>
       </div>
     <label *ngIf="selectedActivity">{{selectedActivity.Experience}}</label>
     </form>
     `,
-    providers: [DataService]
+    directives: [ROUTER_DIRECTIVES], 
+    providers: [ROUTER_PROVIDERS, DataService]
 })
 
 export class ExperienceListComponent {
@@ -28,5 +29,6 @@ export class ExperienceListComponent {
 
   clickMe(clickedThing: ActivityViewModel) {
     this.selectedActivity = clickedThing;
+    return false;
   }
 }

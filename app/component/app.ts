@@ -20,10 +20,10 @@ import { ChowDetailComponent } from '../component/chow-editor.component';
   ]
 })
 @RouteConfig([
+  { path: '/', name: 'root', redirectTo: ['/Dashboard']  },
   { path: '/Dashboard', name: 'Dashboard', component: DashboardComponent },
   { path: '/Trip', name: 'Trip', component: TripDetailComponent },
   { path: '/Sight', name: 'Sight', component: SightDetailComponent },
   { path: '/Chow', name: 'Chow', component: ChowDetailComponent },
-  { path: '/', component: DashboardComponent }
 ])
 export class AppComponent { }

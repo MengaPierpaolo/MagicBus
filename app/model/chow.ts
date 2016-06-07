@@ -1,6 +1,6 @@
 export class Chow{
     constructor(
-        public date: Date,
+        public date: string,
         public location: string,
         public description: string
     ) {}
