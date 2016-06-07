@@ -6,7 +6,7 @@ import { PageTitleComponent } from '../component/page-title.component';
 @Component({
   selector: 'dashboard',
   template: `
-    <page-title></page-title>
+    <page-title [title]="'Magic Bus'" [subTitle]="'Your groovy new travel diary - In Angular 2!'"></page-title>
     <div class="content row">
       <div class="col-sm-5">
           <h3>What'ya been up to?</h3>
