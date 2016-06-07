@@ -5,7 +5,7 @@ namespace TDiary.ViewModel
         public static SightViewModel WithAddTitles(this SightViewModel item)
         {
             item.Title = "What a sight!";
-            item.Heading = "You've seen something funky";
+            item.Heading = "Seen something funky?";
             return item;
         }
 
@@ -32,7 +32,7 @@ namespace TDiary.ViewModel
 
         public static TripViewModel WithAddTitles(this TripViewModel item)
         {
-            item.Title = "Life's a Journey!";
+            item.Title = "Life is a Journey!";
             item.Heading = "Add your travel detail.";
             return item;
         }
