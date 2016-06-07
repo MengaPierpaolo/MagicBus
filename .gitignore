@@ -4,5 +4,5 @@ app/**/*.map
 node_modules/
 typings/
 
-.vscode/
+**/.vscode/*
 !settings.json
