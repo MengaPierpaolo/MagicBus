@@ -13,16 +13,43 @@
     padding-right: 10px;
 }
 
-.delete-cross {
+.experience {
+    padding: 2px;
+    margin-bottom: 3px;
+    background: #eee;
+}
+
+.clickable-experience {
+    display: inline-block;
+    margin-bottom: 5px;
     padding-left: 5px;
-    padding-right: 5px;
-    color: orangered;
+    color: black;
+}
+
+.function-button {
+    margin-left: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
     font-size: 1.1em;
-    
+}
+
+.delete-cross {
+    color: orangered;
+    padding-left: 11px;
+    padding-right: 11px;
+}
+
+.promote {
+    color: seagreen;
+}
+
+.demote {
+    padding-left: 12px;
+    padding-right: 12px;
+    color: dodgerblue;
 }
 
 h1 {
-    /*font-size: 2em;*/
     margin-top: 10px;
     margin-bottom: 5px;
 }
@@ -42,11 +69,11 @@ form{
 }
 
 .validation-summary-errors{
-    margin-top: 15px; 
+    margin-top: 15px;
 }
 
 .ng-valid[required] {
-  border-left: 5px solid #42A948; 
+  border-left: 5px solid #42A948;
 }
 
 .ng-invalid {

@@ -1,37 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
-import Jumbotron from 'react-bootstrap/lib/Jumbotron';
-import Button from 'react-bootstrap/lib/Button';
-import Row from 'react-bootstrap/lib/row';
-import Col from 'react-bootstrap/lib/col';
+import Layout from './components/layout'
+import Dashboard from './components/dashboard.component'
+import TripEditor from './components/trip-editor.component'
+import SightEditor from './components/sight-editor.component'
+import ChowEditor from './components/chow-editor.component'
 
-import ActivityList from './activity-list.jsx'
-
-class Main extends React.Component {
-  render() {
-    return (
-      <div>
-        <Jumbotron>
-          <h1>Magic Bus</h1>
-          <h2>Your groovy new travel diary - in ReactJs!</h2>
-        </Jumbotron>
-        <div className="Content">
-          <Row>
-            <Col sm={6}>
-              <label>Wotcha been up to?</label><br />
-              <Button bsStyle="primary">Been on a trip</Button>
-              <Button bsStyle="primary">Had some chow</Button>
-              <Button bsStyle="primary">Seen something funky</Button>
-            </Col>
-            <Col sm={6}>
-              <ActivityList />
-            </Col>
-          </Row>
-        </div>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<Main/>, document.getElementById('Main'));
+ReactDOM.render(
+    <Router history={hashHistory}>
+        <Route path="/" component={Layout}>
+            <IndexRoute component={Dashboard}></IndexRoute>
+            <Route path="Trip" component={TripEditor}></Route>
+            <Route path="Sight" component={SightEditor}></Route>
+            <Route path="Chow" component={ChowEditor}></Route>
+        </Route>
+    </Router>,
+    document.getElementById('App')
+);
