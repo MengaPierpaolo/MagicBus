@@ -11,7 +11,7 @@ A React.js version of TDiary
 2. Clone the repo
 3. `npm install`
 4. `npm run webpack`
-5. `npm run server`
+5. `npm run start`
 
 # Dependency info (see package.json)
 1. babel for transpiling
