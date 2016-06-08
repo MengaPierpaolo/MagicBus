@@ -2,7 +2,7 @@
 
 <div class="content">
     <div class="row">
-        <div class="col-sm-5">  
+        <div class="col-sm-5">
         <h3>What'ya been up to?</h3>
         <a asp-action="Add" asp-controller="Trip" class="btn btn-primary btn-block">Been on a trip</a>
         <a asp-action="Add" asp-controller="Chow" class="btn btn-primary btn-block">Had some chow</a>
@@ -16,13 +16,14 @@
             <h3>Recent experiences:</h3>
             @foreach (var i in Model.Activities)
             {
-                <div>
-                    <a class="delete-cross" asp-action="Delete" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" title="Delete this @i.ExperienceType">X</a>
-                    <a asp-action="Edit" asp-controller="@i.ExperienceType" asp-route-id="@i.Id">@i.Experience</a>
-                    <a class="" asp-action="OrderActivityUp" asp-route-activityId="@i.Id">+</a>
-                    <a class="" asp-action="OrderActivityDown" asp-route-activityId="@i.Id">-</a>
+                <div class="experience">
+                    <a class="clickable-experience" asp-action="Edit" asp-controller="@i.ExperienceType" asp-route-id="@i.Id">@i.Experience</a><br>
+                    <a class="btn btn-default function-button promote" asp-action="OrderActivityUp" asp-route-activityId="@i.Id">+</a>
+                    <a class="btn btn-default function-button demote" asp-action="OrderActivityDown" asp-route-activityId="@i.Id">-</a>
+                    <a class="btn btn-default function-button delete-cross" asp-action="Delete" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" title="Delete this @i.ExperienceType">X</a>
                 </div>
-            }   
+            }
+            <br>
         }
         </div>
     </div>
