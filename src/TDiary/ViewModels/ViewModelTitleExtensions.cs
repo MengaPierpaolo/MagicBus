@@ -2,6 +2,20 @@ namespace TDiary.ViewModel
 {
     public static class ViewModelTitleExtensions
     {
+        public static NapViewModel WithAddTitles(this NapViewModel item)
+        {
+            item.Title = "Naptastic!";
+            item.Heading = "Where did you nod off?";
+            return item;
+        }
+
+        public static NapViewModel WithEditTitles(this NapViewModel item)
+        {
+            item.Title = "Woken early?";
+            item.Heading = "Adjust your sleep details.";
+            return item;
+        }
+
         public static SightViewModel WithAddTitles(this SightViewModel item)
         {
             item.Title = "What a sight!";

@@ -1,0 +1,11 @@
+@model TDiary.ViewModel.NapViewModel
+@{ Layout = "~/Views/Shared/_EditorLayout.cshtml"; }
+
+<div class="content">
+    <form class="form" role="form" asp-action="Edit">
+        <input type="hidden" asp-for="Id">
+        @{
+            Html.RenderPartial("_NapInfo", Model);
+        }
+    </form>
+</div>
