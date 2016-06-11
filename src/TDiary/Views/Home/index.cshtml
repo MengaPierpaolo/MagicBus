@@ -18,9 +18,9 @@
             {
                 <div class="experience">
                     <a class="clickable-experience" asp-action="Edit" asp-controller="@i.ExperienceType" asp-route-id="@i.Id">@i.Experience</a><br>
-                    <a class="btn btn-default function-button promote" asp-action="OrderActivityUp" asp-route-activityId="@i.Id">+</a>
-                    <a class="btn btn-default function-button demote" asp-action="OrderActivityDown" asp-route-activityId="@i.Id">-</a>
-                    <a class="btn btn-default function-button delete-cross" asp-action="Delete" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" title="Delete this @i.ExperienceType">X</a>
+                    <a class="btn btn-default function-button glyphicon glyphicon-arrow-up" asp-action="OrderActivityUp" asp-route-activityId="@i.Id"></a>
+                    <a class="btn btn-default function-button glyphicon glyphicon-arrow-down" asp-action="OrderActivityDown" asp-route-activityId="@i.Id"></a>
+                    <a class="btn btn-default function-button glyphicon glyphicon-remove" asp-action="Delete" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" title="Delete this @i.ExperienceType"></a>
                 </div>
             }
             <br>
