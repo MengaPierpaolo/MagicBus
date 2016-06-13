@@ -32,7 +32,7 @@
 1. `git clone https://github.com/jakimber/tdiary`
 2. `cd tdiary`
 2. `dotnet restore`
-3. `bower install`
+3. `bower install .\src\TDiary`
 4. `dotnet ef database update --context MigrationsContext`
 5. `dotnet run` (or run in vscode after autogeneration of task-runner and launch files)
 
