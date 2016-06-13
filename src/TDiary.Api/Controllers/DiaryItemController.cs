@@ -2,20 +2,24 @@ using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
+using TDiary.Repository;
 
 namespace TDiary.Api
 {
     [Route("api/[controller]")]
     public class DiaryItemController
     {
+        private readonly DiaryItemListRepository _repo;
+
+        public DiaryItemController(DiaryItemListRepository repo)
+        {
+            _repo = repo;
+        }
+
         [HttpGet]
         public IEnumerable<DiaryItem> Get()
         {
-            return new List<DiaryItem> {
-                new Chow(DateTime.Now, "Nosh") { Location = "Bed" },
-                new Trip(DateTime.Now, "Bed", "Mali", ModeOfTransport.Plane),
-                new Sight(DateTime.Now, "Baboons") { Location = "Mali" }
-            };
+            return _repo.GetRecentExperiences(PageSize.Five);
         }
     }
 }

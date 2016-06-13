@@ -10,10 +10,19 @@
       "type": "platform",
       "version": "1.0.0-rc2-3002702"
     },
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0-rc2-final",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-rc2-final",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-rc2-final",
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0-rc2-final",
     "Microsoft.AspNetCore.Mvc": "1.0.0-rc2-final",
-    "TDiary.Model": "1.0.0-*"
+    "Microsoft.EntityFrameworkCore.SQLite": "1.0.0-rc2-final",
+    "Microsoft.EntityFrameworkCore.Tools": {
+      "version": "1.0.0-preview1-*",
+      "type": "build"
+    },
+    "TDiary.Model": "1.0.0-*",
+    "TDiary.Repository": "1.0.0-*"
   },
   "frameworks": {
     "netcoreapp1.0": {
@@ -28,6 +37,13 @@
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
       "version": "1.0.0-preview1-final",
       "imports": "portable-net45+win8+dnxcore50"
+    },
+    "Microsoft.EntityFrameworkCore.Tools": {
+      "version": "1.0.0-preview1-final",
+      "imports": [
+        "dnxcore50",
+        "portable-net45+win8"
+      ]
     }
   },
   "runtimeOptions": {
@@ -35,7 +51,8 @@
   },
   "publishOptions": {
     "include": [
-      "web.config"
+      "web.config",
+      "appsettings.json"
     ]
   },
 
