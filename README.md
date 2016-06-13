@@ -30,16 +30,16 @@
 ## Initial setup instructions
 ### VSCode
 1. `git clone https://github.com/jakimber/tdiary`
-2. `cd tdiary`
+2. `cd .\tdiary\`
 2. `dotnet restore`
-3. `cd .\src\TDiary`
+3. `cd .\src\TDiary\`
 4. `bower install`
 4. `dotnet ef database update --context MigrationsContext`
 5. `dotnet run` (or run in vscode after autogeneration of task-runner and launch files)
 
 ### Visual Studio
 1. `git clone https://github.com/jakimber/tdiary`
-2. Open .\src\TDiary\TDiary.xproj and add any of the project dependencies you wish to debug to the created .sln file
+2. Open .\src\TDiary\TDiary.xproj in VS
 3. Build the solution
 3. `update-database -Context MigrationsContext` in package manager console
 4. F5
