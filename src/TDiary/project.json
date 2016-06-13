@@ -22,7 +22,8 @@
       "version": "1.0.0-preview1-*",
       "type": "build"
     },
-    "TDiary.Model": "1.0.0-*"
+    "TDiary.Model": "1.0.0-*",
+    "TDiary.Repository": "1.0.0-*"
   },
 
   "tools": {

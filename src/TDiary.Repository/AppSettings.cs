@@ -1,6 +1,6 @@
-namespace TDiary
+namespace TDiary.Repository
 {
-    public class AppSettings
+    public class DatabaseSettings
     {
         public string ConnectionString { get; set; }
     }

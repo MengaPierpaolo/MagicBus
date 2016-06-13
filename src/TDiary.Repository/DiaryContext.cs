@@ -2,13 +2,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using TDiary.Model;
 
-namespace TDiary
+namespace TDiary.Repository
 {
     public class DiaryContext : DbContext
     {
-        private readonly IOptions<AppSettings> _options;
+        private readonly IOptions<DatabaseSettings> _options;
 
-        public DiaryContext(IOptions<AppSettings> options)
+        public DiaryContext(IOptions<DatabaseSettings> options)
         {
             _options = options;
         }

@@ -24,7 +24,7 @@ namespace TDiary
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.Configure<DatabaseSettings>(Configuration.GetSection("AppSettings"));
             services.AddDbContext<DiaryContext>();
 
             services.AddScoped<IDiaryItemRepository, DiaryItemRepository>();

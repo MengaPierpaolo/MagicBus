@@ -1,5 +1,6 @@
 using System.Linq;
 using TDiary.Model;
+using TDiary.Repository;
 
 namespace TDiary
 {
