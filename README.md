@@ -2,8 +2,7 @@
 # .NET Core RC2 Travel Diary Project
 
 ## Notes
-1. Can be edited using Visual Studio 2015 Update 2, or VSCode 1.1
-2. If wanting to debug, Visual Studio is still the best tool as VSCode support for multi project debugging is still TBD
+1. Can be edited using Visual Studio 2015 Update 2, or VSCode 1.1+
 3. Uses EF to SQLite.  Please see initial setup instruction below.
 
 ---
@@ -14,7 +13,7 @@
 3. Microsoft .NET Core 1.0.0 RC2 - VS 2015 Tooling Preview
 
 ### VS Code
-1. Visual Studio Code 1.1.0
+1. Visual Studio Code 1.1+
 2. Microsoft .NET Core 1.0.0 RC2 - SDK Preview
 
 ### Tools
@@ -29,15 +28,15 @@
 
 ---
 ## Initial setup instructions
-### VSCode (yet to automate)
-1. Clone the repo
-2. 'dotnet restore' in \TDiary and \TDiary.Model
-3. 'dotnet build' in \TDiary
-4. 'dotnet ef database update' in \TDiary
-5. 'bower install' in \TDiary
-6. 'dotnet run' (or run in vscode)
+### VSCode
+1. `git clone https://github.com/jakimber/tdiary`
+2. `cd tdiary`
+2. `dotnet restore`
+3. `bower install`
+4. `dotnet ef database update --context MigrationsContext`
+5. `dotnet run` (or run in vscode after autogeneration of task-runner and launch files)
 
 ### Visual Studio
 1. Clone the repo
-2. Open the .sln file
-3. 'update-database' in package manager console
+2. Open TDiary.xproj and add any of the dependencies you wish to debug to the created .sln file
+3. 'update-database --context MigrationsContext' in package manager console
