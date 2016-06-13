@@ -1,16 +1,13 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
-using TDiary.Repository;
 
 namespace TDiary.Migrations
 {
-    [DbContext(typeof(DiaryContext))]
-    [Migration("20160601120854_1")]
-    partial class _1
+    [DbContext(typeof(MigrationsContext))]
+    partial class MigrationsContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rc2-20901");
@@ -24,6 +21,8 @@ namespace TDiary.Migrations
 
                     b.Property<string>("Discriminator")
                         .IsRequired();
+
+                    b.Property<int>("SavePosition");
 
                     b.HasKey("Id");
 

@@ -2,11 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
-using TDiary.Repository;
 
 namespace TDiary.Migrations
 {
-    [DbContext(typeof(DiaryContext))]
+    [DbContext(typeof(MigrationsContext))]
     [Migration("20160605032107_SavePosition")]
     partial class SavePosition
     {
