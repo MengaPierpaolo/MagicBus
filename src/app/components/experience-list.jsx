@@ -15,14 +15,21 @@ export default class ExperienceList extends React.Component {
 
     this.onCreate = this.onCreate.bind(this);
     this.onExperienceClicked = this.onExperienceClicked.bind(this);
+    this.getAllActivities = this.getAllActivities.bind(this);
   }
 
   componentWillMount() {
-    ActivityStore.on("change", () => {
-      this.setState({
-        activityData: ActivityStore.getAll()
-      })
-    })
+    ActivityStore.on("change", this.getAllActivities);
+  }
+
+  componentWillUnmount() {
+    ActivityStore.removeListener("change", this.getAllActivities);
+  }
+
+  getAllActivities() {
+    this.setState({
+      activityData: ActivityStore.getAll()
+    });
   }
 
   onExperienceClicked() {
