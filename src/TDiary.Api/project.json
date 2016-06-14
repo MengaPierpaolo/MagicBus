@@ -21,6 +21,7 @@
       "version": "1.0.0-preview1-*",
       "type": "build"
     },
+    "Microsoft.AspNetCore.Cors": "1.0.0-rc2-final",
     "TDiary.Model": "1.0.0-*",
     "TDiary.Repository": "1.0.0-*"
   },

@@ -24,11 +24,15 @@ namespace TDiary.Api
             services.Configure<DatabaseSettings>(Configuration.GetSection("AppSettings"));
             services.AddDbContext<DiaryContext>();
             services.AddScoped<DiaryItemListRepository, DiaryItemListRepository>();
+            services.AddCors(options => options.AddPolicy("MyPolicy",
+                p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+
             services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseCors("MyPolicy");
             app.UseMvc();
         }
     }

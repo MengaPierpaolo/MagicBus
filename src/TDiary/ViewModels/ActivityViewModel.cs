@@ -25,17 +25,10 @@ namespace TDiary.ViewModel
 
         public string Experience { get; set; }
 
-        public string ExperienceType
-        {
-            get
-            {
-                var t = this.GetType().Name; 
-                return t.Substring(0, t.IndexOf("ViewModel"));
-            }
-        }
+        public string ExperienceType { get; set; }
 
         public string SubmitButtonUsed { get; set; }
-        
+
         public bool SavePressed
         {
             get
