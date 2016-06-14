@@ -24,6 +24,8 @@ namespace TDiary.Api
             services.Configure<DatabaseSettings>(Configuration.GetSection("AppSettings"));
             services.AddDbContext<DiaryContext>();
             services.AddScoped<DiaryItemListRepository, DiaryItemListRepository>();
+            services.AddScoped<IDiaryItemRepository, DiaryItemRepository>();
+
             services.AddCors(options => options.AddPolicy("MyPolicy",
                 p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 

@@ -6,19 +6,19 @@ using TDiary.Repository;
 namespace TDiary.Api
 {
     [Route("api/[controller]")]
-    public class DiaryItemController
+    public class DiaryItemController : Controller
     {
-        private readonly DiaryItemListRepository _repo;
+        private readonly DiaryItemListRepository _diaryItemsRepo;
 
-        public DiaryItemController(DiaryItemListRepository repo)
+        public DiaryItemController(DiaryItemListRepository diaryItemsRepo)
         {
-            _repo = repo;
+            _diaryItemsRepo = diaryItemsRepo;
         }
 
         [HttpGet]
-        public IEnumerable<DiaryItem> Get()
+        public IEnumerable<DiaryItem> Recent()
         {
-            return _repo.GetRecentExperiences(PageSize.Five);
+            return _diaryItemsRepo.GetRecentExperiences(PageSize.Five);
         }
     }
 }
