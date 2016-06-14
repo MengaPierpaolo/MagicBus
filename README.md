@@ -6,10 +6,9 @@ A React.js version of the TDiary UI
 1. Node & npm
 2. `npm install webpack browser-sync -g`
 3. Optional: Local instance of IIS
-4. Set up an instance of TDiary.Api in Local IIS or run it in node / VS
 
 # Initial setup instructions
-1. Ensure the System Requirements are met
+1. Set up an instance of TDiary.Api in Local IIS if not running it in node / VSCode / VS
 2. Clone the repo
 3. `npm install`
 4. There is a currently hard-coded path to the WebApi for the data - change accordingly
