@@ -5,7 +5,7 @@ export default class TripEditor extends React.Component {
     render() {
         return (
             <div>
-                <p>Trip Editor</p>
+                <h2>Trip Editor</h2>
                 <Link to="/" className="btn btn-primary">Save It!</Link>
                 <Link to="/" className="btn btn-info">Changed my mind</Link>
             </div>

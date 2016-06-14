@@ -13,63 +13,121 @@
     padding-right: 10px;
 }
 
+.row {
+    margin: 0;
+}
+
 .experience {
     padding: 2px;
     margin-bottom: 3px;
-    background: #eee;
 }
 
 .clickable-experience {
     display: inline-block;
     margin-bottom: 5px;
     padding-left: 5px;
-    color: black;
+    color: antiquewhite;
+}
+
+.clickable-experience:hover {
+    color: antiquewhite;
+}
+
+.clickable-experience:visited {
+    color: antiquewhite;
 }
 
 .function-button {
-    margin-left: 2px;
     padding-left: 10px;
     padding-right: 10px;
-    font-size: 1.1em;
+    background: #91C957;
+    color: white;
+    border: 0;
 }
 
-.delete-cross {
-    color: orangered;
-    padding-left: 11px;
-    padding-right: 11px;
-}
 
-.promote {
-    color: seagreen;
-}
-
-.demote {
-    padding-left: 12px;
-    padding-right: 12px;
-    color: dodgerblue;
+.function-button:hover{
+    background: #91C957;
+    color: black;
 }
 
 h1 {
     margin-top: 10px;
     margin-bottom: 5px;
+    color: black;
 }
 
 h2 {
     font-size: 1.2em;
     margin-top: 5px;
+    color: antiquewhite;
 }
 
 h3 {
+    color: antiquewhite;
     font-size: 1.1em;
+    border-bottom: dotted 1pt antiquewhite;
 }
 
 form{
-    margin-top: 10px;
     padding-bottom: 10px;
 }
 
+
 .validation-summary-errors{
     margin-top: 15px;
+}
+
+.validation-summary-errors ul{
+    padding-left: 10px;
+}
+
+.validation-summary-errors li{
+    list-style-type: none;
+}
+
+
+.input-validation-error {
+    border-left: solid 5pt darkorange;
+    background: white !important;
+}
+
+.jumbotron {
+    color: goldenrod;
+    background: #272b30;
+}
+
+.btn-primary {
+    background: #46BBDC;
+    color: black;
+    border: 0;
+}
+
+body {
+    background: #2D3C4B;
+}
+
+label {
+    color: antiquewhite;
+}
+
+.btn-info {
+    background: #91C957;
+    color: black;
+    border: 0;
+}
+
+.btn-info:hover {
+    background: #91C957;
+    color: white;
+}
+
+.form-control {
+    background: antiquewhite;
+}
+
+.text-danger {
+    color: darkorange;
 }
 
 .ng-valid[required] {

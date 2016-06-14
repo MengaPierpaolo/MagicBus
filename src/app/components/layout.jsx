@@ -5,7 +5,7 @@ import Dashboard from './dashboard'
 export default class Layout extends React.Component {
   render() {
     return (
-      <div className="Content">
+      <div>
         <Title title="Magic Bus" subTitle="Your groovy new travel diary - in ReactJs!" />
         {this.props.children}
       </div>

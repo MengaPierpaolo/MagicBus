@@ -9,7 +9,7 @@ export default class MenuButtons extends React.Component{
                 <Link to="Trip" className="btn btn-primary btn-block">Been on a trip</Link>
                 <Link to="Chow" className="btn btn-primary btn-block">Had some chow</Link>
                 <Link to="Sight" className="btn btn-primary btn-block">Saw something funky</Link>
-                <Link to="/" className="btn btn-default btn-block">Took a noteworthy nap</Link>
+                <Link to="Nap" className="btn btn-primary btn-block">Took a noteworthy nap</Link>
             </div>
         )
     }

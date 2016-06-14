@@ -7,6 +7,7 @@ import Dashboard from './components/dashboard'
 import TripEditor from './components/trip-editor'
 import SightEditor from './components/sight-editor'
 import ChowEditor from './components/chow-editor'
+import NapEditor from './components/nap-editor'
 
 ReactDOM.render(
     <Router history={hashHistory}>
@@ -15,6 +16,7 @@ ReactDOM.render(
             <Route path="Trip" component={TripEditor}></Route>
             <Route path="Sight" component={SightEditor}></Route>
             <Route path="Chow" component={ChowEditor}></Route>
+            <Route path="Nap" component={NapEditor}></Route>
         </Route>
     </Router>,
     document.getElementById('App')

@@ -1,25 +1,16 @@
 import {EventEmitter} from 'events';
-
 import dispatcher from '../dispatcher';
 
+var $ = require('jquery');
+
 class ActivityStore extends EventEmitter {
-    constructor(){
+    constructor() {
         super()
-        this.activities =
-        [
-            { id: 1, experienceType: 'Sight', experience: 'You saw baboons in Milan' },
-            { id: 2, experienceType: 'Trip', experience: 'You went from Paris to Milan' },
-            { id: 3, experienceType: 'Chow', experience: 'You consumed pizza in Milan' }
-        ];
+        this.activities = [];
     }
 
-    createActivity(){
-        this.activities.push({
-            id: 4,
-            experienceType: "Chow",
-            experience: "Woohoo"
-        });
-
+    createActivity() {
+        // TODO:
         this.emit("change");
     }
 
@@ -27,10 +18,28 @@ class ActivityStore extends EventEmitter {
         return this.activities;
     }
 
+    loadActivities() {
+        $.ajax({
+            url: 'http://localhost:8002/api/diaryitem',
+            dataType: 'json',
+            cache: false,
+            success: function (data) {
+                this.activities = data;
+                this.emit("change");
+            }.bind(this),
+            error: function (xhr, status, err) {
+                console.error('http://localhost:8002/api/diaryitem', status, err.toString());
+            }.bind(this)
+        });
+    }
+
     handleActions(action) {
-        switch(action.type) {
+        switch (action.type) {
             case 'ADD_ACTIVITY': {
                 this.createActivity();
+            }
+            case 'RELOAD_ACTIVITIES': {
+                this.loadActivities();
             }
         }
     }

@@ -5,3 +5,9 @@ export function addActivity() {
         type: 'ADD_ACTIVITY'
     })
 }
+
+export function reloadActivities() {
+    dispatcher.dispatch({
+        type: "RELOAD_ACTIVITIES"
+    })
+}

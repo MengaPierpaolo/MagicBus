@@ -9,14 +9,15 @@
   },
   "scripts": {
     "webpack": "webpack --watch",
-    "start": "browser-sync --port 4000 start --server --files \"**/*.html\" \"build/**/*.css\" \"build/**/*.js\" "
+    "server": "browser-sync --port 4000 start --server --files \"**/*.html\" \"build/**/*.css\" \"build/**/*.js\" "
   },
   "dependencies": {
     "react": "^15.1.0",
     "react-bootstrap": "^0.29.4",
     "react-dom": "^15.1.0",
     "react-router": "^2.4.1",
-    "flux": "^2.1.1"
+    "flux": "^2.1.1",
+    "bootstrap": "^3.3.6"
   },
   "devDependencies": {
     "babel-core": "^6.9.0",
