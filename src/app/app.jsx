@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
 import Layout from './components/layout'
-import Dashboard from './components/dashboard.component'
-import TripEditor from './components/trip-editor.component'
-import SightEditor from './components/sight-editor.component'
-import ChowEditor from './components/chow-editor.component'
+import Dashboard from './components/dashboard'
+import TripEditor from './components/trip-editor'
+import SightEditor from './components/sight-editor'
+import ChowEditor from './components/chow-editor'
 
 ReactDOM.render(
     <Router history={hashHistory}>

@@ -1,8 +1,8 @@
 import React from 'react'
 import Row from 'react-bootstrap/lib/row';
 import Col from 'react-bootstrap/lib/col';
-import MenuButtons from './menu-buttons.component'
-import ExperienceList from './experience-list.component'
+import MenuButtons from './menu-buttons'
+import ExperienceList from './experience-list'
 
 export default class Dashboard extends React.Component {
     render() {

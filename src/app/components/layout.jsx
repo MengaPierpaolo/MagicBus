@@ -1,6 +1,6 @@
 import React from 'react';
-import Title from './title.component'
-import Dashboard from './dashboard.component'
+import Title from './title'
+import Dashboard from './dashboard'
 
 export default class Layout extends React.Component {
   render() {
