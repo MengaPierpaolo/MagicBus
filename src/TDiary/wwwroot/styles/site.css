@@ -13,6 +13,10 @@
     padding-right: 10px;
 }
 
+.row {
+    margin: 0;
+}
+
 .experience {
     padding: 2px;
     margin-bottom: 3px;
@@ -70,6 +74,21 @@ form{
 
 .validation-summary-errors{
     margin-top: 15px;
+
+}
+
+.validation-summary-errors ul{
+    padding-left: 10px;
+}
+
+.validation-summary-errors li{
+    list-style-type: none;
+}
+
+
+.input-validation-error {
+    border-left: solid 5pt darkorange;
+    background: white !important;
 }
 
 .jumbotron {
@@ -107,5 +126,5 @@ label {
 }
 
 .text-danger {
-    color: greenyellow;
+    color: darkorange;
 }
