@@ -35,11 +35,15 @@
 3. `cd .\src\TDiary\`
 4. `bower install`
 4. `dotnet ef database update --context MigrationsContext`
-5. `dotnet run` (or run in vscode after autogeneration of task-runner and launch files)
+5. a: To Run the Web UI: `dotnet run` (or run in vscode after autogeneration of task-runner and launch files)
+5. b: to Run the WebApi: `cd ..\TDiary.Api\` and then `dotnet run`
 
 ### Visual Studio
 1. `git clone https://github.com/jakimber/tdiary`
 2. Open .\src\TDiary\TDiary.xproj in VS
 3. Build the solution
 3. `update-database -Context MigrationsContext` in package manager console
-4. F5
+4. For the Web UI : F5
+5. For the WebApi : open the .\src\TDiary.Api\TDiary.Api.xproj in VS then F5
+
+
