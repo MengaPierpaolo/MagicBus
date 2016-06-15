@@ -49,6 +49,9 @@ class ActivityStore extends EventEmitter {
             case 'DELETED_ACTIVITY': {
                 this.loadActivities();
             }
+            case 'ADDED_CHOW': {
+                this.loadActivities();
+            }
         }
     }
 }
