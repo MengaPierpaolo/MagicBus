@@ -7,6 +7,11 @@ class ActivityStore extends EventEmitter {
     constructor() {
         super()
         this.activities = [];
+        this._Loading = false;
+    }
+
+    isLoading() {
+        return this._Loading;
     }
 
     getAll() {
@@ -20,6 +25,7 @@ class ActivityStore extends EventEmitter {
             cache: false,
             success: function (data) {
                 this.activities = data;
+                this._Loading = false;
                 this.emit("change");
             }.bind(this),
             error: function (xhr, status, err) {
@@ -33,7 +39,11 @@ class ActivityStore extends EventEmitter {
             case 'ADD_ACTIVITY': {
                 this.createActivity();
             }
-            case 'RELOAD_ACTIVITIES': {
+            case 'LOADING_ACTIVITIES': {
+                this._Loading = true;
+                this.emit("change");
+            }
+            case 'LOAD_ACTIVITIES': {
                 this.loadActivities();
             }
             case 'DELETED_ACTIVITY': {
