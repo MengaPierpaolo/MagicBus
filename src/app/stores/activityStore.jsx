@@ -9,11 +9,6 @@ class ActivityStore extends EventEmitter {
         this.activities = [];
     }
 
-    createActivity() {
-        // TODO:
-        this.emit("change");
-    }
-
     getAll() {
         return this.activities;
     }
@@ -39,6 +34,9 @@ class ActivityStore extends EventEmitter {
                 this.createActivity();
             }
             case 'RELOAD_ACTIVITIES': {
+                this.loadActivities();
+            }
+            case 'DELETED_ACTIVITY': {
                 this.loadActivities();
             }
         }

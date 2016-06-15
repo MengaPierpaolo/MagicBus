@@ -10,14 +10,14 @@ export function addActivity() {
 
 export function deleteActivity(id) {
     $.ajax({
-        type: 'DELETE',
-        url: 'http://localhost:8002/api/trip/' + encodeURIComponent(id) + '/',
-        success: function() {
-            dispatcher.dispatch({
-                type: 'DELETED_ACTIVITY'
-            });
-        }.bind(this)
-    });
+            type: 'DELETE',
+            url: 'http://localhost:8002/api/trip/' + encodeURIComponent(id) + '/',
+            success: function() {
+                dispatcher.dispatch({
+                    type: 'DELETED_ACTIVITY'
+                });
+            }.bind(this)
+        });
 }
 
 export function reloadActivities() {
