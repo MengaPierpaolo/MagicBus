@@ -5,32 +5,31 @@ using TDiary.Repository;
 
 namespace TDiary.Api
 {
-    [Route("api/[Controller]")]
-    public class TripController : DiaryItemController
+    public class SightController : DiaryItemController
     {
-        public TripController(IDiaryItemRepository repo) : base(repo)
-        {
+        public SightController(IDiaryItemRepository repo) : base(repo) {
+
         }
 
         [HttpPost]
         public IActionResult Create([FromBody]string value)
         {
-            var item = new Trip(DateTime.Now, "Here", "There", ModeOfTransport.Bus);
+            var item = new Sight(DateTime.Now, value);
             _repo.Add(item);
             // todo: return added item?
-            return CreatedAtAction("Read", new { Controller = "Trip", id = 1 }, item);
+            return CreatedAtAction("Read", new { Controller = "Sight", id = 1 }, item);
         }
 
         [HttpGet("{id}")]
         public IActionResult Read(int id)
         {
-            return new ObjectResult(_repo.Get<Trip>(id));
+            return new ObjectResult(_repo.Get<Sight>(id));
         }
 
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody]string value)
         {
-            var item = Trip.Create(id, DateTime.Now, "A", "B", ModeOfTransport.Train, 0);
+            var item = Sight.Create(id, DateTime.Now, value, "There", 0);
             _repo.SaveChanges(item);
             return new NoContentResult();
         }
@@ -38,7 +37,8 @@ namespace TDiary.Api
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _repo.Delete(Chow.Create(id));
+            _repo.Delete(Sight.Create(id));
         }
+
     }
 }

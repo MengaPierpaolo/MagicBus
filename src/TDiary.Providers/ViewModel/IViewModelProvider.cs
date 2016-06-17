@@ -1,7 +1,7 @@
 using TDiary.Model;
-using TDiary.ViewModel;
+using TDiary.Providers.ViewModel.Model;
 
-namespace TDiary
+namespace TDiary.Providers.ViewModel
 {
     public interface IViewModelProvider<T, U> where T : DiaryItem where U : ActivityViewModel
     {

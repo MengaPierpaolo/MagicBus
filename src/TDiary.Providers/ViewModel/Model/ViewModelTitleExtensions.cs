@@ -1,4 +1,4 @@
-namespace TDiary.ViewModel
+namespace TDiary.Providers.ViewModel.Model
 {
     public static class ViewModelTitleExtensions
     {

@@ -1,4 +1,4 @@
-namespace TDiary
+namespace TDiary.Providers.Location
 {
     public interface ILocationProvider
     {

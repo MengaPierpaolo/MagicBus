@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
 using TDiary.Repository;
-using TDiary.ViewModel;
+using TDiary.Providers.ViewModel;
+using TDiary.Providers.ViewModel.Model;
+
 
 namespace TDiary
 {

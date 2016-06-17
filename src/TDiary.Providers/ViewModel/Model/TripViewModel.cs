@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using TDiary.Model;
 
-namespace TDiary.ViewModel
+namespace TDiary.Providers.ViewModel.Model
 {
     public class TripViewModel : ActivityViewModel
     {

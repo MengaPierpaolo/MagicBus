@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
 using TDiary.Repository;
-using TDiary.ViewModel;
+using TDiary.Providers.ViewModel;
+using TDiary.Providers.ViewModel.Model;
 
 namespace TDiary
 {
@@ -26,7 +27,7 @@ namespace TDiary
         {
             if (vm.SavePressed)
             {
-                if (!ModelState.IsValid) 
+                if (!ModelState.IsValid)
                     return View(_viewModelProvider.RefreshAddViewModel(vm));
 
                 _repository.Add(new Chow(vm.Date, vm.Description) { Location = vm.Location });

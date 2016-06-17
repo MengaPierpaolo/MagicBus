@@ -1,11 +1,11 @@
-@model TDiary.ViewModel.TripViewModel
+@model TDiary.Providers.ViewModel.Model.TripViewModel
 @{ Layout = "~/Views/Shared/_EditorLayout.cshtml"; }
 
 <div class="content">
-    <form class="form" role="form" asp-action="Edit"> 
+    <form class="form" role="form" asp-action="Edit">
         <input type="hidden" asp-for="Id">
         @{
             Html.RenderPartial("_TripInfo", Model);
         }
-    </form> 
+    </form>
 </div>

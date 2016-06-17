@@ -23,7 +23,9 @@
       "type": "build"
     },
     "TDiary.Model": "1.0.0-*",
-    "TDiary.Repository": "1.0.0-*"
+    "TDiary.Repository": "1.0.0-*",
+    "TDiary.Providers": "1.0.0-*",
+    "TDiary.Service": "1.0.0-*"
   },
 
   "tools": {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace TDiary.ViewModel
+namespace TDiary.Providers.ViewModel.Model
 {
     public class HomeViewModel : PageViewModel
     {

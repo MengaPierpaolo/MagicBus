@@ -2,7 +2,7 @@ using System.Linq;
 using TDiary.Model;
 using TDiary.Repository;
 
-namespace TDiary
+namespace TDiary.Service
 {
     public class BasicActivityOrderService : IActivityOrderService
     {

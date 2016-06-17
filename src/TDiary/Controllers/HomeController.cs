@@ -1,8 +1,9 @@
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using TDiary.ViewModel;
+using TDiary.Providers.ViewModel.Model;
 using TDiary.Repository;
+using TDiary.Service;
 using TDiary.Model;
 
 namespace TDiary

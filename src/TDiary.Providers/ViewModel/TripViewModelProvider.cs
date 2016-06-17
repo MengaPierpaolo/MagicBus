@@ -1,7 +1,8 @@
 using TDiary.Model;
-using TDiary.ViewModel;
+using TDiary.Providers.Location;
+using TDiary.Providers.ViewModel.Model;
 
-namespace TDiary
+namespace TDiary.Providers.ViewModel
 {
     public class TripViewModelProvider : IViewModelProvider<Trip, TripViewModel>
     {

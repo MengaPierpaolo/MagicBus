@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using TDiary.Repository;
 using TDiary.Model;
-using TDiary.ViewModel;
+using TDiary.Providers.Location;
+using TDiary.Providers.ViewModel;
+using TDiary.Providers.ViewModel.Model;
+using TDiary.Repository;
+using TDiary.Service;
 
 namespace TDiary
 {

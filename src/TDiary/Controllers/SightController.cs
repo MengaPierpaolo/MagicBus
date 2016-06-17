@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
 using TDiary.Repository;
-using TDiary.ViewModel;
+using TDiary.Providers.ViewModel;
+using TDiary.Providers.ViewModel.Model;
+
 
 namespace TDiary
 {
@@ -26,12 +28,12 @@ namespace TDiary
         {
             if (vm.SavePressed)
             {
-                if (!ModelState.IsValid) 
+                if (!ModelState.IsValid)
                     return View(_viewModelProvider.RefreshAddViewModel(vm));
 
                 _repository.Add(new Sight(vm.Date, vm.Name) { Location = vm.Location });
             }
-            
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -45,12 +47,12 @@ namespace TDiary
         {
             if (vm.SavePressed)
             {
-                if (!ModelState.IsValid) 
+                if (!ModelState.IsValid)
                     return View(_viewModelProvider.RefreshEditViewModel(vm));
 
                 _repository.SaveChanges(Sight.Create(vm.Id, vm.Date, vm.Name, vm.Location, vm.SavePosition));
             }
-            
+
             return RedirectToAction("Index", "Home");
         }
 

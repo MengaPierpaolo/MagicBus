@@ -2,7 +2,7 @@ using TDiary.Model;
 using System.Linq;
 using TDiary.Repository;
 
-namespace TDiary
+namespace TDiary.Providers.Location
 {
     public class MostRecentLocationProvider : ILocationProvider
     {

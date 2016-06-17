@@ -1,11 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TDiary.ViewModel
+namespace TDiary.Providers.ViewModel.Model
 {
-    public class NapViewModel : ActivityViewModel
+    public class ChowViewModel : ActivityViewModel
     {
         [Required]
-        [Display(Name = "You snoozed in")]
+        [Display(Name = "You consumed")]
         public string Description { get; set; }
 
         [Display(Name = "When you were in")]

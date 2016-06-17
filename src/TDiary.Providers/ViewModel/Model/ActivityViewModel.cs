@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace TDiary.ViewModel
+namespace TDiary.Providers.ViewModel.Model
 {
     public abstract class ActivityViewModel : PageViewModel
     {

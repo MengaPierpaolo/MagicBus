@@ -1,24 +1,14 @@
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using TDiary.Model;
 using TDiary.Repository;
+using Microsoft.AspNetCore.Mvc;
 
-namespace TDiary.Api
+namespace TDiary
 {
-    [Route("api/[controller]")]
     public class DiaryItemController : Controller
     {
-        private readonly DiaryItemListRepository _diaryItemsRepo;
+        protected internal IDiaryItemRepository _repo;
 
-        public DiaryItemController(DiaryItemListRepository diaryItemsRepo)
-        {
-            _diaryItemsRepo = diaryItemsRepo;
-        }
-
-        [HttpGet]
-        public IEnumerable<DiaryItem> Recent()
-        {
-            return _diaryItemsRepo.GetRecentExperiences(PageSize.Five);
+        public DiaryItemController(IDiaryItemRepository repo){
+            _repo = repo;
         }
     }
 }

@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
 using TDiary.Repository;
-using TDiary.ViewModel;
+using TDiary.Providers.ViewModel;
+using TDiary.Providers.ViewModel.Model;
 
 namespace TDiary
 {
@@ -26,12 +27,12 @@ namespace TDiary
         {
             if (vm.SavePressed)
             {
-                if (!ModelState.IsValid) 
+                if (!ModelState.IsValid)
                     return View(_viewModelProvider.RefreshAddViewModel(vm));
 
                 _repository.Add(new Trip(vm.Date, vm.From, vm.To, vm.ModeOfTransport));
             }
-            
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -45,12 +46,12 @@ namespace TDiary
         {
             if (vm.SavePressed)
             {
-                if (!ModelState.IsValid) 
+                if (!ModelState.IsValid)
                     return View(_viewModelProvider.RefreshEditViewModel(vm));
 
                 _repository.SaveChanges(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.ModeOfTransport, vm.SavePosition));
             }
-            
+
             return RedirectToAction("Index", "Home");
         }
 
