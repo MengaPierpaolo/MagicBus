@@ -1,6 +1,6 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
+using TDiary.Providers.ViewModel.Model;
 using TDiary.Repository;
 
 namespace TDiary.Api
@@ -8,17 +8,13 @@ namespace TDiary.Api
     [Route("api/[Controller]")]
     public class TripController : DiaryItemController
     {
-        public TripController(IDiaryItemRepository repo) : base(repo)
-        {
-        }
+        public TripController(IDiaryItemRepository repo) : base(repo) { }
 
         [HttpPost]
-        public IActionResult Create([FromBody]string value)
+        public IActionResult Create([FromBody]TripViewModel value)
         {
-            var item = new Trip(DateTime.Now, "Here", "There", ModeOfTransport.Bus);
-            _repo.Add(item);
-            // todo: return added item?
-            return CreatedAtAction("Read", new { Controller = "Trip", id = 1 }, item);
+            _repo.Add(new Trip(value.Date, value.From, value.To, value.ModeOfTransport));
+            return new OkResult();
         }
 
         [HttpGet("{id}")]
@@ -28,11 +24,10 @@ namespace TDiary.Api
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody]string value)
+        public IActionResult Update(int id, [FromBody]TripViewModel value)
         {
-            var item = Trip.Create(id, DateTime.Now, "A", "B", ModeOfTransport.Train, 0);
-            _repo.SaveChanges(item);
-            return new NoContentResult();
+            _repo.SaveChanges(Trip.Create(id, value.Date, value.From, value.To, value.ModeOfTransport, value.SavePosition));
+            return new OkResult();
         }
 
         [HttpDelete("{id}")]

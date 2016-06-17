@@ -1,23 +1,21 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
+using TDiary.Providers.ViewModel.Model;
 using TDiary.Repository;
 
 namespace TDiary.Api
 {
+    [Route("api/[Controller]")]
+
     public class NapController : DiaryItemController
     {
-        public NapController(IDiaryItemRepository repo) : base(repo) {
-
-        }
+        public NapController(IDiaryItemRepository repo) : base(repo) { }
 
         [HttpPost]
-        public IActionResult Create([FromBody]string value)
+        public IActionResult Create([FromBody]NapViewModel value)
         {
-            var item = new Nap(DateTime.Now, value);
-            _repo.Add(item);
-            // todo: return added item?
-            return CreatedAtAction("Read", new { Controller = "Nap", id = 1 }, item);
+            _repo.Add(new Nap(value.Date, value.Description));
+            return new OkResult();
         }
 
         [HttpGet("{id}")]
@@ -27,11 +25,10 @@ namespace TDiary.Api
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody]string value)
+        public IActionResult Update(int id, [FromBody]NapViewModel value)
         {
-            var item = Nap.Create(id, DateTime.Now, value, "There", 0);
-            _repo.SaveChanges(item);
-            return new NoContentResult();
+            _repo.SaveChanges(Nap.Create(id, value.Date, value.Description, value.Location, value.SavePosition));
+            return new OkResult();
         }
 
         [HttpDelete("{id}")]
@@ -39,6 +36,5 @@ namespace TDiary.Api
         {
             _repo.Delete(Nap.Create(id));
         }
-
     }
 }

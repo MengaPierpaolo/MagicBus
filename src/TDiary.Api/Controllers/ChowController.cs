@@ -1,25 +1,20 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
 using TDiary.Repository;
+using TDiary.Providers.ViewModel.Model;
 
 namespace TDiary.Api
 {
     [Route("api/[Controller]")]
     public class ChowController : DiaryItemController
     {
-        public ChowController(IDiaryItemRepository repo) : base(repo)
-        {
-
-        }
+        public ChowController(IDiaryItemRepository repo) : base(repo) { }
 
         [HttpPost]
-        public IActionResult Create([FromBody]string value)
+        public IActionResult Create([FromBody]ChowViewModel value)
         {
-            var item = new Chow(DateTime.Now, value);
-            _repo.Add(item);
-            // todo: return added item?
-            return CreatedAtAction("Read", new { Controller = "Chow", id = 1 }, item);
+            _repo.Add(new Chow(value.Date, value.Description));
+            return new OkResult();
         }
 
         [HttpGet("{id}")]
@@ -29,10 +24,9 @@ namespace TDiary.Api
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody]Chow value)
+        public IActionResult Update(int id, [FromBody]ChowViewModel value)
         {
-            var item = Chow.Create(id, value.Date, value.Description, value.Location, 0);
-            _repo.SaveChanges(item);
+            _repo.SaveChanges(Chow.Create(id, value.Date, value.Description, value.Location, value.SavePosition));
             return new NoContentResult();
         }
 
@@ -41,6 +35,5 @@ namespace TDiary.Api
         {
             _repo.Delete(Chow.Create(id));
         }
-
     }
 }

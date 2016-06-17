@@ -1,23 +1,20 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
+using TDiary.Providers.ViewModel.Model;
 using TDiary.Repository;
 
 namespace TDiary.Api
 {
+    [Route("api/[Controller]")]
     public class SightController : DiaryItemController
     {
-        public SightController(IDiaryItemRepository repo) : base(repo) {
-
-        }
+        public SightController(IDiaryItemRepository repo) : base(repo) { }
 
         [HttpPost]
-        public IActionResult Create([FromBody]string value)
+        public IActionResult Create([FromBody]SightViewModel value)
         {
-            var item = new Sight(DateTime.Now, value);
-            _repo.Add(item);
-            // todo: return added item?
-            return CreatedAtAction("Read", new { Controller = "Sight", id = 1 }, item);
+            _repo.Add(new Sight(value.Date, value.Name));
+            return new OkResult();
         }
 
         [HttpGet("{id}")]
@@ -27,11 +24,10 @@ namespace TDiary.Api
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody]string value)
+        public IActionResult Update(int id, [FromBody]SightViewModel value)
         {
-            var item = Sight.Create(id, DateTime.Now, value, "There", 0);
-            _repo.SaveChanges(item);
-            return new NoContentResult();
+            _repo.SaveChanges(Sight.Create(id, value.Date, value.Name, value.Location, value.SavePosition));
+            return new OkResult();
         }
 
         [HttpDelete("{id}")]
@@ -39,6 +35,5 @@ namespace TDiary.Api
         {
             _repo.Delete(Sight.Create(id));
         }
-
     }
 }

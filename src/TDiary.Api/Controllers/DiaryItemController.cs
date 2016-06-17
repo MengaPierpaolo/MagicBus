@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TDiary
 {
-    public class DiaryItemController : Controller
+    public abstract class DiaryItemController : Controller
     {
         protected internal IDiaryItemRepository _repo;
 

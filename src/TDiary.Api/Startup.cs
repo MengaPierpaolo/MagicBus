@@ -23,10 +23,11 @@ namespace TDiary.Api
         {
             services.Configure<DatabaseSettings>(Configuration.GetSection("AppSettings"));
             services.AddDbContext<DiaryContext>();
+
             services.AddScoped<DiaryItemListRepository, DiaryItemListRepository>();
             services.AddScoped<IDiaryItemRepository, DiaryItemRepository>();
 
-            services.AddCors(options => options.AddPolicy("MyPolicy",
+            services.AddCors(options => options.AddPolicy("Allow-All",
                 p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
             services.AddMvc();
@@ -34,7 +35,7 @@ namespace TDiary.Api
 
         public void Configure(IApplicationBuilder app)
         {
-            app.UseCors("MyPolicy");
+            app.UseCors("Allow-All");
             app.UseMvc();
         }
     }
