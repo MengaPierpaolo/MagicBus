@@ -4,7 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using TDiary.Providers.ViewModel.Model;
 using TDiary.Repository;
 using TDiary.Service;
-using TDiary.Model;
+using System.Net.Http;
+using System;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Microsoft.Extensions.Options;
 
 namespace TDiary
 {
@@ -13,42 +18,43 @@ namespace TDiary
         private readonly DiaryItemListRepository _repository;
         private readonly IActivityOrderService _activityOrderer;
 
-        public HomeController(DiaryItemListRepository repository, IActivityOrderService activityOrderer)
+        private HttpClient client;
+        private string _url;
+
+        public HomeController(IOptions<DatabaseSettings> options, DiaryItemListRepository repository, IActivityOrderService activityOrderer)
         {
             _repository = repository;
             _activityOrderer = activityOrderer;
+
+            _url = options.Value.BaseApiUrl + "/diaryitems";
+            client = new HttpClient();
+            client.BaseAddress = new Uri(_url);
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var data = _repository.GetRecentExperiences(PageSize.Ten);
-            var returnData = new List<ActivityViewModel>();
+            HttpResponseMessage responseMessage = await client.GetAsync(_url);
 
-            returnData.AddRange(
-                data.Where(i => i is Chow).Cast<Chow>()
-                .Select(c => new ChowViewModel { Id = c.Id, Date = c.Date, Description = c.Description, Experience = c.Experience, ExperienceType = c.ExperienceType, SavePosition = c.SavePosition }));
-
-            returnData.AddRange(
-                data.Where(i => i is Trip).Cast<Trip>()
-                .Select(t => new TripViewModel { Id = t.Id, Date = t.Date, From = t.From, To = t.To, Experience = t.Experience, ExperienceType = t.ExperienceType, SavePosition = t.SavePosition }));
-
-            returnData.AddRange(
-                data.Where(i => i is Sight).Cast<Sight>()
-                .Select(s => new SightViewModel { Id = s.Id, Date = s.Date, Name = s.Name, Experience = s.Experience, ExperienceType = s.ExperienceType, SavePosition = s.SavePosition }));
-
-            returnData.AddRange(
-                data.Where(i => i is Nap).Cast<Nap>()
-                .Select(s => new NapViewModel { Id = s.Id, Date = s.Date, Description = s.Description, Experience = s.Experience, ExperienceType = s.ExperienceType, SavePosition = s.SavePosition }));
-
-            var vm = new HomeViewModel()
+            if (responseMessage.IsSuccessStatusCode)
             {
-                Title = "Magic Bus",
-                Heading = "Your groovy new travel diary!",
-                Activities = returnData.OrderByDescending(d => d.Date)
-                    .ThenByDescending(pos => pos.SavePosition)
-            };
+                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
 
-            return View(vm);
+                var data = JsonConvert.DeserializeObject<List<RecentExperienceViewModel>>(responseData);
+
+                var vm = new HomeViewModel()
+                {
+                    Title = "Magic Bus",
+                    Heading = "Your groovy new travel diary!",
+                    RecentExperiences = data.OrderByDescending(d => d.Date)
+                        .ThenByDescending(pos => pos.SavePosition)
+                };
+
+                return View(vm);
+            }
+
+            return View("Error");
         }
 
         public IActionResult OrderActivityUp(int activityId)

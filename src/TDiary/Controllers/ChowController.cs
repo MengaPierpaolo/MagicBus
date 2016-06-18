@@ -10,6 +10,7 @@ namespace TDiary
     {
         private readonly IViewModelProvider<Chow, ChowViewModel> _viewModelProvider;
 
+
         public ChowController(
             IDiaryItemRepository repository,
             IViewModelProvider<Chow, ChowViewModel> viewModelProvider) : base(repository)

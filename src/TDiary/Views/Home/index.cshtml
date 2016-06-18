@@ -14,7 +14,7 @@
         @if(Model.ShowRecentExperiences)
         {
             <h3>Recent experiences:</h3>
-            @foreach (var i in Model.Activities)
+            @foreach (var i in Model.RecentExperiences)
             {
                 <div class="experience">
                     <a class="clickable-experience" asp-action="Edit" asp-controller="@i.ExperienceType" asp-route-id="@i.Id">@i.Experience</a><br>

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TDiary.Providers.Location;
 using TDiary.Repository;
 
 namespace TDiary.Api
@@ -26,6 +27,7 @@ namespace TDiary.Api
 
             services.AddScoped<DiaryItemListRepository, DiaryItemListRepository>();
             services.AddScoped<IDiaryItemRepository, DiaryItemRepository>();
+            services.AddScoped<ILocationProvider, MostRecentLocationProvider>();
 
             services.AddCors(options => options.AddPolicy("Allow-All",
                 p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));

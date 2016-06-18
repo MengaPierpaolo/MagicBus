@@ -28,11 +28,12 @@ namespace TDiary
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<DatabaseSettings>(Configuration.GetSection("AppSettings"));
+
             services.AddDbContext<DiaryContext>();
 
             services.AddScoped<IDiaryItemRepository, DiaryItemRepository>();
             services.AddScoped<DiaryItemListRepository, DiaryItemListRepository>();
-            services.AddScoped<ILocationProvider, MostRecentLocationProvider>();
+            services.AddScoped<ILocationProvider, ApiLocationProvider>();
             services.AddScoped<IActivityOrderService, BasicActivityOrderService>();
 
             services.AddScoped<IViewModelProvider<Chow, ChowViewModel>, ChowViewModelProvider>();
