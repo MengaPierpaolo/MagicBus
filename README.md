@@ -1,3 +1,5 @@
+# NOTE: Failure to use Developmet branch has resulted in a failing app.  use with caution for now.  Updates coming!
+
 # TDiary
 # .NET Core RC2 Travel Diary Project
 
