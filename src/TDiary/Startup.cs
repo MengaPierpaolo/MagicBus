@@ -31,11 +31,14 @@ namespace TDiary
 
             services.AddDbContext<DiaryContext>();
 
-            services.AddScoped<IDiaryItemRepository, DiaryItemRepository>();
-            services.AddScoped<DiaryItemListRepository, DiaryItemListRepository>();
-            services.AddScoped<ILocationProvider, ApiLocationProvider>();
+            services.AddScoped<ApiProxy<Trip, TripViewModel>, ApiProxy<Trip, TripViewModel>>();
+            services.AddScoped<ApiProxy<Sight, SightViewModel>, ApiProxy<Sight, SightViewModel>>();
+            services.AddScoped<ApiProxy<Chow, ChowViewModel>, ApiProxy<Chow, ChowViewModel>>();
+            services.AddScoped<ApiProxy<Nap, NapViewModel>, ApiProxy<Nap, NapViewModel>>();
+
             services.AddScoped<IActivityOrderService, BasicActivityOrderService>();
 
+            services.AddScoped<ILocationProvider, ApiLocationProvider>();
             services.AddScoped<IViewModelProvider<Chow, ChowViewModel>, ChowViewModelProvider>();
             services.AddScoped<IViewModelProvider<Sight, SightViewModel>, SightViewModelProvider>();
             services.AddScoped<IViewModelProvider<Trip, TripViewModel>, TripViewModelProvider>();

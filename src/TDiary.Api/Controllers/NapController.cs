@@ -14,7 +14,7 @@ namespace TDiary.Api
         [HttpPost]
         public IActionResult Create([FromBody]NapViewModel value)
         {
-            _repo.Add(new Nap(value.Date, value.Description));
+            _repo.Add(new Nap(value.Date, value.Description) { Location = value.Location });
             return new OkResult();
         }
 

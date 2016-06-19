@@ -1,27 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
-using TDiary.Repository;
-using TDiary.Providers.ViewModel;
 using TDiary.Providers.ViewModel.Model;
 
 namespace TDiary
 {
-    public class ChowController : DiaryController<Chow>
+    public class ChowController : DiaryController<Chow, ChowViewModel>
     {
-        private readonly IViewModelProvider<Chow, ChowViewModel> _viewModelProvider;
-
-
-        public ChowController(
-            IDiaryItemRepository repository,
-            IViewModelProvider<Chow, ChowViewModel> viewModelProvider) : base(repository)
-        {
-            _viewModelProvider = viewModelProvider;
-        }
-
-        public IActionResult Add()
-        {
-            return View(_viewModelProvider.CreateAddViewModel());
-        }
+        public ChowController(ApiProxy<Chow, ChowViewModel> apiProxy) : base(apiProxy) { }
 
         [HttpPost]
         public IActionResult Add(ChowViewModel vm)
@@ -29,17 +14,12 @@ namespace TDiary
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid)
-                    return View(_viewModelProvider.RefreshAddViewModel(vm));
+                    return View(_apiProxy.RefreshAddViewModel(vm));
 
-                _repository.Add(new Chow(vm.Date, vm.Description) { Location = vm.Location });
+                _apiProxy.Add(new Chow(vm.Date, vm.Description) { Location = vm.Location });
             }
 
             return RedirectToAction("Index", "Home");
-        }
-
-        public IActionResult Edit(int id)
-        {
-            return View(_viewModelProvider.CreateEditViewModel(_repository.Get<Chow>(id)));
         }
 
         [HttpPost]
@@ -48,17 +28,11 @@ namespace TDiary
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid)
-                    return View(_viewModelProvider.RefreshEditViewModel(vm));
+                    return View(_apiProxy.RefreshEditViewModel(vm));
 
-                _repository.SaveChanges(Chow.Create(vm.Id, vm.Date, vm.Description, vm.Location, vm.SavePosition));
+                _apiProxy.SaveChanges(Chow.Create(vm.Id, vm.Date, vm.Description, vm.Location, vm.SavePosition));
             }
 
-            return RedirectToAction("Index", "Home");
-        }
-
-        public IActionResult Delete(int id)
-        {
-            _repository.Delete(Chow.Create(id));
             return RedirectToAction("Index", "Home");
         }
     }

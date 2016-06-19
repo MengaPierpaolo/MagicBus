@@ -1,27 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
-using TDiary.Repository;
-using TDiary.Providers.ViewModel;
 using TDiary.Providers.ViewModel.Model;
-
 
 namespace TDiary
 {
-    public class SightController : DiaryController<Sight>
+    public class SightController : DiaryController<Sight, SightViewModel>
     {
-        private readonly IViewModelProvider<Sight, SightViewModel> _viewModelProvider;
-
-        public SightController(
-            IDiaryItemRepository repository,
-            IViewModelProvider<Sight, SightViewModel> viewModelProvider) : base(repository)
-        {
-            _viewModelProvider = viewModelProvider;
-        }
-
-        public IActionResult Add()
-        {
-            return View(_viewModelProvider.CreateAddViewModel());
-        }
+        public SightController(ApiProxy<Sight, SightViewModel> apiProxy) : base(apiProxy) { }
 
         [HttpPost]
         public IActionResult Add(SightViewModel vm)
@@ -29,17 +14,12 @@ namespace TDiary
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid)
-                    return View(_viewModelProvider.RefreshAddViewModel(vm));
+                    return View(_apiProxy.RefreshAddViewModel(vm));
 
-                _repository.Add(new Sight(vm.Date, vm.Name) { Location = vm.Location });
+                _apiProxy.Add(new Sight(vm.Date, vm.Name) { Location = vm.Location });
             }
 
             return RedirectToAction("Index", "Home");
-        }
-
-        public IActionResult Edit(int id)
-        {
-            return View(_viewModelProvider.CreateEditViewModel(_repository.Get<Sight>(id)));
         }
 
         [HttpPost]
@@ -48,17 +28,11 @@ namespace TDiary
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid)
-                    return View(_viewModelProvider.RefreshEditViewModel(vm));
+                    return View(_apiProxy.RefreshEditViewModel(vm));
 
-                _repository.SaveChanges(Sight.Create(vm.Id, vm.Date, vm.Name, vm.Location, vm.SavePosition));
+                _apiProxy.SaveChanges(Sight.Create(vm.Id, vm.Date, vm.Name, vm.Location, vm.SavePosition));
             }
 
-            return RedirectToAction("Index", "Home");
-        }
-
-        public IActionResult Delete(int id)
-        {
-            _repository.Delete(Sight.Create(id));
             return RedirectToAction("Index", "Home");
         }
     }

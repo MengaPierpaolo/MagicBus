@@ -1,27 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
-using TDiary.Repository;
-using TDiary.Providers.ViewModel;
 using TDiary.Providers.ViewModel.Model;
-
 
 namespace TDiary
 {
-    public class NapController : DiaryController<Nap>
+    public class NapController : DiaryController<Nap, NapViewModel>
     {
-        private readonly IViewModelProvider<Nap, NapViewModel> _viewModelProvider;
-
-        public NapController(
-            IDiaryItemRepository repository,
-            IViewModelProvider<Nap, NapViewModel> viewModelProvider) : base(repository)
-        {
-            _viewModelProvider = viewModelProvider;
-        }
-
-        public IActionResult Add()
-        {
-            return View(_viewModelProvider.CreateAddViewModel());
-        }
+        public NapController(ApiProxy<Nap, NapViewModel> apiProxy) : base(apiProxy) { }
 
         [HttpPost]
         public IActionResult Add(NapViewModel vm)
@@ -29,17 +14,12 @@ namespace TDiary
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid)
-                    return View(_viewModelProvider.RefreshAddViewModel(vm));
+                    return View(_apiProxy.RefreshAddViewModel(vm));
 
-                _repository.Add(new Nap(vm.Date, vm.Description) { Location = vm.Location });
+                _apiProxy.Add(new Nap(vm.Date, vm.Description) { Location = vm.Location });
             }
 
             return RedirectToAction("Index", "Home");
-        }
-
-        public IActionResult Edit(int id)
-        {
-            return View(_viewModelProvider.CreateEditViewModel(_repository.Get<Nap>(id)));
         }
 
         [HttpPost]
@@ -48,17 +28,11 @@ namespace TDiary
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid)
-                    return View(_viewModelProvider.RefreshEditViewModel(vm));
+                    return View(_apiProxy.RefreshEditViewModel(vm));
 
-                _repository.SaveChanges(Nap.Create(vm.Id, vm.Date, vm.Description, vm.Location, vm.SavePosition));
+                _apiProxy.SaveChanges(Nap.Create(vm.Id, vm.Date, vm.Description, vm.Location, vm.SavePosition));
             }
 
-            return RedirectToAction("Index", "Home");
-        }
-
-        public IActionResult Delete(int id)
-        {
-            _repository.Delete(Nap.Create(id));
             return RedirectToAction("Index", "Home");
         }
     }

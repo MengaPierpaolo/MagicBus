@@ -1,60 +1,36 @@
 using System.Linq;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using TDiary.Providers.ViewModel.Model;
-using TDiary.Repository;
-using TDiary.Service;
-using System.Net.Http;
-using System;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc;
+using TDiary.Model;
+using TDiary.Providers.ViewModel.Model;
+using TDiary.Service;
 
 namespace TDiary
 {
     public class HomeController : Controller
     {
-        private readonly DiaryItemListRepository _repository;
+        private readonly ApiProxy<Trip, TripViewModel> _apiProxy;
         private readonly IActivityOrderService _activityOrderer;
 
-        private HttpClient client;
-        private string _url;
-
-        public HomeController(IOptions<DatabaseSettings> options, DiaryItemListRepository repository, IActivityOrderService activityOrderer)
+        public HomeController(ApiProxy<Trip, TripViewModel> apiProxy, IActivityOrderService activityOrderService)
         {
-            _repository = repository;
-            _activityOrderer = activityOrderer;
-
-            _url = options.Value.BaseApiUrl + "/diaryitems";
-            client = new HttpClient();
-            client.BaseAddress = new Uri(_url);
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _apiProxy = apiProxy;
+            _apiProxy.SetUrl("/diaryitems/");
+            _activityOrderer = activityOrderService;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            HttpResponseMessage responseMessage = await client.GetAsync(_url);
-
-            if (responseMessage.IsSuccessStatusCode)
+            var vm = new HomeViewModel()
             {
-                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                Title = "Magic Bus",
+                Heading = "Your groovy new travel diary!",
+                RecentExperiences = _apiProxy.GetRecent()
+                    .OrderByDescending(d => d.Date)
+                    .ThenByDescending(pos => pos.SavePosition)
+            };
 
-                var data = JsonConvert.DeserializeObject<List<RecentExperienceViewModel>>(responseData);
-
-                var vm = new HomeViewModel()
-                {
-                    Title = "Magic Bus",
-                    Heading = "Your groovy new travel diary!",
-                    RecentExperiences = data.OrderByDescending(d => d.Date)
-                        .ThenByDescending(pos => pos.SavePosition)
-                };
-
-                return View(vm);
-            }
-
-            return View("Error");
+            return View(vm);
         }
 
         public IActionResult OrderActivityUp(int activityId)

@@ -13,7 +13,7 @@ namespace TDiary.Api
         [HttpPost]
         public IActionResult Create([FromBody]ChowViewModel value)
         {
-            _repo.Add(new Chow(value.Date, value.Description));
+            _repo.Add(new Chow(value.Date, value.Description) { Location = value.Location });
             return new OkResult();
         }
 
