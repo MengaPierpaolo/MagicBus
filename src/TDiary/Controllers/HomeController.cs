@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
 using TDiary.Providers.ViewModel.Model;
 using TDiary.Service;
+using System.Threading.Tasks;
 
 namespace TDiary
 {
@@ -18,13 +19,14 @@ namespace TDiary
             _activityOrderer = activityOrderService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var x = await _apiProxy.GetRecent();
             var vm = new HomeViewModel()
             {
                 Title = "Magic Bus",
                 Heading = "Your groovy new travel diary!",
-                RecentExperiences = _apiProxy.GetRecent()
+                RecentExperiences = x
                     .OrderByDescending(d => d.Date)
                     .ThenByDescending(pos => pos.SavePosition)
             };

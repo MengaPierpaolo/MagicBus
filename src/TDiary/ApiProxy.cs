@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using TDiary.Model;
@@ -15,7 +16,7 @@ namespace TDiary
     public interface IApiProxy<T, U> where T : DiaryItem where U : ActivityViewModel
     {
         //void AppendUrl(string url);
-        IEnumerable<RecentExperienceViewModel> GetRecent();
+        Task<IEnumerable<RecentExperienceViewModel>> GetRecent();
         void Add(T item);
         void SaveChanges(T item);
         void Delete(int id);
@@ -55,12 +56,12 @@ namespace TDiary
             client.BaseAddress = new Uri(baseUrl + url);
         }
 
-        public IEnumerable<RecentExperienceViewModel> GetRecent()
+        public async Task<IEnumerable<RecentExperienceViewModel>> GetRecent()
         {
-            HttpResponseMessage responseMessage = client.GetAsync(client.BaseAddress).Result;
+            HttpResponseMessage responseMessage = await client.GetAsync(client.BaseAddress);
             if (responseMessage.IsSuccessStatusCode)
             {
-                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                var responseData = await responseMessage.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<List<RecentExperienceViewModel>>(responseData);
             }
 
@@ -69,12 +70,12 @@ namespace TDiary
 
         public void Add(DiaryItem item)
         {
-            client.PostAsync(client.BaseAddress, GetPostContent(item));
+            client.PostAsync(client.BaseAddress, GetPostContent(item)).Wait();
         }
 
         public void SaveChanges(DiaryItem item)
         {
-            client.PutAsync(client.BaseAddress.ToString() + item.Id, GetPostContent(item));
+            client.PutAsync(client.BaseAddress.ToString() + item.Id, GetPostContent(item)).Wait();
         }
 
         private HttpContent GetPostContent(DiaryItem item)
@@ -96,7 +97,7 @@ namespace TDiary
 
         public void Delete(int id)
         {
-            client.DeleteAsync(client.BaseAddress.ToString() + id);
+            client.DeleteAsync(client.BaseAddress.ToString() + id).Wait();
         }
 
         public ActivityViewModel GetAddViewModel()
