@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
 using TDiary.Providers.ViewModel.Model;
@@ -18,14 +19,14 @@ namespace TDiary
             return View(_apiProxy.GetAddViewModel());
         }
 
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View(_apiProxy.Get(id));
+            return View(await _apiProxy.GetEditViewModel(id));
         }
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _apiProxy.Delete(id);
+            await _apiProxy.Delete(id);
             return RedirectToAction("Index", "Home");
         }
     }

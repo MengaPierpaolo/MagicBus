@@ -13,20 +13,7 @@ using TDiary.Repository;
 
 namespace TDiary
 {
-    public interface IApiProxy<T, U> where T : DiaryItem where U : ActivityViewModel
-    {
-        //void AppendUrl(string url);
-        Task<IEnumerable<RecentExperienceViewModel>> GetRecent();
-        void Add(T item);
-        void SaveChanges(T item);
-        void Delete(int id);
-        U Get(int id);
-        ActivityViewModel GetAddViewModel();
-        ActivityViewModel RefreshAddViewModel(U vm);
-        ActivityViewModel RefreshEditViewModel(U vm);
-    }
-
-    public class ApiProxy<T, U> : IApiProxy<DiaryItem, ActivityViewModel> where T : DiaryItem where U : ActivityViewModel
+    public class ApiProxy<T, U> where T : DiaryItem where U : ActivityViewModel
     {
         private IViewModelProvider<T, U> _viewModelProvider;
         private readonly HttpClient client;
@@ -65,17 +52,18 @@ namespace TDiary
                 return JsonConvert.DeserializeObject<List<RecentExperienceViewModel>>(responseData);
             }
 
-            return null; // TODO: Look at what this should be
+            // TODO: log non-happy path
+            return new List<RecentExperienceViewModel>();
         }
 
-        public void Add(DiaryItem item)
+        public async Task Add(DiaryItem item)
         {
-            client.PostAsync(client.BaseAddress, GetPostContent(item)).Wait();
+            await client.PostAsync(client.BaseAddress, GetPostContent(item));
         }
 
-        public void SaveChanges(DiaryItem item)
+        public async Task SaveChanges(DiaryItem item)
         {
-            client.PutAsync(client.BaseAddress.ToString() + item.Id, GetPostContent(item)).Wait();
+            await client.PutAsync(client.BaseAddress.ToString() + item.Id, GetPostContent(item));
         }
 
         private HttpContent GetPostContent(DiaryItem item)
@@ -84,20 +72,21 @@ namespace TDiary
             return new StringContent(jsonString, Encoding.UTF8, "application/json");
         }
 
-        public ActivityViewModel Get(int id)
+        public async Task<ActivityViewModel> GetEditViewModel(int id)
         {
-            HttpResponseMessage responseMessage = client.GetAsync(client.BaseAddress.ToString() + id).Result;
+            HttpResponseMessage responseMessage = await client.GetAsync(client.BaseAddress.ToString() + id);
             if (responseMessage.IsSuccessStatusCode)
             {
-                var responseData = responseMessage.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<U>(responseData);
+                var responseData = await responseMessage.Content.ReadAsStringAsync();
+                var vm = JsonConvert.DeserializeObject<U>(responseData);
+                return RefreshEditViewModel(vm);
             }
             return default(U);
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            client.DeleteAsync(client.BaseAddress.ToString() + id).Wait();
+            await client.DeleteAsync(client.BaseAddress.ToString() + id);
         }
 
         public ActivityViewModel GetAddViewModel()

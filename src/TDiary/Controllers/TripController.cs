@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
 using TDiary.Providers.ViewModel.Model;
@@ -9,14 +10,14 @@ namespace TDiary
         public TripController(ApiProxy<Trip, TripViewModel> apiProxy) : base(apiProxy) { }
 
         [HttpPost]
-        public IActionResult Add(TripViewModel vm)
+        public async Task<IActionResult> Add(TripViewModel vm)
         {
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid)
                     return View(_apiProxy.RefreshAddViewModel(vm));
 
-                _apiProxy.Add(new Trip(vm.Date, vm.From, vm.To, vm.By));
+                await _apiProxy.Add(new Trip(vm.Date, vm.From, vm.To, vm.By));
             }
 
             return RedirectToAction("Index", "Home");
@@ -24,14 +25,14 @@ namespace TDiary
 
 
         [HttpPost]
-        public IActionResult Edit(TripViewModel vm)
+        public async Task<IActionResult> Edit(TripViewModel vm)
         {
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid)
                     return View(_apiProxy.RefreshEditViewModel(vm));
 
-                _apiProxy.SaveChanges(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.By, vm.SavePosition));
+                await _apiProxy.SaveChanges(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.By, vm.SavePosition));
             }
 
             return RedirectToAction("Index", "Home");
