@@ -36,8 +36,6 @@ namespace TDiary
             services.AddScoped<ApiProxy<Chow, ChowViewModel>, ApiProxy<Chow, ChowViewModel>>();
             services.AddScoped<ApiProxy<Nap, NapViewModel>, ApiProxy<Nap, NapViewModel>>();
 
-            services.AddScoped<IActivityOrderService, BasicActivityOrderService>();
-
             services.AddScoped<ILocationProvider, ApiLocationProvider>();
             services.AddScoped<IViewModelProvider<Chow, ChowViewModel>, ChowViewModelProvider>();
             services.AddScoped<IViewModelProvider<Sight, SightViewModel>, SightViewModelProvider>();

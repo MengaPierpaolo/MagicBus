@@ -2,7 +2,6 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Model;
 using TDiary.Providers.ViewModel.Model;
-using TDiary.Service;
 using System.Threading.Tasks;
 
 namespace TDiary
@@ -10,13 +9,11 @@ namespace TDiary
     public class HomeController : Controller
     {
         private readonly ApiProxy<Trip, TripViewModel> _apiProxy;
-        private readonly IActivityOrderService _activityOrderer;
 
-        public HomeController(ApiProxy<Trip, TripViewModel> apiProxy, IActivityOrderService activityOrderService)
+        public HomeController(ApiProxy<Trip, TripViewModel> apiProxy)
         {
             _apiProxy = apiProxy;
             _apiProxy.SetUrl("/diaryitems/");
-            _activityOrderer = activityOrderService;
         }
 
         public async Task<IActionResult> Index()
@@ -34,15 +31,15 @@ namespace TDiary
             return View(vm);
         }
 
-        public IActionResult OrderActivityUp(int activityId)
+        public async Task<IActionResult> OrderActivityUp(int activityId)
         {
-            _activityOrderer.OrderUp(activityId);
+            await _apiProxy.PromoteActivity(activityId);
             return RedirectToAction("Index");
         }
 
-        public IActionResult OrderActivityDown(int activityId)
+        public async Task<IActionResult> OrderActivityDown(int activityId)
         {
-            _activityOrderer.OrdrDown(activityId);
+            await _apiProxy.DemoteActivity(activityId);
             return RedirectToAction("Index");
         }
     }

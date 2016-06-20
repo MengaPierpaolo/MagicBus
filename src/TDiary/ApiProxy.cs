@@ -10,12 +10,13 @@ using TDiary.Model;
 using TDiary.Providers.ViewModel;
 using TDiary.Providers.ViewModel.Model;
 using TDiary.Repository;
+using TDiary.Service;
 
 namespace TDiary
 {
     public class ApiProxy<T, U> where T : DiaryItem where U : ActivityViewModel
     {
-        private IViewModelProvider<T, U> _viewModelProvider;
+        private readonly IViewModelProvider<T, U> _viewModelProvider;
         private readonly HttpClient client;
         private string baseUrl;
 
@@ -102,6 +103,20 @@ namespace TDiary
         public ActivityViewModel RefreshEditViewModel(ActivityViewModel vm)
         {
             return _viewModelProvider.RefreshEditViewModel(vm as U);
+        }
+
+        public async Task PromoteActivity(int activityId)
+        {
+            var jsonString = JsonConvert.SerializeObject("Up");
+            var x = new StringContent(jsonString, Encoding.UTF8, "application/json");
+            await client.PutAsync(client.BaseAddress.ToString() + activityId, x);
+        }
+
+        public async Task DemoteActivity(int activityId)
+        {
+            var jsonString = JsonConvert.SerializeObject("Down");
+            var x = new StringContent(jsonString, Encoding.UTF8, "application/json");
+            await client.PutAsync(client.BaseAddress.ToString() + activityId, x);
         }
     }
 }

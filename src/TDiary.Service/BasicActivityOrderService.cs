@@ -21,7 +21,7 @@ namespace TDiary.Service
             SwitchDates(itemToMove, itemToSwitch);
         }
 
-        public void OrdrDown(int activityId)
+        public void OrderDown(int activityId)
         {
             var itemToMove = GetItemToMove(activityId);
             var itemToSwitch = GetItemToSwitch(itemToMove, SwitchDirection.Down);
@@ -49,9 +49,9 @@ namespace TDiary.Service
         private DiaryItem GetItemToSwitch(DiaryItem itemToMove, SwitchDirection direction)
         {
             if (direction == SwitchDirection.Down)
-                 return _context.Experiences
-                    .Where(e => e.Date.Date == itemToMove.Date.Date && e.SavePosition < itemToMove.SavePosition)
-                    .OrderByDescending(e => e.SavePosition).FirstOrDefault();
+                return _context.Experiences
+                   .Where(e => e.Date.Date == itemToMove.Date.Date && e.SavePosition < itemToMove.SavePosition)
+                   .OrderByDescending(e => e.SavePosition).FirstOrDefault();
 
             return _context.Experiences
                 .Where(e => e.Date.Date == itemToMove.Date.Date && e.SavePosition > itemToMove.SavePosition)
