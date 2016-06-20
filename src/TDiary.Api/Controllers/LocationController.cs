@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Providers.Location;
 
@@ -14,9 +15,9 @@ namespace TDiary.Api
         }
 
         [HttpGet]
-        public string Get()
+        public async Task<string> Get()
         {
-            return _locationProvider.GetLastLocation();
+            return await _locationProvider.GetLastLocation();
         }
     }
 }
