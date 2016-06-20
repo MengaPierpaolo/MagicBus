@@ -1,31 +1,20 @@
 import dispatcher from '../dispatcher';
-
-var $ = require('jquery');
+import * as ChowActions from '../actionCreators/ChowActions';
 
 export function loadActivities() {
-    dispatcher.dispatch({
-        type: "LOADING_ACTIVITIES"
-    });
-
-    dispatcher.dispatch({
-        type: "LOAD_ACTIVITIES"
-    })
+    dispatcher.dispatch({ type: "LOAD_ACTIVITIES_BEGIN" });
+    dispatcher.dispatch({ type: "LOAD_ACTIVITIES_END" })
 }
 
 export function addActivity() {
-    dispatcher.dispatch({
-        type: 'ADD_ACTIVITY'
-    })
+    dispatcher.dispatch({ type: 'ADD_ACTIVITY' })
 }
 
-export function deleteActivity(id) {
-    $.ajax({
-        type: 'DELETE',
-        url: 'http://localhost:8002/api/trip/' + encodeURIComponent(id) + '/',
-        success: function () {
-            dispatcher.dispatch({
-                type: 'DELETED_ACTIVITY'
-            });
-        }.bind(this)
-    });
+export function deleteActivity(type, id) {
+    switch (type) {
+        case 'Chow': {
+            ChowActions.deleteChow(id);
+            dispatcher.dispatch({ type: 'DELETE_CHOW' })
+        }
+    }
 }

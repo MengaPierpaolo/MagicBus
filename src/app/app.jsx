@@ -9,6 +9,10 @@ import SightEditor from './components/sight-editor'
 import ChowEditor from './components/chow-editor'
 import NapEditor from './components/nap-editor'
 
+// TODO: Remove this global namespace polluter!
+// window.baseUrl = 'http://localhost:5000/api';
+window.baseUrl = 'http://localhost:8002/api';
+
 ReactDOM.render(
     <Router history={hashHistory}>
         <Route path="/" component={Layout}>

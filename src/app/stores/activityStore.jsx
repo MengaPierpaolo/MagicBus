@@ -20,7 +20,7 @@ class ActivityStore extends EventEmitter {
 
     loadActivities() {
         $.ajax({
-            url: 'http://localhost:8002/api/diaryitem',
+            url: baseUrl + '/diaryitems',
             dataType: 'json',
             cache: false,
             success: function (data) {
@@ -28,28 +28,25 @@ class ActivityStore extends EventEmitter {
                 this._Loading = false;
                 this.emit("change");
             }.bind(this),
-            error: function (xhr, status, err) {
-                console.error('http://localhost:8002/api/diaryitem', status, err.toString());
-            }.bind(this)
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.error(baseUrl + 'diaryitems', textStatus, errorThrown.toString());
+            }
         });
     }
 
     handleActions(action) {
         switch (action.type) {
-            case 'ADD_ACTIVITY': {
-                this.createActivity();
-            }
-            case 'LOADING_ACTIVITIES': {
+            case 'LOAD_ACTIVITIES_BEGIN': {
                 this._Loading = true;
                 this.emit("change");
             }
-            case 'LOAD_ACTIVITIES': {
+            case 'LOAD_ACTIVITIES_END': {
                 this.loadActivities();
             }
-            case 'DELETED_ACTIVITY': {
+            case 'DELETE_ACTIVITY': {
                 this.loadActivities();
             }
-            case 'ADDED_CHOW': {
+            case 'ADD_CHOW': {
                 this.loadActivities();
             }
         }

@@ -10,7 +10,7 @@ import * as ChowActions from '../actionCreators/ChowActions';
 export default class ChowEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { on: '', location: '', description: '' };
+        this.state = { date: '01/01/2016', location: '', description: '' };
     }
 
     onClicked() {

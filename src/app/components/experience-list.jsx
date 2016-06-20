@@ -41,8 +41,8 @@ export default class ExperienceList extends React.Component {
     alert('To Do');
   }
 
-  onDelete(id) {
-    ActivityActions.deleteActivity(id);
+  onDelete(type, id) {
+    ActivityActions.deleteActivity(type, id);
   }
 
   render() {
@@ -51,7 +51,7 @@ export default class ExperienceList extends React.Component {
         <Link to={activity.ExperienceType} className="clickable-experience">{activity.Experience}</Link><br/>
         <Button onClick={this.onExperienceClicked} className="function-button glyphicon glyphicon-arrow-up"></Button>
         <Button onClick={this.onExperienceClicked} className="function-button glyphicon glyphicon-arrow-down"></Button>
-        <Button onClick={() => { this.onDelete(activity.Id) } } className="function-button glyphicon glyphicon-remove"></Button>
+        <Button onClick={() => { this.onDelete(activity.ExperienceType, activity.Id) } } className="function-button glyphicon glyphicon-remove"></Button>
       </div>;
     }, this);
 
