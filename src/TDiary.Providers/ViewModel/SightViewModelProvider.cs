@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using TDiary.Model;
 using TDiary.Providers.Location;
 using TDiary.Providers.ViewModel.Model;
@@ -13,9 +14,9 @@ namespace TDiary.Providers.ViewModel
             _locationProvider = locationProvider;
         }
 
-        public SightViewModel CreateAddViewModel()
+        public async Task<SightViewModel> CreateAddViewModel()
         {
-            return new SightViewModel() { Location = _locationProvider.GetLastLocation() }.WithAddTitles();
+            return new SightViewModel() { Location = await _locationProvider.GetLastLocation() }.WithAddTitles();
         }
 
         public SightViewModel CreateEditViewModel(Sight item)

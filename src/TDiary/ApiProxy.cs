@@ -10,7 +10,6 @@ using TDiary.Model;
 using TDiary.Providers.ViewModel;
 using TDiary.Providers.ViewModel.Model;
 using TDiary.Repository;
-using TDiary.Service;
 
 namespace TDiary
 {
@@ -20,7 +19,7 @@ namespace TDiary
         private readonly HttpClient client;
         private string baseUrl;
 
-        public ApiProxy(IOptions<DatabaseSettings> options, IViewModelProvider<T, U> viewModelProvider)
+        public ApiProxy(IOptions<ApplicationSettings> options, IViewModelProvider<T, U> viewModelProvider)
         {
             _viewModelProvider = viewModelProvider;
             baseUrl = options.Value.BaseApiUrl;
@@ -30,7 +29,7 @@ namespace TDiary
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            //convert Enums to Strings (instead of Integer) globally
+            //convert Enums to Strings (instead of Integer)
             JsonConvert.DefaultSettings = (() =>
             {
                 var settings = new JsonSerializerSettings();
@@ -54,7 +53,7 @@ namespace TDiary
             }
 
             // TODO: log non-happy path
-            return new List<RecentExperienceViewModel>();
+            return default(List<RecentExperienceViewModel>);
         }
 
         public async Task Add(DiaryItem item)
@@ -90,9 +89,9 @@ namespace TDiary
             await client.DeleteAsync(client.BaseAddress.ToString() + id);
         }
 
-        public ActivityViewModel GetAddViewModel()
+        public async Task<ActivityViewModel> GetAddViewModel()
         {
-            return _viewModelProvider.CreateAddViewModel();
+            return await _viewModelProvider.CreateAddViewModel();
         }
 
         public ActivityViewModel RefreshAddViewModel(ActivityViewModel vm)
@@ -107,16 +106,20 @@ namespace TDiary
 
         public async Task PromoteActivity(int activityId)
         {
-            var jsonString = JsonConvert.SerializeObject("Up");
-            var x = new StringContent(jsonString, Encoding.UTF8, "application/json");
-            await client.PutAsync(client.BaseAddress.ToString() + activityId, x);
+            await client.PutAsync(client.BaseAddress.ToString() + activityId, 
+                GetPromotionContent(directionIsUp: true));
         }
 
         public async Task DemoteActivity(int activityId)
         {
-            var jsonString = JsonConvert.SerializeObject("Down");
-            var x = new StringContent(jsonString, Encoding.UTF8, "application/json");
-            await client.PutAsync(client.BaseAddress.ToString() + activityId, x);
+            await client.PutAsync(client.BaseAddress.ToString() + activityId, 
+                GetPromotionContent(directionIsUp: false));
+        }
+
+        private HttpContent GetPromotionContent(bool directionIsUp)
+        {
+            var jsonString = JsonConvert.SerializeObject(directionIsUp?"Up":"Down");
+            return new StringContent(jsonString, Encoding.UTF8, "application/json");
         }
     }
 }

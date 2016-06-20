@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using TDiary.Model;
 using TDiary.Providers.Location;
 using TDiary.Providers.ViewModel.Model;
@@ -13,9 +14,9 @@ namespace TDiary.Providers.ViewModel
             _locationProvider = locationProvider;
         }
 
-        public NapViewModel CreateAddViewModel()
+        public async Task<NapViewModel> CreateAddViewModel()
         {
-            return new NapViewModel { Location = _locationProvider.GetLastLocation() }.WithAddTitles();
+            return new NapViewModel { Location = await _locationProvider.GetLastLocation() }.WithAddTitles();
         }
 
         public NapViewModel CreateEditViewModel(Nap item)

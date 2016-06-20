@@ -6,9 +6,9 @@ namespace TDiary.Repository
 {
     public class DiaryContext : DbContext
     {
-        private readonly IOptions<DatabaseSettings> _options;
+        private readonly IOptions<ApplicationSettings> _options;
 
-        public DiaryContext(IOptions<DatabaseSettings> options)
+        public DiaryContext(IOptions<ApplicationSettings> options)
         {
             _options = options;
         }

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using TDiary.Model;
 using TDiary.Providers.Location;
 using TDiary.Providers.ViewModel.Model;
@@ -13,9 +14,9 @@ namespace TDiary.Providers.ViewModel
             _locationProvider = locationProvider;
         }
 
-        public ChowViewModel CreateAddViewModel()
+        public async Task<ChowViewModel> CreateAddViewModel()
         {
-            return new ChowViewModel() { Location = _locationProvider.GetLastLocation() }.WithAddTitles();
+            return new ChowViewModel() { Location = await _locationProvider.GetLastLocation() }.WithAddTitles();
         }
 
         public ChowViewModel CreateEditViewModel(Chow item)

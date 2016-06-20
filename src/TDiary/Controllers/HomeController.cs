@@ -18,12 +18,12 @@ namespace TDiary
 
         public async Task<IActionResult> Index()
         {
-            var x = await _apiProxy.GetRecent();
+            var recentExperiences = await _apiProxy.GetRecent();
             var vm = new HomeViewModel()
             {
                 Title = "Magic Bus",
                 Heading = "Your groovy new travel diary!",
-                RecentExperiences = x
+                RecentExperiences = recentExperiences
                     .OrderByDescending(d => d.Date)
                     .ThenByDescending(pos => pos.SavePosition)
             };

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using TDiary.Model;
 using TDiary.Providers.Location;
 using TDiary.Providers.ViewModel.Model;
@@ -13,9 +14,9 @@ namespace TDiary.Providers.ViewModel
             _locationProvider = locationProvider;
         }
 
-        public TripViewModel CreateAddViewModel()
+        public async Task<TripViewModel> CreateAddViewModel()
         {
-            return new TripViewModel() { From = _locationProvider.GetLastLocation() }.WithAddTitles();
+            return new TripViewModel() { From = await _locationProvider.GetLastLocation() }.WithAddTitles();
         }
 
         public TripViewModel CreateEditViewModel(Trip item)

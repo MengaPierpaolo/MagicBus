@@ -1,7 +1,9 @@
+using System.Threading.Tasks;
+
 namespace TDiary.Providers.Location
 {
     public interface ILocationProvider
     {
-        string GetLastLocation();
+        Task<string> GetLastLocation();
     }
 }

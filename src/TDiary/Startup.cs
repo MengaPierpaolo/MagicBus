@@ -27,9 +27,7 @@ namespace TDiary
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<DatabaseSettings>(Configuration.GetSection("AppSettings"));
-
-            services.AddDbContext<DiaryContext>();
+            services.Configure<ApplicationSettings>(Configuration.GetSection("AppSettings"));
 
             services.AddScoped<ApiProxy<Trip, TripViewModel>, ApiProxy<Trip, TripViewModel>>();
             services.AddScoped<ApiProxy<Sight, SightViewModel>, ApiProxy<Sight, SightViewModel>>();

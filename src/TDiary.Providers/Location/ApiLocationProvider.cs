@@ -12,7 +12,7 @@ namespace TDiary.Providers.Location
         private HttpClient client;
         private string _url;
 
-        public ApiLocationProvider(IOptions<DatabaseSettings> options)
+        public ApiLocationProvider(IOptions<ApplicationSettings> options)
         {
             _url = options.Value.BaseApiUrl + "/location";
             client = new HttpClient();
@@ -21,18 +21,13 @@ namespace TDiary.Providers.Location
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public string GetLastLocation()
-        {
-            return GetLocationFromApi().Result;
-        }
-
-        private async Task<string> GetLocationFromApi()
+        public async Task<string> GetLastLocation()
         {
             string responseData = string.Empty;
             HttpResponseMessage responseMessage = await client.GetAsync(_url);
             if (responseMessage.IsSuccessStatusCode)
             {
-                responseData = responseMessage.Content.ReadAsStringAsync().Result;
+                responseData = await responseMessage.Content.ReadAsStringAsync();
             }
 
             return responseData;

@@ -14,9 +14,9 @@ namespace TDiary
             _apiProxy = apiProxy;
         }
 
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
-            return View(_apiProxy.GetAddViewModel());
+            return View(await _apiProxy.GetAddViewModel());
         }
 
         public async Task<IActionResult> Edit(int id)

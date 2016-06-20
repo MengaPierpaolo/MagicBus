@@ -1,6 +1,6 @@
 namespace TDiary.Repository
 {
-    public class DatabaseSettings
+    public class ApplicationSettings
     {
         public string ConnectionString { get; set; }
         public string BaseApiUrl { get; set; }
