@@ -10,11 +10,11 @@ namespace TDiary.Providers.ViewModel.Model
         public string From { get; set; }
 
         [Required]
-        [Display(Name = "To")]
+        [Display(Name = "You travelled to")]
         public string To { get; set; }
 
         [Required]
-        [Display(Name = "By")]
-        public ModeOfTransport ModeOfTransport { get; set; }
+        [Display(Name = "Your mode of transport was")]
+        public ModeOfTransport By { get; set; }
     }
 }

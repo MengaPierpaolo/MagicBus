@@ -26,7 +26,7 @@ namespace TDiary.Providers.ViewModel
                 Date = item.Date,
                 From = item.From,
                 To = item.To,
-                ModeOfTransport = item.By,
+                By = item.By,
                 SavePosition = item.SavePosition
             }
             .WithEditTitles();

@@ -16,7 +16,7 @@ namespace TDiary
                 if (!ModelState.IsValid)
                     return View(_apiProxy.RefreshAddViewModel(vm));
 
-                _apiProxy.Add(new Trip(vm.Date, vm.From, vm.To, vm.ModeOfTransport));
+                _apiProxy.Add(new Trip(vm.Date, vm.From, vm.To, vm.By));
             }
 
             return RedirectToAction("Index", "Home");
@@ -31,7 +31,7 @@ namespace TDiary
                 if (!ModelState.IsValid)
                     return View(_apiProxy.RefreshEditViewModel(vm));
 
-                _apiProxy.SaveChanges(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.ModeOfTransport, vm.SavePosition));
+                _apiProxy.SaveChanges(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.By, vm.SavePosition));
             }
 
             return RedirectToAction("Index", "Home");

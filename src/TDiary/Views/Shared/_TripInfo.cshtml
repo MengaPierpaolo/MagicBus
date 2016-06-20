@@ -12,8 +12,8 @@
     <input class="form-control" type="text" asp-for="To" autocomplete="off">
 </div>
 <div class="form-group">
-    <label asp-for="ModeOfTransport"></label>
-    <select asp-for="ModeOfTransport" asp-items="Html.GetEnumSelectList<TDiary.Model.ModeOfTransport>()" class="form-control"></select>
+    <label asp-for="By"></label>
+    <select asp-for="By" asp-items="Html.GetEnumSelectList<TDiary.Model.ModeOfTransport>()" class="form-control"></select>
 </div>
 <input name="submitButtonUsed" type="submit" class="btn btn-primary" value="Save it!">
 <input name="submitButtonUsed" type="submit" class="btn btn-info" value="Changed my mind" formnovalidate>

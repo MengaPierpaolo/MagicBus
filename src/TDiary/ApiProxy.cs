@@ -29,7 +29,6 @@ namespace TDiary
     {
         private IViewModelProvider<T, U> _viewModelProvider;
         private readonly HttpClient client;
-
         private string baseUrl;
 
         public ApiProxy(IOptions<DatabaseSettings> options, IViewModelProvider<T, U> viewModelProvider)
@@ -41,6 +40,14 @@ namespace TDiary
             client.BaseAddress = new Uri(baseUrl + '/' + typeof(T).Name + '/');
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            //convert Enums to Strings (instead of Integer) globally
+            JsonConvert.DefaultSettings = (() =>
+            {
+                var settings = new JsonSerializerSettings();
+                settings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
+                return settings;
+            });
         }
 
         public void SetUrl(string url)
@@ -50,7 +57,6 @@ namespace TDiary
 
         public IEnumerable<RecentExperienceViewModel> GetRecent()
         {
-            // TODO: asynch / await this?
             HttpResponseMessage responseMessage = client.GetAsync(client.BaseAddress).Result;
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -63,13 +69,18 @@ namespace TDiary
 
         public void Add(DiaryItem item)
         {
-            HttpContent contentPost = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
-            client.PostAsync(client.BaseAddress, contentPost);
+            client.PostAsync(client.BaseAddress, GetPostContent(item));
         }
 
-        public void Delete(int id)
+        public void SaveChanges(DiaryItem item)
         {
-            client.DeleteAsync(client.BaseAddress.ToString() + id);
+            client.PutAsync(client.BaseAddress.ToString() + item.Id, GetPostContent(item));
+        }
+
+        private HttpContent GetPostContent(DiaryItem item)
+        {
+            var jsonString = JsonConvert.SerializeObject(item);
+            return new StringContent(jsonString, Encoding.UTF8, "application/json");
         }
 
         public ActivityViewModel Get(int id)
@@ -81,6 +92,11 @@ namespace TDiary
                 return JsonConvert.DeserializeObject<U>(responseData);
             }
             return default(U);
+        }
+
+        public void Delete(int id)
+        {
+            client.DeleteAsync(client.BaseAddress.ToString() + id);
         }
 
         public ActivityViewModel GetAddViewModel()
@@ -96,12 +112,6 @@ namespace TDiary
         public ActivityViewModel RefreshEditViewModel(ActivityViewModel vm)
         {
             return _viewModelProvider.RefreshEditViewModel(vm as U);
-        }
-
-        public void SaveChanges(DiaryItem item)
-        {
-            HttpContent contentPost = new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
-            client.PutAsync(client.BaseAddress.ToString() + item.Id, contentPost);
         }
     }
 }
