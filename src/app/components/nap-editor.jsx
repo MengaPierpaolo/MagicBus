@@ -31,7 +31,7 @@ export default class NapEditor extends React.Component {
                 <form>
                     <DateEditor date={this.state.date} onChange={this.handleUserInput.bind(this) } />
                     <LocationEditor location={this.state.location} onChange={this.handleUserInput.bind(this) } />
-                    <DescriptionEditor label='You snoozed in' description={this.state.description} onChange={this.handleUserInput.bind(this) } />
+                    <DescriptionEditor for='Description' label='You snoozed in' description={this.state.description} onChange={this.handleUserInput.bind(this) } />
                     <Button className="btn btn-primary" onClick={this.onClicked.bind(this) }>Save It!</Button>
                     <Link to="/" className="btn btn-info">Changed my mind</Link>
                 </form>

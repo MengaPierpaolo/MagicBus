@@ -32,7 +32,7 @@ export default class ChowEditor extends React.Component {
                 <form>
                     <DateEditor date={this.state.date} onChange={this.handleUserInput.bind(this) } />
                     <LocationEditor location={this.state.location} onChange={this.handleUserInput.bind(this) } />
-                    <DescriptionEditor label='You consumed' description={this.state.description} onChange={this.handleUserInput.bind(this) } />
+                    <DescriptionEditor for='Description' label='You consumed' description={this.state.description} onChange={this.handleUserInput.bind(this) } />
                     <Button className="btn btn-primary" onClick={this.onClicked.bind(this) }>Save It!</Button>
                     <Link to="/" className="btn btn-info">Changed my mind</Link>
                 </form>
