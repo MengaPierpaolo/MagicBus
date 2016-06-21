@@ -22,3 +22,4 @@ A React.js version of the TDiary UI
 4. react and react-bootstrap
 5. Bootstrap for basic reactive styling
 6. flux for store/distributor.component architecture
+7. jQuery for ajax calls to WebApi
