@@ -41,18 +41,11 @@ class ActivityStore extends EventEmitter {
                 this.emit("change");
                 break;
             }
-            case 'LOAD_ACTIVITIES_END': {
+            case 'LOAD_ACTIVITIES_END':
+            case 'ADD_ACTIVITY':
+            case 'DELETE_ACTIVITY':
                 this.loadActivities();
                 break;
-            }
-            case 'DELETE_ACTIVITY': {
-                this.loadActivities();
-                break;
-            }
-            case 'ADD_CHOW': {
-                this.loadActivities();
-                break;
-            }
         }
     }
 }

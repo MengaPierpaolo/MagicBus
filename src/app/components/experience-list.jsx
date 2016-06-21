@@ -38,7 +38,7 @@ export default class ExperienceList extends React.Component {
   }
 
   onExperienceClicked() {
-    alert('To Do');
+    // TODO: Call Ordering functionality
   }
 
   onDelete(type, id) {
