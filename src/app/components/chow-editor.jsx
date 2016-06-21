@@ -13,9 +13,13 @@ export default class ChowEditor extends React.Component {
         this.state = { date: '01/01/2016', description: '', location: '' };
     }
 
+    static contextTypes = {
+        router: React.PropTypes.object
+    }
+
     onClicked() {
         ChowActions.saveChow(this.state);
-        this.props.history.pushState(null, '/'); // TODO: Deprecated - move to new.
+        this.context.router.push('/');
     }
 
     handleUserInput(inputLocation, inputValue) {
