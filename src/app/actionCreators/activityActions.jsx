@@ -14,7 +14,8 @@ export function deleteActivity(type, id) {
     switch (type) {
         case 'Chow': {
             ChowActions.deleteChow(id);
-            dispatcher.dispatch({ type: 'DELETE_CHOW' })
+            dispatcher.dispatch({ type: 'DELETE_CHOW' });
+            break;
         }
     }
 }
