@@ -4,7 +4,12 @@ var $ = require('jquery');
 
 export function loadActivities() {
     dispatcher.dispatch({ type: "LOAD_ACTIVITIES_BEGIN" });
-    dispatcher.dispatch({ type: "LOAD_ACTIVITIES_END" })
+    dispatcher.dispatch({ type: "LOAD_ACTIVITIES_END" });
+}
+
+export function loadActivity() {
+    dispatcher.dispatch({ type: "LOAD_ACTIVITY_BEGIN" });
+    dispatcher.dispatch({ type: "LOAD_ACTIVITY_END" });
 }
 
 export function addActivity() {

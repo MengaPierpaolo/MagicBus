@@ -17,10 +17,10 @@ ReactDOM.render(
     <Router history={hashHistory}>
         <Route path="/" component={Layout}>
             <IndexRoute component={Dashboard}></IndexRoute>
-            <Route path="Trip" component={TripEditor}></Route>
-            <Route path="Sight" component={SightEditor}></Route>
-            <Route path="Chow" component={ChowEditor}></Route>
-            <Route path="Nap" component={NapEditor}></Route>
+            <Route path="Trip/(:activityId)" component={TripEditor}></Route>
+            <Route path="Sight/(:activityId)" component={SightEditor}></Route>
+            <Route path="Chow/(:activityId)" component={ChowEditor}></Route>
+            <Route path="Nap/(:activityId)" component={NapEditor}></Route>
         </Route>
     </Router>,
     document.getElementById('App')

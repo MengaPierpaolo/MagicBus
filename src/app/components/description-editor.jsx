@@ -6,7 +6,10 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 export default class DescriptionEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { usedFor: this.props.for || 'Description' }
+        this.state = {
+            usedFor: this.props.for || 'Description',
+            description: this.props.description
+        }
     }
 
     onChange(e) {
@@ -17,7 +20,7 @@ export default class DescriptionEditor extends React.Component {
         return (
             <FormGroup>
                 <ControlLabel>{this.props.label}</ControlLabel>
-                <FormControl type="text" defaultValue={this.props.description} onChange={this.onChange.bind(this) } />
+                <FormControl type="text" defaultValue={this.state.description} onChange={this.onChange.bind(this) } />
                 <FormControl.Feedback />
             </FormGroup>
         );

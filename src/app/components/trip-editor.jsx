@@ -5,15 +5,27 @@ import DateEditor from './date-editor';
 import LocationEditor from './location-editor';
 import DescriptionEditor from './description-editor';
 import * as ActivityActions from '../actionCreators/activityActions'
+import ActivityStore from '../stores/ActivityStore';
 
 export default class TripEditor extends React.Component {
     constructor(props) {
         super(props);
         this.state = { date: '01/01/2016', from: '', to: '', by: 'Bus' };
+
+        this.getItem = this.getItem.bind(this);
     }
 
     static contextTypes = {
         router: React.PropTypes.object
+    }
+
+    componentWillMount() {
+        ActivityStore.on("activityLoaded", this.getItem);
+        ActivityActions.loadActivities();
+    }
+
+    componentWillUnmount() {
+        ActivityStore.removeListener("activityLoaded", this.getItem);
     }
 
     onClicked() {
@@ -21,8 +33,12 @@ export default class TripEditor extends React.Component {
         this.context.router.push('/');
     }
 
+    getItem() {
+        this.setState({ from: "Here" }) // TODO: not working
+    }
+
     handleUserInput(inputLocation, inputValue) {
-            this.setState({ [inputLocation]: inputValue });
+        this.setState({ [inputLocation]: inputValue });
     }
 
     render() {

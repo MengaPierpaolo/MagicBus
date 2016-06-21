@@ -13,27 +13,27 @@ export default class ExperienceList extends React.Component {
       activityData: []
     };
 
-    this.onExperienceClicked = this.onExperienceClicked.bind(this);
-    this.getAllActivities = this.getAllActivities.bind(this);
     this.onDelete = this.onDelete.bind(this);
+    this.getRecent = this.getRecent.bind(this);
+    this.onExperienceClicked = this.onExperienceClicked.bind(this);
   }
 
   componentWillMount() {
-    ActivityStore.on("change", this.getAllActivities);
+    ActivityStore.on("change", this.getRecent);
     ActivityActions.loadActivities();
   }
 
   componentWillUnmount() {
-    ActivityStore.removeListener("change", this.getAllActivities);
+    ActivityStore.removeListener("change", this.getRecent);
   }
 
   showLoader() {
     return ActivityStore.isLoading();
   }
 
-  getAllActivities() {
+  getRecent() {
     this.setState({
-      activityData: ActivityStore.getAll()
+      activityData: ActivityStore.getRecentActivities()
     });
   }
 
@@ -48,11 +48,11 @@ export default class ExperienceList extends React.Component {
   render() {
     var experiences = this.state.activityData.map(function (activity, index) {
       return <div className="experience" key={activity.Id}>
-        <Link to={activity.ExperienceType} className="clickable-experience">{activity.Experience}</Link><br/>
+        <Link to={`Trip/${activity.Id}`} params={{activityId: activity.Id}} className="clickable-experience">{activity.Experience}</Link><br/>
         <Button onClick={this.onExperienceClicked} className="function-button glyphicon glyphicon-arrow-up"></Button>
         <Button onClick={this.onExperienceClicked} className="function-button glyphicon glyphicon-arrow-down"></Button>
         <Button onClick={() => { this.onDelete(activity.ExperienceType, activity.Id) } } className="function-button glyphicon glyphicon-remove"></Button>
-      </div>;
+      </div >;
     }, this);
 
     return (
