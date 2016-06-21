@@ -25,7 +25,7 @@ class ActivityStore extends EventEmitter {
 
     loadActivity(activityId) {
         $.ajax({
-            url: baseUrl + '/Trip/208',
+            url: baseUrl + '/Trip/224',
             dataType: 'json',
             cache: false,
             success: function (data) {
