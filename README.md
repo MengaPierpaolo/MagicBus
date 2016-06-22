@@ -1,6 +1,6 @@
 # Magic Bus - React
 ---
-A React.js version of the Magic Bus Travel Diary UI first developed as a dotnet core MVC app ([see original project](https://github.com/jakimber/tdiary "Original Magic Bus MVC Project")
+A React.js version of the Magic Bus Travel Diary UI first developed as a dotnet core MVC app ([see original project](https://github.com/jakimber/tdiary "Original Magic Bus MVC Project"))
 
 ---
 # System Requirements
