@@ -11,8 +11,10 @@ The project consists of two main parts.
 
 2. An Asp.Net Core WebApi that is used to serve and save data from the UI of choice into (for now) a SQLite Database created using Entity Framework Core Code Migrations.
 
+The solution has then been divided into different dotnet projects to match a tried and tested architecture which provides for relative ease of maintenance and optional swapping of component pieces.
+
 ## Editor Choice
-The projects an be edited using Visual Studio 2015 Update 2, or VSCode 1.1+
+The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 2
 
 ---
 ## Requirements
