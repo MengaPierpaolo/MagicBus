@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Button from 'react-bootstrap/lib/button'
+import Button from 'react-bootstrap/lib/Button'
 import DateEditor from './date-editor';
 import LocationEditor from './location-editor';
 import DescriptionEditor from './description-editor';
@@ -11,9 +11,7 @@ import * as axios from 'axios';
 export default class TripEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = this.helper();
-        //        this.state = { date: '01/01/2016', from: 'blah', to: '', by: 'Bus' };
-
+        this.state = { date: '01/01/2016', from: 'blah', to: '', by: 'Bus' };
         this.getItem = this.getItem.bind(this);
     }
 
@@ -21,40 +19,14 @@ export default class TripEditor extends React.Component {
         router: React.PropTypes.object
     }
 
-
     componentWillMount() {
         ActivityStore.on("activityLoaded", this.getItem);
-        this.helper().then(
-            d => {
-                this.setState(d);
-            });
+        if (typeof this.props.activityId != 'undefined')
+            ActivityStore.loadActivity(this.props.activityId);
     }
 
     componentWillUnmount() {
         ActivityStore.removeListener("activityLoaded", this.getItem);
-    }
-
-    componentDidMount() {
-        this.helper().then(
-            d => {
-                this.setState(d);
-            });
-    }
-
-    helper() {
-        return axios.get(baseUrl + '/Trip/228')
-            .then(function (response) {
-                var data = {
-                    from: response.data.From,
-                    to: response.data.To,
-                    by: response.data.By,
-                    date: response.data.Date
-                }
-                return data;
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
     }
 
     onClicked() {
@@ -63,7 +35,6 @@ export default class TripEditor extends React.Component {
     }
 
     getItem() {
-        var x = this.helper();
         this.setState(x); // TODO: not working
     }
 

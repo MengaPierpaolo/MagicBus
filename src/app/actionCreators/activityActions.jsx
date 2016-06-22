@@ -1,6 +1,5 @@
 import dispatcher from '../dispatcher';
-
-var $ = require('jquery');
+import * as axios from 'axios';
 
 export function loadActivities() {
     dispatcher.dispatch({ type: "LOAD_ACTIVITIES_BEGIN" });
@@ -17,26 +16,25 @@ export function addActivity() {
 }
 
 export function saveActivity(type, item) {
-    $.ajax({
-        type: 'POST',
-        url: baseUrl + '/' + type,
-        headers: { 'Content-Type': 'application/json' },
-        data: JSON.stringify(item),
-        success: function () {
+    axios.post(
+        baseUrl + '/' + type,
+        JSON.stringify(item),
+        { headers: { 'Content-Type': 'application/json' } }
+    )
+        .then(function (response) {
             dispatcher.dispatch({ type: 'ADD_ACTIVITY' });
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.error(baseUrl + '/' + type, textStatus, errorThrown.toString());
-        }
-    });
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }
 
 export function deleteActivity(type, id) {
-    $.ajax({
-        type: 'DELETE',
-        url: baseUrl + '/' + type + '/' + encodeURIComponent(id),
-        success: function () {
+    axios.delete(baseUrl + '/' + type + '/' + encodeURIComponent(id))
+        .then(function (response) {
             dispatcher.dispatch({ type: 'DELETE_ACTIVITY' });
-        }
-    });
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 }

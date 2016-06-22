@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Button from 'react-bootstrap/lib/button'
+import Button from 'react-bootstrap/lib/Button'
 import DateEditor from './date-editor';
 import LocationEditor from './location-editor';
 import DescriptionEditor from './description-editor';

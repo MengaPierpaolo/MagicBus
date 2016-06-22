@@ -1,7 +1,6 @@
 import {EventEmitter} from 'events';
 import dispatcher from '../dispatcher';
-
-var $ = require('jquery');
+import * as axios from 'axios';
 
 class ActivityStore extends EventEmitter {
     constructor() {
@@ -24,34 +23,28 @@ class ActivityStore extends EventEmitter {
     }
 
     loadActivity(activityId) {
-        $.ajax({
-            url: baseUrl + '/Trip/224',
-            dataType: 'json',
-            cache: false,
-            success: function (data) {
-                this.selectedActivity = data;
-                this.emit("activityLoaded");
-            }.bind(this),
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.error(baseUrl + 'diaryitems', textStatus, errorThrown.toString());
-            }
-        });
+        let store = this;
+        axios.get(baseUrl + '/Trip/224')
+            .then(function (response) {
+                store.selectedActivity = response.data;
+                store.emit("activityLoaded");
+            })
+            .catch(function (error) {
+                console.log(error)
+            });
     }
 
     loadActivities() {
-        $.ajax({
-            url: baseUrl + '/diaryitems',
-            dataType: 'json',
-            cache: false,
-            success: function (data) {
-                this.recentActivities = data;
-                this._Loading = false;
-                this.emit("change");
-            }.bind(this),
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.error(baseUrl + 'diaryitems', textStatus, errorThrown.toString());
-            }
-        });
+        let store = this;
+        this.recentActivities = axios.get(baseUrl + '/diaryitems')
+            .then(function (response) {
+                store.recentActivities = response.data;
+                store._Loading = false;
+                store.emit("change");
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
     }
 
     handleActions(action) {

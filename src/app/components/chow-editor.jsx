@@ -2,7 +2,7 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import Button from 'react-bootstrap/lib/Button';
 import { Link } from 'react-router'
-import * as ActivityActions from '../actionCreators/ActivityActions';
+import * as ActivityActions from '../actionCreators/activityActions';
 import DateEditor from './date-editor';
 import LocationEditor from './location-editor';
 import DescriptionEditor from './description-editor';
