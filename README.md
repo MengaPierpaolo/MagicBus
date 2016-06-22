@@ -1,5 +1,5 @@
-# Magic Bus (Formerly TDiary)
-# .NET Core (RC2) Travel Diary Project
+# Magic Bus Travel Diary
+# .NET Core (RC2) Sample Project
 ---
 ## Summary
 Using the dotnet core command line, trying to use just VSCode (to prove it's possible), and relying on Visual Studio when the reliable old friend helps avoid a headache, here's a sample application using the theme of a Travel Diary as it's domain.  This helps to find issues and learn much quicker than using the very simple quick-start projects that i have found dotted around.
