@@ -10,11 +10,13 @@ A React.js version of the Magic Bus Travel Diary UI first developed as a dotnet 
 
 # Initial setup instructions
 1. Set up an instance of TDiary.Api in Local IIS if not running it in node / VSCode / VS (See the Readme instructions in the [Original Project](https://github.com/jakimber/tdiary "Original Magic Bus Project"))
-2. Clone this repo
-3. `npm install`
-4. There is a currently hard-coded path to the WebApi for the data - change according to the port where you are running the TDiary.Api
+2. Clone this repo `git clone https://github.com/jakimber/tdiary.react`
+3. `cd .\tdiary.react\` and `npm install`
+4. There is a currently hard-coded path in app.jsx to the WebApi for the data - change according to the port where you are running the [TDiary.Api](https://github.com/jakimber/tdiary "Original Magic Bus Project - Containing TDiary.Api"))
 5. `npm run webpack`
-6. `npm run start`
+6. in a second command prompt `npm run start`
+
+*Recommendation* [cmdr](http://cmdr.net "Awesome sauce for command prompts") 'nuff said.
 
 # Dependency info (see package.json)
 1. babel for transpiling
