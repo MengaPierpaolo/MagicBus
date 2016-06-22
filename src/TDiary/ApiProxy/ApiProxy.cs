@@ -85,7 +85,7 @@ namespace TDiary
 
         private string GetItemAddress(Type item)
         {
-            return string.Format("{0}/{1}/", client.BaseAddress, item.GetType().Name);
+            return string.Format("{0}/{1}/", client.BaseAddress, item.Name.Replace("ViewModel",string.Empty));
         }
 
         private HttpContent GetPostContent(DiaryItem item)

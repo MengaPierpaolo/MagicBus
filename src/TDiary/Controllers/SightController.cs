@@ -45,6 +45,17 @@ namespace TDiary
             return RedirectToAction("Index", "Home");
         }
 
+        public async Task<IActionResult> Add()
+        {
+            return View(await _viewModelProvider.CreateAddViewModel());
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var vm = await _apiProxy.Get<SightViewModel>(id);
+            return View(_viewModelProvider.RefreshEditViewModel(vm));
+        }
+
         public async Task<IActionResult> Delete(int id)
         {
             await _apiProxy.Delete<Sight>(id);

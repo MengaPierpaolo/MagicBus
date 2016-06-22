@@ -27,7 +27,7 @@ namespace TDiary.Api
         public IActionResult Update(int id, [FromBody]ChowViewModel value)
         {
             _repo.SaveChanges(Chow.Create(id, value.Date, value.Description, value.Location, value.SavePosition));
-            return new NoContentResult();
+            return new OkResult();
         }
 
         [HttpDelete("{id}")]

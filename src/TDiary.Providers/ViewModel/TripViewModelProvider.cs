@@ -19,20 +19,6 @@ namespace TDiary.Providers.ViewModel
             return new TripViewModel() { From = await _locationProvider.GetLastLocation() }.WithAddTitles();
         }
 
-        public TripViewModel CreateEditViewModel(Trip item)
-        {
-            return new TripViewModel
-            {
-                Id = item.Id,
-                Date = item.Date,
-                From = item.From,
-                To = item.To,
-                By = item.By,
-                SavePosition = item.SavePosition
-            }
-            .WithEditTitles();
-        }
-
         public TripViewModel RefreshAddViewModel(TripViewModel item)
         {
             return item.WithAddTitles();

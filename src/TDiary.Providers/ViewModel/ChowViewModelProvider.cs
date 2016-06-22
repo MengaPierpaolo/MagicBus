@@ -19,20 +19,6 @@ namespace TDiary.Providers.ViewModel
             return new ChowViewModel() { Location = await _locationProvider.GetLastLocation() }.WithAddTitles();
         }
 
-        public ChowViewModel CreateEditViewModel(Chow item)
-        {
-            return new ChowViewModel
-            {
-                Id = item.Id,
-                Date = item.Date,
-                Location = item.Location,
-                Description = item.Description,
-                Experience = item.Experience,
-                SavePosition = item.SavePosition
-            }
-            .WithEditTitles();
-        }
-
         public ChowViewModel RefreshAddViewModel(ChowViewModel item)
         {
             return item.WithAddTitles();

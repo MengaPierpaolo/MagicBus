@@ -18,21 +18,7 @@ namespace TDiary.Providers.ViewModel
         {
             return new NapViewModel { Location = await _locationProvider.GetLastLocation() }.WithAddTitles();
         }
-
-        public NapViewModel CreateEditViewModel(Nap item)
-        {
-            return new NapViewModel
-            {
-                Id = item.Id,
-                Date = item.Date,
-                Location = item.Location,
-                Description = item.Description,
-                Experience = item.Experience,
-                SavePosition = item.SavePosition
-            }
-            .WithEditTitles();
-        }
-
+        
         public NapViewModel RefreshEditViewModel(NapViewModel item)
         {
             return item.WithEditTitles();
