@@ -49,21 +49,20 @@ The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 2
 3. `cd .\src\TDiary\`
 4. `bower install`
 5. `dotnet ef database update --context MigrationsContext`
-6. To develop the WebApi, You will need to move the database from the MVC project to the Api Project: `copy .\bin\Debug\netcoreapp1.0\TDiary.db ..\TDiary.Api\bin\Debug\netcoreapp1.0\TDiary.db`  you can then `cd ..\TDiary.Api\` and then `dotnet run`
+6. To develop the WebApi, You will need to move the database from the MVC project to the Api Project: first build the Api project with `dotnet build ..\TDiary.Api\` and then `copy .\bin\Debug\netcoreapp1.0\TDiary.db ..\TDiary.Api\bin\Debug\netcoreapp1.0\TDiary.db`  you can then `cd ..\TDiary.Api\` and then `dotnet run`
 7. To develop the Web UI, make sure the above WebApi setup is completed and that you are running it in a second instance of your editor, or that you are hosting the WebApi in a local instance of IIS.
 8. ensure you are in the TDiary\src\TDiary directory and then `dotnet run` (or run the project in your editor)
 
-*Note:* you will need to adjust web ports due to conflicts if you are debugging both projects in VSCode rather than relying on a local instance of IIS to host.  You can do this with a combination of the Url in AppSettings.json and the use of .UseUrls("http://localhost:5050") in the startup.cs of one of the projects
+*Note:* you will need to adjust web ports due to conflicts if you are debugging both projects in VSCode rather than relying on a local instance of IIS to host.  You can do this with a combination of the Url in AppSettings.json and the use of .UseUrls("http://localhost:<some port here>") in the startup.cs of one of the projects
 
 ---
 ### Visual Studio
 1. `git clone https://github.com/jakimber/tdiary`
 2. Open .\src\TDiary\TDiary.xproj in VS
-3. Build the solution
+3. Wait for the restore to finish and then Build the solution
 4. `update-database -Context MigrationsContext` in package manager console
-5. To develop the WebApi, You will need to move the database from the MVC project to the Api Project: `copy .\bin\Debug\netcoreapp1.0\TDiary.db ..\TDiary.Api\bin\Debug\netcoreapp1.0\TDiary.db`
-6. open the .\src\TDiary.Api\TDiary.Api.xproj in VS then F5
-7. To develop the UI, ensure you have the TDiary.Api project running in local IIS, or another Visual Studio instance.  You can then use the Visual Studio F5 debugging experience
+5. To develop the WebApi, You will need to move the database from the MVC project to the Api Project: first build the Api project with `dotnet restore ..\TDiary.Api\` then `dotnet build ..\TDiary.Api\` and then `copy .\bin\Debug\netcoreapp1.0\TDiary.db ..\TDiary.Api\bin\Debug\netcoreapp1.0\TDiary.db` you can then open the .\src\TDiary.Api\TDiary.Api.xproj in VS press F5
+7. To develop the UI, ensure you have the TDiary.Api project running in local IIS, or another Visual Studio instance.  You can then use the Visual Studio F5 debugging experience on the TDiary project.
 
 *Note:* you may need to adjust web ports due to conflicts or randomly assigned ports if you are debugging both projects in Visual Studio rather than relying on a local instance of IIS to host.  You can do this with a combination of changing the Url in AppSettings.json and the use of .UseUrls("http://localhost:5050") in the startup.cs of the projects
 
