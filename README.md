@@ -1,20 +1,28 @@
 # TDiary
-# .NET Core RC2 Travel Diary Project
+# .NET Core (RC2) Travel Diary Project
+---
+## Summary
+Using the dotnet core command line, trying to use just VSCode (to prove it's possible), and relying on Visual Studio when the reliable old friend helps avoid a headache, here's a sample application using the theme of a Travel Diary as it's domain.  This helps to find issues and learn much quicker than using the very simple quick-start projects that i have found dotted around.
 
-## Notes
+## Architecture Overview
+The project consists of two main parts.
+1. The Web UI - An ASP.NET Core MVC application intended to be the UI for the application.  In other GitHub repositories, I have created Angular2 and ReactJs versions of the UI too.
+2. An Asp.Net Core WebApi that is used to serve and save data from the UI of choice into (for now) a SQLite Database created using Entity Framework Core Code Migrations.
+
+## Editor Choice
 1. Can be edited using Visual Studio 2015 Update 2, or VSCode 1.1+
 3. Uses EF to SQLite.  Please see initial setup instruction below.
 
 ---
 ## Requirements
-### Visual Studio
+### VS Code:
+1. Visual Studio Code 1.1+
+2. Microsoft .NET Core 1.0.0 RC2 - SDK Preview
+
+### If you prefer Visual Studio:
 1. Visual Studio 2015 Update 2
 2. Microsoft .NET Core 1.0.0 RC2 - SDK Preview
 3. Microsoft .NET Core 1.0.0 RC2 - VS 2015 Tooling Preview
-
-### VS Code
-1. Visual Studio Code 1.1+
-2. Microsoft .NET Core 1.0.0 RC2 - SDK Preview
 
 ### Tools
 1. Node.js 4.4.*
@@ -28,6 +36,7 @@
 
 ---
 ## Initial setup instructions
+---
 ### VSCode
 1. `git clone https://github.com/jakimber/tdiary`
 2. `cd .\tdiary\`
@@ -49,7 +58,7 @@ To develop the Web UI, make sure the above 2 items for the WebApi are completed 
 
 8. ensure you are in the TDiary\src\TDiary directory and then `dotnet run` or *run* in vscode after autogeneration of task-runner and launch files
 
-
+---
 ### Visual Studio
 1. `git clone https://github.com/jakimber/tdiary`
 2. Open .\src\TDiary\TDiary.xproj in VS
