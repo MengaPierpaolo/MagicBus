@@ -16,7 +16,7 @@ A React.js version of the Magic Bus Travel Diary UI first developed as a dotnet 
 5. `npm run webpack`
 6. in a second command prompt `npm run start`
 
-*Recommendation* [cmdr](http://cmdr.net "Awesome sauce for command prompts")) 'nuff said.
+*Recommendation* [cmdr](http://cmdr.net "Awesome sauce for command prompts") 'nuff said.
 
 # Dependency info (see package.json)
 1. babel for transpiling
