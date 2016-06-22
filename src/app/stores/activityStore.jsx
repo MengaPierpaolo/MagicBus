@@ -24,7 +24,7 @@ class ActivityStore extends EventEmitter {
 
     loadActivity(activityId) {
         let store = this;
-        axios.get(baseUrl + '/Trip/224')
+        axios.get(baseUrl + '/Trip/' + encodeURIComponent(activityId))
             .then(function (response) {
                 store.selectedActivity = response.data;
                 store.emit("activityLoaded");
@@ -64,7 +64,7 @@ class ActivityStore extends EventEmitter {
                 this.emit("change");
                 break;
             case 'LOAD_ACTIVITY_END':
-                this.loadActivity(208);
+                this.loadActivity(action.data.activityId);
                 this.emit("change");
                 break;
         }

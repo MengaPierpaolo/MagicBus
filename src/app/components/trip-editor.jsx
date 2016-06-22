@@ -11,7 +11,7 @@ import * as axios from 'axios';
 export default class TripEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { date: '01/01/2016', from: 'blah', to: '', by: 'Bus' };
+        this.state = {};
         this.getItem = this.getItem.bind(this);
     }
 
@@ -21,8 +21,13 @@ export default class TripEditor extends React.Component {
 
     componentWillMount() {
         ActivityStore.on("activityLoaded", this.getItem);
-        if (typeof this.props.activityId != 'undefined')
-            ActivityStore.loadActivity(this.props.activityId);
+
+    }
+
+    componentDidMount() {
+        if (typeof this.props.params.activityId != 'undefined') {
+            ActivityActions.loadActivity(this.props.params.activityId);
+        }
     }
 
     componentWillUnmount() {
@@ -35,7 +40,7 @@ export default class TripEditor extends React.Component {
     }
 
     getItem() {
-        this.setState(x); // TODO: not working
+        this.setState(ActivityStore.getSelectedActivity()); // TODO: not working
     }
 
     handleUserInput(inputLocation, inputValue) {

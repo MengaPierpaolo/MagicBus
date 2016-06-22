@@ -6,9 +6,9 @@ export function loadActivities() {
     dispatcher.dispatch({ type: "LOAD_ACTIVITIES_END" });
 }
 
-export function loadActivity() {
+export function loadActivity(activityId) {
     dispatcher.dispatch({ type: "LOAD_ACTIVITY_BEGIN" });
-    dispatcher.dispatch({ type: "LOAD_ACTIVITY_END" });
+    dispatcher.dispatch({ type: "LOAD_ACTIVITY_END", data: { activityId: activityId } });
 }
 
 export function addActivity() {
