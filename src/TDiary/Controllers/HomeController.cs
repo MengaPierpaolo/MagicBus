@@ -1,6 +1,5 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using TDiary.Model;
 using TDiary.Providers.ViewModel.Model;
 using System.Threading.Tasks;
 
@@ -8,12 +7,12 @@ namespace TDiary
 {
     public class HomeController : Controller
     {
-        private readonly ApiProxy<Trip, TripViewModel> _apiProxy;
+        private readonly IApiProxy _apiProxy;
 
-        public HomeController(ApiProxy<Trip, TripViewModel> apiProxy)
+        public HomeController(IApiProxy apiProxy)
         {
             _apiProxy = apiProxy;
-            _apiProxy.SetUrl("/diaryitems/");
+            _apiProxy.SetPath("/diaryitems/");
         }
 
         public async Task<IActionResult> Index()

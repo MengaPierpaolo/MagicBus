@@ -7,40 +7,29 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using TDiary.Model;
-using TDiary.Providers.ViewModel;
 using TDiary.Providers.ViewModel.Model;
 using TDiary.Repository;
 
 namespace TDiary
 {
-    public class ApiProxy<T, U> where T : DiaryItem where U : ActivityViewModel
+    public class ApiProxy : IApiProxy
     {
-        private readonly IViewModelProvider<T, U> _viewModelProvider;
         private readonly HttpClient client;
         private string baseUrl;
 
-        public ApiProxy(IOptions<ApplicationSettings> options, IViewModelProvider<T, U> viewModelProvider)
+        public ApiProxy(IOptions<ApplicationSettings> options)
         {
-            _viewModelProvider = viewModelProvider;
             baseUrl = options.Value.BaseApiUrl;
 
             client = new HttpClient();
-            client.BaseAddress = new Uri(baseUrl + '/' + typeof(T).Name + '/');
+            client.BaseAddress = new Uri(baseUrl);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            //convert Enums to Strings (instead of Integer)
-            JsonConvert.DefaultSettings = (() =>
-            {
-                var settings = new JsonSerializerSettings();
-                settings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
-                return settings;
-            });
         }
 
-        public void SetUrl(string url)
+        public async Task Add(DiaryItem item)
         {
-            client.BaseAddress = new Uri(baseUrl + url);
+            await client.PostAsync(GetItemAddress(item.GetType()), GetPostContent(item));
         }
 
         public async Task<IEnumerable<RecentExperienceViewModel>> GetRecent()
@@ -56,14 +45,47 @@ namespace TDiary
             return default(List<RecentExperienceViewModel>);
         }
 
-        public async Task Add(DiaryItem item)
+        public void SetPath(string url)
         {
-            await client.PostAsync(client.BaseAddress, GetPostContent(item));
+            client.BaseAddress = new Uri(baseUrl + url);
         }
 
-        public async Task SaveChanges(DiaryItem item)
+        public async Task Save(DiaryItem item)
         {
-            await client.PutAsync(client.BaseAddress.ToString() + item.Id, GetPostContent(item));
+            await client.PutAsync(GetItemAddress(item.GetType()) + item.Id, GetPostContent(item));
+        }
+
+        public async Task<T> Get<T>(int id) where T : ActivityViewModel
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync(GetItemAddress(typeof(T)) + id);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = await responseMessage.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<T>(responseData);
+            }
+            return default(T);
+        }
+
+        public async Task Delete<T>(int id) where T : DiaryItem
+        {
+            await client.DeleteAsync(GetItemAddress(typeof(T)) + id);
+        }
+
+        public async Task PromoteActivity(int activityId)
+        {
+            await client.PutAsync(client.BaseAddress.ToString() + activityId,
+                GetPromotionContent(directionIsUp: true));
+        }
+
+        public async Task DemoteActivity(int activityId)
+        {
+            await client.PutAsync(client.BaseAddress.ToString() + activityId,
+                GetPromotionContent(directionIsUp: false));
+        }
+
+        private string GetItemAddress(Type item)
+        {
+            return string.Format("{0}/{1}/", client.BaseAddress, item.GetType().Name);
         }
 
         private HttpContent GetPostContent(DiaryItem item)
@@ -72,53 +94,9 @@ namespace TDiary
             return new StringContent(jsonString, Encoding.UTF8, "application/json");
         }
 
-        public async Task<ActivityViewModel> GetEditViewModel(int id)
-        {
-            HttpResponseMessage responseMessage = await client.GetAsync(client.BaseAddress.ToString() + id);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var responseData = await responseMessage.Content.ReadAsStringAsync();
-                var vm = JsonConvert.DeserializeObject<U>(responseData);
-                return RefreshEditViewModel(vm);
-            }
-            return default(U);
-        }
-
-        public async Task Delete(int id)
-        {
-            await client.DeleteAsync(client.BaseAddress.ToString() + id);
-        }
-
-        public async Task<ActivityViewModel> GetAddViewModel()
-        {
-            return await _viewModelProvider.CreateAddViewModel();
-        }
-
-        public ActivityViewModel RefreshAddViewModel(ActivityViewModel vm)
-        {
-            return _viewModelProvider.RefreshAddViewModel(vm as U);
-        }
-
-        public ActivityViewModel RefreshEditViewModel(ActivityViewModel vm)
-        {
-            return _viewModelProvider.RefreshEditViewModel(vm as U);
-        }
-
-        public async Task PromoteActivity(int activityId)
-        {
-            await client.PutAsync(client.BaseAddress.ToString() + activityId, 
-                GetPromotionContent(directionIsUp: true));
-        }
-
-        public async Task DemoteActivity(int activityId)
-        {
-            await client.PutAsync(client.BaseAddress.ToString() + activityId, 
-                GetPromotionContent(directionIsUp: false));
-        }
-
         private HttpContent GetPromotionContent(bool directionIsUp)
         {
-            var jsonString = JsonConvert.SerializeObject(directionIsUp?"Up":"Down");
+            var jsonString = JsonConvert.SerializeObject(directionIsUp ? "Up" : "Down");
             return new StringContent(jsonString, Encoding.UTF8, "application/json");
         }
     }

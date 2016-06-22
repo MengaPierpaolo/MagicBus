@@ -8,7 +8,6 @@ using TDiary.Providers.Location;
 using TDiary.Providers.ViewModel;
 using TDiary.Providers.ViewModel.Model;
 using TDiary.Repository;
-using TDiary.Service;
 
 namespace TDiary
 {
@@ -29,10 +28,7 @@ namespace TDiary
         {
             services.Configure<ApplicationSettings>(Configuration.GetSection("AppSettings"));
 
-            services.AddScoped<ApiProxy<Trip, TripViewModel>, ApiProxy<Trip, TripViewModel>>();
-            services.AddScoped<ApiProxy<Sight, SightViewModel>, ApiProxy<Sight, SightViewModel>>();
-            services.AddScoped<ApiProxy<Chow, ChowViewModel>, ApiProxy<Chow, ChowViewModel>>();
-            services.AddScoped<ApiProxy<Nap, NapViewModel>, ApiProxy<Nap, NapViewModel>>();
+            services.AddScoped<IApiProxy, ApiProxy>();
 
             services.AddScoped<ILocationProvider, ApiLocationProvider>();
             services.AddScoped<IViewModelProvider<Chow, ChowViewModel>, ChowViewModelProvider>();
