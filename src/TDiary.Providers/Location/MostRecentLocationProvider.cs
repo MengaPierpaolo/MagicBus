@@ -2,6 +2,7 @@ using TDiary.Model;
 using System.Linq;
 using TDiary.Repository;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace TDiary.Providers.Location
 {
@@ -14,24 +15,24 @@ namespace TDiary.Providers.Location
             _context = context;
         }
 
-        Task<string> ILocationProvider.GetLastLocation()
+        public async Task<string> GetLastLocation()
         {
-            var recentItem = _context.Experiences
+            var recentItem = await _context.Experiences
                 .OrderByDescending(di => di.Date)
                 .OrderByDescending(pos => pos.SavePosition)
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
             if (recentItem != null)
             {
                 var locatable = recentItem as ILocatable;
                 if (locatable != null)
                 {
-                    return new Task<string>(() => locatable.Location);
+                    return locatable.Location;
                 }
 
-                return new Task<string>(() => ((Trip)recentItem).To);
+                return ((Trip)recentItem).To;
             }
-            return default(Task<string>);
+            return default(string);
         }
     }
 }
