@@ -31,5 +31,7 @@ namespace TDiary.Model
         {
             this.SavePosition = position;
         }
+
+        public Rating Rating { get; set; }
     }
 }

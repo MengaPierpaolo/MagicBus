@@ -26,14 +26,14 @@ namespace TDiary.Api
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody]TripViewModel value)
         {
-            _repo.SaveChanges(Trip.Create(id, value.Date, value.From, value.To, value.By, value.SavePosition));
+            _repo.SaveChanges(Trip.Create(id, value.Date, value.From, value.To, value.By, value.SavePosition, value.Rating));
             return new OkResult();
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _repo.Delete(Chow.Create(id));
+            _repo.Delete(Trip.Create(id));
         }
     }
 }

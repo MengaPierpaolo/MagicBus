@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using TDiary.Model;
 
 namespace TDiary.Providers.ViewModel.Model
 {
@@ -38,5 +39,8 @@ namespace TDiary.Providers.ViewModel.Model
         }
 
         public int SavePosition { get; set; }
+
+        [Display(Name = "What was your experience, dude?")]
+        public Rating Rating { get; set; }
     }
 }

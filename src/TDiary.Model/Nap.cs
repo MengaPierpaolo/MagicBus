@@ -29,9 +29,9 @@ namespace TDiary.Model
             return new Nap { Id = id };
         }
 
-        public static Nap Create(int id, DateTime diaryDate, string description, string location, int savePosition)
+        public static Nap Create(int id, DateTime diaryDate, string description, string location, int savePosition, Rating rating)
         {
-            return new Nap(diaryDate, description) { Id = id, Location = location, SavePosition = savePosition };
+            return new Nap(diaryDate, description) { Id = id, Location = location, SavePosition = savePosition, Rating = rating };
         }
     }
 }

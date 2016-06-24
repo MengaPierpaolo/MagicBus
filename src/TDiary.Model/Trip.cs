@@ -1,11 +1,11 @@
 using System;
 
 namespace TDiary.Model {
-    
-    public class Trip : DiaryItem 
+
+    public class Trip : DiaryItem
     {
         internal Trip(){}
-        
+
         public Trip(DateTime diaryDate, string fromLocation, string toLocation, ModeOfTransport modeOfTransport) : base(diaryDate) {
             From = fromLocation;
             To = toLocation;
@@ -13,9 +13,9 @@ namespace TDiary.Model {
         }
 
         public string From { get; private set; }
-        
+
         public string To { get; private set; }
-        
+
         public ModeOfTransport By { get; private set; }
 
         public override string Experience
@@ -31,9 +31,9 @@ namespace TDiary.Model {
             return new Trip() { Id = id };
         }
 
-        public static Trip Create(int id, DateTime diaryDate, string from, string to, ModeOfTransport by, int savePosition)
+        public static Trip Create(int id, DateTime diaryDate, string from, string to, ModeOfTransport by, int savePosition, Rating rating)
         {
-            return new Trip(diaryDate, from, to, by) { Id = id, SavePosition = savePosition };
+            return new Trip(diaryDate, from, to, by) { Id = id, SavePosition = savePosition, Rating = rating };
         }
     }
 }

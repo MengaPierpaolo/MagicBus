@@ -15,5 +15,9 @@
     <label asp-for="By"></label>
     <select asp-for="By" asp-items="Html.GetEnumSelectList<TDiary.Model.ModeOfTransport>()" class="form-control"></select>
 </div>
+<div class="form-group">
+    <label asp-for="Rating"></label>
+    <select asp-for="Rating" asp-items="Html.GetEnumSelectList<TDiary.Model.Rating>()" class="form-control"></select>
+</div>
 <input name="submitButtonUsed" type="submit" class="btn btn-primary" value="Save it!">
 <input name="submitButtonUsed" type="submit" class="btn btn-info" value="Changed my mind" formnovalidate>

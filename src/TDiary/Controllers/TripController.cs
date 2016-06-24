@@ -25,7 +25,7 @@ namespace TDiary
                 if (!ModelState.IsValid)
                     return View(_viewModelProvider.RefreshAddViewModel(vm));
 
-                await _apiProxy.Add(new Trip(vm.Date, vm.From, vm.To, vm.By));
+                await _apiProxy.Add(new Trip(vm.Date, vm.From, vm.To, vm.By) { Rating = vm.Rating });
             }
 
             return RedirectToAction("Index", "Home");
@@ -40,7 +40,7 @@ namespace TDiary
                 if (!ModelState.IsValid)
                     return View(_viewModelProvider.RefreshEditViewModel(vm));
 
-                await _apiProxy.Save(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.By, vm.SavePosition));
+                await _apiProxy.Save(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.By, vm.SavePosition, vm.Rating));
             }
 
             return RedirectToAction("Index", "Home");

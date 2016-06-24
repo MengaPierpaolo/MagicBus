@@ -26,7 +26,7 @@ namespace TDiary.Api
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody]SightViewModel value)
         {
-            _repo.SaveChanges(Sight.Create(id, value.Date, value.Name, value.Location, value.SavePosition));
+            _repo.SaveChanges(Sight.Create(id, value.Date, value.Name, value.Location, value.SavePosition, value.Rating));
             return new OkResult();
         }
 
