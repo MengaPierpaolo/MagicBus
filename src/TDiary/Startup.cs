@@ -37,6 +37,7 @@ namespace TDiary
             services.AddScoped<IViewModelProvider<Nap, NapViewModel>, NapViewModelProvider>();
 
             services.AddMvc();
+
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -52,9 +53,12 @@ namespace TDiary
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}");
+                routes.MapRoute("trip", "Trip/Edit/{id:int}", new { Controller = "Trip", Action = "Edit" });
+                routes.MapRoute("sight", "Sight/Edit/{id:int}", new { Controller = "Sight", Action = "Edit" });
+                routes.MapRoute("chow", "Chow/Edit/{id:int}", new { Controller = "Chow", Action = "Edit" });
+                routes.MapRoute("nap", "Nap/Edit/{id:int}",new { Controller = "Nap", Action = "Edit" });
+
+                routes.MapRoute("default", "{controller=Home}/{action=Index}");
             });
         }
     }
