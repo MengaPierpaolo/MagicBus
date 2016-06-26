@@ -1,7 +1,60 @@
 body {
     font-family: 'Mitr', serif;
-
 }
+
+.navbar {
+    padding-left: 5px;
+    background: #272b30;
+    border: 0;
+}
+
+.navbar-brand {
+    padding-right: 0;
+    margin-right: 0;
+}
+
+.navbar-header {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.fa-bus:hover {
+    color: goldenrod;
+}
+
+.navbar-toggle {
+    border: 0;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: antiquewhite;
+}
+
+.navbar-default .navbar-nav>li>a {
+    padding-left: 25px;
+}
+
+.navbar-default .navbar-nav>li>a:focus {
+    color: #777;
+}
+
+.nav-icon {
+    padding-right: 8px;
+}
+
+.navbar-right {
+    padding-right: 15px;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background: #272b30;
+}
+
+.navbar-toggle:hover, .navbar-toggle:focus {
+    border-style: solid;
+    border-width: 1px;
+}
+
 .container-fluid {
     margin: 0;
     padding: 0;
@@ -56,7 +109,7 @@ body {
 
 h1 {
     text-shadow: 4px 4px 4px darkred;
-    margin-top: 10px;
+    padding-top: 5px;
     margin-bottom: 5px;
 }
 
@@ -98,6 +151,11 @@ form{
 .jumbotron {
     color: goldenrod;
     background: #272b30;
+    margin-top: 15px;
+}
+
+.jumbotron h1 {
+    font-size: 36px;
 }
 
 .btn-primary {
