@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Localization;
+using System.Globalization;
 using TDiary.Model;
 using TDiary.Providers.Location;
 using TDiary.Providers.ViewModel;
@@ -29,36 +31,46 @@ namespace TDiary
             services.Configure<ApplicationSettings>(Configuration.GetSection("AppSettings"));
 
             services.AddScoped<IApiProxy, ApiProxy>();
-
             services.AddScoped<ILocationProvider, ApiLocationProvider>();
             services.AddScoped<IViewModelProvider<Chow, ChowViewModel>, ChowViewModelProvider>();
             services.AddScoped<IViewModelProvider<Sight, SightViewModel>, SightViewModelProvider>();
             services.AddScoped<IViewModelProvider<Trip, TripViewModel>, TripViewModelProvider>();
             services.AddScoped<IViewModelProvider<Nap, NapViewModel>, NapViewModelProvider>();
 
-            services.AddMvc();
+            services.AddLocalization();
+            services.AddScoped<LanguageActionFilter>();
+            services.AddSingleton<IStringLocalizerFactory, MyStringLocalizerFactory>();
+            services.AddTransient<IStringLocalizer, MyStringLocalizer>();
 
+            services.AddMvc().AddViewLocalization().AddDataAnnotationsLocalization();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddDebug(LogLevel.Information); // Only my Logs for now.
-
             app.UseStaticFiles();
-
-            if (env.IsDevelopment())
-            {
-                app.UseRuntimeInfoPage();
-            }
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute("trip", "Trip/Edit/{id:int}", new { Controller = "Trip", Action = "Edit" });
                 routes.MapRoute("sight", "Sight/Edit/{id:int}", new { Controller = "Sight", Action = "Edit" });
-                routes.MapRoute("chow", "Chow/Edit/{id:int}", new { Controller = "Chow", Action = "Edit" });
-                routes.MapRoute("nap", "Nap/Edit/{id:int}",new { Controller = "Nap", Action = "Edit" });
+                routes.MapRoute("chow", "{culture}/Chow/Edit/{id:int}", new { Controller = "Chow", Action = "Edit" });
+                routes.MapRoute("nap", "Nap/Edit/{id:int}", new { Controller = "Nap", Action = "Edit" });
 
-                routes.MapRoute("default", "{controller=Home}/{action=Index}");
+                routes.MapRoute("default", "{culture=en-GB}/{controller=Home}/{action=Index}");
+            });
+
+            var supportedCultures = new[]
+            {
+                new CultureInfo("en-GB"),
+                new CultureInfo("en-US"),
+                new CultureInfo("zh-CN")
+            };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en-GB"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
             });
         }
     }

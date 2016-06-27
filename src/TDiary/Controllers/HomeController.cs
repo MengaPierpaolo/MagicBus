@@ -2,15 +2,19 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using TDiary.Providers.ViewModel.Model;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
 
 namespace TDiary
 {
+    [ServiceFilter(typeof(LanguageActionFilter))]
     public class HomeController : Controller
     {
         private readonly IApiProxy _apiProxy;
+        private IStringLocalizer _localizer;
 
-        public HomeController(IApiProxy apiProxy)
+        public HomeController(IApiProxy apiProxy, IStringLocalizer localizer)
         {
+            _localizer = localizer;
             _apiProxy = apiProxy;
             _apiProxy.SetPath("/diaryitems/");
         }
@@ -20,8 +24,8 @@ namespace TDiary
             var recentExperiences = await _apiProxy.GetRecent();
             var vm = new HomeViewModel()
             {
-                Title = "Magic Bus",
-                Heading = "Your groovy new travel diary!",
+                Title = _localizer.GetString("ApplicationTitle"),
+                Heading = _localizer.GetString("ApplicationHeading"),
                 RecentExperiences = recentExperiences
                     .OrderByDescending(d => d.Date)
                     .ThenByDescending(pos => pos.SavePosition)

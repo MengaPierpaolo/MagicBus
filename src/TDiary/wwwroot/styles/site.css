@@ -26,17 +26,19 @@ body {
     border: 0;
 }
 
-.navbar-default .navbar-nav>li>a:hover {
-    color: antiquewhite;
+.navbar-default .navbar-nav > li > a {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 3px;
 }
 
-.navbar-default .navbar-nav>li>a {
-    padding-left: 25px;
-}
+    .navbar-default .navbar-nav > li > a:hover {
+        color: antiquewhite;
+    }
 
-.navbar-default .navbar-nav>li>a:focus {
-    color: #777;
-}
+    .navbar-default .navbar-nav > li > a:focus {
+        color: #777;
+    }
 
 .nav-icon {
     padding-right: 8px;
@@ -46,6 +48,25 @@ body {
     padding-right: 15px;
 }
 
+.container {
+    width: 100%;
+}
+
+.dropdown-menu {
+    border: 0;
+    background: #272b30;
+}
+
+    .dropdown-menu > li > a {
+        color: #777;
+    }
+
+        .dropdown-menu > li > a:hover {
+            background: #272b30;
+            color: antiquewhite;
+        }
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
     background: #272b30;
 }
@@ -60,10 +81,10 @@ body {
     padding: 0;
 }
 
-.container-fluid .jumbotron {
-    padding: 10px;
-    margin-bottom: 0;
-}
+    .container-fluid .jumbotron {
+        padding: 10px;
+        margin-bottom: 0;
+    }
 
 .content {
     padding-left: 10px;
@@ -86,13 +107,13 @@ body {
     color: antiquewhite;
 }
 
-.clickable-experience:hover {
-    color: antiquewhite;
-}
+    .clickable-experience:hover {
+        color: antiquewhite;
+    }
 
-.clickable-experience:visited {
-    color: antiquewhite;
-}
+    .clickable-experience:visited {
+        color: antiquewhite;
+    }
 
 .function-button {
     padding-left: 10px;
@@ -102,10 +123,10 @@ body {
     border: 0;
 }
 
-.function-button:hover{
-    background: #91C957;
-    color: black;
-}
+    .function-button:hover {
+        background: #91C957;
+        color: black;
+    }
 
 h1 {
     text-shadow: 4px 4px 4px darkred;
@@ -126,22 +147,21 @@ h3 {
     border-bottom: dotted 1pt antiquewhite;
 }
 
-form{
+form {
     padding-bottom: 10px;
 }
 
-.validation-summary-errors{
+.validation-summary-errors {
     margin-top: 15px;
 }
 
-.validation-summary-errors ul{
-    padding-left: 10px;
-}
+    .validation-summary-errors ul {
+        padding-left: 10px;
+    }
 
-.validation-summary-errors li{
-    list-style-type: none;
-}
-
+    .validation-summary-errors li {
+        list-style-type: none;
+    }
 
 .input-validation-error {
     border-left: solid 5pt darkorange;
@@ -150,22 +170,22 @@ form{
 
 .jumbotron {
     color: goldenrod;
-    background: #272b30;
+    background-color: #272b30;
     margin-top: 15px;
 }
 
-.jumbotron h1 {
-    font-size: 36px;
-}
+    .jumbotron h1 {
+        font-size: 36px;
+    }
 
 .btn-primary {
-    background: #46BBDC;
+    background-color: #46BBDC;
     color: black;
     border: 0;
 }
 
 body {
-    background: #2D3C4B;
+    background-color: #2D3C4B;
 }
 
 label {
@@ -173,18 +193,18 @@ label {
 }
 
 .btn-info {
-    background: #91C957;
+    background-color: #91C957;
     color: black;
     border: 0;
 }
 
-.btn-info:hover {
-    background: #91C957;
-    color: white;
-}
+    .btn-info:hover {
+        background-color: #91C957;
+        color: white;
+    }
 
 .form-control {
-    background: antiquewhite;
+    background-color: antiquewhite;
 }
 
 .text-danger {
@@ -193,14 +213,40 @@ label {
 
 /* mitr-regular - latin-ext_vietnamese_thai_latin */
 @font-face {
-  font-family: 'Mitr';
-  font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.eot'); /* IE9 Compat Modes */
-  src: local('Mitr'), local('Mitr-Regular'),
-       url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-       url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.woff') format('woff'), /* Modern Browsers */
-       url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-       url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.svg#Mitr') format('svg'); /* Legacy iOS */
+    font-family: 'Mitr';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Mitr'), local('Mitr-Regular'), url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.svg#Mitr') format('svg'); /* Legacy iOS */
+}
+
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 70px;
+}
+
+.content {
+    padding: 0;
+}
+
+.footer {
+    font-size: 0.7em;
+    color: antiquewhite;
+    border-top: solid 1px #777;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
 }

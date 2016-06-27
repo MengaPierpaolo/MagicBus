@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Localization;
+
 namespace TDiary.Providers.ViewModel.Model
 {
     public static class ViewModelTitleExtensions
@@ -30,17 +32,17 @@ namespace TDiary.Providers.ViewModel.Model
             return item;
         }
 
-        public static ChowViewModel WithAddTitles(this ChowViewModel item)
+        public static ChowViewModel WithAddTitles(this ChowViewModel item, IStringLocalizer localizer)
         {
-            item.Title = "Had some Chow?";
-            item.Heading = "Yum, add it to the list!";
+            item.Title = localizer.GetString("ChowTitle.Add");
+            item.Heading = localizer.GetString("ChowHeading.Add");
             return item;
         }
 
-        public static ChowViewModel WithEditTitles(this ChowViewModel item)
+        public static ChowViewModel WithEditTitles(this ChowViewModel item, IStringLocalizer localizer)
         {
-            item.Title = "Chow mixed up?";
-            item.Heading = "Edit the details then.";
+            item.Title = localizer.GetString("ChowTitle.Edit");
+            item.Heading = localizer.GetString("ChowHeading.Edit");
             return item;
         }
 
