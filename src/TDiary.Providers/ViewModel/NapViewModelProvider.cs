@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Localization;
 using System.Threading.Tasks;
 using TDiary.Model;
 using TDiary.Providers.Location;
@@ -5,28 +6,33 @@ using TDiary.Providers.ViewModel.Model;
 
 namespace TDiary.Providers.ViewModel
 {
-    public class NapViewModelProvider : IViewModelProvider<Nap, NapViewModel>
+    public class NapViewModelProvider : ViewModelProvider<NapViewModel>, IViewModelProvider<Nap, NapViewModel>
     {
         private ILocationProvider _locationProvider;
 
-        public NapViewModelProvider(ILocationProvider locationProvider)
+        public NapViewModelProvider(ILocationProvider locationProvider, IStringLocalizer localizer) : base(localizer)
         {
             _locationProvider = locationProvider;
         }
 
         public async Task<NapViewModel> CreateAddViewModel()
         {
-            return new NapViewModel { Location = await _locationProvider.GetLastLocation() }.WithAddTitles();
-        }
-        
-        public NapViewModel RefreshEditViewModel(NapViewModel item)
-        {
-            return item.WithEditTitles();
+            var item = new NapViewModel
+            {
+                Location = await _locationProvider.GetLastLocation()
+            };
+
+            return AddTitles(item);
         }
 
         public NapViewModel RefreshAddViewModel(NapViewModel item)
         {
-            return item.WithAddTitles();
+            return AddTitles(item);
+        }
+
+        public NapViewModel RefreshEditViewModel(NapViewModel item)
+        {
+            return EditTitles(item);
         }
     }
 }

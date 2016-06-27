@@ -6,7 +6,6 @@ using TDiary.Providers.ViewModel.Model;
 
 namespace TDiary
 {
-
     public class ChowController : DiaryController<Chow, ChowViewModel>
     {
         private readonly IViewModelProvider<Chow, ChowViewModel> _viewModelProvider;

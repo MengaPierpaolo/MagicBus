@@ -1,80 +1,18 @@
 body {
     font-family: 'Mitr', serif;
+    background-color: #2D3C4B;
+    /* Margin bottom by footer height */
+    margin-bottom: 70px;
 }
 
-.navbar {
-    padding-left: 5px;
-    background: #272b30;
-    border: 0;
+.fa-bus {
+    width: 10px;
 }
 
-.navbar-brand {
-    padding-right: 0;
-    margin-right: 0;
-}
-
-.navbar-header {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.fa-bus:hover {
-    color: goldenrod;
-}
-
-.navbar-toggle {
-    border: 0;
-}
-
-.navbar-default .navbar-nav > li > a {
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 3px;
-}
-
-    .navbar-default .navbar-nav > li > a:hover {
-        color: antiquewhite;
+    .fa-bus:hover {
+        color: goldenrod;
     }
 
-    .navbar-default .navbar-nav > li > a:focus {
-        color: #777;
-    }
-
-.nav-icon {
-    padding-right: 8px;
-}
-
-.navbar-right {
-    padding-right: 15px;
-}
-
-.container {
-    width: 100%;
-}
-
-.dropdown-menu {
-    border: 0;
-    background: #272b30;
-}
-
-    .dropdown-menu > li > a {
-        color: #777;
-    }
-
-        .dropdown-menu > li > a:hover {
-            background: #272b30;
-            color: antiquewhite;
-        }
-
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
-    background: #272b30;
-}
-
-.navbar-toggle:hover, .navbar-toggle:focus {
-    border-style: solid;
-    border-width: 1px;
-}
 
 .container-fluid {
     margin: 0;
@@ -84,11 +22,19 @@ body {
     .container-fluid .jumbotron {
         padding: 10px;
         margin-bottom: 0;
+        color: goldenrod;
+        background-color: #272b30;
+        margin-top: 15px;
     }
+
+.jumbotron h1 {
+    font-size: 36px;
+}
 
 .content {
     padding-left: 10px;
     padding-right: 10px;
+    width: 100%;
 }
 
 .row {
@@ -168,24 +114,10 @@ form {
     background: white !important;
 }
 
-.jumbotron {
-    color: goldenrod;
-    background-color: #272b30;
-    margin-top: 15px;
-}
-
-    .jumbotron h1 {
-        font-size: 36px;
-    }
-
 .btn-primary {
     background-color: #46BBDC;
     color: black;
     border: 0;
-}
-
-body {
-    background-color: #2D3C4B;
 }
 
 label {
@@ -224,19 +156,9 @@ label {
     url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.svg#Mitr') format('svg'); /* Legacy iOS */
 }
 
-
 html {
     position: relative;
     min-height: 100%;
-}
-
-body {
-    /* Margin bottom by footer height */
-    margin-bottom: 70px;
-}
-
-.content {
-    padding: 0;
 }
 
 .footer {

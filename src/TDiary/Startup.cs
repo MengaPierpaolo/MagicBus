@@ -51,10 +51,10 @@ namespace TDiary
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute("trip", "Trip/Edit/{id:int}", new { Controller = "Trip", Action = "Edit" });
-                routes.MapRoute("sight", "Sight/Edit/{id:int}", new { Controller = "Sight", Action = "Edit" });
+                routes.MapRoute("trip", "{culture}/Trip/Edit/{id:int}", new { Controller = "Trip", Action = "Edit" });
+                routes.MapRoute("sight", "{culture}/Sight/Edit/{id:int}", new { Controller = "Sight", Action = "Edit" });
                 routes.MapRoute("chow", "{culture}/Chow/Edit/{id:int}", new { Controller = "Chow", Action = "Edit" });
-                routes.MapRoute("nap", "Nap/Edit/{id:int}", new { Controller = "Nap", Action = "Edit" });
+                routes.MapRoute("nap", "{culture}/Nap/Edit/{id:int}", new { Controller = "Nap", Action = "Edit" });
 
                 routes.MapRoute("default", "{culture=en-GB}/{controller=Home}/{action=Index}");
             });

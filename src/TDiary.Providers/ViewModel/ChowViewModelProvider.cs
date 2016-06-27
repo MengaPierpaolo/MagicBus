@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
 using TDiary.Model;
@@ -6,36 +7,33 @@ using TDiary.Providers.ViewModel.Model;
 
 namespace TDiary.Providers.ViewModel
 {
-    public class ChowViewModelProvider : IViewModelProvider<Chow, ChowViewModel>
+    public class ChowViewModelProvider : ViewModelProvider<ChowViewModel>, IViewModelProvider<Chow, ChowViewModel>
     {
         private ILocationProvider _locationProvider;
-        private IStringLocalizer _localizer;
 
-        public ChowViewModelProvider(ILocationProvider locationProvider, IStringLocalizer localizer)
+        public ChowViewModelProvider(ILocationProvider locationProvider, IStringLocalizer localizer) : base(localizer)
         {
             _locationProvider = locationProvider;
-            _localizer = localizer;
         }
 
         public async Task<ChowViewModel> CreateAddViewModel()
         {
-            var vm = new ChowViewModel()
+            var item = new ChowViewModel()
             {
                 Location = await _locationProvider.GetLastLocation()
-            }
-            .WithAddTitles(_localizer);
+            };
 
-            return vm;
+            return AddTitles(item);
         }
-
+        
         public ChowViewModel RefreshAddViewModel(ChowViewModel item)
         {
-            return item.WithAddTitles(_localizer);
+            return AddTitles(item);
         }
 
         public ChowViewModel RefreshEditViewModel(ChowViewModel item)
         {
-            return item.WithEditTitles(_localizer);
+            return EditTitles(item);
         }
     }
 }
