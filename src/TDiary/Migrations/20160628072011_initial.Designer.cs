@@ -1,18 +1,20 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using TDiary;
 
 namespace TDiary.Migrations
 {
     [DbContext(typeof(MigrationsContext))]
-    [Migration("20160601120854_1")]
-    partial class Initial
+    [Migration("20160628072011_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rc2-20901");
+                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
 
             modelBuilder.Entity("TDiary.Model.DiaryItem", b =>
                 {
@@ -23,6 +25,10 @@ namespace TDiary.Migrations
 
                     b.Property<string>("Discriminator")
                         .IsRequired();
+
+                    b.Property<int>("Rating");
+
+                    b.Property<int>("SavePosition");
 
                     b.HasKey("Id");
 
@@ -42,6 +48,19 @@ namespace TDiary.Migrations
                     b.ToTable("Chow");
 
                     b.HasDiscriminator().HasValue("Chow");
+                });
+
+            modelBuilder.Entity("TDiary.Model.Nap", b =>
+                {
+                    b.HasBaseType("TDiary.Model.DiaryItem");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Location");
+
+                    b.ToTable("Nap");
+
+                    b.HasDiscriminator().HasValue("Nap");
                 });
 
             modelBuilder.Entity("TDiary.Model.Sight", b =>

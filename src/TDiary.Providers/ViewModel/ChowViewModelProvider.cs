@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Localization;
 using TDiary.Model;
@@ -25,7 +24,7 @@ namespace TDiary.Providers.ViewModel
 
             return AddTitles(item);
         }
-        
+
         public ChowViewModel RefreshAddViewModel(ChowViewModel item)
         {
             return AddTitles(item);

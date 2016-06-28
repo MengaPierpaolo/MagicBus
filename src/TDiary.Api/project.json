@@ -1,25 +1,20 @@
 {
   "version": "1.0.0-*",
-  "buildOptions": {
-    "emitEntryPoint": true,
-    "preserveCompilationContext": true,
-    "debugType": "portable"
-  },
   "dependencies": {
     "Microsoft.NETCore.App": {
       "type": "platform",
-      "version": "1.0.0-rc2-3002702"
+      "version": "1.0.0"
     },
-    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc2-final",
-    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0-rc2-final",
-    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-rc2-final",
-    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-rc2-final",
-    "Microsoft.AspNetCore.StaticFiles": "1.0.0-rc2-final",
-    "Microsoft.AspNetCore.Mvc": "1.0.0-rc2-final",
-    "Microsoft.AspNetCore.Cors": "1.0.0-rc2-final",
-    "Microsoft.EntityFrameworkCore.SQLite": "1.0.0-rc2-final",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0",
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+    "Microsoft.AspNetCore.StaticFiles": "1.0.0",
+    "Microsoft.AspNetCore.Mvc": "1.0.0",
+    "Microsoft.AspNetCore.Cors": "1.0.0",
+    "Microsoft.EntityFrameworkCore.SQLite": "1.0.0",
     "Microsoft.EntityFrameworkCore.Tools": {
-      "version": "1.0.0-preview1-*",
+      "version": "1.0.0-preview2-*",
       "type": "build"
     },
     "TDiary.Model": "1.0.0-*",
@@ -31,23 +26,26 @@
     "netcoreapp1.0": {
       "imports": [
         "dotnet5.6",
-        "dnxcore50",
         "portable-net45+win8"
       ]
     }
   },
   "tools": {
     "Microsoft.AspNetCore.Server.IISIntegration.Tools": {
-      "version": "1.0.0-preview1-final",
+      "version": "1.0.0-preview2-final",
       "imports": "portable-net45+win8+dnxcore50"
     },
     "Microsoft.EntityFrameworkCore.Tools": {
-      "version": "1.0.0-preview1-final",
+      "version": "1.0.0-preview2-final",
       "imports": [
-        "dnxcore50",
         "portable-net45+win8"
       ]
     }
+  },
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true,
+    "debugType": "portable"
   },
   "runtimeOptions": {
     "gcServer": true
@@ -58,8 +56,9 @@
       "appsettings.json"
     ]
   },
-
   "scripts": {
-    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+    "postpublish": [
+      "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
+    ]
   }
 }

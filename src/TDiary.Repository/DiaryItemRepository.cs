@@ -50,7 +50,7 @@ namespace TDiary.Repository
                      item.MovePositionTo(lastItem.SavePosition + 1);
                  }
             }
-            
+
             _context.Attach(item).State = EntityState.Modified;
             _context.SaveChanges();
         }
