@@ -1,5 +1,7 @@
-# Magic Bus Travel Diary
-# .NET Core (RC2) Sample Project
+## Magic Bus Travel Diary
+## .NET Core Sample Project
+### Now updated from RC2 to 1.0.0 RTM
+
 ---
 ## Summary
 Using the dotnet core command line, trying to use just VSCode (to prove it's possible), and relying on Visual Studio when the reliable old friend helps avoid a headache, here's a sample application using the theme of a Travel Diary as it's domain.  This helps to find issues and learn much quicker than using the very simple quick-start projects that i have found dotted around.
@@ -20,12 +22,12 @@ The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 2
 ## Requirements
 ### VS Code:
 * Visual Studio Code 1.1+
-* Microsoft .NET Core 1.0.0 RC2 - SDK Preview
+* Microsoft .NET Core 1.0.0 SDK
 
 ### If you prefer Visual Studio:
-* Visual Studio 2015 Update 2
-* Microsoft .NET Core 1.0.0 RC2 - SDK Preview
-* Microsoft .NET Core 1.0.0 RC2 - VS 2015 Tooling Preview
+* Visual Studio 2015 Update 3
+* Microsoft .NET Core 1.0.0 SDK
+* Microsoft .NET Core 1.0.0 VS 2015 Tooling Preview 2
 
 ### Extra Tools required
 * Node.js 4.4.*
@@ -48,7 +50,7 @@ The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 2
 2. `dotnet restore`
 3. `cd .\src\TDiary\`
 4. `bower install`
-5. `dotnet ef database update --context MigrationsContext`
+5. `dotnet ef database update --context MigrationsContext` Note:  I have an outstanding issue with migrations after EF Core v1.0.0.  I am having to rename the table name in the migration file, and then rename it in the db (sqlite.exe) once it's created.  Waiting on response to issue.
 6. To develop the WebApi, You will need to move the database from the MVC project to the Api Project: first build the Api project with `dotnet build ..\TDiary.Api\` and then `copy .\bin\Debug\netcoreapp1.0\TDiary.db ..\TDiary.Api\bin\Debug\netcoreapp1.0\TDiary.db`  you can then `cd ..\TDiary.Api\` and then `dotnet run`
 7. To develop the Web UI, make sure the above WebApi setup is completed and that you are running it in a second instance of your editor, or that you are hosting the WebApi in a local instance of IIS.
 8. ensure you are in the TDiary\src\TDiary directory and then `dotnet run` (or run the project in your editor)
