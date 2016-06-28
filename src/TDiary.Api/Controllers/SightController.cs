@@ -13,7 +13,7 @@ namespace TDiary.Api
         [HttpPost]
         public IActionResult Create([FromBody]SightViewModel value)
         {
-            _repo.Add(new Sight(value.Date, value.Name) { Location = value.Location });
+            _repo.Add(new Sight(value.Date, value.Name) { Location = value.Location, Rating = value.Rating });
             return new OkResult();
         }
 

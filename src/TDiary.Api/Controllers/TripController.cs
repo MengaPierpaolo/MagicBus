@@ -13,7 +13,7 @@ namespace TDiary.Api
         [HttpPost]
         public IActionResult Create([FromBody]TripViewModel value)
         {
-            _repo.Add(new Trip(value.Date, value.From, value.To, value.By));
+            _repo.Add(new Trip(value.Date, value.From, value.To, value.By) { Rating = value.Rating });
             return new OkResult();
         }
 
