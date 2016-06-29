@@ -50,7 +50,7 @@ The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 2
 3. `cd .\src\TDiary\`
 4. `bower install`
 5. `cd ..\TDiary.Api`
-5. `dotnet ef database update --context MigrationsContext` Note:  I have an outstanding issue with migrations after EF Core v1.0.0.  I am having to rename the table name in the migration file, and then rename it in the db (sqlite.exe) once it's created.  Waiting on response to issue.  You will need to `ALTER TABLE Experience RENAME TO Experiences` in sqlite.exe for this to work past this point.
+5. `dotnet ef database update --context MigrationsContext` Note:  I have an [outstanding issue] (https://github.com/aspnet/EntityFramework/issues/5894) with migrations after EF Core v1.0.0.  I am having to rename the table name in the migration file, and then rename it in the db (sqlite.exe) once it's created.  Waiting on response to issue.  You will need to `ALTER TABLE Experience RENAME TO Experiences` in sqlite.exe for this to work past this point.
 6. To develop the WebApi, `dotnet run`
 7. To develop the Web UI, make sure the above WebApi setup is completed and that you are running it in a second instance of your editor, or that you are hosting the WebApi in a local instance of IIS.
 8. `cd ..\TDiary` and then `dotnet run` (or run the project in your editor)
