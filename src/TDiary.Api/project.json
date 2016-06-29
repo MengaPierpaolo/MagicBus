@@ -40,7 +40,8 @@
   "publishOptions": {
     "include": [
       "web.config",
-      "appsettings.json"
+      "appsettings.json",
+      "TDiary.db"
     ]
   },
   "scripts": {
