@@ -15,5 +15,5 @@ launchSettings.json
 project.lock.json
 
 # project specific
-src/TDiary/Properties/PublishProfiles/*.ps1
+src/TDiary.Api/Properties/PublishProfiles/
 src/TDiary/wwwroot/lib/
