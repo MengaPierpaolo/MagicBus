@@ -35,7 +35,9 @@
       "wwwroot",
       "Views",
       "web.config",
-      "appsettings.json"
+      "appsettings.json",
+      "appsettings.staging.json",
+      "appsettings.production.json"
     ]
   },
   "scripts": {

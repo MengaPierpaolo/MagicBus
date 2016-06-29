@@ -36,7 +36,9 @@ namespace TDiary
             {
                 var configBuilder = new ConfigurationBuilder()
                     .SetBasePath(environment.ContentRootPath)
-                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                    .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true)
+                    .AddEnvironmentVariables();
 
                 Configuration = configBuilder.Build();
             }
