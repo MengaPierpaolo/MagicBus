@@ -11,6 +11,9 @@ using TDiary.Providers.Location;
 using TDiary.Providers.ViewModel;
 using TDiary.Providers.ViewModel.Model;
 using TDiary.Repository;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace TDiary
 {
@@ -45,6 +48,8 @@ namespace TDiary
 
             public void ConfigureServices(IServiceCollection services)
             {
+                services.AddAuthentication();
+
                 services.Configure<ApplicationSettings>(Configuration.GetSection("AppSettings"));
 
                 services.AddScoped<IApiProxy, ApiProxy>();
@@ -59,11 +64,29 @@ namespace TDiary
                 services.AddSingleton<IStringLocalizerFactory, MyStringLocalizerFactory>();
                 services.AddTransient<IStringLocalizer, MyStringLocalizer>();
 
-                services.AddMvc().AddViewLocalization().AddDataAnnotationsLocalization();
+                services.AddMvc(config =>
+                {
+                    var policy = new AuthorizationPolicyBuilder()
+                     .RequireAuthenticatedUser()
+                     .Build();
+
+                    config.Filters.Add(new AuthorizeFilter(policy));
+                })
+                .AddViewLocalization()
+                .AddDataAnnotationsLocalization();
             }
 
             public void Configure(IApplicationBuilder app, IHostingEnvironment env)
             {
+                app.UseCookieAuthentication(new CookieAuthenticationOptions
+                {
+                    AuthenticationScheme = "Cookie",
+                    LoginPath = new PathString("/Account/Login"),
+                    AccessDeniedPath = new PathString("/Account/Forbidden"),
+                    AutomaticAuthenticate = true,
+                    AutomaticChallenge = true
+                });
+
                 app.UseStaticFiles();
 
                 app.UseMvc(routes =>
@@ -74,6 +97,7 @@ namespace TDiary
                     routes.MapRoute("nap", "{culture}/Nap/Edit/{id:int}", new { Controller = "Nap", Action = "Edit" });
 
                     routes.MapRoute("default", "{culture=en-GB}/{controller=Home}/{action=Index}");
+                    routes.MapRoute("forbidden", "{controller=Account}/{action=Forbidden}");
                 });
 
                 var supportedCultures = new[]

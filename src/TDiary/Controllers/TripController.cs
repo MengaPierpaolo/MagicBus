@@ -6,6 +6,7 @@ using TDiary.Providers.ViewModel.Model;
 
 namespace TDiary
 {
+    // Example: [Authorize(Roles = "Administrator")]
     public class TripController : DiaryController<Trip, TripViewModel>
     {
         private readonly IViewModelProvider<Trip, TripViewModel> _viewModelProvider;

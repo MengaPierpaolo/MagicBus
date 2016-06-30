@@ -1,9 +1,12 @@
 ﻿@model TDiary.Providers.ViewModel.Model.HomeViewModel
+@using System.Security.Claims;
 
 <div>
     <div class="row">
         <div class="col-sm-5">
-        <h3>What'ya been up to?</h3>
+        <h3>Hello @User.Identities.First(
+            u => u.IsAuthenticated &&
+            u.HasClaim(c => c.Type == ClaimTypes.Name)).FindFirst(ClaimTypes.Name).Value, what'ya been up to?</h3>
         <a asp-action="Add" asp-controller="Trip" class="btn btn-primary btn-block">Been on a trip</a>
         <a asp-action="Add" asp-controller="Chow" class="btn btn-primary btn-block">Had some chow</a>
         <a asp-action="Add" asp-controller="Sight" class="btn btn-primary btn-block">Saw something funky</a>
