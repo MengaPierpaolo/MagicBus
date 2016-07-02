@@ -1,7 +1,7 @@
 @model TDiary.Providers.ViewModel.Model.LoginViewModel
 
-<h3>Login</h3>
-<form class="form" asp-action="Login">
+<h3>Register</h3>
+<form class="form" asp-action="Register">
     <div class="form-group">
         <label asp-for="UserName"></label>
         <input type="text" class="form-control" asp-for="UserName" autocomplete="off">
@@ -12,6 +12,5 @@
         <input type="password" class="form-control" asp-for="Password" autocomplete="off">
     </div>
 
-    <input name="SubmitButtonUsed" type="submit" class="btn btn-primary" value="Log in">
     <input name="SubmitButtonUsed" type="submit" class="btn btn-primary" value="Register">
 </form>

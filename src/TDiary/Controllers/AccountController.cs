@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using TDiary.Providers.ViewModel.Model;
 
 namespace TDiary
 {
@@ -23,9 +24,6 @@ namespace TDiary
         [AllowAnonymous]
         public async Task<IActionResult> ForceLogin()
         {
-            //var user = new ApplicationUser { UserName = "Jason", Email = "j_a_kimber@hotmail.com"};
-            //var result = await _userManager.CreateAsync(user, "Blah123%");
-
             if (_signInManager.IsSignedIn(User))
             {
                 await _signInManager.SignOutAsync();
@@ -33,14 +31,58 @@ namespace TDiary
             }
             else
             {
-                var result = await _signInManager.PasswordSignInAsync("Jason", "Blah123%", false, lockoutOnFailure: false);
-                if (result.Succeeded)
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [AllowAnonymous]
+        public IActionResult Login(string returnUrl = null)
+        {
+            return View(new LoginViewModel());
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(LoginViewModel vm)
+        {
+            if (vm.LoginPressed)
+            {
+                if (vm.UserName != null && vm.Password != null)
                 {
-                    return RedirectToAction("Index", "Home");
+                    var result = await _signInManager.PasswordSignInAsync(vm.UserName, vm.Password, false, lockoutOnFailure: false);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
             }
+            else
+            {
+                return RedirectToAction("Register", "Account");
+            }
 
-            return RedirectToAction("Index", "Home");
+            return View(new LoginViewModel());
+        }
+
+        [AllowAnonymous]
+        public IActionResult Register(string returnUrl = null)
+        {
+            return View(new LoginViewModel());
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Register(LoginViewModel vm)
+        {
+            var user = new ApplicationUser { UserName = vm.UserName, Email = vm.UserName };
+            var result = await _userManager.CreateAsync(user, vm.Password);
+            if (result.Succeeded)
+            {
+                await _signInManager.PasswordSignInAsync(vm.UserName, vm.Password, false, lockoutOnFailure: false);
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(new LoginViewModel());
         }
     }
 }
