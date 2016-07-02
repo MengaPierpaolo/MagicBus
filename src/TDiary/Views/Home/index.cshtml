@@ -1,33 +1,48 @@
 ﻿@model TDiary.Providers.ViewModel.Model.HomeViewModel
-@using System.Security.Claims;
 
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
+@using TDiary
+
+@inject SignInManager<ApplicationUser> SignInManager
 <div>
-    <div class="row">
-        <div class="col-sm-5">
-        <h3>Hello @User.Identities.First(
-            u => u.IsAuthenticated &&
-            u.HasClaim(c => c.Type == ClaimTypes.Name)).FindFirst(ClaimTypes.Name).Value, what'ya been up to?</h3>
-        <a asp-action="Add" asp-controller="Trip" class="btn btn-primary btn-block">Been on a trip</a>
-        <a asp-action="Add" asp-controller="Chow" class="btn btn-primary btn-block">Had some chow</a>
-        <a asp-action="Add" asp-controller="Sight" class="btn btn-primary btn-block">Saw something funky</a>
-        <a asp-action="Add" asp-controller="Nap" class="btn btn-primary btn-block">Took a noteworthy nap</a>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div class="row">
+            <div class="col-sm-5">
+                <h3>
+                    Hello @User.Identities.First(
+                            u => u.IsAuthenticated &&
+                            u.HasClaim(c => c.Type == ClaimTypes.Name)).FindFirst(ClaimTypes.Name).Value, what'ya been up to?
+                </h3>
+                <a asp-action="Add" asp-controller="Trip" class="btn btn-primary btn-block">Been on a trip</a>
+                <a asp-action="Add" asp-controller="Chow" class="btn btn-primary btn-block">Had some chow</a>
+                <a asp-action="Add" asp-controller="Sight" class="btn btn-primary btn-block">Saw something funky</a>
+                <a asp-action="Add" asp-controller="Nap" class="btn btn-primary btn-block">Took a noteworthy nap</a>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-6">
+                @if (Model.ShowRecentExperiences)
+                {
+                    <h3>Recent experiences:</h3>
+                    @foreach (var i in Model.RecentExperiences)
+                    {
+                        <div class="experience">
+                            <a class="clickable-experience" asp-action="Edit" asp-controller="@i.ExperienceType" asp-route-id="@i.Id">@i.Experience</a><br>
+                            <a class="btn btn-default function-button glyphicon glyphicon-arrow-up" asp-action="OrderActivityUp" asp-route-activityId="@i.Id"></a>
+                            <a class="btn btn-default function-button glyphicon glyphicon-arrow-down" asp-action="OrderActivityDown" asp-route-activityId="@i.Id"></a>
+                            <a class="btn btn-default function-button glyphicon glyphicon-remove" asp-action="Delete" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" title="Delete this @i.ExperienceType"></a>
+                        </div>
+                    }
+                    <br>
+                }
+            </div>
         </div>
-        <div class="col-sm-1"></div>
-        <div class="col-sm-6">
-        @if(Model.ShowRecentExperiences)
-        {
-            <h3>Recent experiences:</h3>
-            @foreach (var i in Model.RecentExperiences)
-            {
-                <div class="experience">
-                    <a class="clickable-experience" asp-action="Edit" asp-controller="@i.ExperienceType" asp-route-id="@i.Id">@i.Experience</a><br>
-                    <a class="btn btn-default function-button glyphicon glyphicon-arrow-up" asp-action="OrderActivityUp" asp-route-activityId="@i.Id"></a>
-                    <a class="btn btn-default function-button glyphicon glyphicon-arrow-down" asp-action="OrderActivityDown" asp-route-activityId="@i.Id"></a>
-                    <a class="btn btn-default function-button glyphicon glyphicon-remove" asp-action="Delete" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" title="Delete this @i.ExperienceType"></a>
-                </div>
-            }
-            <br>
-        }
+    }
+    else
+    {
+        <div class="jumbotron">
+            <h2>Magic Bus brings you joy and happiness...  But first, you need to log in!</h2>
         </div>
-    </div>
+    }
 </div>

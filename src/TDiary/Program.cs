@@ -11,9 +11,10 @@ using TDiary.Providers.Location;
 using TDiary.Providers.ViewModel;
 using TDiary.Providers.ViewModel.Model;
 using TDiary.Repository;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace TDiary
 {
@@ -48,9 +49,14 @@ namespace TDiary
 
             public void ConfigureServices(IServiceCollection services)
             {
-                services.AddAuthentication();
-
                 services.Configure<ApplicationSettings>(Configuration.GetSection("AppSettings"));
+
+                services.AddDbContext<UserDbContext>(options =>
+                    options.UseSqlite("Filename=./Users.db"));
+
+                services.AddIdentity<ApplicationUser, IdentityRole>()
+                    .AddEntityFrameworkStores<UserDbContext>()
+                    .AddDefaultTokenProviders();
 
                 services.AddScoped<IApiProxy, ApiProxy>();
                 services.AddScoped<ILocationProvider, ApiLocationProvider>();
@@ -58,17 +64,17 @@ namespace TDiary
                 services.AddScoped<IViewModelProvider<Sight, SightViewModel>, SightViewModelProvider>();
                 services.AddScoped<IViewModelProvider<Trip, TripViewModel>, TripViewModelProvider>();
                 services.AddScoped<IViewModelProvider<Nap, NapViewModel>, NapViewModelProvider>();
-
-                services.AddLocalization();
-                services.AddScoped<LanguageActionFilter>();
                 services.AddSingleton<IStringLocalizerFactory, MyStringLocalizerFactory>();
                 services.AddTransient<IStringLocalizer, MyStringLocalizer>();
+
+                services.AddScoped<LanguageActionFilter>();
+                services.AddLocalization();
 
                 services.AddMvc(config =>
                 {
                     var policy = new AuthorizationPolicyBuilder()
-                     .RequireAuthenticatedUser()
-                     .Build();
+                        .RequireAuthenticatedUser()
+                        .Build();
 
                     config.Filters.Add(new AuthorizeFilter(policy));
                 })
@@ -78,16 +84,9 @@ namespace TDiary
 
             public void Configure(IApplicationBuilder app, IHostingEnvironment env)
             {
-                app.UseCookieAuthentication(new CookieAuthenticationOptions
-                {
-                    AuthenticationScheme = "Cookie",
-                    LoginPath = new PathString("/Account/Login"),
-                    AccessDeniedPath = new PathString("/Account/Forbidden"),
-                    AutomaticAuthenticate = true,
-                    AutomaticChallenge = true
-                });
-
                 app.UseStaticFiles();
+
+                app.UseIdentity();
 
                 app.UseMvc(routes =>
                 {

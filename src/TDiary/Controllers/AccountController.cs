@@ -1,81 +1,46 @@
-using System;
-using System.Collections.Generic;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using TDiary.Providers.ViewModel.Model;
+using Microsoft.AspNetCore.Identity;
 
 namespace TDiary
 {
-    // TODO: The whole of this controller is just to prove concept.
     [ServiceFilter(typeof(LanguageActionFilter))]
-    [AllowAnonymous]
     public class AccountController : Controller
     {
-        public async Task<IActionResult> Login(string returnUrl = null)
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+
+        public AccountController(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager
+        )
         {
-            const string Issuer = "https://magicbus.azurewebsites.net";
-            var claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.Name, "Jason", ClaimValueTypes.String, Issuer));
-            var userIdentity = new ClaimsIdentity("MagicBusLogin");
-            userIdentity.AddClaims(claims);
-            var userPrincipal = new ClaimsPrincipal(userIdentity);
-
-            await HttpContext.Authentication.SignInAsync("Cookie", userPrincipal,
-                new AuthenticationProperties
-                {
-                    ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
-                    IsPersistent = false,
-                    AllowRefresh = false
-                });
-
-            return RedirectToLocal(returnUrl);
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
-        private IActionResult RedirectToLocal(string returnUrl)
+        [AllowAnonymous]
+        public async Task<IActionResult> ForceLogin()
         {
-            if (Url.IsLocalUrl(returnUrl))
+            //var user = new ApplicationUser { UserName = "Jason", Email = "j_a_kimber@hotmail.com"};
+            //var result = await _userManager.CreateAsync(user, "Blah123%");
+
+            if (_signInManager.IsSignedIn(User))
             {
-                return Redirect(returnUrl);
+                await _signInManager.SignOutAsync();
+                return RedirectToAction("Index", "Home");
             }
             else
             {
-                return RedirectToAction("Index", "Home");
-            }
-        }
-
-        public async Task<IActionResult> ForceLogin(){
-            const string Issuer = "https://magicbus.azurewebsites.net";
-            var claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.Name, "Jason", ClaimValueTypes.String, Issuer));
-            claims.Add(new Claim(ClaimTypes.Role, "Administrator", ClaimValueTypes.String, Issuer));
-            var userIdentity = new ClaimsIdentity("MagicBusLogin");
-            userIdentity.AddClaims(claims);
-            var userPrincipal = new ClaimsPrincipal(userIdentity);
-
-            await HttpContext.Authentication.SignInAsync("Cookie", userPrincipal,
-                new AuthenticationProperties
+                var result = await _signInManager.PasswordSignInAsync("Jason", "Blah123%", false, lockoutOnFailure: false);
+                if (result.Succeeded)
                 {
-                    ExpiresUtc = DateTime.UtcNow.AddMinutes(20),
-                    IsPersistent = false,
-                    AllowRefresh = false
-                });
+                    return RedirectToAction("Index", "Home");
+                }
+            }
 
-                return RedirectToAction("Index", "Home");
-        }
-
-        public IActionResult Forbidden(string returnUrl = null)
-        {
-            var vm = new HomeViewModel()
-            {
-                Title = "",
-                Heading = "",
-                RecentExperiences = new List<RecentExperienceViewModel>()
-            };
-
-            return View(vm);
+            return RedirectToAction("Index", "Home");
         }
     }
 }
