@@ -1,4 +1,8 @@
 ﻿@using System.Globalization
+@using Microsoft.AspNetCore.Identity
+@using TDiary
+
+@inject SignInManager<ApplicationUser> SignInManager
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +56,18 @@
                             <li><a href="/zh-CN">中文(中华人民共和国)</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Login</a></li>
+                    <li>
+                        <a href="@Url.Action("ForceLogin", "Account")">
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <p>Logout</p>
+                            }
+                            else
+                            {
+                                <p>Login</p>
+                            }
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>

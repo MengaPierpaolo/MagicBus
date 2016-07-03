@@ -7,7 +7,7 @@ namespace TDiary
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            string culture = context.RouteData.Values["culture"].ToString();
+            string culture = context.RouteData.Values["culture"]?.ToString()??string.Empty;
 
             if (culture == "en-GB" || culture == "en-US" || culture == "zh-CN")
             {

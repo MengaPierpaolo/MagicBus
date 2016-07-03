@@ -11,6 +11,10 @@ using TDiary.Providers.Location;
 using TDiary.Providers.ViewModel;
 using TDiary.Providers.ViewModel.Model;
 using TDiary.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace TDiary
 {
@@ -47,24 +51,42 @@ namespace TDiary
             {
                 services.Configure<ApplicationSettings>(Configuration.GetSection("AppSettings"));
 
+                services.AddDbContext<UserDbContext>(options =>
+                    options.UseSqlite("Filename=./Users.db"));
+
+                services.AddIdentity<ApplicationUser, IdentityRole>()
+                    .AddEntityFrameworkStores<UserDbContext>()
+                    .AddDefaultTokenProviders();
+
                 services.AddScoped<IApiProxy, ApiProxy>();
                 services.AddScoped<ILocationProvider, ApiLocationProvider>();
                 services.AddScoped<IViewModelProvider<Chow, ChowViewModel>, ChowViewModelProvider>();
                 services.AddScoped<IViewModelProvider<Sight, SightViewModel>, SightViewModelProvider>();
                 services.AddScoped<IViewModelProvider<Trip, TripViewModel>, TripViewModelProvider>();
                 services.AddScoped<IViewModelProvider<Nap, NapViewModel>, NapViewModelProvider>();
-
-                services.AddLocalization();
-                services.AddScoped<LanguageActionFilter>();
                 services.AddSingleton<IStringLocalizerFactory, MyStringLocalizerFactory>();
                 services.AddTransient<IStringLocalizer, MyStringLocalizer>();
 
-                services.AddMvc().AddViewLocalization().AddDataAnnotationsLocalization();
+                services.AddScoped<LanguageActionFilter>();
+                services.AddLocalization();
+
+                services.AddMvc(config =>
+                {
+                    var policy = new AuthorizationPolicyBuilder()
+                        .RequireAuthenticatedUser()
+                        .Build();
+
+                    config.Filters.Add(new AuthorizeFilter(policy));
+                })
+                .AddViewLocalization()
+                .AddDataAnnotationsLocalization();
             }
 
             public void Configure(IApplicationBuilder app, IHostingEnvironment env)
             {
                 app.UseStaticFiles();
+
+                app.UseIdentity();
 
                 app.UseMvc(routes =>
                 {
@@ -74,6 +96,7 @@ namespace TDiary
                     routes.MapRoute("nap", "{culture}/Nap/Edit/{id:int}", new { Controller = "Nap", Action = "Edit" });
 
                     routes.MapRoute("default", "{culture=en-GB}/{controller=Home}/{action=Index}");
+                    //routes.MapRoute("account", "{culture=en-GB}/{controller=Account}/{action=Login}");
                 });
 
                 var supportedCultures = new[]

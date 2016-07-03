@@ -1,18 +1,24 @@
 # Magic Bus Travel Diary
 # .NET Core Sample Project
-## Now updated from RC2 to 1.0.0 RTM
 ---
 ## Summary
-Using the dotnet core command line, trying to use just VSCode (to prove it's possible), and relying on Visual Studio when the reliable old friend helps avoid a headache, here's a sample application using the theme of a Travel Diary as it's domain.  This helps to find issues and learn much quicker than using the very simple quick-start projects that i have found dotted around.
+Using the dotnet core command line, trying to use just VSCode (to prove it's possible),
+and relying on Visual Studio when the reliable old friend helps avoid a headache,
+here's a sample application using the theme of a Travel Diary as it's domain.
+This has helped to learn and find issues much quicker than using the very simple quick-start projects that i have found dotted around.
+
+*Note: Please see the Issues log in Github for known issues and enhancements that are still in progress.
 
 ## Architecture Overview
 The project consists of two main parts.
 
-1. The Web UI - An ASP.NET Core MVC application intended to be the UI for the application.  In other GitHub repositories, I have created Angular2 and ReactJs versions of the UI too.
+1. The Web UI - An ASP.NET Core MVC application intended to be the UI for the application.
+In other GitHub repositories, I have created Angular2 and ReactJs versions of the UI too.
+2. An Asp.Net Core WebApi that is used to serve and save data from the UI of choice into (for now)
+a SQLite Database created using Entity Framework Core Code Migrations.
 
-2. An Asp.Net Core WebApi that is used to serve and save data from the UI of choice into (for now) a SQLite Database created using Entity Framework Core Code Migrations.
-
-The solution has then been divided into different dotnet projects to match a tried and tested architecture which provides for relative ease of maintenance and optional swapping of component pieces.
+The solution has then been divided into different dotnet projects to match a tried and tested
+architecture which provides for relative ease of maintenance and optional swapping of component pieces.
 
 ## Editor Choice
 The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 2
@@ -41,7 +47,8 @@ The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 2
 ---
 ## Initial setup instructions
 ---
-*Note:* It is recommended to run the projects with the assistance of a local instance of IIS rather than two seperate instances of VSCode or Visual Studio
+*Note:* It is recommended to run the projects with the assistance of a local instance
+of IIS rather than two seperate instances of VSCode or Visual Studio
 
 ### VSCode
 1. `git clone https://github.com/jakimber/tdiary`
@@ -53,9 +60,9 @@ The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 2
 5. `dotnet ef database update --context MigrationsContext` Note:  I have an [outstanding issue] (https://github.com/aspnet/EntityFramework/issues/5894) with migrations after EF Core v1.0.0.  I am having to rename the table name in the migration file, and then rename it in the db (sqlite.exe) once it's created.  Waiting on response to issue.  You will need to `ALTER TABLE Experience RENAME TO Experiences` in sqlite.exe for this to work past this point.
 6. To develop the WebApi, `dotnet run`
 7. To develop the Web UI, make sure the above WebApi setup is completed and that you are running it in a second instance of your editor, or that you are hosting the WebApi in a local instance of IIS.
-8. `cd ..\TDiary` and then `dotnet run` (or run the project in your editor)
-
-*Note:* you will need to adjust web ports due to conflicts if you are debugging both projects in VSCode rather than relying on a local instance of IIS to host.  You can do this with a combination of the Url in TDiary\AppSettings.json and the use of .UseUrls("http://localhost:<some port here>") in the startup.cs of TDiary.Api
+8. `cd ..\TDiary`
+9. `dotnet ef database update` will create the users.db for AspNet Identity.
+10.  `dotnet run` (or run the project in your editor)
 
 ---
 ### Visual Studio
@@ -64,7 +71,7 @@ The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 2
 3. Wait for the restore to finish and then Build the solution
 4. `update-database -Context MigrationsContext` in package manager console
 5. You can now develop the WebApi
-7. To develop the UI, ensure you have the TDiary.Api project running in local IIS, or another Visual Studio instance.  Then open .\src\TDiary\TDiary.xproj and away you go!
-
-*Note:* you may need to adjust web ports due to conflicts or randomly assigned ports if you are debugging both projects in Visual Studio rather than relying on a local instance of IIS to host.  You can do this with a combination of the Url in TDiary\AppSettings.json and the use of .UseUrls("http://localhost:<some port here>") in the startup.cs of TDiary.Api
-
+7. To develop the UI, ensure you have the TDiary.Api project running in local IIS, or another Visual Studio instance.  Then
+8. open .\src\TDiary\TDiary.xproj
+9. `update-database` in package manager console to create the Users.db for AspNet Identity
+10. Run the project
