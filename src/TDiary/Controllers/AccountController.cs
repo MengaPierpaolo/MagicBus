@@ -38,13 +38,15 @@ namespace TDiary
         [AllowAnonymous]
         public IActionResult Login(string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             return View(new LoginViewModel());
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginViewModel vm)
+        public async Task<IActionResult> Login(LoginViewModel vm, string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = returnUrl;
             if (vm.LoginPressed)
             {
                 if (vm.UserName != null && vm.Password != null)
@@ -52,7 +54,7 @@ namespace TDiary
                     var result = await _signInManager.PasswordSignInAsync(vm.UserName, vm.Password, false, lockoutOnFailure: false);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToLocal(returnUrl);
                     }
                 }
             }
@@ -62,6 +64,18 @@ namespace TDiary
             }
 
             return View(new LoginViewModel());
+        }
+
+        private IActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction(nameof(HomeController.Index), "Home");
+            }
         }
 
         [AllowAnonymous]

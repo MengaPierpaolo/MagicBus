@@ -1,7 +1,7 @@
 @model TDiary.Providers.ViewModel.Model.LoginViewModel
 
 <h3>Login</h3>
-<form class="form" asp-action="Login">
+<form class="form" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]">
     <div class="form-group">
         <label asp-for="UserName"></label>
         <input type="text" class="form-control" asp-for="UserName" autocomplete="off">

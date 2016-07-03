@@ -81,6 +81,9 @@ namespace TDiary
             localizedStrings.Add(new MyStringData("en-GB", "ApplicationTitle", "Magic Bus"));
             localizedStrings.Add(new MyStringData("en-GB", "ApplicationHeading", "Your spiffing new travel diary!"));
 
+            localizedStrings.Add(new MyStringData("en-GB", "ExperienceListTitle", "Experiences"));
+            localizedStrings.Add(new MyStringData("en-GB", "ExperienceListHeading", "Here's all your experiences."));
+
             localizedStrings.Add(new MyStringData("en-GB", "ChowTitle.Add", "Tiffin?"));
             localizedStrings.Add(new MyStringData("en-GB", "ChowTitle.Edit", "Wrong lunchbox?"));
             localizedStrings.Add(new MyStringData("en-GB", "ChowHeading.Add", "Yum, add it to the list!"));
@@ -103,6 +106,9 @@ namespace TDiary
 
             localizedStrings.Add(new MyStringData("en-US", "ApplicationTitle", "Magic Bus"));
             localizedStrings.Add(new MyStringData("en-US", "ApplicationHeading", "Your groovy new travel diary!"));
+
+            localizedStrings.Add(new MyStringData("en-US", "ExperienceListTitle", "Experiences"));
+            localizedStrings.Add(new MyStringData("en-US", "ExperienceListHeading", "Here's all your experiences."));
 
             localizedStrings.Add(new MyStringData("en-US", "ChowTitle.Add", "Had some Chow?"));
             localizedStrings.Add(new MyStringData("en-US", "ChowTitle.Edit", "Chow mixed up?"));
@@ -127,6 +133,9 @@ namespace TDiary
             /* Chinese */
             localizedStrings.Add(new MyStringData("zh-CN", "ApplicationTitle", "魔术公共汽车"));
             localizedStrings.Add(new MyStringData("zh-CN", "ApplicationHeading", "你最喜欢的旅行日记"));
+
+            localizedStrings.Add(new MyStringData("zh-CN", "ExperienceListTitle", "您的经验"));
+            localizedStrings.Add(new MyStringData("zh-CN", "ExperienceListHeading", "你看，你所有的好经验"));
 
             localizedStrings.Add(new MyStringData("zh-CN", "ChowTitle.Add", "吃了吗?"));
             localizedStrings.Add(new MyStringData("zh-CN", "ChowTitle.Edit", "吃错了吗?"));

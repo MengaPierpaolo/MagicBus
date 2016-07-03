@@ -96,7 +96,7 @@ namespace TDiary
                     routes.MapRoute("nap", "{culture}/Nap/Edit/{id:int}", new { Controller = "Nap", Action = "Edit" });
 
                     routes.MapRoute("default", "{culture=en-GB}/{controller=Home}/{action=Index}");
-                    //routes.MapRoute("account", "{culture=en-GB}/{controller=Account}/{action=Login}");
+                    routes.MapRoute("login", "{controller=Account}/{action=Login}");
                 });
 
                 var supportedCultures = new[]
