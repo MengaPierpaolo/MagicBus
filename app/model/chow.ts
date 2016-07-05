@@ -1,7 +1,5 @@
-export class Chow{
-    constructor(
-        public date: string,
-        public location: string,
-        public description: string
-    ) {}
+export class Chow {
+    Date: string;
+    Location: string;
+    Description: string;
 }

@@ -1,0 +1,22 @@
+<page-title [title]="'What a sight!'" [subTitle]="'Seen something funky?'"></page-title>
+<div class="content">
+    <form class="form" (ngSubmit)="onSubmit()" #thisForm="ngForm">
+        <div class="form-group">
+            <label for="date">On</label>
+            <input type="text" class="form-control" [(ngModel)]="model.Date" name="Date" required #Date="ngModel">
+            <div [hidden]="Date.valid || Date.pristine" class="alert alert-danger">
+                Date is required
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Location">When you were in</label>
+            <input type="text" class="form-control" [(ngModel)]="model.Location" name="Location">
+        </div>
+        <div class="form-group">
+            <label for="Name">You saw</label>
+            <input type="text" class="form-control" [(ngModel)]="model.Name" name="Name">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!thisForm.form.valid">Save it!</button>
+        <button type="button" class="btn btn-info" (click)="goBack()">Changed my mind</button>
+    </form>
+</div>

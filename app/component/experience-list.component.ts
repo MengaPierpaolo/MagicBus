@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { ActivityViewModel } from '../model/activityViewModel'
+import { ROUTER_DIRECTIVES } from '@angular/router';
+
+import { ActivityViewModel } from '../viewModel/activityViewModel'
 import { DataService } from '../service/data.service';
 
 @Component({
@@ -9,11 +11,12 @@ import { DataService } from '../service/data.service';
     <h3>Recent experiences:</h3>
       <div *ngFor="let activity of activityData">
           <a href="#" (click)="clickMe(activity)" class="delete-cross">X</a>
-          <a href="trip">{{activity.Experience}}</a>
+          <a [routerLink]="['/' + activity.ExperienceType]">{{activity.Experience}}</a>
       </div>
     <label *ngIf="selectedActivity">{{selectedActivity.Experience}}</label>
     </form>
     `,
+  directives: [ ROUTER_DIRECTIVES ],
   providers: [ DataService ]
 })
 

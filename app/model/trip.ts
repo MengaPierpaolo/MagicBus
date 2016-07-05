@@ -1,8 +1,6 @@
 export class Trip {
-    constructor(
-        public date: string,
-        public from: string,
-        public to: string,
-        public by: string
-    ){}
+    Date: string;
+    From: string;
+    To: string;
+    By: string;
 }

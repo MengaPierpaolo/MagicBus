@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivityViewModel } from '../model/activityViewModel'
+import { ActivityViewModel } from '../viewModel/activityViewModel'
 
 @Injectable()
 export class DataService {
@@ -9,8 +9,9 @@ export class DataService {
 }
 
 var STUFF: ActivityViewModel[] = [
-  { "ExperienceType" : "Trip", "Experience": "You saw monkeys in Brighton" },
-  { "ExperienceType" : "Trip", "Experience": "You consumed cake in Seoul" },
-  { "ExperienceType" : "Trip", "Experience": "You saw rare birds in Nagoya" },
-  { "ExperienceType" : "Trip", "Experience": "You went from Nagoya to Seoul by plane" }
+  { "ExperienceType" : "sight", "Experience": "You saw monkeys in Brighton" },
+  { "ExperienceType" : "chow", "Experience": "You consumed cake in Seoul" },
+  { "ExperienceType" : "sight", "Experience": "You saw rare birds in Nagoya" },
+  { "ExperienceType" : "trip", "Experience": "You went from Nagoya to Seoul by plane" },
+  { "ExperienceType" : "nap", "Experience": "You dozed in a hammock in Gibraltar" }
 ];

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ExperienceListComponent } from '../component/experience-list.component';
 import { PageTitleComponent } from '../component/page-title.component';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'dashboard',
@@ -21,11 +21,13 @@ import { Router } from '@angular/router';
       </div>
     </div>
     `,
-  directives: [ExperienceListComponent, PageTitleComponent]
+  directives: [
+    PageTitleComponent,
+    ExperienceListComponent
+  ]
 })
 export class DashboardComponent {
-
-  constructor(private router: Router) {  }
+  constructor(private router: Router) { }
 
   gotoDetail(where: string) {
     let link = [where];

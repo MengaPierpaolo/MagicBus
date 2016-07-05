@@ -1,7 +1,5 @@
 export class Sight {
-    constructor(
-        public date: string,
-        public location: string,
-        public name: string
-    ) {}
+    Date: string;
+    Location: string;
+    Name: string;
 }

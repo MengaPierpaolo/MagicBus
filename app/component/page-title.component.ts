@@ -1,5 +1,4 @@
 import { Component, Input} from '@angular/core';
-import { HomeViewModel } from '../model/homeViewModel';
 
 @Component({
   selector: 'page-title',

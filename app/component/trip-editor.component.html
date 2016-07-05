@@ -1,0 +1,28 @@
+<page-title [title]="'Been Somewhere?'" [subTitle]="'Add it!'"></page-title>
+<div class="content">
+    <form class="form" (ngSubmit)="onSubmit()" #thisForm="ngForm">
+        <div class="form-group">
+            <label for="date">On</label>
+            <input type="text" class="form-control" [(ngModel)]="model.Date" name="Date" required #Date="ngModel">
+            <div [hidden]="Date.valid || Date.pristine" class="alert alert-danger">
+                Date is required
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="From">You went from</label>
+            <input type="text" class="form-control" [(ngModel)]="model.From" name="From">
+        </div>
+        <div class="form-group">
+            <label for="To">To</label>
+            <input type="text" class="form-control" [(ngModel)]="model.To" name="To">
+        </div>
+        <div class="form-group">
+            <label for="By">By</label>
+            <select class="form-control" [(ngModel)]="model.By" name="By" required>
+              <option *ngFor="let t of transport" [value]="t">{{t}}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!thisForm.form.valid">Save it!</button>
+        <button type="button" class="btn btn-info" (click)="goBack()">Changed my mind</button>
+    </form>
+</div>
