@@ -25,7 +25,7 @@ export class ExperienceListComponent {
   constructor(private dataService: DataService) {
     this.dataService.getRecentExperiences()
       .subscribe(
-      heroes => this.activityData = heroes,
+      data => this.activityData = data,
       error => this.errorMessage = <any>error);
   }
 
