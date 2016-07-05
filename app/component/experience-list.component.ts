@@ -9,11 +9,12 @@ import { DataService } from '../service/data.service';
   template: `
     <form class="form-inline">
     <h3>Recent experiences:</h3>
-      <div *ngFor="let activity of activityData">
-          <a href="#" (click)="clickMe(activity)" class="delete-cross">X</a>
-          <a [routerLink]="['/' + activity.ExperienceType, activity.Id]">{{activity.Experience}}</a>
+      <div class="experience" *ngFor="let activity of activityData">
+          <a class="clickable-experience" [routerLink]="['/' + activity.ExperienceType, activity.Id]">{{activity.Experience}}</a><br/>
+          <a class="btn btn-default function-button glyphicon glyphicon-arrow-up" (click)="clickMe(activity)"></a>
+          <a class="btn btn-default function-button glyphicon glyphicon-arrow-down" (click)="clickMe(activity)"></a>
+          <a class="btn btn-default function-button glyphicon glyphicon-remove" (click)="clickMe(activity)"></a>
       </div>
-    <label *ngIf="selectedActivity">{{selectedActivity.Experience}}</label>
     </form>
     `,
   directives: [ ROUTER_DIRECTIVES ],

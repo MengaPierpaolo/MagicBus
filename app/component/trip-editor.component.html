@@ -1,4 +1,4 @@
-<page-title [title]="'Been Somewhere?'" [subTitle]="'Add it!'"></page-title>
+<page-title [title]="'Life is a journey!'" [subTitle]="'Add your travel details.'"></page-title>
 <div class="content">
     <form class="form" (ngSubmit)="onSubmit()" #thisForm="ngForm">
         <div class="form-group">
@@ -9,15 +9,21 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="From">You went from</label>
-            <input type="text" class="form-control" [(ngModel)]="model.From" name="From">
+            <label for="From">You travelled from</label>
+            <input type="text" class="form-control" [(ngModel)]="model.From" name="From" required #From="ngModel">
+            <div [hidden]="From.valid || From.pristine" class="alert alert-danger">
+                The You travelled from field is required
+            </div>
         </div>
         <div class="form-group">
-            <label for="To">To</label>
-            <input type="text" class="form-control" [(ngModel)]="model.To" name="To">
+            <label for="To">You travelled to</label>
+            <input type="text" class="form-control" [(ngModel)]="model.To" name="To" required #To="ngModel">
+            <div [hidden]="To.valid || To.pristine" class="alert alert-danger">
+                The You travelled to field is required
+            </div>
         </div>
         <div class="form-group">
-            <label for="By">By</label>
+            <label for="By">Your mode of transport was</label>
             <select class="form-control" [(ngModel)]="model.By" name="By" required>
               <option *ngFor="let t of transport" [value]="t">{{t}}</option>
             </select>
