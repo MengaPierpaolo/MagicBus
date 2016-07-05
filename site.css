@@ -1,53 +1,174 @@
+body {
+    font-family: 'Mitr', serif;
+    background-color: #2D3C4B;
+    /* Margin bottom by footer height */
+    margin-bottom: 70px;
+}
+
+.fa-bus {
+    width: 10px;
+}
+
+    .fa-bus:hover {
+        color: goldenrod;
+    }
+
+
 .container-fluid {
     margin: 0;
     padding: 0;
 }
 
-.container-fluid .jumbotron {
-    padding: 10px;
-    margin-bottom: 0;
+    .container-fluid .jumbotron {
+        padding: 10px;
+        margin-bottom: 0;
+        color: goldenrod;
+        background-color: #272b30;
+        margin-top: 15px;
+    }
+
+.jumbotron h1 {
+    font-size: 36px;
 }
 
 .content {
     padding-left: 10px;
     padding-right: 10px;
+    width: 100%;
 }
 
-.delete-cross {
-    padding-left: 5px;
-    padding-right: 5px;
-    color: orangered;
-    font-size: 1.1em;
+.row {
+    margin: 0;
 }
+
+.experience {
+    padding: 2px;
+    margin-bottom: 3px;
+}
+
+.clickable-experience {
+    display: inline-block;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    color: antiquewhite;
+}
+
+    .clickable-experience:hover {
+        color: antiquewhite;
+    }
+
+    .clickable-experience:visited {
+        color: antiquewhite;
+    }
+
+.function-button {
+    padding-left: 10px;
+    padding-right: 10px;
+    background: #91C957;
+    color: white;
+    border: 0;
+}
+
+    .function-button:hover {
+        background: #91C957;
+        color: black;
+    }
 
 h1 {
-    /*font-size: 2em;*/
-    margin-top: 10px;
+    text-shadow: 4px 4px 4px darkred;
+    padding-top: 5px;
     margin-bottom: 5px;
 }
 
 h2 {
     font-size: 1.2em;
     margin-top: 5px;
+    color: antiquewhite;
 }
 
 h3 {
+    color: antiquewhite;
     font-size: 1.1em;
+    padding-bottom: 5px;
+    border-bottom: dotted 1pt antiquewhite;
 }
 
-form{
-    margin-top: 10px;
+form {
     padding-bottom: 10px;
 }
 
-.validation-summary-errors{
-    margin-top: 15px; 
+.validation-summary-errors {
+    margin-top: 15px;
 }
 
-.ng-valid[required] {
-  border-left: 5px solid #42A948; 
+    .validation-summary-errors ul {
+        padding-left: 10px;
+    }
+
+    .validation-summary-errors li {
+        list-style-type: none;
+    }
+
+.input-validation-error {
+    border-left: solid 5pt darkorange;
+    background: white !important;
 }
 
-.ng-invalid {
-  border-left: 5px solid #a94442;
+.btn-primary {
+    background-color: #46BBDC;
+    color: black;
+    border: 0;
+}
+
+label {
+    color: antiquewhite;
+}
+
+.btn-info {
+    background-color: #91C957;
+    color: black;
+    border: 0;
+}
+
+    .btn-info:hover {
+        background-color: #91C957;
+        color: white;
+    }
+
+.form-control {
+    background-color: antiquewhite;
+}
+
+.text-danger {
+    color: darkorange;
+}
+
+/* mitr-regular - latin-ext_vietnamese_thai_latin */
+@font-face {
+    font-family: 'Mitr';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Mitr'), local('Mitr-Regular'), url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/mitr-v1-latin-ext_vietnamese_thai_latin-regular.svg#Mitr') format('svg'); /* Legacy iOS */
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer {
+    font-size: 0.7em;
+    color: antiquewhite;
+    border-top: solid 1px #777;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
 }
