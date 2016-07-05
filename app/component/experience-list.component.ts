@@ -11,7 +11,7 @@ import { DataService } from '../service/data.service';
     <h3>Recent experiences:</h3>
       <div *ngFor="let activity of activityData">
           <a href="#" (click)="clickMe(activity)" class="delete-cross">X</a>
-          <a [routerLink]="['/' + activity.ExperienceType]">{{activity.Experience}}</a>
+          <a [routerLink]="['/' + activity.ExperienceType, activity.Id]">{{activity.Experience}}</a>
       </div>
     <label *ngIf="selectedActivity">{{selectedActivity.Experience}}</label>
     </form>
@@ -22,7 +22,8 @@ import { DataService } from '../service/data.service';
 
 export class ExperienceListComponent {
   constructor(private dataService: DataService) {
-    this.activityData = dataService.getRecentExperiences();
+    dataService.getRecentExperiences()
+      .then(experiences => this.activityData = experiences);;
   }
 
   activityData: ActivityViewModel[];

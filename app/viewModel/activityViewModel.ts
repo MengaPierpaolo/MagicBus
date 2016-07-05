@@ -1,4 +1,7 @@
 export class ActivityViewModel {
-  ExperienceType: string;
-  Experience: string;
+  constructor(
+    public Id: number,
+    public ExperienceType: string,
+    public Experience: string)
+  { }
 }

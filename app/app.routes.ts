@@ -9,6 +9,7 @@ export const routes: RouterConfig = [
   { path: '', component: DashboardComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'trip', component: TripDetailComponent },
+  { path: 'trip/:id', component: TripDetailComponent },
   { path: 'sight', component: SightDetailComponent },
   { path: 'chow', component: ChowDetailComponent },
   { path: 'nap', component: NapDetailComponent }
