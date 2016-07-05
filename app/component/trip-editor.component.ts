@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/common';
-import { Router } from '@angular/router-deprecated';
+import { Router } from '@angular/router';
 
 import { PageTitleComponent } from '../component/page-title.component';
 import { Trip } from '../model/trip';
@@ -55,10 +55,10 @@ export class TripDetailComponent {
 
   onSubmit() {
     // TODO: Save
-    this.router.navigateByUrl('/Dashboard');
+    this.router.navigateByUrl('dashboard');
   }
 
   goBack() {
-    this.router.navigateByUrl('/Dashboard');
+    this.router.navigateByUrl('dashboard');
   }
 }

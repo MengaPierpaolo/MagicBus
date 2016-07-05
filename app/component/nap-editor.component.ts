@@ -3,12 +3,12 @@ import { NgForm } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { PageTitleComponent } from '../component/page-title.component';
-import { Chow } from '../model/chow';
+import { Nap } from '../model/nap';
 
 @Component({
   selector: 'editor',
   template: `
-    <page-title [title]="'Had some chow?'" [subTitle]="'Yum, add it to the list!'"></page-title>
+    <page-title [title]="'Had a snooze?'" [subTitle]="'Nice!'"></page-title>
     <div class="content">
         <form class="form" (ngSubmit)="onSubmit()" #thisForm="ngForm" autocomplete="off">
           <div class="form-group">
@@ -26,7 +26,7 @@ import { Chow } from '../model/chow';
                 </div>
             </div>
             <div class="form-group">
-                <label for="to">You consumed</label>
+                <label for="to">You snoozed in</label>
                 <input class="form-control" type="text" for="description" autocomplete="off" required [(ngModel)]="model.description" ngControl="description" #description="ngForm">
                 <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
                   The You consumed field is required.
@@ -39,12 +39,12 @@ import { Chow } from '../model/chow';
   `,
   directives: [PageTitleComponent]
 })
-export class ChowDetailComponent {
+export class NapDetailComponent {
   constructor(private router: Router) {
-    this.model = new Chow('', '', '');
+    this.model = new Nap('', '', '');
   }
 
-  model: Chow;
+  model: Nap;
 
   onSubmit() {
     // TODO: Save

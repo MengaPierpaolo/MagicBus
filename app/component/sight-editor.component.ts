@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/common';
-import { Router } from '@angular/router-deprecated';
+import { Router } from '@angular/router';
 
 import { PageTitleComponent } from '../component/page-title.component';
 import { Sight } from '../model/sight';
@@ -40,8 +40,7 @@ import { Sight } from '../model/sight';
   directives: [PageTitleComponent]
 })
 export class SightDetailComponent {
-    constructor(
-    private router: Router) {
+    constructor(private router: Router) {
     this.model = new Sight('', '', '');
   }
 
@@ -49,11 +48,11 @@ export class SightDetailComponent {
 
   onSubmit() {
     // TODO: Save
-    this.router.navigate(['/Dashboard']);
+    this.router.navigate(['dashboard']);
   }
 
   goBack() {
     window.history.back();
-      this.router.navigate(['/Dashboard']);
+    this.router.navigate(['dashboard']);
   }
 }
