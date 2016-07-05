@@ -3,28 +3,28 @@
     <form class="form" (ngSubmit)="onSubmit()" #thisForm="ngForm">
         <div class="form-group">
             <label for="date">On</label>
-            <input type="text" class="form-control" [(ngModel)]="model.Date" name="Date" required #Date="ngModel">
-            <div [hidden]="Date.valid || Date.pristine" class="alert alert-danger">
-                Date is required
+            <input type="text" class="form-control" [(ngModel)]="model.date" name="date" required #date="ngModel">
+            <div [hidden]="date.valid || date.pristine" class="alert alert-danger">
+                date is required
             </div>
         </div>
         <div class="form-group">
-            <label for="From">You travelled from</label>
-            <input type="text" class="form-control" [(ngModel)]="model.From" name="From" required #From="ngModel">
-            <div [hidden]="From.valid || From.pristine" class="alert alert-danger">
+            <label for="from">You travelled from</label>
+            <input type="text" class="form-control" [(ngModel)]="model.from" name="from" required #from="ngModel">
+            <div [hidden]="from.valid || from.pristine" class="alert alert-danger">
                 The You travelled from field is required
             </div>
         </div>
         <div class="form-group">
-            <label for="To">You travelled to</label>
-            <input type="text" class="form-control" [(ngModel)]="model.To" name="To" required #To="ngModel">
-            <div [hidden]="To.valid || To.pristine" class="alert alert-danger">
+            <label for="to">You travelled to</label>
+            <input type="text" class="form-control" [(ngModel)]="model.to" name="to" required #to="ngModel">
+            <div [hidden]="to.valid || to.pristine" class="alert alert-danger">
                 The You travelled to field is required
             </div>
         </div>
         <div class="form-group">
-            <label for="By">Your mode of transport was</label>
-            <select class="form-control" [(ngModel)]="model.By" name="By" required>
+            <label for="by">Your mode of transport was</label>
+            <select class="form-control" [(ngModel)]="model.by" name="by" required>
               <option *ngFor="let t of transport" [value]="t">{{t}}</option>
             </select>
         </div>

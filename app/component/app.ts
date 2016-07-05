@@ -1,3 +1,5 @@
+import '../../rxjs-operators.js';
+
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import { ToolbarComponent } from '../component/toolbar.component';

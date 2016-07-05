@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NgForm }    from '@angular/common';
+import { NgForm } from '@angular/common';
 import { NgModel, FormGroup } from '@angular/forms';
 
 import { PageTitleComponent } from '../component/page-title.component';
@@ -25,31 +25,26 @@ export class TripDetailComponent implements OnInit {
 
   model: Trip;
   transport = ['Bus', 'Train', 'Plane'];
-
-  private id: number;
+  private errorMessage: any;
 
   ngOnInit() {
     this.route
       .params
       .subscribe(params => {
         let id = +params['id'];
-        this.dataService.getTrip(id)
-          .then(blah => {
-            if (blah) {
-              this.model = new Trip();
-              this.model.From = blah.ExperienceType; // TODO:
-            } else { // id not found
-
-            }
-          });
+        var activity = this.dataService.getActivity('Trip', id)
+          .subscribe(
+          item => this.model = item,
+          error => this.errorMessage = <any>error
+          );
       });
   }
 
   onSubmit() {
-    this.router.navigateByUrl('dashboard');
+    this.router.navigate(['dashboard']);
   }
 
   goBack() {
-    this.router.navigateByUrl('dashboard');
+    this.router.navigate(['dashboard']);
   }
 }

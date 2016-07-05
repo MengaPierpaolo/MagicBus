@@ -10,22 +10,26 @@ import { DataService } from '../service/data.service';
     <form class="form-inline">
     <h3>Recent experiences:</h3>
       <div class="experience" *ngFor="let activity of activityData">
-          <a class="clickable-experience" [routerLink]="['/' + activity.ExperienceType, activity.Id]">{{activity.Experience}}</a><br/>
+          <a class="clickable-experience" [routerLink]="['/' + activity.experienceType.toLowerCase(), activity.id]">{{activity.experience}}</a><br/>
           <a class="btn btn-default function-button glyphicon glyphicon-arrow-up" (click)="clickMe(activity)"></a>
           <a class="btn btn-default function-button glyphicon glyphicon-arrow-down" (click)="clickMe(activity)"></a>
           <a class="btn btn-default function-button glyphicon glyphicon-remove" (click)="clickMe(activity)"></a>
       </div>
     </form>
     `,
-  directives: [ ROUTER_DIRECTIVES ],
-  providers: [ DataService ]
+  directives: [ROUTER_DIRECTIVES],
+  providers: [DataService]
 })
 
 export class ExperienceListComponent {
   constructor(private dataService: DataService) {
-    dataService.getRecentExperiences()
-      .then(experiences => this.activityData = experiences);;
+    this.dataService.getRecentExperiences()
+      .subscribe(
+      heroes => this.activityData = heroes,
+      error => this.errorMessage = <any>error);
   }
+
+  private errorMessage: any;
 
   activityData: ActivityViewModel[];
   selectedActivity: ActivityViewModel;
