@@ -42,7 +42,12 @@ export default class ChowEditor extends React.Component {
     }
 
     onSaved() {
-        ActivityActions.saveActivity('Chow', this.state);
+        if (typeof this.props.params.activityId != 'undefined') {
+            ActivityActions.saveActivity('Chow', this.state, this.props.params.activityId);
+        }
+        else {
+            ActivityActions.saveActivity('Chow', this.state);
+        }
         this.context.router.push('/');
     }
 

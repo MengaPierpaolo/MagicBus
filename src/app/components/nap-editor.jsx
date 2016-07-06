@@ -42,7 +42,12 @@ export default class NapEditor extends React.Component {
     }
 
     onSaved() {
-        ActivityActions.saveActivity('Nap', this.state);
+        if (typeof this.props.params.activityId != 'undefined') {
+            ActivityActions.saveActivity('Nap', this.state, this.props.params.activityId);
+        }
+        else {
+            ActivityActions.saveActivity('Nap', this.state);
+        }
         this.context.router.push('/');
     }
 

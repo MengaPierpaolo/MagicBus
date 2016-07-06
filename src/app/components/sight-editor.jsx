@@ -42,8 +42,12 @@ export default class SightEditor extends React.Component {
     }
 
     onSaved() {
-        ActivityActions.saveActivity('Sight', this.state);
-        this.context.router.push('/');
+        if (typeof this.props.params.activityId != 'undefined') {
+            ActivityActions.saveActivity('Sight', this.state, this.props.params.activityId);
+        }
+        else {
+            ActivityActions.saveActivity('Sight', this.state);
+        }this.context.router.push('/');
     }
 
     onUpdate(name, value) {
