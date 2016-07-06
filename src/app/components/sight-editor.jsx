@@ -5,11 +5,13 @@ import DateEditor from './date-editor';
 import LocationEditor from './location-editor';
 import DescriptionEditor from './description-editor';
 import * as ActivityActions from '../actionCreators/activityActions'
+import moment from 'moment';
+
 
 export default class SightEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { date: '01/01/2016', name: '', location: '' };
+        this.state = { date: moment().format('DD/MM/YYYY'), name: '', location: '' };
     }
 
     static contextTypes = {

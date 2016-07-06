@@ -1,7 +1,8 @@
+import {browserHistory, Link} from 'react-router';
 import React from 'react';
-import {browserHistory} from 'react-router';
 import Button from 'react-bootstrap/lib/Button';
-import { Link } from 'react-router'
+import moment from 'moment';
+
 import * as ActivityActions from '../actionCreators/activityActions';
 import DateEditor from './date-editor';
 import LocationEditor from './location-editor';
@@ -10,7 +11,7 @@ import DescriptionEditor from './description-editor';
 export default class ChowEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { date: '01/01/2016', description: '', location: '' };
+        this.state = { date: moment().format('DD/MM/YYYY'), description: '', location: '' };
     }
 
     static contextTypes = {

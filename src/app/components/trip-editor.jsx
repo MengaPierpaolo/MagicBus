@@ -7,11 +7,13 @@ import DescriptionEditor from './description-editor';
 import * as ActivityActions from '../actionCreators/activityActions'
 import ActivityStore from '../stores/ActivityStore';
 import * as axios from 'axios';
+import moment from 'moment';
+
 
 export default class TripEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = { date: moment().format('DD/MM/YYYY') };
         this.getItem = this.getItem.bind(this);
     }
 

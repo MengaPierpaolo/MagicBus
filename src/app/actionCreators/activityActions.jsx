@@ -16,6 +16,8 @@ export function addActivity() {
 }
 
 export function saveActivity(type, item) {
+    var baseUrl = 'http://localhost:8002/api';
+
     axios.post(
         baseUrl + '/' + type,
         JSON.stringify(item),
@@ -30,6 +32,8 @@ export function saveActivity(type, item) {
 }
 
 export function deleteActivity(type, id) {
+    var baseUrl = 'http://localhost:8002/api';
+
     axios.delete(baseUrl + '/' + type + '/' + encodeURIComponent(id))
         .then(function (response) {
             dispatcher.dispatch({ type: 'DELETE_ACTIVITY' });

@@ -8,6 +8,7 @@ class ActivityStore extends EventEmitter {
         this.recentActivities = [];
         this.selectedActivity = {};
         this._Loading = false;
+        this.baseUrl = 'http://localhost:8002/api';
     }
 
     isLoading() {
@@ -24,7 +25,7 @@ class ActivityStore extends EventEmitter {
 
     loadActivity(activityId) {
         let store = this;
-        axios.get(baseUrl + '/Trip/' + encodeURIComponent(activityId))
+        axios.get(this.baseUrl + '/Trip/' + encodeURIComponent(activityId))
             .then(function (response) {
                 store.selectedActivity = response.data;
                 store.emit("activityLoaded");
@@ -36,7 +37,7 @@ class ActivityStore extends EventEmitter {
 
     loadActivities() {
         let store = this;
-        this.recentActivities = axios.get(baseUrl + '/diaryitems')
+        this.recentActivities = axios.get(this.baseUrl + '/diaryitems')
             .then(function (response) {
                 store.recentActivities = response.data;
                 store._Loading = false;

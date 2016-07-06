@@ -47,11 +47,11 @@ export default class ExperienceList extends React.Component {
 
   render() {
     var experiences = this.state.activityData.map(function (activity, index) {
-      return <div className="experience" key={activity.Id}>
-        <Link to={`Trip/${activity.Id}`} params={{activityId: activity.Id}} className="clickable-experience">{activity.Experience}</Link><br/>
+      return <div className="experience" key={activity.id}>
+        <Link to={`Trip/${activity.Id}`} params={{activityId: activity.id}} className="clickable-experience">{activity.experience}</Link><br/>
         <Button onClick={this.onExperienceClicked} className="function-button glyphicon glyphicon-arrow-up"></Button>
         <Button onClick={this.onExperienceClicked} className="function-button glyphicon glyphicon-arrow-down"></Button>
-        <Button onClick={() => { this.onDelete(activity.ExperienceType, activity.Id) } } className="function-button glyphicon glyphicon-remove"></Button>
+        <Button onClick={() => { this.onDelete(activity.experienceType, activity.id) } } className="function-button glyphicon glyphicon-remove"></Button>
       </div >;
     }, this);
 
