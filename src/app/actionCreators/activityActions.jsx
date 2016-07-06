@@ -15,22 +15,36 @@ export function addActivity() {
     dispatcher.dispatch({ type: 'ADD_ACTIVITY' })
 }
 
-export function saveActivity(type, item) {
+export function saveActivity(type, item, id) {
     var baseUrl = 'http://localhost:8002/api';
+    if (id > 0) {
+        axios.put(
+            baseUrl + '/' + type + '/' + id,
+            JSON.stringify(item),
+            { headers: { 'Content-Type': 'application/json' } }
+        )
+            .then(function (response) {
+                dispatcher.dispatch({ type: 'ADD_ACTIVITY' });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
-    axios.post(
-        baseUrl + '/' + type,
-        JSON.stringify(item),
-        { headers: { 'Content-Type': 'application/json' } }
-    )
-        .then(function (response) {
-            dispatcher.dispatch({ type: 'ADD_ACTIVITY' });
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    }
+    else {
+        axios.post(
+            baseUrl + '/' + type,
+            JSON.stringify(item),
+            { headers: { 'Content-Type': 'application/json' } }
+        )
+            .then(function (response) {
+                dispatcher.dispatch({ type: 'ADD_ACTIVITY' });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 }
-
 export function deleteActivity(type, id) {
     var baseUrl = 'http://localhost:8002/api';
 
