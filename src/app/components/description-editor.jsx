@@ -8,15 +8,21 @@ export default class DescriptionEditor extends React.Component {
         super(props);
     }
 
-    onChangeDescription(e) {
-        this.props.onChange(this.props.for, e.target.value);
+    onChange(e) {
+        this.props.onUpdate(e.target.name, e.target.value);
     }
 
     render() {
         return (
             <FormGroup>
                 <ControlLabel>{this.props.label}</ControlLabel>
-                <FormControl type="text" value={this.props.from} onChange={this.onChangeDescription.bind(this)} />
+
+                <FormControl
+                    type="text"
+                    name={this.props.name}
+                    value={this.props.data}
+                    onChange={this.onChange.bind(this) } />
+
                 <FormControl.Feedback />
             </FormGroup>
         );

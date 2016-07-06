@@ -23,9 +23,9 @@ class ActivityStore extends EventEmitter {
         return this.selectedActivity;
     }
 
-    loadActivity(activityId) {
+    loadActivity(activityType, activityId) {
         let store = this;
-        axios.get(this.baseUrl + '/Trip/' + encodeURIComponent(activityId))
+        axios.get(this.baseUrl + '/' + activityType + '/' + encodeURIComponent(activityId))
             .then(function (response) {
                 store.selectedActivity = response.data;
                 store.emit("activityLoaded");

@@ -1,7 +1,7 @@
 import React from 'react'
 import FormGroup from 'react-bootstrap/lib/FormGroup';
-import FormControl from 'react-bootstrap/lib/FormControl';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
+import FormControl from 'react-bootstrap/lib/FormControl';
 
 export default class DateEditor extends React.Component {
     constructor(props) {
@@ -9,14 +9,20 @@ export default class DateEditor extends React.Component {
     }
 
     onChange(e) {
-        this.props.onChange('Date', e.target.value);
+        this.props.onUpdate(e.target.name, e.target.value);
     }
 
     render() {
         return (
             <FormGroup>
-                <ControlLabel>On</ControlLabel>
-                <FormControl type="text" defaultValue={this.props.date} onChange={this.onChange.bind(this) } />
+                <ControlLabel>{this.props.label}</ControlLabel>
+
+                <FormControl
+                    type="text"
+                    name={this.props.name}
+                    value={this.props.data}
+                    onChange={this.onChange.bind(this) } />
+
                 <FormControl.Feedback />
             </FormGroup>
         );
