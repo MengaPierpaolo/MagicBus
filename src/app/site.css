@@ -1,7 +1,6 @@
 body {
     font-family: 'Mitr', serif;
     background-color: #2D3C4B;
-    /* Margin bottom by footer height */
     margin-bottom: 70px;
 }
 
@@ -156,6 +155,5 @@ html {
     position: absolute;
     bottom: 0;
     width: 100%;
-    /* Set the fixed height of the footer here */
     height: 60px;
 }
