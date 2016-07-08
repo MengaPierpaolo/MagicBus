@@ -1,0 +1,5 @@
+@model TDiary.Providers.ViewModel.Model.ActivityViewModel
+
+<input type="hidden" asp-for="SavePosition">
+<div class="text-danger" asp-validation-summary="All"></div>
+@Html.EditorFor(m => m.Date)
