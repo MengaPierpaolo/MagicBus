@@ -93,7 +93,7 @@ namespace TDiary
             if (result.Succeeded)
             {
                 await _signInManager.PasswordSignInAsync(vm.UserName, vm.Password, false, lockoutOnFailure: false);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
             return View(new LoginViewModel());

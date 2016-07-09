@@ -53,13 +53,13 @@ namespace TDiary
         public async Task<IActionResult> OrderActivityUp(int activityId)
         {
             await _apiProxy.PromoteActivity(activityId);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(HomeController.Index));
         }
 
         public async Task<IActionResult> OrderActivityDown(int activityId)
         {
             await _apiProxy.DemoteActivity(activityId);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(HomeController.Index));
         }
     }
 }
