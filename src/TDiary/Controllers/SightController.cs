@@ -28,7 +28,7 @@ namespace TDiary
                 await _apiProxy.Add(new Sight(vm.Date, vm.Name) { Location = vm.Location, Rating = vm.Rating });
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
         }
 
         [HttpPost]
@@ -42,7 +42,7 @@ namespace TDiary
                 await _apiProxy.Save(Sight.Create(vm.Id, vm.Date, vm.Name, vm.Location, vm.SavePosition, vm.Rating));
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
         }
 
         public async Task<IActionResult> Add()
@@ -59,7 +59,7 @@ namespace TDiary
         public async Task<IActionResult> Delete(int id)
         {
             await _apiProxy.Delete<Sight>(id);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
         }
     }
 }

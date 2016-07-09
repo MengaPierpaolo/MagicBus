@@ -29,9 +29,8 @@ namespace TDiary
                 await _apiProxy.Add(new Trip(vm.Date, vm.From, vm.To, vm.By) { Rating = vm.Rating });
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Edit(TripViewModel vm)
@@ -44,7 +43,7 @@ namespace TDiary
                 await _apiProxy.Save(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.By, vm.SavePosition, vm.Rating));
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
         }
 
         public async Task<IActionResult> Add()
@@ -61,7 +60,7 @@ namespace TDiary
         public async Task<IActionResult> Delete(int id)
         {
             await _apiProxy.Delete<Trip>(id);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
         }
     }
 }

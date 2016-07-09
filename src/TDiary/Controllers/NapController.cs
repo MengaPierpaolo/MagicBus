@@ -28,7 +28,7 @@ namespace TDiary
                 await _apiProxy.Add(new Nap(vm.Date, vm.Description) { Location = vm.Location, Rating = vm.Rating });
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
         }
 
         [HttpPost]
@@ -42,7 +42,7 @@ namespace TDiary
                 await _apiProxy.Save(Nap.Create(vm.Id, vm.Date, vm.Description, vm.Location, vm.SavePosition, vm.Rating));
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
         }
 
         public async Task<IActionResult> Add()
@@ -59,7 +59,7 @@ namespace TDiary
         public async Task<IActionResult> Delete(int id)
         {
             await _apiProxy.Delete<Nap>(id);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
         }
     }
 }

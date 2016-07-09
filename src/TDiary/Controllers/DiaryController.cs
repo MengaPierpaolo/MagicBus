@@ -13,5 +13,10 @@ namespace TDiary
         {
             _apiProxy = apiProxy;
         }
+
+        public string GetControllerName(string controllerFullName)
+        {
+            return controllerFullName.Replace("Controller", string.Empty);
+        }
     }
 }
