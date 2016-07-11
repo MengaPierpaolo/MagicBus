@@ -5,6 +5,7 @@
     "bootstrap-datepicker" : "latest",
     "jquery": "2.2.2",
     "jquery-validation": "1.15.0",
-    "jquery-validation-unobtrusive": "3.2.6"
+    "jquery-validation-unobtrusive": "3.2.6",
+    "normalize-css": "latest"
   }
 }
