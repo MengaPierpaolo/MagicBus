@@ -1,7 +1,7 @@
 @model TDiary.Providers.ViewModel.Model.ActivityViewModel
 <div class="form-group">
     <label asp-for="Rating"></label>
-    <select asp-for="Rating" asp-items="Html.GetEnumSelectList<TDiary.Model.Rating>()" class="form-control"></select>
+    <select asp-for="Rating" asp-items="@(new SelectList(Model.Ratings,"Key","Value"))" class="form-control"></select>
 </div>
 <input name="SubmitButtonUsed" type="submit" class="btn btn-primary" value="Save it!">
 <input name="SubmitButtonUsed" type="submit" class="btn btn-info" value="Changed my mind" formnovalidate>

@@ -1,10 +1,15 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.Extensions.Localization;
 using TDiary.Model;
 
 namespace TDiary.Providers.ViewModel.Model
 {
     public class TripViewModel : ActivityViewModel
     {
+        public TripViewModel(IStringLocalizer _localizer) : base(_localizer)
+        {
+        }
+
         [Required]
         [Display(Name = "You travelled from")]
         public string From { get; set; }

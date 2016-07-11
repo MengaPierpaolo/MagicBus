@@ -104,6 +104,11 @@ namespace TDiary
             localizedStrings.Add(new MyStringData("en-GB", "TripHeading.Add", "Add your travel details."));
             localizedStrings.Add(new MyStringData("en-GB", "TripHeading.Edit", "Edit your travel details."));
 
+            localizedStrings.Add(new MyStringData("en-GB", "Good", "Good Mushroom"));
+            localizedStrings.Add(new MyStringData("en-GB", "Bad", "Bad Mushroom"));
+            localizedStrings.Add(new MyStringData("en-GB", "Indifferent", "Zen Moment"));
+
+            // ----------------------
             localizedStrings.Add(new MyStringData("en-US", "ApplicationTitle", "Magic Bus"));
             localizedStrings.Add(new MyStringData("en-US", "ApplicationHeading", "Your groovy new travel diary!"));
 
@@ -130,6 +135,10 @@ namespace TDiary
             localizedStrings.Add(new MyStringData("en-US", "TripHeading.Add", "Add your travel details."));
             localizedStrings.Add(new MyStringData("en-US", "TripHeading.Edit", "Edit your travel details."));
 
+            localizedStrings.Add(new MyStringData("en-US", "Good", "Good Mushroom"));
+            localizedStrings.Add(new MyStringData("en-US", "Bad", "Bad Mushroom"));
+            localizedStrings.Add(new MyStringData("en-US", "Indifferent", "Zen Moment"));
+            
             /* Chinese */
             localizedStrings.Add(new MyStringData("zh-CN", "ApplicationTitle", "魔术公共汽车"));
             localizedStrings.Add(new MyStringData("zh-CN", "ApplicationHeading", "你最喜欢的旅行日记"));
@@ -156,6 +165,10 @@ namespace TDiary
             localizedStrings.Add(new MyStringData("zh-CN", "TripTitle.Edit", "Lost?"));
             localizedStrings.Add(new MyStringData("zh-CN", "TripHeading.Add", "Add your travel details."));
             localizedStrings.Add(new MyStringData("zh-CN", "TripHeading.Edit", "Edit your travel details."));
+
+            localizedStrings.Add(new MyStringData("zh-CN", "Good", "很好"));
+            localizedStrings.Add(new MyStringData("zh-CN", "Bad", "不好"));
+            localizedStrings.Add(new MyStringData("zh-CN", "Indifferent", "馬馬虎虎"));
         }
 
         private class MyStringData

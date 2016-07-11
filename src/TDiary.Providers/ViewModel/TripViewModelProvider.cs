@@ -17,7 +17,7 @@ namespace TDiary.Providers.ViewModel
 
         public async Task<TripViewModel> CreateAddViewModel()
         {
-            var item = new TripViewModel()
+            var item = new TripViewModel(_localizer)
             {
                 From = await _locationProvider.GetLastLocation()
             };

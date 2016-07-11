@@ -17,7 +17,7 @@ namespace TDiary.Providers.ViewModel
 
         public async Task<NapViewModel> CreateAddViewModel()
         {
-            var item = new NapViewModel
+            var item = new NapViewModel(_localizer)
             {
                 Location = await _locationProvider.GetLastLocation()
             };

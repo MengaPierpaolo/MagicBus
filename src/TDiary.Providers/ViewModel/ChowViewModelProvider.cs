@@ -17,7 +17,7 @@ namespace TDiary.Providers.ViewModel
 
         public async Task<ChowViewModel> CreateAddViewModel()
         {
-            var item = new ChowViewModel()
+            var item = new ChowViewModel(_localizer)
             {
                 Location = await _locationProvider.GetLastLocation()
             };

@@ -5,7 +5,7 @@ namespace TDiary.Providers.ViewModel
 {
     public abstract class ViewModelProvider<T> where T : ActivityViewModel
     {
-        private IStringLocalizer _localizer;
+        protected IStringLocalizer _localizer;
 
         public ViewModelProvider(IStringLocalizer localizer)
         {

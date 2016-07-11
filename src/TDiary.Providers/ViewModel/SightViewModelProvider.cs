@@ -17,7 +17,7 @@ namespace TDiary.Providers.ViewModel
 
         public async Task<SightViewModel> CreateAddViewModel()
         {
-            var item = new SightViewModel()
+            var item = new SightViewModel(_localizer)
             {
                 Location = await _locationProvider.GetLastLocation()
             };
