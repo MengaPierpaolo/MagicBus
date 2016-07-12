@@ -54,12 +54,16 @@ namespace TDiary
             ViewData["ReturnUrl"] = returnUrl;
             if (vm.LoginPressed)
             {
-                if (vm.UserName != null && vm.Password != null)
+                if (ModelState.IsValid)
                 {
                     var result = await _signInManager.PasswordSignInAsync(vm.UserName, vm.Password, false, lockoutOnFailure: false);
                     if (result.Succeeded)
                     {
                         return RedirectToLocal(returnUrl);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     }
                 }
             }
@@ -68,7 +72,7 @@ namespace TDiary
                 return RedirectToAction("Register", "Account");
             }
 
-            return View(new LoginViewModel(_localizer));
+            return View(vm);
         }
 
         private IActionResult RedirectToLocal(string returnUrl)
@@ -86,22 +90,35 @@ namespace TDiary
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
-            return View(new LoginViewModel(_localizer));
+            return View(new RegisterViewModel(_localizer));
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Register(LoginViewModel vm)
+        public async Task<IActionResult> Register(RegisterViewModel vm)
         {
-            var user = new ApplicationUser { UserName = vm.UserName, Email = vm.UserName };
-            var result = await _userManager.CreateAsync(user, vm.Password);
-            if (result.Succeeded)
+            if (ModelState.IsValid)
             {
-                await _signInManager.PasswordSignInAsync(vm.UserName, vm.Password, false, lockoutOnFailure: false);
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                var user = new ApplicationUser { UserName = vm.UserName, Email = vm.Email };
+                var result = await _userManager.CreateAsync(user, vm.Password);
+                if (result.Succeeded)
+                {
+                    await _signInManager.PasswordSignInAsync(vm.UserName, vm.Password, false, lockoutOnFailure: false);
+                    return RedirectToAction(nameof(HomeController.Index), "Home");
+                }
+                AddErrors(result);
             }
 
-            return View(new LoginViewModel(_localizer));
+            return View(vm);
         }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+        }
+
     }
 }
