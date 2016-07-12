@@ -3,20 +3,25 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using TDiary.Providers.ViewModel.Model;
+using Microsoft.Extensions.Localization;
 
 namespace TDiary
 {
     [ServiceFilter(typeof(LanguageActionFilter))]
     public class AccountController : Controller
     {
+        private readonly IStringLocalizer _localizer;
+
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
         public AccountController(
+            IStringLocalizer localizer,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager
         )
         {
+            _localizer = localizer;
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -39,7 +44,7 @@ namespace TDiary
         public IActionResult Login(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            return View(new LoginViewModel());
+            return View(new LoginViewModel(_localizer));
         }
 
         [HttpPost]
@@ -63,7 +68,7 @@ namespace TDiary
                 return RedirectToAction("Register", "Account");
             }
 
-            return View(new LoginViewModel());
+            return View(new LoginViewModel(_localizer));
         }
 
         private IActionResult RedirectToLocal(string returnUrl)
@@ -81,7 +86,7 @@ namespace TDiary
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
-            return View(new LoginViewModel());
+            return View(new LoginViewModel(_localizer));
         }
 
         [HttpPost]
@@ -96,7 +101,7 @@ namespace TDiary
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
 
-            return View(new LoginViewModel());
+            return View(new LoginViewModel(_localizer));
         }
     }
 }

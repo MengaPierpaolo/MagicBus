@@ -1,9 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.Extensions.Localization;
+using System.ComponentModel.DataAnnotations;
 
 namespace TDiary.Providers.ViewModel.Model
 {
     public class LoginViewModel : PageViewModel
     {
+        internal LoginViewModel() { }
+        public LoginViewModel(IStringLocalizer localizer)
+        {
+            Title = localizer.GetString("ApplicationTitle");
+            Heading = localizer.GetString("ApplicationHeading");
+        }
+
         [Required]
         [Display(Name = "User Name")]
         public string UserName { get; set; }

@@ -22,9 +22,11 @@ namespace TDiary
             if (c != null)
             {
                 c.ViewData["culture"] = culture;
-                if (c.Request.Path.ToString().Contains("/") && c.Request.Path.ToString().Length > 1)
+                // TODO: This works but is a bit hacky
+                var bits = c.Request.Path.ToString().Split('/');
+                if (bits.Length > 2 && bits[1] != string.Empty)
                 {
-                    c.ViewData["currentPage"] = c.Request.Path.ToString().Substring(c.Request.Path.ToString().IndexOf("/", 2) + 1);
+                    c.ViewData["currentPage"] = c.Request.Path.ToString().Replace(string.Format("/{0}/", bits[1]), string.Empty);
                 }
             }
 
