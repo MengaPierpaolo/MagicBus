@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Extensions.Localization;
@@ -18,6 +19,34 @@ namespace TDiary.Providers.ViewModel.Model
             Heading = _localizer.GetString("ExperienceListHeading");
 
             SetupLocalization();
+            SetupMoveability();
+        }
+
+        private void SetupMoveability()
+        {
+            // get the days
+            var firstOnes = from element in _experiences
+                    group element by element.Date
+                    into groups
+                        select groups.OrderBy(p => p.SavePosition).First();
+
+            // get the lowest on the day
+            var lastOnes = from element in _experiences
+                    group element by element.Date
+                    into groups
+                    select groups.OrderBy(p => p.SavePosition).Last();
+            
+            foreach (var experience in _experiences)
+            {
+                if (firstOnes.Contains(experience))
+                {
+                    experience.IsFirstOfTheDay = true;
+                }
+                if (lastOnes.Contains(experience))
+                {
+                    experience.IsLastOfTheDay = true;
+                }
+            }
         }
 
         private void SetupLocalization()

@@ -9,12 +9,33 @@ using System.Collections.Generic;
 
 namespace TDiary
 {
+    public class ExperienceListController : Controller
+    {
+        protected readonly IApiProxy _apiProxy;
+
+        public ExperienceListController(IApiProxy apiProxy)
+        {
+            _apiProxy = apiProxy;
+        }
+
+        public async Task<IActionResult> OrderActivityUp(int activityId)
+        {
+            await _apiProxy.PromoteActivity(activityId);
+            return RedirectToAction(nameof(HomeController.Index), GetType().Name.Replace("Controller", string.Empty));
+        }
+
+        public async Task<IActionResult> OrderActivityDown(int activityId)
+        {
+            await _apiProxy.DemoteActivity(activityId);
+            return RedirectToAction(nameof(HomeController.Index), GetType().Name.Replace("Controller",string.Empty));
+        }
+    }
+
     [ServiceFilter(typeof(LanguageActionFilter))]
-    public class HomeController : Controller
+    public class HomeController : ExperienceListController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IApiProxy _apiProxy;
         private IStringLocalizer _localizer;
 
         public HomeController(
@@ -22,10 +43,9 @@ namespace TDiary
             IStringLocalizer localizer,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager
-       )
+       ) : base(apiProxy)
         {
             _localizer = localizer;
-            _apiProxy = apiProxy;
             _apiProxy.SetPath("/diaryitems/");
             _userManager = userManager;
             _signInManager = signInManager;
@@ -43,18 +63,6 @@ namespace TDiary
                 .ThenByDescending(pos => pos.SavePosition);
 
             return View(new HomeViewModel(recentExperiences, _localizer));
-        }
-
-        public async Task<IActionResult> OrderActivityUp(int activityId)
-        {
-            await _apiProxy.PromoteActivity(activityId);
-            return RedirectToAction(nameof(HomeController.Index));
-        }
-
-        public async Task<IActionResult> OrderActivityDown(int activityId)
-        {
-            await _apiProxy.DemoteActivity(activityId);
-            return RedirectToAction(nameof(HomeController.Index));
         }
     }
 }

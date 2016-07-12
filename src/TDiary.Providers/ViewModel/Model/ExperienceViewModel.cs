@@ -40,5 +40,9 @@ namespace TDiary.Providers.ViewModel.Model
         {
             _localizer = localizer;
         }
+
+        public bool IsFirstOfTheDay { get; internal set; }
+
+        public bool IsLastOfTheDay { get; internal set; }
     }
 }

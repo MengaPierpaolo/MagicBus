@@ -24,6 +24,12 @@ namespace TDiary.Api
             return _diaryItemsRepo.GetRecentExperiences(PageSize.Five);
         }
 
+        [HttpGet, Route("[Action]/{page:int}")]
+        public IEnumerable<DiaryItem> PageNumber(int page = 0)
+        {
+            return _diaryItemsRepo.GetAllByPage(PageSize.Ten, page);
+        }
+
         [HttpPut("{id}")]
         public IActionResult Order(int id, [FromBody]string order)
         {

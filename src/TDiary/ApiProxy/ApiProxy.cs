@@ -99,5 +99,18 @@ namespace TDiary
             var jsonString = JsonConvert.SerializeObject(directionIsUp ? "Up" : "Down");
             return new StringContent(jsonString, Encoding.UTF8, "application/json");
         }
+
+        public async Task<IEnumerable<ExperienceViewModel>> GetAllByPage(int pageSize, int page = 1)
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync(client.BaseAddress + "/pagenumber/" + page.ToString());
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = await responseMessage.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<ExperienceViewModel>>(responseData);
+            }
+
+            // TODO: log non-happy path
+            return default(List<ExperienceViewModel>);
+        }
     }
 }

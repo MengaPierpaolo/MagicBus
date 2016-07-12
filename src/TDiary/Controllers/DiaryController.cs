@@ -14,9 +14,11 @@ namespace TDiary
             _apiProxy = apiProxy;
         }
 
-        public string GetControllerName(string controllerFullName)
+
+        public string GetRedirectController(string controllerFullName, string sourceLocation = "")
         {
-            return controllerFullName.Replace("Controller", string.Empty);
+            return sourceLocation == string.Empty ?
+                controllerFullName.Replace("Controller", string.Empty) : sourceLocation;
         }
     }
 }

@@ -101,10 +101,10 @@ namespace TDiary
 
                 var supportedCultures = new[]
                 {
-                new CultureInfo("en-GB"),
-                new CultureInfo("en-US"),
-                new CultureInfo("zh-CN")
-            };
+                    new CultureInfo("en-GB"),
+                    new CultureInfo("en-US"),
+                    new CultureInfo("zh-CN")
+                };
 
                 app.UseRequestLocalization(new RequestLocalizationOptions
                 {

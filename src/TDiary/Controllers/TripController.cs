@@ -29,11 +29,11 @@ namespace TDiary
                 await _apiProxy.Add(new Trip(vm.Date, vm.From, vm.To, vm.By) { Rating = vm.Rating });
             }
 
-            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
+            return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController)));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(TripViewModel vm)
+        public async Task<IActionResult> Edit(TripViewModel vm, string sourceLocation)
         {
             if (vm.SavePressed)
             {
@@ -43,7 +43,7 @@ namespace TDiary
                 await _apiProxy.Save(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.By, vm.SavePosition, vm.Rating));
             }
 
-            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
+            return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController), sourceLocation));
         }
 
         public async Task<IActionResult> Add()
@@ -51,16 +51,18 @@ namespace TDiary
             return View(await _viewModelProvider.CreateAddViewModel());
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id, string sourceLocation)
         {
+            ViewData["sourceLocation"] = sourceLocation;
+
             var vm = await _apiProxy.Get<TripViewModel>(id);
             return View(_viewModelProvider.RefreshEditViewModel(vm));
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, string sourceLocation)
         {
             await _apiProxy.Delete<Trip>(id);
-            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
+            return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController), sourceLocation));
         }
     }
 }

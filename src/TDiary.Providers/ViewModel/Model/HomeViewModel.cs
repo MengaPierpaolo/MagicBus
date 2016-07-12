@@ -1,38 +1,25 @@
 ﻿using Microsoft.Extensions.Localization;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace TDiary.Providers.ViewModel.Model
 {
     public class HomeViewModel : PageViewModel
     {
-        private readonly IEnumerable<ExperienceViewModel> _experiences;
-        private readonly IStringLocalizer _localizer;
+        private readonly ExperienceListViewModel _experienceList;
 
         public HomeViewModel(IEnumerable<ExperienceViewModel> experiences, IStringLocalizer localizer)
         {
-            _localizer = localizer;
-            _experiences = experiences;
+            _experienceList = new ExperienceListViewModel(experiences, localizer);
 
-            Title = _localizer.GetString("ApplicationTitle");
-            Heading = _localizer.GetString("ApplicationHeading");
-
-            SetupLocalization();
-        }
-
-        private void SetupLocalization()
-        {
-            foreach (var experience in _experiences)
-            {
-                experience.Localize(_localizer);
-            }
+            Title = localizer.GetString("ApplicationTitle");
+            Heading = localizer.GetString("ApplicationHeading");
         }
 
         public IEnumerable<ExperienceViewModel> RecentExperiences
         {
             get
             {
-                return _experiences;
+                return _experienceList.Experiences;
             }
         }
 
@@ -40,7 +27,7 @@ namespace TDiary.Providers.ViewModel.Model
         {
             get
             {
-                return _experiences.ToList().Count > 0;
+                return _experienceList.ShowRecentExperiences;
             }
         }
     }

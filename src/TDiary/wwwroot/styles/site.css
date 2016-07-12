@@ -13,6 +13,13 @@ body {
         color: goldenrod;
     }
 
+.visible-true {
+    display: none;
+}
+
+.visible-false {
+    display: normal;
+}
 
 .container-fluid {
     margin: 0;
@@ -46,20 +53,22 @@ body {
     padding: 2px;
     margin-bottom: 3px;
     background-color: #272b30;
-    border-radius: 10px
+    border-radius: 10px;
 }
 
-.experience a:hover {
-    text-decoration: none;
-    color: white;
-}
+    .experience a:hover {
+        text-decoration: none;
+        color: white;
+    }
 
 .experience-toolbar {
-    padding: 2px;
+    padding: 5px;
+    text-align: right;
 }
 
 .clickable-experience {
     display: inline-block;
+    min-height: 40px;
     margin-bottom: 5px;
     padding-left: 5px;
     color: antiquewhite;
@@ -76,13 +85,19 @@ body {
 .function-button {
     padding-left: 10px;
     padding-right: 10px;
-    background: #91C957;
+    background-color: #2D3C4B;
     color: white;
     border: 0;
 }
 
     .function-button:hover {
         background: #91C957;
+        color: black;
+    }
+
+    
+    .function-button-delete:hover {
+        background-color: brown;
         color: black;
     }
 

@@ -2,17 +2,21 @@
 
 @if (Model.ShowRecentExperiences)
 {
-    <h3>Experiences:</h3>
+    <h3>Experiences: (most recent first)</h3>
     @foreach (var i in Model.Experiences)
     {
         <div class="row experience">
             <div class="col-sm-7">
-                <a class="clickable-experience" asp-action="Edit" asp-controller="@i.ExperienceType" asp-route-id="@i.Id">@i.FullExperience</a><br>
+                <a class="clickable-experience" asp-action="Edit" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" asp-route-sourceLocation="Experience">@i.FullExperience</a><br>
             </div>
-                <div class="col-sm-5">
-                <a class="" asp-action="OrderActivityUp" asp-route-activityId="@i.Id">This happened after the experience above</a><br>
-                <a class="" asp-action="OrderActivityDown" asp-route-activityId="@i.Id">This happened before the experience below</a><br>
-                <a class="" asp-action="Delete" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" title="Delete this @i.ExperienceType">This never happened!</a>
+            <div class="col-sm-5">
+                <div class="visible-@i.IsLastOfTheDay.ToString().ToLower()">
+                    <a class="" asp-action="OrderActivityUp" asp-route-activityId="@i.Id">This happened after the experience above</a><br>
+                </div>
+                <div class="visible-@i.IsFirstOfTheDay.ToString().ToLower()">
+                    <a class="" asp-action="OrderActivityDown" asp-route-activityId="@i.Id">This happened before the experience below</a><br>
+                </div>
+                <a class="" asp-action="Delete" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" asp-route-sourceLocation="Experience" title="Delete this @i.ExperienceType">This never happened!</a>
             </div>
         </div>
     }

@@ -28,11 +28,11 @@ namespace TDiary
                 await _apiProxy.Add(new Nap(vm.Date, vm.Description) { Location = vm.Location, Rating = vm.Rating });
             }
 
-            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
+            return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController)));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(NapViewModel vm)
+        public async Task<IActionResult> Edit(NapViewModel vm, string sourceLocation)
         {
             if (vm.SavePressed)
             {
@@ -42,7 +42,7 @@ namespace TDiary
                 await _apiProxy.Save(Nap.Create(vm.Id, vm.Date, vm.Description, vm.Location, vm.SavePosition, vm.Rating));
             }
 
-            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
+            return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController), sourceLocation));
         }
 
         public async Task<IActionResult> Add()
@@ -50,16 +50,18 @@ namespace TDiary
             return View(await _viewModelProvider.CreateAddViewModel());
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id, string sourceLocation)
         {
+            ViewData["sourceLocation"] = sourceLocation;
+
             var vm = await _apiProxy.Get<NapViewModel>(id);
             return View(_viewModelProvider.RefreshEditViewModel(vm));
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, string sourceLocation)
         {
             await _apiProxy.Delete<Nap>(id);
-            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
+            return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController), sourceLocation));
         }
     }
 }

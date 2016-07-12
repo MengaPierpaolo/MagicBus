@@ -28,11 +28,11 @@ namespace TDiary
                 await _apiProxy.Add(new Sight(vm.Date, vm.Name) { Location = vm.Location, Rating = vm.Rating });
             }
 
-            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
+            return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController)));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(SightViewModel vm)
+        public async Task<IActionResult> Edit(SightViewModel vm, string sourceLocation)
         {
             if (vm.SavePressed)
             {
@@ -42,24 +42,26 @@ namespace TDiary
                 await _apiProxy.Save(Sight.Create(vm.Id, vm.Date, vm.Name, vm.Location, vm.SavePosition, vm.Rating));
             }
 
-            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
-        }
+            return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController), sourceLocation));
+        }   
 
         public async Task<IActionResult> Add()
         {
             return View(await _viewModelProvider.CreateAddViewModel());
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int id, string sourceLocation)
         {
+            ViewData["sourceLocation"] = sourceLocation;
+
             var vm = await _apiProxy.Get<SightViewModel>(id);
             return View(_viewModelProvider.RefreshEditViewModel(vm));
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int id, string sourceLocation)
         {
             await _apiProxy.Delete<Sight>(id);
-            return RedirectToAction(nameof(HomeController.Index), GetControllerName(nameof(HomeController)));
+            return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController), sourceLocation));
         }
     }
 }
