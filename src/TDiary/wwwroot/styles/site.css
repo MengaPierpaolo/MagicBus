@@ -5,7 +5,17 @@ body {
     margin-bottom: 70px;
 }
 
-.fa-bus {
+.big-icon {
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.btn-full {
+    padding:0;
+    border: solid 2pt #2D3C4B;
+}
+
+.fa-bus-icon {
     width: 10px;
 }
 

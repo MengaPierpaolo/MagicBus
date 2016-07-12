@@ -1,15 +1,19 @@
+@using System.Globalization
 
 @{ Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 @RenderBody()
 
+<input type="hidden" id="dateFormat" value="@CultureInfo.CurrentUICulture.DateTimeFormat.ShortDatePattern" />
 @section scripts {
     <script type="text/javascript">
         $(function () {
+            var dateFormat = $('#dateFormat').val().toLowerCase();
             $('#datetimepicker1').datepicker({
-                format: "dd/mm/yyyy",
+                format: dateFormat,
                 todayHighlight: true,
-                autoclose: true
+                autoclose: true,
+                language: '@CultureInfo.CurrentUICulture'
             });
         });
     </script>
