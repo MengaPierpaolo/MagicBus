@@ -6,7 +6,7 @@ namespace TDiary.Model
         Train,
         Boat,
         Plane,
-        Walk,
+        Walking,
         Bicycle,
         TukTuk,
         Skateboard
