@@ -19,7 +19,7 @@ namespace TDiary.Providers.Location
         {
             var recentItem = await _context.Experiences
                 .OrderByDescending(di => di.Date)
-                .OrderByDescending(pos => pos.SavePosition)
+                .ThenByDescending(pos => pos.SavePosition)
                 .FirstOrDefaultAsync();
 
             if (recentItem != null)
