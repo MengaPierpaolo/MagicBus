@@ -32,17 +32,17 @@ namespace TDiary
             await client.PostAsync(GetItemAddress(item.GetType()), GetPostContent(item));
         }
 
-        public async Task<IEnumerable<RecentExperienceViewModel>> GetRecent()
+        public async Task<IEnumerable<ExperienceViewModel>> GetRecent()
         {
             HttpResponseMessage responseMessage = await client.GetAsync(client.BaseAddress);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = await responseMessage.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<List<RecentExperienceViewModel>>(responseData);
+                return JsonConvert.DeserializeObject<List<ExperienceViewModel>>(responseData);
             }
 
             // TODO: log non-happy path
-            return default(List<RecentExperienceViewModel>);
+            return default(List<ExperienceViewModel>);
         }
 
         public void SetPath(string url)

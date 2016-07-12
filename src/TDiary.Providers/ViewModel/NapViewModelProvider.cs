@@ -27,11 +27,13 @@ namespace TDiary.Providers.ViewModel
 
         public NapViewModel RefreshAddViewModel(NapViewModel item)
         {
+            item.Localize(_localizer);
             return AddTitles(item);
         }
 
         public NapViewModel RefreshEditViewModel(NapViewModel item)
         {
+            item.Localize(_localizer);
             return EditTitles(item);
         }
     }

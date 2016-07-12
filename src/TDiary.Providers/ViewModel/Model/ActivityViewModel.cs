@@ -1,21 +1,23 @@
+using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.Extensions.Localization;
 using TDiary.Model;
 
 namespace TDiary.Providers.ViewModel.Model
 {
     public abstract class ActivityViewModel : PageViewModel
     {
-        public int Id { get; set; }
         private DateTime _date = DateTime.UtcNow;
-        private IStringLocalizer _localizer;
+        protected internal IStringLocalizer _localizer;
 
-        public ActivityViewModel(IStringLocalizer _localizer)
+        internal ActivityViewModel() { }
+        public ActivityViewModel(IStringLocalizer localizer)
         {
-            this._localizer = _localizer;
+            _localizer = localizer;
         }
+
+        public int Id { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -38,14 +40,6 @@ namespace TDiary.Providers.ViewModel.Model
 
         public string SubmitButtonUsed { get; set; }
 
-        public bool SavePressed
-        {
-            get
-            {
-                return SubmitButtonUsed == "Save it!";
-            }
-        }
-
         public int SavePosition { get; set; }
 
         [Display(Name = "What was your experience, dude?")]
@@ -57,11 +51,24 @@ namespace TDiary.Providers.ViewModel.Model
             {
                 return new Dictionary<string, string>
                 {
-                   {((int)Rating.Good).ToString(), _localizer.GetString(Rating.Good.ToString())},
-                   {((int)Rating.Indifferent).ToString(), _localizer.GetString(Rating.Indifferent.ToString())},
-                   {((int)Rating.Bad).ToString(), _localizer.GetString(Rating.Bad.ToString())}
+                   {((int)Rating.Good).ToString(), _localizer?.GetString(Rating.Good.ToString())},
+                   {((int)Rating.Indifferent).ToString(), _localizer?.GetString(Rating.Indifferent.ToString())},
+                   {((int)Rating.Bad).ToString(), _localizer?.GetString(Rating.Bad.ToString())}
                 };
             }
+        }
+
+        public bool SavePressed
+        {
+            get
+            {
+                return SubmitButtonUsed == "Save it!";
+            }
+        }
+
+        internal void Localize(IStringLocalizer localizer)
+        {
+            _localizer = localizer;
         }
     }
 }

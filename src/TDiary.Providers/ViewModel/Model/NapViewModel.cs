@@ -5,9 +5,8 @@ namespace TDiary.Providers.ViewModel.Model
 {
     public class NapViewModel : ActivityViewModel
     {
-        public NapViewModel(IStringLocalizer _localizer) : base(_localizer)
-        {
-        }
+        internal NapViewModel() { }
+        public NapViewModel(IStringLocalizer _localizer) : base(_localizer) { }
 
         [Required]
         [Display(Name = "You snoozed in")]

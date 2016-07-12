@@ -36,18 +36,13 @@ namespace TDiary
         {
             var recentExperiences = _signInManager.IsSignedIn(User) ?
                 await _apiProxy.GetRecent() :
-                new List<RecentExperienceViewModel>();
+                new List<ExperienceViewModel>();
 
-            var vm = new HomeViewModel()
-            {
-                Title = _localizer.GetString("ApplicationTitle"),
-                Heading = _localizer.GetString("ApplicationHeading"),
-                RecentExperiences = recentExperiences
-                    .OrderByDescending(d => d.Date)
-                    .ThenByDescending(pos => pos.SavePosition)
-            };
+            recentExperiences = recentExperiences
+                .OrderByDescending(d => d.Date)
+                .ThenByDescending(pos => pos.SavePosition);
 
-            return View(vm);
+            return View(new HomeViewModel(recentExperiences, _localizer));
         }
 
         public async Task<IActionResult> OrderActivityUp(int activityId)

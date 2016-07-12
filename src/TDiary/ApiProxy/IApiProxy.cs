@@ -12,7 +12,7 @@ namespace TDiary
         Task Add(DiaryItem item);
         Task Save(DiaryItem item);
         Task Delete<T>(int id) where T : DiaryItem;
-        Task<IEnumerable<RecentExperienceViewModel>> GetRecent();
+        Task<IEnumerable<ExperienceViewModel>> GetRecent();
         Task PromoteActivity(int activityId);
         Task DemoteActivity(int activityId);
     }

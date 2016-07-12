@@ -27,11 +27,13 @@ namespace TDiary.Providers.ViewModel
 
         public TripViewModel RefreshAddViewModel(TripViewModel item)
         {
+            item.Localize(_localizer);
             return AddTitles(item);
         }
 
         public TripViewModel RefreshEditViewModel(TripViewModel item)
         {
+            item.Localize(_localizer);
             return EditTitles(item);
         }
     }

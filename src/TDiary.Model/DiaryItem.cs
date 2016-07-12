@@ -23,7 +23,7 @@ namespace TDiary.Model
         {
             get
             {
-                return this.GetType().Name;
+                return GetType().Name;
             }
         }
 

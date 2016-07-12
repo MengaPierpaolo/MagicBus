@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using TDiary.Providers.ViewModel.Model;
@@ -7,20 +8,20 @@ namespace TDiary
     [ServiceFilter(typeof(LanguageActionFilter))]
     public class ExperienceController : Controller
     {
-        private IStringLocalizer _localizer;
+        private readonly IApiProxy _apiProxy;
+        private readonly IStringLocalizer _localizer;
 
-        public ExperienceController(IStringLocalizer localizer)
+        public ExperienceController(IApiProxy apiProxy, IStringLocalizer localizer)
         {
             _localizer = localizer;
+            _apiProxy = apiProxy;
+
+            _apiProxy.SetPath("/diaryitems/");
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var vm = new ExperienceListViewModel()
-            {
-                Title = _localizer.GetString("ExperienceListTitle"),
-                Heading = _localizer.GetString("ExperienceListHeading")
-            };
+            var vm = new ExperienceListViewModel(await _apiProxy.GetRecent(), _localizer);
             return View(vm);
         }
     }

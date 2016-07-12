@@ -5,9 +5,8 @@ namespace TDiary.Providers.ViewModel.Model
 {
     public class SightViewModel : ActivityViewModel
     {
-        public SightViewModel(IStringLocalizer _localizer) : base(_localizer)
-        {
-        }
+        internal SightViewModel() { }
+        public SightViewModel(IStringLocalizer _localizer) : base(_localizer) { }
 
         [Required]
         [Display(Name = "You saw")]

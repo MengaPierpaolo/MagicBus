@@ -5,7 +5,8 @@ namespace TDiary.Providers.ViewModel.Model
 {
     public class ChowViewModel : ActivityViewModel
     {
-        internal ChowViewModel(IStringLocalizer _localizer) : base(_localizer) { }
+        internal ChowViewModel() { }
+        public ChowViewModel(IStringLocalizer _localizer) : base(_localizer) { }
 
         [Required]
         [Display(Name = "You consumed")]

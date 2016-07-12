@@ -27,11 +27,13 @@ namespace TDiary.Providers.ViewModel
 
         public SightViewModel RefreshAddViewModel(SightViewModel item)
         {
+            item.Localize(_localizer);
             return AddTitles(item);
         }
 
         public SightViewModel RefreshEditViewModel(SightViewModel item)
         {
+            item.Localize(_localizer);
             return EditTitles(item);
         }
     }

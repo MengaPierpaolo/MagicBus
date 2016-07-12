@@ -1,16 +1,23 @@
-﻿namespace TDiary.Providers.ViewModel.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TDiary.Providers.ViewModel.Model
 {
     public class LoginViewModel : PageViewModel
     {
+        [Required]
+        [Display(Name = "User Name")]
         public string UserName { get; set; }
+
+        [Required]
         public string Password { get; set; }
+
         public string SubmitButtonUsed { get; set; }
 
         public bool LoginPressed
         {
             get
             {
-                return this.SubmitButtonUsed == "Log in";
+                return SubmitButtonUsed == "Log in";
             }
         }
     }

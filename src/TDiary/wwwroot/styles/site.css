@@ -42,8 +42,20 @@ body {
 }
 
 .experience {
+    color: antiquewhite;
     padding: 2px;
     margin-bottom: 3px;
+    background-color: #272b30;
+    border-radius: 10px
+}
+
+.experience a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.experience-toolbar {
+    padding: 2px;
 }
 
 .clickable-experience {

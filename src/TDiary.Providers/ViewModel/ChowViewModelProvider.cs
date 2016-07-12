@@ -27,11 +27,13 @@ namespace TDiary.Providers.ViewModel
 
         public ChowViewModel RefreshAddViewModel(ChowViewModel item)
         {
+            item.Localize(_localizer);
             return AddTitles(item);
         }
 
         public ChowViewModel RefreshEditViewModel(ChowViewModel item)
         {
+            item.Localize(_localizer);
             return EditTitles(item);
         }
     }

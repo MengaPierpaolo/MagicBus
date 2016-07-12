@@ -1,16 +1,18 @@
 @model TDiary.Providers.ViewModel.Model.LoginViewModel
 
-<h3>Register</h3>
-<form class="form" asp-action="Register">
-    <div class="form-group">
-        <label asp-for="UserName"></label>
-        <input type="text" class="form-control" asp-for="UserName" autocomplete="off">
-    </div>
+<div class="modal-dialog">
+    <h3>Please provide the following details to register</h3>
+    <form class="form" asp-action="Register">
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <input type="text" class="form-control" asp-for="UserName" autocomplete="off">
+        </div>
 
-    <div class="form-group">
-        <label asp-for="Password"></label>
-        <input type="password" class="form-control" asp-for="Password" autocomplete="off">
-    </div>
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input type="password" class="form-control" asp-for="Password" autocomplete="off">
+        </div>
 
-    <input name="SubmitButtonUsed" type="submit" class="btn btn-primary" value="Register">
-</form>
+        <input name="SubmitButtonUsed" type="submit" class="btn btn-primary" value="Register">
+    </form>
+</div>

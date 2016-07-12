@@ -20,18 +20,19 @@
                 <a asp-action="Add" asp-controller="Sight" class="btn btn-primary btn-block">Saw something funky</a>
                 <a asp-action="Add" asp-controller="Nap" class="btn btn-primary btn-block">Took a noteworthy nap</a>
             </div>
-            <div class="col-sm-1"></div>
-            <div class="col-sm-6">
+            <div class="col-sm-7">
                 @if (Model.ShowRecentExperiences)
                 {
                     <h3>Recent experiences:</h3>
                     @foreach (var i in Model.RecentExperiences)
                     {
-                        <div class="experience">
-                            <a class="clickable-experience" asp-action="Edit" asp-controller="@i.ExperienceType" asp-route-id="@i.Id">@i.Experience</a><br>
-                            <a class="btn btn-default function-button glyphicon glyphicon-arrow-up" asp-action="OrderActivityUp" asp-route-activityId="@i.Id"></a>
-                            <a class="btn btn-default function-button glyphicon glyphicon-arrow-down" asp-action="OrderActivityDown" asp-route-activityId="@i.Id"></a>
-                            <a class="btn btn-default function-button glyphicon glyphicon-remove" asp-action="Delete" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" title="Delete this @i.ExperienceType"></a>
+                        <div class="experience text-center">
+                            <a class="clickable-experience" asp-action="Edit" asp-controller="@i.ExperienceType" asp-route-id="@i.Id">@i.FullExperience</a><br>
+                            <div class="experience-toolbar">
+                                <a class="btn btn-default function-button glyphicon glyphicon-arrow-up" asp-action="OrderActivityUp" asp-route-activityId="@i.Id"></a>
+                                <a class="btn btn-default function-button glyphicon glyphicon-arrow-down" asp-action="OrderActivityDown" asp-route-activityId="@i.Id"></a>
+                                <a class="btn btn-default function-button glyphicon glyphicon-remove" asp-action="Delete" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" title="Delete this @i.ExperienceType"></a>
+                            </div>
                         </div>
                     }
                     <br>
@@ -42,7 +43,7 @@
     else
     {
         <div class="jumbotron">
-            <h2>Magic Bus brings you joy and happiness...  But first, you need to log in!</h2>
+            <h2>Magic Bus brings you joy and happiness...  But first, you need to @Html.ActionLink("log in!", "Login", "Account")</h2>
         </div>
     }
 </div>

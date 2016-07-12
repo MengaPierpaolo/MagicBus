@@ -6,9 +6,8 @@ namespace TDiary.Providers.ViewModel.Model
 {
     public class TripViewModel : ActivityViewModel
     {
-        public TripViewModel(IStringLocalizer _localizer) : base(_localizer)
-        {
-        }
+        internal TripViewModel() { }
+        public TripViewModel(IStringLocalizer _localizer) : base(_localizer) { }
 
         [Required]
         [Display(Name = "You travelled from")]
