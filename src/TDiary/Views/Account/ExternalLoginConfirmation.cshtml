@@ -3,7 +3,6 @@
 <div class="modal-dialog">
     <form asp-controller="Account" asp-action="ExternalLoginConfirmation" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" >
         <div asp-validation-summary="All" class="text-danger"></div>
-
         <p class="text-danger">
             You've successfully authenticated with @ViewData["LoginProvider"].<br /><br />
             Please enter a user name and email address to finish the process and log in.<br /><br />
