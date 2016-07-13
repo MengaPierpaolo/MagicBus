@@ -1,7 +1,12 @@
+@using System.Collections.Generic
+@using Microsoft.AspNetCore.Identity
+@using TDiary
+
 @model TDiary.Providers.ViewModel.Model.LoginViewModel
 
+@inject SignInManager<ApplicationUser> SignInManager
 <div class="modal-dialog">
-<h3>Please Log in or @Html.ActionLink("Register", "Register", "Account")</h3>
+    <h3>Please Log in or @Html.ActionLink("Register", "Register", "Account")</h3>
     <form class="form" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]">
         <div asp-validation-summary="All" class="text-danger"></div>
 
@@ -17,6 +22,23 @@
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
 
-        <input name="SubmitButtonUsed" type="submit" class="btn btn-primary" value="Log in">
+        <input name="SubmitButtonUsed" type="submit" class="btn btn-primary btn-block" value="Log in">
     </form>
+    <div class="text-center magic-bus-description">or</div>
+    @{
+        var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
+        if (loginProviders.Count != 0)
+        {
+            <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                <div>
+                    <p>
+                        @foreach (var provider in loginProviders)
+                        {
+                            <button type="submit" class="btn btn-default btn-block" name="provider" value="@provider.AuthenticationScheme" title="Log in using your @provider.DisplayName account">Sign in with @provider.AuthenticationScheme</button>
+                        }
+                    </p>
+                </div>
+            </form>
+        }
+    }
 </div>

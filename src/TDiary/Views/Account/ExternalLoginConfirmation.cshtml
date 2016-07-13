@@ -1,0 +1,23 @@
+﻿@model TDiary.ExternalLoginConfirmationViewModel
+
+<div class="modal-dialog">
+    <form asp-controller="Account" asp-action="ExternalLoginConfirmation" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" >
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <p class="text-danger">
+            You've successfully authenticated with @ViewData["LoginProvider"].<br /><br />
+            Please enter a user name and email address to finish the process and log in.<br /><br />
+        </p>
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" class="form-control" autocomplete="off" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" autocomplete="off" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <input type="submit" class="btn btn-primary btn-block" value="Finish and log in">
+    </form>
+</div>
