@@ -1,5 +1,6 @@
 # Magic Bus Travel Diary
 # .NET Core Sample Project
+See a working prototype version at our [Pre-Production publish location](http://magicbus.azurewebsites.net/ "See a working prototype")
 ---
 ## Summary
 Using the dotnet core command line, trying to use just VSCode (to prove it's possible),
