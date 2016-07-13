@@ -221,7 +221,7 @@ html {
 }
 
 .google-button {
-    background: Url("../btn_google_signin_dark_normal_web.png") no-repeat top center;
+    background: Url("../images/btn_google_signin_dark_normal_web.png") no-repeat top center;
     height: 45px;
     width: 185px;
     padding: 0;
@@ -230,9 +230,9 @@ html {
 }
 
     .google-button:hover {
-        background: Url("../btn_google_signin_dark_pressed_web.png") no-repeat top center;
+        background: Url("../images/btn_google_signin_dark_pressed_web.png") no-repeat top center;
     }
 
     .google-button:focus {
-        background: Url("../btn_google_signin_dark_focus_web.png") no-repeat top center;
+        background: Url("../images/btn_google_signin_dark_focus_web.png") no-repeat top center;
     }

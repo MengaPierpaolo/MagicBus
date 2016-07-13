@@ -88,10 +88,11 @@ namespace TDiary
 
                 app.UseIdentity();
 
-                var option = new GoogleOptions();
-                option.ClientId = "154065577637-8vr1fup5f9ficj41gqoj4263qsgbj92e.apps.googleusercontent.com";
-                option.ClientSecret = "jzu-ThkUmBb5xU_P47V3u1K4";
-                app.UseGoogleAuthentication(option);
+                app.UseGoogleAuthentication(new GoogleOptions()
+                {
+                    ClientSecret = "jzu-ThkUmBb5xU_P47V3u1K4",
+                    ClientId = "154065577637-8vr1fup5f9ficj41gqoj4263qsgbj92e.apps.googleusercontent.com"
+                });
 
                 app.UseMvc(routes =>
                 {

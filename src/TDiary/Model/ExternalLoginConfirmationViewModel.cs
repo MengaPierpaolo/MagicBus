@@ -1,13 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using TDiary.Providers.ViewModel.Model;
 
 namespace TDiary
 {
-    public class ApplicationUser : IdentityUser
-    {
-    }
-
     public class ExternalLoginConfirmationViewModel : PageViewModel
     {
         [Required]
