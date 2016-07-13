@@ -1,5 +1,5 @@
-# Magic Bus Travel Diary
-# .NET Core Sample Project
+# Magic Bus Travel Diary (.NET Core Sample Project)
+See a working prototype version at our [Pre-Production publish location](http://magicbus.azurewebsites.net/ "See a working prototype")
 ---
 ## Summary
 Using the dotnet core command line, trying to use just VSCode (to prove it's possible),
@@ -40,6 +40,7 @@ The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 2
 
 ### Client Dependencies in use
 * bootstrap 3.3.6
+* font-awesome
 * jquery 1.11.2 +
 * jquery-validation
 * jquery-validation-unotrusive
