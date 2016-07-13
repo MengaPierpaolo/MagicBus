@@ -11,7 +11,7 @@ body {
 }
 
 .btn-full {
-    padding:0;
+    padding: 0;
     border: solid 2pt #2D3C4B;
 }
 
@@ -19,19 +19,19 @@ body {
     width: 10px;
 }
 
-    .fa-bus:hover {
-        color: goldenrod;
-    }
+.fa-bus:hover {
+    color: goldenrod;
+}
 
-    .padded-page {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
+.padded-page {
+    padding-left: 10px;
+    padding-right: 10px;
+}
 
- .magic-bus-description {
-     color: antiquewhite;
-     margin-bottom:5px;
-    }
+.magic-bus-description {
+    color: antiquewhite;
+    margin-bottom: 5px;
+}
 
 .visible-true {
     display: none;
@@ -115,11 +115,11 @@ body {
         color: black;
     }
 
-    
-    .function-button-delete:hover {
-        background-color: brown;
-        color: black;
-    }
+
+.function-button-delete:hover {
+    background-color: brown;
+    color: black;
+}
 
 h1 {
     text-shadow: 4px 4px 4px darkred;
@@ -219,3 +219,20 @@ html {
     /* Set the fixed height of the footer here */
     height: 60px;
 }
+
+.google-button {
+    background: Url("../btn_google_signin_dark_normal_web.png") no-repeat top center;
+    height: 45px;
+    width: 185px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+    .google-button:hover {
+        background: Url("../btn_google_signin_dark_pressed_web.png") no-repeat top center;
+    }
+
+    .google-button:focus {
+        background: Url("../btn_google_signin_dark_focus_web.png") no-repeat top center;
+    }

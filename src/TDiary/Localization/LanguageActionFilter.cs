@@ -1,7 +1,10 @@
-﻿using System.Globalization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Primitives;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 
 namespace TDiary
 {
@@ -23,27 +26,46 @@ namespace TDiary
             if (c != null)
             {
                 c.ViewData["culture"] = culture;
-                // TODO: This works but is very hacky: Research and refactor needed!
-                var bits = c.Request.Path.ToString().Split('/');
-                var q = c.Request.Query.ToArray();
-                if (bits.Length > 2 && bits[1] != string.Empty)
+
+                var pathSections = c.Request.Path.ToString().Split('/');
+                var queryStringSections = c.Request.Query.ToArray();
+
+                if (pathSections.Length > 2 && pathSections[1] != string.Empty)
                 {
-                    if (q.Length > 0)
+                    var path = c.Request.Path.ToString();
+
+                    if (queryStringSections.Length > 0)
                     {
-                        c.ViewData["currentPage"] = string.Format("{0}?{1}={2}",
-                            c.Request.Path.ToString().Replace(string.Format("/{0}/", bits[1]), string.Empty),
-                            q[0].Key,
-                            q[0].Value.ToString());
+                        c.ViewData["currentPage"] =
+                            string.Format("{0}?{1}",
+                                ExcludeCulture(pathSections, path),
+                                BuildQueryString(queryStringSections));
                     }
                     else
                     {
-                        c.ViewData["currentPage"] =
-                            c.Request.Path.ToString().Replace(string.Format("/{0}/", bits[1]), string.Empty);
+                        c.ViewData["currentPage"] = ExcludeCulture(pathSections, path);
                     }
                 }
             }
 
             base.OnActionExecuting(context);
+        }
+
+        private string ExcludeCulture(string[] pathSections, string path)
+        {
+            return path.Replace(string.Format("/{0}/", pathSections[1]), string.Empty);
+        }
+
+        private string BuildQueryString(KeyValuePair<string, StringValues>[] sections)
+        {
+            var sb = new StringBuilder();
+            foreach (var item in sections)
+            {
+                sb.Append(item.Key);
+                sb.Append("=");
+                sb.Append(item.Value.ToString());
+            }
+            return sb.ToString();
         }
     }
 }
