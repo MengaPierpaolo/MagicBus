@@ -1,0 +1,44 @@
+﻿<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <div class="carousel-caption" role="option">
+                <i class="fa fa-bus huge-icon"></i>
+                <div class="magic-bus-description">
+                    Magic Bus is a diary that brings joy and happiness to your travels...  <br /><br />
+                    ...but first, you need to <a href="@Url.Action("Login", "Account")" class="login-link">Log in!</a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="carousel-caption" role="option">
+                <i class="fa fa-pencil-square huge-icon"></i>
+                <p>
+                    Record, rearrange, share, and generally enjoy your travel highlights!<br /><br />
+                    ...but first, you need to <a href="@Url.Action("Login", "Account")" class="login-link">Log in!</a>
+                </p>
+            </div>
+        </div>
+        <div class="item">
+            <div class="carousel-caption" role="option">
+                <i class="fa fa-calendar huge-icon"></i>
+                <p>
+                    Plan, discuss, improve, and get generally excited about your itineraries.<br /><br />
+                    ...but first, you need to <a href="@Url.Action("Login", "Account")" class="login-link">Log in!</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>

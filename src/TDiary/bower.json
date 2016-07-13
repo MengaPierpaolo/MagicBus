@@ -2,7 +2,7 @@
   "name": "tdiary",
   "dependencies": {
     "bootstrap": "3.3.6",
-    "bootstrap-datepicker": "latest",
+    "bootstrap-datepicker": "1.6.1",
     "jquery": "2.2.2",
     "jquery-validation": "1.15.0",
     "jquery-validation-unobtrusive": "3.2.6",
