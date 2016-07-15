@@ -1,17 +1,77 @@
 body {
     font-family: 'Mitr', serif;
     background-color: #2D3C4B;
+    /* Margin bottom by footer height */
     margin-bottom: 70px;
 }
 
-.fa-bus {
+.carousel-control.left, .carousel-control.right {
+    background-image: none;
+}
+
+.carousel {
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom: 30px;
+}
+
+.carousel-inner .item {
+    width: 100%;
+    height: 400px;
+    background-color: #44525f;
+}
+
+.login-link {
+    color: goldenrod;
+}
+
+    .login-link:hover {
+        color: goldenrod;
+        font-weight: bold;
+    }
+
+.big-icon {
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.huge-icon {
+    font-size: 10em;
+    text-align: center;
+    color: goldenrod;
+    padding-bottom: 50px;
+}
+
+.btn-full {
+    padding: 0;
+    border: solid 2pt #2D3C4B;
+}
+
+.fa-bus-icon {
     width: 10px;
 }
 
-    .fa-bus:hover {
-        color: goldenrod;
-    }
+.fa-bus:hover {
+    color: goldenrod;
+}
 
+.padded-page {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.magic-bus-description {
+    color: antiquewhite;
+    margin-bottom: 5px;
+}
+
+.visible-true {
+    display: none;
+}
+
+.visible-false {
+    display: normal;
+}
 
 .container-fluid {
     margin: 0;
@@ -24,6 +84,7 @@ body {
         color: goldenrod;
         background-color: #272b30;
         margin-top: 15px;
+        border-radius: 0;
     }
 
 .jumbotron h1 {
@@ -41,12 +102,26 @@ body {
 }
 
 .experience {
+    color: antiquewhite;
     padding: 2px;
     margin-bottom: 3px;
+    background-color: #272b30;
+    border-radius: 10px;
+}
+
+    .experience a:hover {
+        text-decoration: none;
+        color: white;
+    }
+
+.experience-toolbar {
+    padding: 5px;
+    text-align: right;
 }
 
 .clickable-experience {
     display: inline-block;
+    min-height: 40px;
     margin-bottom: 5px;
     padding-left: 5px;
     color: antiquewhite;
@@ -63,7 +138,7 @@ body {
 .function-button {
     padding-left: 10px;
     padding-right: 10px;
-    background: #91C957;
+    background-color: #2D3C4B;
     color: white;
     border: 0;
 }
@@ -72,6 +147,12 @@ body {
         background: #91C957;
         color: black;
     }
+
+
+.function-button-delete:hover {
+    background-color: brown;
+    color: black;
+}
 
 h1 {
     text-shadow: 4px 4px 4px darkred;
@@ -155,5 +236,52 @@ html {
     position: absolute;
     bottom: 0;
     width: 100%;
+    /* Set the fixed height of the footer here */
     height: 60px;
+}
+
+.google-button {
+    background: Url("../images/btn_google_signin_dark_normal_web.png") no-repeat top center;
+    height: 45px;
+    width: 185px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+    .google-button:hover {
+        background: Url("../images/btn_google_signin_dark_pressed_web.png") no-repeat top center;
+    }
+
+    .google-button:focus {
+        background: Url("../images/btn_google_signin_dark_focus_web.png") no-repeat top center;
+    }
+
+.about-header {
+    color: goldenrod;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 10px;
+    font-size: 2em;
+    vertical-align: middle;
+}
+
+.about-header>i {
+    margin-bottom:20px;
+}
+
+.about-text {
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    color: antiquewhite;
+    vertical-align: middle;
+}
+
+.about-row {
+    margin-top: 70px;
+}
+
+.about-panel {
+    margin-bottom: 100px;
 }
