@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using TDiary.Migrations;
 
 namespace TDiary
 {
@@ -53,6 +54,9 @@ namespace TDiary
 
                 services.AddDbContext<UserDbContext>(options =>
                     options.UseSqlite("Filename=./Users.db"));
+
+                services.AddDbContext<LocalizationDbContext>(options =>
+                    options.UseSqlite("Filename=./Localization.db"));
 
                 services.AddIdentity<ApplicationUser, IdentityRole>()
                     .AddEntityFrameworkStores<UserDbContext>()
@@ -120,6 +124,9 @@ namespace TDiary
                     SupportedCultures = supportedCultures,
                     SupportedUICultures = supportedCultures
                 });
+
+                var db = app.ApplicationServices.GetService<LocalizationDbContext>();
+                db.EnsureSeedData();
             }
         }
     }

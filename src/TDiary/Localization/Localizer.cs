@@ -138,7 +138,7 @@ namespace TDiary
             localizedStrings.Add(new MyStringData("en-US", "Good", "Good Mushroom"));
             localizedStrings.Add(new MyStringData("en-US", "Bad", "Bad Mushroom"));
             localizedStrings.Add(new MyStringData("en-US", "Indifferent", "Zen Moment"));
-            
+
             /* Chinese */
             localizedStrings.Add(new MyStringData("zh-CN", "ApplicationTitle", "魔术公共汽车"));
             localizedStrings.Add(new MyStringData("zh-CN", "ApplicationHeading", "你最喜欢的旅行日记"));
@@ -171,20 +171,25 @@ namespace TDiary
             localizedStrings.Add(new MyStringData("zh-CN", "Indifferent", "馬馬虎虎"));
         }
 
-        private class MyStringData
-        {
-            public MyStringData(string cultureName, string name, string value)
-            {
-                CultureName = cultureName;
-                Name = name;
-                Value = value;
-            }
-
-            public string CultureName { get; private set; }
-
-            public string Name { get; private set; }
-
-            public string Value { get; private set; }
-        }
     }
+
+    public class MyStringData
+    {
+        public MyStringData() { }
+        public MyStringData(string cultureName, string name, string value)
+        {
+            CultureName = cultureName;
+            Name = name;
+            Value = value;
+        }
+
+        public int Id { get; set; }
+
+        public string CultureName { get; private set; }
+
+        public string Name { get; private set; }
+
+        public string Value { get; private set; }
+    }
+
 }
