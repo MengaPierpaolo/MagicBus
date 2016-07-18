@@ -25,7 +25,7 @@ architecture which provides for relative ease of maintenance and optional swappi
 
 ## Editor Choice
 
-The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 2
+The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 3
 
 ---
 
