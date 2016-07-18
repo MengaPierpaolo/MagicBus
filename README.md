@@ -62,8 +62,9 @@ of IIS rather than two seperate instances of VSCode or Visual Studio
 6. To develop the WebApi, `dotnet run`
 7. To develop the Web UI, make sure the above WebApi setup is completed and that you are running it in a second instance of your editor, or that you are hosting the WebApi in a local instance of IIS.
 8. `cd ..\TDiary`
-9. `dotnet ef database update` will create the users.db for AspNet Identity.
-10.  `dotnet run` (or run the project in your editor)
+9. `dotnet ef database update --context UserDbContext` will create the users.db for AspNet Identity.
+10. `dotnet ef database update --context LocalizationDbContext` will create the localization.db for language localization
+11.  `dotnet run` (or run the project in your editor)
 
 ---
 ### Visual Studio
@@ -72,7 +73,8 @@ of IIS rather than two seperate instances of VSCode or Visual Studio
 3. Wait for the restore to finish and then Build the solution
 4. `update-database -Context MigrationsContext` in package manager console
 5. You can now develop the WebApi
-7. To develop the UI, ensure you have the TDiary.Api project running in local IIS, or another Visual Studio instance.  Then
-8. open .\src\TDiary\TDiary.xproj
-9. `update-database` in package manager console to create the Users.db for AspNet Identity
+6. To develop the UI, ensure you have the TDiary.Api project running in local IIS, or another Visual Studio instance.  Then
+7. open .\src\TDiary\TDiary.xproj
+8. `dotnet ef database update --context UserDbContext` will create the users.db for AspNet Identity.
+9. `dotnet ef database update --context LocalizationDbContext` will create the localization.db for language localization
 10. Run the project
