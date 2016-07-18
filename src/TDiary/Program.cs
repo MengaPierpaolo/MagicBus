@@ -68,8 +68,7 @@ namespace TDiary
                 services.AddScoped<IViewModelProvider<Sight, SightViewModel>, SightViewModelProvider>();
                 services.AddScoped<IViewModelProvider<Trip, TripViewModel>, TripViewModelProvider>();
                 services.AddScoped<IViewModelProvider<Nap, NapViewModel>, NapViewModelProvider>();
-                services.AddSingleton<IStringLocalizerFactory, MyStringLocalizerFactory>();
-                services.AddTransient<IStringLocalizer, MyStringLocalizer>();
+                services.AddTransient<IStringLocalizer, StringLocalizer>();
 
                 services.AddScoped<LanguageActionFilter>();
                 services.AddLocalization();
