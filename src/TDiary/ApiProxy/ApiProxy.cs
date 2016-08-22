@@ -100,7 +100,7 @@ namespace TDiary
             return new StringContent(jsonString, Encoding.UTF8, "application/json");
         }
 
-        public async Task<IEnumerable<ExperienceViewModel>> GetAllByPage(int pageSize, int page = 1)
+        public async Task<IEnumerable<ExperienceViewModel>> GetAllByPage(int pageSize, int page = 0)
         {
             HttpResponseMessage responseMessage = await client.GetAsync(client.BaseAddress + "/pagenumber/" + page.ToString());
             if (responseMessage.IsSuccessStatusCode)

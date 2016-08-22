@@ -21,7 +21,7 @@ namespace TDiary.Api
         [HttpGet]
         public IEnumerable<DiaryItem> Recent()
         {
-            return _diaryItemsRepo.GetRecentExperiences(PageSize.Five);
+            return _diaryItemsRepo.GetRecentExperiences(PageSize.Ten);
         }
 
         [HttpGet, Route("[Action]/{page:int}")]

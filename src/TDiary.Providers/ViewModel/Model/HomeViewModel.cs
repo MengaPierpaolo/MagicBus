@@ -9,7 +9,7 @@ namespace TDiary.Providers.ViewModel.Model
 
         public HomeViewModel(IEnumerable<ExperienceViewModel> experiences, IStringLocalizer localizer)
         {
-            _experienceList = new ExperienceListViewModel(experiences, localizer);
+            _experienceList = new ExperienceListViewModel(experiences, localizer, 0);
 
             Title = localizer.GetString("ApplicationTitle");
             Heading = localizer.GetString("ApplicationHeading");

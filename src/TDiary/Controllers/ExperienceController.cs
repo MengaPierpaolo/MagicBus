@@ -17,16 +17,18 @@ namespace TDiary
             _apiProxy.SetPath("/diaryitems/");
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pageNumber = 0)
         {
-            var experiences = await _apiProxy.GetAllByPage(10);
+            var experiences = await _apiProxy.GetAllByPage(10, pageNumber);
 
-            experiences = experiences
-                .OrderByDescending(d => d.Date)
-                .ThenByDescending(pos => pos.SavePosition);
+            if (experiences != null)
+            {
+                experiences = experiences
+                    .OrderByDescending(d => d.Date)
+                    .ThenByDescending(pos => pos.SavePosition);
+            }
 
-            var vm = new ExperienceListViewModel(experiences, _localizer);
-            return View(vm);
+            return View(new ExperienceListViewModel(experiences, _localizer, pageNumber));
         }
     }
 }

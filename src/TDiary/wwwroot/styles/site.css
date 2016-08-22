@@ -171,6 +171,7 @@ h3 {
     font-size: 1.1em;
     padding-bottom: 5px;
     border-bottom: dotted 1pt antiquewhite;
+    margin-top: 10px;
 }
 
 form {
@@ -297,4 +298,11 @@ html {
 
 .about-panel {
     margin-bottom: 100px;
+}
+
+.page-number {
+    color: antiquewhite;
+    font-size: 1.1em;
+    padding-left: 10px;
+    padding-right: 10px;
 }
