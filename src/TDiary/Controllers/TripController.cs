@@ -19,17 +19,17 @@ namespace TDiary
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(TripViewModel vm)
+        public async Task<IActionResult> Add(TripViewModel vm, string sourceLocation)
         {
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid)
                     return View(_viewModelProvider.RefreshAddViewModel(vm));
 
-                await _apiProxy.Add(new Trip(vm.Date, vm.From, vm.To, vm.By) { Rating = vm.Rating });
+                await _apiProxy.Add(new Trip(vm.Date, vm.From, vm.To, vm.By) { Rating = vm.Rating, Journey = vm.Journey });
             }
 
-            return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController)));
+            return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController)), sourceLocation);
         }
 
         [HttpPost]
@@ -40,7 +40,12 @@ namespace TDiary
                 if (!ModelState.IsValid)
                     return View(_viewModelProvider.RefreshEditViewModel(vm));
 
-                await _apiProxy.Save(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.By, vm.SavePosition, vm.Rating));
+                await _apiProxy.Save(Trip.Create(vm.Id, vm.Date, vm.From, vm.To, vm.By, vm.SavePosition, vm.Rating, vm.Journey));
+            }
+
+            if (vm.DeletePressed)
+            {
+                await _apiProxy.Delete<Trip>(vm.Id);
             }
 
             return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController), sourceLocation));

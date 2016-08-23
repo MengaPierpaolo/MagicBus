@@ -18,17 +18,17 @@ namespace TDiary
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(NapViewModel vm)
+        public async Task<IActionResult> Add(NapViewModel vm, string sourceLocation)
         {
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid)
                     return View(_viewModelProvider.RefreshAddViewModel(vm));
 
-                await _apiProxy.Add(new Nap(vm.Date, vm.Description) { Location = vm.Location, Rating = vm.Rating });
+                await _apiProxy.Add(new Nap(vm.Date, vm.Description) { Location = vm.Location, Rating = vm.Rating, Journey = vm.Journey });
             }
 
-            return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController)));
+            return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController), sourceLocation));
         }
 
         [HttpPost]
@@ -39,7 +39,12 @@ namespace TDiary
                 if (!ModelState.IsValid)
                     return View(_viewModelProvider.RefreshEditViewModel(vm));
 
-                await _apiProxy.Save(Nap.Create(vm.Id, vm.Date, vm.Description, vm.Location, vm.SavePosition, vm.Rating));
+                await _apiProxy.Save(Nap.Create(vm.Id, vm.Date, vm.Description, vm.Location, vm.SavePosition, vm.Rating, vm.Journey));
+            }
+
+            if (vm.DeletePressed)
+            {
+                await _apiProxy.Delete<Nap>(vm.Id);
             }
 
             return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController), sourceLocation));

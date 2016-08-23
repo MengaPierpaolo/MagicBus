@@ -13,7 +13,11 @@ namespace TDiary.Api
         [HttpPost]
         public IActionResult Create([FromBody]ChowViewModel value)
         {
-            _repo.Add(new Chow(value.Date, value.Description) { Location = value.Location, Rating = value.Rating });
+            _repo.Add(new Chow(value.Date, value.Description) {
+                Location = value.Location,
+                Rating = value.Rating,
+                Journey = value.Journey });
+
             return new OkResult();
         }
 
@@ -32,7 +36,8 @@ namespace TDiary.Api
                 value.Description,
                 value.Location,
                 value.SavePosition,
-                value.Rating));
+                value.Rating,
+                value.Journey));
 
             return new OkResult();
         }

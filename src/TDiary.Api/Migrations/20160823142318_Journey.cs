@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace TDiary.Migrations
+namespace TDiary.Api.Migrations
 {
-    public partial class InitialCreation : Migration
+    public partial class Journey : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,6 +16,7 @@ namespace TDiary.Migrations
                         .Annotation("Autoincrement", true),
                     Date = table.Column<DateTime>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
+                    Journey = table.Column<string>(nullable: true),
                     Rating = table.Column<int>(nullable: false),
                     SavePosition = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),

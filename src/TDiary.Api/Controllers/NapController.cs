@@ -14,7 +14,11 @@ namespace TDiary.Api
         [HttpPost]
         public IActionResult Create([FromBody]NapViewModel value)
         {
-            _repo.Add(new Nap(value.Date, value.Description) { Location = value.Location, Rating = value.Rating });
+            _repo.Add(new Nap(value.Date, value.Description) {
+                Location = value.Location,
+                Rating = value.Rating,
+                Journey = value.Journey });
+
             return new OkResult();
         }
 
@@ -27,7 +31,14 @@ namespace TDiary.Api
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody]NapViewModel value)
         {
-            _repo.SaveChanges(Nap.Create(id, value.Date, value.Description, value.Location, value.SavePosition, value.Rating));
+            _repo.SaveChanges(Nap.Create(id,
+                value.Date,
+                value.Description,
+                value.Location,
+                value.SavePosition,
+                value.Rating,
+                value.Journey));
+
             return new OkResult();
         }
 

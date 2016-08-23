@@ -1,8 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using TDiary;
 
-namespace TDiary.Migrations
+namespace TDiary.Api.Migrations
 {
     [DbContext(typeof(MigrationsContext))]
     partial class MigrationsContextModelSnapshot : ModelSnapshot
@@ -21,6 +24,8 @@ namespace TDiary.Migrations
 
                     b.Property<string>("Discriminator")
                         .IsRequired();
+
+                    b.Property<string>("Journey");
 
                     b.Property<int>("Rating");
 

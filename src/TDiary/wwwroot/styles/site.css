@@ -201,6 +201,10 @@ form {
     border: 0;
 }
 
+.btn-danger {
+    border: 0;
+}
+
 label {
     color: antiquewhite;
 }

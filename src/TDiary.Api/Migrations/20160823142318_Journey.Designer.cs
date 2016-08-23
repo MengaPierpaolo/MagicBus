@@ -1,13 +1,15 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using TDiary;
 
-namespace TDiary.Migrations
+namespace TDiary.Api.Migrations
 {
     [DbContext(typeof(MigrationsContext))]
-    [Migration("20160628082117_InitialCreation")]
-    partial class InitialCreation
+    [Migration("20160823142318_Journey")]
+    partial class Journey
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +25,8 @@ namespace TDiary.Migrations
 
                     b.Property<string>("Discriminator")
                         .IsRequired();
+
+                    b.Property<string>("Journey");
 
                     b.Property<int>("Rating");
 

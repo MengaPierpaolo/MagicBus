@@ -31,9 +31,9 @@ namespace TDiary.Model {
             return new Trip() { Id = id };
         }
 
-        public static Trip Create(int id, DateTime diaryDate, string from, string to, ModeOfTransport by, int savePosition, Rating rating)
+        public static Trip Create(int id, DateTime diaryDate, string from, string to, ModeOfTransport by, int savePosition, Rating rating, string journey)
         {
-            return new Trip(diaryDate, from, to, by) { Id = id, SavePosition = savePosition, Rating = rating };
+            return new Trip(diaryDate, from, to, by) { Id = id, SavePosition = savePosition, Rating = rating, Journey = journey };
         }
     }
 }

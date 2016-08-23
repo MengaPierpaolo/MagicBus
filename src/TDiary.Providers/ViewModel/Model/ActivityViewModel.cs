@@ -34,6 +34,9 @@ namespace TDiary.Providers.ViewModel.Model
             }
         }
 
+        [Display(Name = "As part of your journey, that you called")]
+        public string Journey { get; set; }
+
         public string Experience { get; set; }
 
         public string ExperienceType { get; set; }
@@ -58,11 +61,27 @@ namespace TDiary.Providers.ViewModel.Model
             }
         }
 
+        public bool DeleteButtonVisible
+        {
+            get
+            {
+                return Id > 0;
+            }
+        }
+
         public bool SavePressed
         {
             get
             {
                 return SubmitButtonUsed == "Save it!";
+            }
+        }
+
+        public bool DeletePressed
+        {
+            get
+            {
+                return SubmitButtonUsed == "Delete it!";
             }
         }
 

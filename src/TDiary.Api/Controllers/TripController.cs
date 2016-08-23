@@ -13,7 +13,10 @@ namespace TDiary.Api
         [HttpPost]
         public IActionResult Create([FromBody]TripViewModel value)
         {
-            _repo.Add(new Trip(value.Date, value.From, value.To, value.By) { Rating = value.Rating });
+            _repo.Add(new Trip(value.Date, value.From, value.To, value.By) {
+                Rating = value.Rating,
+                Journey = value.Journey });
+
             return new OkResult();
         }
 
@@ -26,7 +29,16 @@ namespace TDiary.Api
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody]TripViewModel value)
         {
-            _repo.SaveChanges(Trip.Create(id, value.Date, value.From, value.To, value.By, value.SavePosition, value.Rating));
+            _repo.SaveChanges(Trip.Create(
+                id,
+                value.Date,
+                value.From,
+                value.To,
+                value.By,
+                value.SavePosition,
+                value.Rating,
+                value.Journey));
+
             return new OkResult();
         }
 

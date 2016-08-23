@@ -15,6 +15,8 @@ namespace TDiary.Model
 
         public DateTime Date { get; private set; }
 
+        public string Journey { get; set; }
+
         public int SavePosition { get; internal set; }
 
         public abstract string Experience { get; }

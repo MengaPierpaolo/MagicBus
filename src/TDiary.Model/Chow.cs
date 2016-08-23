@@ -30,9 +30,9 @@ namespace TDiary.Model
             return new Chow() { Id = id };
         }
 
-        public static Chow Create(int id, DateTime diaryDate, string productConsumed, string location, int savePosition, Rating rating)
+        public static Chow Create(int id, DateTime diaryDate, string productConsumed, string location, int savePosition, Rating rating, string journey)
         {
-            return new Chow(diaryDate, productConsumed) { Id = id, Location = location, SavePosition = savePosition, Rating = rating };
+            return new Chow(diaryDate, productConsumed) { Id = id, Location = location, SavePosition = savePosition, Rating = rating, Journey = journey };
         }
     }
 }

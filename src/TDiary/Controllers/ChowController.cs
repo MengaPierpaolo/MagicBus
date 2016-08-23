@@ -25,7 +25,7 @@ namespace TDiary
                 if (!ModelState.IsValid)
                     return View(_viewModelProvider.RefreshAddViewModel(vm));
 
-                await _apiProxy.Add(new Chow(vm.Date, vm.Description) { Location = vm.Location, Rating = vm.Rating });
+                await _apiProxy.Add(new Chow(vm.Date, vm.Description) { Location = vm.Location, Rating = vm.Rating, Journey = vm.Journey });
             }
 
             return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController)));
@@ -39,7 +39,12 @@ namespace TDiary
                 if (!ModelState.IsValid)
                     return View(_viewModelProvider.RefreshEditViewModel(vm));
 
-                await _apiProxy.Save(Chow.Create(vm.Id, vm.Date, vm.Description, vm.Location, vm.SavePosition, vm.Rating));
+                await _apiProxy.Save(Chow.Create(vm.Id, vm.Date, vm.Description, vm.Location, vm.SavePosition, vm.Rating, vm.Journey));
+            }
+
+            if (vm.DeletePressed)
+            {
+                await _apiProxy.Delete<Chow>(vm.Id);
             }
 
             return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController), sourceLocation));
