@@ -15,7 +15,7 @@ namespace TDiary.Model
 
         public DateTime Date { get; private set; }
 
-        public string Journey { get; set; }
+        public Journey Journey { get; set; }
 
         public int SavePosition { get; internal set; }
 
@@ -31,7 +31,7 @@ namespace TDiary.Model
 
         public void MovePositionTo(int position)
         {
-            this.SavePosition = position;
+            SavePosition = position;
         }
 
         public Rating Rating { get; set; }

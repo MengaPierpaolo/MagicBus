@@ -8,6 +8,8 @@ namespace TDiary
     {
         public DbSet<DiaryItem> Experiences { get; set; }
 
+        public DbSet<Journey> Journeys { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Filename=./TDiary.db");

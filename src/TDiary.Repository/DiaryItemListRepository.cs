@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using TDiary.Model;
@@ -15,10 +16,15 @@ namespace TDiary.Repository
 
         public IEnumerable<DiaryItem> GetRecentExperiences(PageSize howMany)
         {
-            return _context.Experiences
+            return _context.Experiences.Include(j => j.Journey)
                     .OrderByDescending(d => d.Date)
                     .ThenByDescending(pos => pos.Date)
                     .Take((int)howMany);
+        }
+
+        public IEnumerable<Journey> GetJourneys()
+        {
+            return _context.Journeys;
         }
 
         public IEnumerable<DiaryItem> GetAllByPage(PageSize pageSize, int page = 0)

@@ -25,7 +25,7 @@ namespace TDiary.Api.Migrations
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
-                    b.Property<string>("Journey");
+                    b.Property<int?>("JourneyId");
 
                     b.Property<int>("Rating");
 
@@ -33,9 +33,23 @@ namespace TDiary.Api.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("JourneyId");
+
                     b.ToTable("Experiences");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("DiaryItem");
+                });
+
+            modelBuilder.Entity("TDiary.Model.Journey", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Journeys");
                 });
 
             modelBuilder.Entity("TDiary.Model.Chow", b =>
@@ -90,6 +104,13 @@ namespace TDiary.Api.Migrations
                     b.ToTable("Trip");
 
                     b.HasDiscriminator().HasValue("Trip");
+                });
+
+            modelBuilder.Entity("TDiary.Model.DiaryItem", b =>
+                {
+                    b.HasOne("TDiary.Model.Journey", "Journey")
+                        .WithMany()
+                        .HasForeignKey("JourneyId");
                 });
         }
     }

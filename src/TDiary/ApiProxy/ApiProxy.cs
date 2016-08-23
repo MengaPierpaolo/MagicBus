@@ -112,5 +112,18 @@ namespace TDiary
             // TODO: log non-happy path
             return default(List<ExperienceViewModel>);
         }
+
+        public async Task<IEnumerable<JourneyViewModel>> GetJourneys()
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync(baseUrl + "/journeys/");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = await responseMessage.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<JourneyViewModel>>(responseData);
+            }
+
+            // TODO: log non-happy path
+            return default(List<JourneyViewModel>);
+        }
     }
 }

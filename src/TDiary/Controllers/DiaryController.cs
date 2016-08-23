@@ -14,7 +14,6 @@ namespace TDiary
             _apiProxy = apiProxy;
         }
 
-
         public string GetRedirectController(string controllerFullName, string sourceLocation = "")
         {
             return sourceLocation == string.Empty ?

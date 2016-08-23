@@ -10,7 +10,7 @@
                 <a class="clickable-experience" asp-action="Edit" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" asp-route-sourceLocation="Experience">@i.FullExperience</a><br>
             </div>
             <div class="col-sm-4 experience-toolbar">
-                <a asp-action="Delete" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" asp-route-sourceLocation="Experience" title="Delete this @i.ExperienceType">This never happened!</a>
+                <a asp-action="Delete" asp-controller="@i.ExperienceType" asp-route-id="@i.Id" asp-route-sourceLocation="Experience" title="Delete this @i.ExperienceType">This never happened! Delete it from my list.</a>
                 <div class="visible-@i.IsLastOfTheDay.ToString().ToLower()">
                     <a asp-action="OrderActivityUp" asp-route-activityId="@i.Id">Move to after the experience above</a><br>
                 </div>

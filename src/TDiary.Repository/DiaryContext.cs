@@ -15,6 +15,8 @@ namespace TDiary.Repository
 
         public DbSet<DiaryItem> Experiences { get; set; }
 
+        public DbSet<Journey> Journeys { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite(_options.Value.ConnectionString);

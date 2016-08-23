@@ -18,7 +18,7 @@ namespace TDiary
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(SightViewModel vm, string sourceLocation)
+        public async Task<IActionResult> Add(SightViewModel vm)
         {
             if (vm.SavePressed)
             {
@@ -28,7 +28,7 @@ namespace TDiary
                 await _apiProxy.Add(new Sight(vm.Date, vm.Name) { Location = vm.Location, Rating = vm.Rating, Journey = vm.Journey });
             }
 
-            return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController)), sourceLocation);
+            return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController)));
         }
 
         [HttpPost]

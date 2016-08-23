@@ -23,6 +23,7 @@ namespace TDiary.Repository
             }
 
             _context.Experiences.Add(item);
+            _context.Journeys.Attach(item.Journey);
             _context.SaveChanges();
         }
 
