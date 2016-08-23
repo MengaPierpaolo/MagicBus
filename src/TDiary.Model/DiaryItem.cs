@@ -15,6 +15,8 @@ namespace TDiary.Model
 
         public DateTime Date { get; private set; }
 
+        public int JourneyId { get; set; }
+
         public Journey Journey { get; set; }
 
         public int SavePosition { get; internal set; }

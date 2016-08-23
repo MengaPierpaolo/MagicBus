@@ -16,7 +16,7 @@ namespace TDiary.Repository
 
         public IEnumerable<DiaryItem> GetRecentExperiences(PageSize howMany)
         {
-            return _context.Experiences.Include(j => j.Journey)
+            return _context.Experiences
                     .OrderByDescending(d => d.Date)
                     .ThenByDescending(pos => pos.Date)
                     .Take((int)howMany);

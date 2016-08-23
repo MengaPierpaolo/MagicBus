@@ -22,6 +22,8 @@ namespace TDiary
             modelBuilder.Entity<Sight>().ToTable("Sight");
             modelBuilder.Entity<Nap>().ToTable("Nap");
 
+            // modelBuilder.Entity<Journey>().HasMany(di => di.Experiences);
+
             base.OnModelCreating(modelBuilder);
         }
     }
