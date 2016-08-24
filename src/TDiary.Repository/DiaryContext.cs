@@ -13,7 +13,9 @@ namespace TDiary.Repository
             _options = options;
         }
 
-        public DbSet<DiaryItem> Experiences { get; set; }
+        public DbSet<Journey> Journeys { get; set; }
+
+        public DbSet<Experience> Experiences { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

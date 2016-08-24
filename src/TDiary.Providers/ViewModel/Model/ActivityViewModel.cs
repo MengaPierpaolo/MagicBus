@@ -35,7 +35,7 @@ namespace TDiary.Providers.ViewModel.Model
         }
 
         [Display(Name = "As part of your journey, that you called")]
-        public string Journey { get; set; }
+        public Journey Journey { get; set; }
 
         public string Experience { get; set; }
 
@@ -88,6 +88,17 @@ namespace TDiary.Providers.ViewModel.Model
         internal void Localize(IStringLocalizer localizer)
         {
             _localizer = localizer;
+        }
+
+        public IDictionary<string, string> Journeys
+        {
+            get
+            {
+                return new Dictionary<string, string>
+                {
+                   {"1", "Canada"}
+                };
+            }
         }
     }
 }

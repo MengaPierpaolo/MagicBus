@@ -6,9 +6,9 @@ using TDiary.Repository;
 namespace TDiary.Api
 {
     [Route("api/[Controller]")]
-    public class TripController : DiaryItemController
+    public class TripController : ExperienceController
     {
-        public TripController(IDiaryItemRepository repo) : base(repo) { }
+        public TripController(IExperienceRepository repo) : base(repo) { }
 
         [HttpPost]
         public IActionResult Create([FromBody]TripViewModel value)

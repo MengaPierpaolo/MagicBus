@@ -1,12 +1,13 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace TDiary.Model
 {
-    public abstract class DiaryItem
+    public abstract class Experience
     {
-        internal DiaryItem(){}
+        internal Experience(){}
 
-        public DiaryItem(DateTime diaryDate)
+        public Experience(DateTime diaryDate)
         {
             Date = diaryDate;
         }
@@ -15,11 +16,11 @@ namespace TDiary.Model
 
         public DateTime Date { get; private set; }
 
-        public string Journey { get; set; }
+        public Journey Journey { get; set; }
 
         public int SavePosition { get; internal set; }
 
-        public abstract string Experience { get; }
+        public abstract string Commentary { get; }
 
         public string ExperienceType
         {
@@ -31,7 +32,7 @@ namespace TDiary.Model
 
         public void MovePositionTo(int position)
         {
-            this.SavePosition = position;
+            SavePosition = position;
         }
 
         public Rating Rating { get; set; }

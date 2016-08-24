@@ -5,7 +5,7 @@ using TDiary.Providers.ViewModel.Model;
 namespace TDiary
 {
     [ServiceFilter(typeof(LanguageActionFilter))]
-    public abstract class DiaryController<T, U> : Controller where T : DiaryItem where U : ActivityViewModel
+    public abstract class DiaryController<T, U> : Controller where T : Experience where U : ActivityViewModel
     {
         protected readonly IApiProxy _apiProxy;
 
@@ -13,7 +13,6 @@ namespace TDiary
         {
             _apiProxy = apiProxy;
         }
-
 
         public string GetRedirectController(string controllerFullName, string sourceLocation = "")
         {

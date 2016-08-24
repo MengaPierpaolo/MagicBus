@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace TDiary.Model
 {
-    public class Chow : DiaryItem, ILocatable
+    public class Chow : Experience, ILocatable
     {
         internal Chow() { }
 
@@ -14,7 +14,7 @@ namespace TDiary.Model
 
         public string Description { get; private set; }
 
-        public override string Experience
+        public override string Commentary
         {
             get
             {
@@ -30,9 +30,14 @@ namespace TDiary.Model
             return new Chow() { Id = id };
         }
 
-        public static Chow Create(int id, DateTime diaryDate, string productConsumed, string location, int savePosition, Rating rating, string journey)
+        public static Chow Create(int id, DateTime diaryDate, string productConsumed, string location, int savePosition, Rating rating, Journey journey)
         {
-            return new Chow(diaryDate, productConsumed) { Id = id, Location = location, SavePosition = savePosition, Rating = rating, Journey = journey };
+            return new Chow(diaryDate, productConsumed) {
+                Id = id,
+                Location = location,
+                SavePosition = savePosition,
+                Rating = rating,
+                Journey = journey };
         }
     }
 }

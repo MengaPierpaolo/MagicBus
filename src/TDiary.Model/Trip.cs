@@ -2,7 +2,7 @@ using System;
 
 namespace TDiary.Model {
 
-    public class Trip : DiaryItem
+    public class Trip : Experience
     {
         internal Trip(){}
 
@@ -18,7 +18,7 @@ namespace TDiary.Model {
 
         public ModeOfTransport By { get; private set; }
 
-        public override string Experience
+        public override string Commentary
         {
             get
             {
@@ -31,7 +31,7 @@ namespace TDiary.Model {
             return new Trip() { Id = id };
         }
 
-        public static Trip Create(int id, DateTime diaryDate, string from, string to, ModeOfTransport by, int savePosition, Rating rating, string journey)
+        public static Trip Create(int id, DateTime diaryDate, string from, string to, ModeOfTransport by, int savePosition, Rating rating, Journey journey)
         {
             return new Trip(diaryDate, from, to, by) { Id = id, SavePosition = savePosition, Rating = rating, Journey = journey };
         }

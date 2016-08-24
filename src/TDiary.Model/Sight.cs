@@ -2,7 +2,7 @@ using System;
 
 namespace TDiary.Model
 {
-    public class Sight : DiaryItem, ILocatable
+    public class Sight : Experience, ILocatable
     {
         internal Sight() { }
 
@@ -13,7 +13,7 @@ namespace TDiary.Model
 
         public string Name { get; private set; }
 
-        public override string Experience
+        public override string Commentary
         {
             get
             {
@@ -29,7 +29,7 @@ namespace TDiary.Model
             return new Sight() { Id = id };
         }
 
-        public static Sight Create(int id, DateTime diaryDate, string name, string location, int savePosition, Rating rating, string journey)
+        public static Sight Create(int id, DateTime diaryDate, string name, string location, int savePosition, Rating rating, Journey journey)
         {
             return new Sight(diaryDate, name) { Id = id, Location = location, SavePosition = savePosition, Rating = rating, Journey = journey };
         }

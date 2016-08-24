@@ -14,7 +14,7 @@ namespace TDiary
         public ExperienceController(IApiProxy apiProxy, IStringLocalizer localizer) : base(apiProxy)
         {
             _localizer = localizer;
-            _apiProxy.SetPath("/diaryitems/");
+            _apiProxy.SetPath("/experiences/");
         }
 
         public async Task<IActionResult> Index(int pageNumber = 0)

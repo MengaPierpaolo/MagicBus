@@ -6,9 +6,9 @@ using TDiary.Repository;
 namespace TDiary.Api
 {
     [Route("api/[Controller]")]
-    public class SightController : DiaryItemController
+    public class SightController : ExperienceController
     {
-        public SightController(IDiaryItemRepository repo) : base(repo) { }
+        public SightController(IExperienceRepository repo) : base(repo) { }
 
         [HttpPost]
         public IActionResult Create([FromBody]SightViewModel value)

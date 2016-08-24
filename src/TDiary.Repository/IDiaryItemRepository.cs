@@ -2,14 +2,14 @@ using TDiary.Model;
 
 namespace TDiary.Repository
 {
-    public interface IDiaryItemRepository
+    public interface IExperienceRepository
     {
-        U Get<U>(int id) where U : DiaryItem; 
+        U Get<U>(int id) where U : Experience; 
 
-        void Add(DiaryItem item);
+        void Add(Experience item);
 
-        void SaveChanges(DiaryItem item);
+        void SaveChanges(Experience item);
 
-        void Delete(DiaryItem chow);
+        void Delete(Experience chow);
     }
 }

@@ -27,7 +27,7 @@ namespace TDiary
         public async Task<IActionResult> OrderActivityDown(int activityId)
         {
             await _apiProxy.DemoteActivity(activityId);
-            return RedirectToAction(nameof(HomeController.Index), GetType().Name.Replace("Controller",string.Empty));
+            return RedirectToAction(nameof(HomeController.Index), GetType().Name.Replace("Controller", string.Empty));
         }
     }
 
@@ -46,7 +46,7 @@ namespace TDiary
        ) : base(apiProxy)
         {
             _localizer = localizer;
-            _apiProxy.SetPath("/diaryitems/");
+            _apiProxy.SetPath("/experiences/");
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -54,15 +54,21 @@ namespace TDiary
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            var recentExperiences = _signInManager.IsSignedIn(User) ?
-                await _apiProxy.GetRecent() :
-                new List<ExperienceViewModel>();
+            IEnumerable<ExperienceViewModel> recentExperiences = new List<ExperienceViewModel>();
+            IEnumerable<JourneyViewModel> recentJourneys = new List<JourneyViewModel>();
 
-            recentExperiences = recentExperiences
-                .OrderByDescending(d => d.Date)
-                .ThenByDescending(pos => pos.SavePosition);
+            if (_signInManager.IsSignedIn(User))
+            {
+                recentExperiences = await _apiProxy.GetRecent();
+                recentJourneys = await _apiProxy.GetJourneys();
 
-            return View(new HomeViewModel(recentExperiences, _localizer));
+                recentExperiences = recentExperiences
+                    .OrderByDescending(d => d.Date)
+                    .ThenByDescending(pos => pos.SavePosition);
+
+            }
+
+            return View(new HomeViewModel(recentExperiences, recentJourneys, _localizer));
         }
     }
 }

@@ -7,9 +7,9 @@ namespace TDiary.Api
 {
     [Route("api/[Controller]")]
 
-    public class NapController : DiaryItemController
+    public class NapController : ExperienceController
     {
-        public NapController(IDiaryItemRepository repo) : base(repo) { }
+        public NapController(IExperienceRepository repo) : base(repo) { }
 
         [HttpPost]
         public IActionResult Create([FromBody]NapViewModel value)

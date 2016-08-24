@@ -27,7 +27,7 @@ namespace TDiary
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task Add(DiaryItem item)
+        public async Task Add(Experience item)
         {
             await client.PostAsync(GetItemAddress(item.GetType()), GetPostContent(item));
         }
@@ -50,7 +50,7 @@ namespace TDiary
             client.BaseAddress = new Uri(baseUrl + url);
         }
 
-        public async Task Save(DiaryItem item)
+        public async Task Save(Experience item)
         {
             await client.PutAsync(GetItemAddress(item.GetType()) + item.Id, GetPostContent(item));
         }
@@ -66,7 +66,7 @@ namespace TDiary
             return default(T);
         }
 
-        public async Task Delete<T>(int id) where T : DiaryItem
+        public async Task Delete<T>(int id) where T : Experience
         {
             await client.DeleteAsync(GetItemAddress(typeof(T)) + id);
         }
@@ -88,7 +88,7 @@ namespace TDiary
             return string.Format("{0}/{1}/", client.BaseAddress, item.Name.Replace("ViewModel",string.Empty));
         }
 
-        private HttpContent GetPostContent(DiaryItem item)
+        private HttpContent GetPostContent(Experience item)
         {
             var jsonString = JsonConvert.SerializeObject(item);
             return new StringContent(jsonString, Encoding.UTF8, "application/json");
@@ -111,6 +111,19 @@ namespace TDiary
 
             // TODO: log non-happy path
             return default(List<ExperienceViewModel>);
+        }
+
+        public async Task<IEnumerable<JourneyViewModel>> GetJourneys()
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync(baseUrl + "/journeys/");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var responseData = await responseMessage.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<List<JourneyViewModel>>(responseData);
+            }
+
+            // TODO: log non-happy path
+            return default(List<JourneyViewModel>);
         }
     }
 }

@@ -6,7 +6,9 @@ namespace TDiary
     // This is here because .NET core doesn't support migrations in a different class library yet
     public class MigrationsContext : DbContext
     {
-        public DbSet<DiaryItem> Experiences { get; set; }
+        public DbSet<Experience> Experiences { get; set; }
+
+        public DbSet<Journey> Journeys { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
