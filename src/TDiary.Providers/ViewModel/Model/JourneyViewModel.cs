@@ -15,8 +15,33 @@ namespace TDiary.Providers.ViewModel.Model
         {
             get
             {
-                return Experiences.Where(t => t.Experience == "Trip").Count();
+                return Experiences.Where(t => t.ExperienceType == "Trip").Count();
             }
         }
+
+        public int ChowCount
+        {
+            get
+            {
+                return Experiences.Where(t => t.ExperienceType == "Chow").Count();
+            }
+        }
+
+        public int SightCount
+        {
+            get
+            {
+                return Experiences.Where(t => t.ExperienceType == "Sight").Count();
+            }
+        }
+
+        public int NapCount
+        {
+            get
+            {
+                return Experiences.Where(t => t.ExperienceType == "Nap").Count();
+            }
+        }
+
     }
 }

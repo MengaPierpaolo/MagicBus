@@ -11,7 +11,7 @@ namespace TDiary.Providers.ViewModel.Model
 
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public string Experience { get; set; }
+        public string Commentary { get; set; }
 
         public string FullExperience
         {
@@ -19,7 +19,7 @@ namespace TDiary.Providers.ViewModel.Model
             {
                 return string.Format("On {0}, y{1}, and it was a {2} experience",
                     Date.ToString("d MMMM", CultureInfo.CurrentUICulture),
-                    Experience.Substring(1),
+                    Commentary.Substring(1),
                     RatingDescription.ToLower());
             }
         }

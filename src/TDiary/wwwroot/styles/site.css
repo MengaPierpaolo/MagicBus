@@ -39,10 +39,16 @@ body {
     border: 1pt dotted antiquewhite;
     text-align: center;
     height: 175px;
-    padding-top: 5px;
-    padding-bottom: 10px;
+    padding: 0;
 }
 
+.journey-header {
+    border-bottom: 1px dotted antiquewhite;
+    padding-bottom: 7px;
+    padding-top: 5px;
+    background-color: #44525f;
+    margin-bottom: 10px;
+}
 
 .login-link {
     color: goldenrod;

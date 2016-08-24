@@ -7,27 +7,28 @@ using TDiary.Service;
 namespace TDiary.Api
 {
     [Route("api/[controller]")]
-    public class DiaryItemsController : Controller
+    public class ExperiencesController : Controller
     {
-        private readonly DiaryItemListRepository _diaryItemsRepo;
+        private readonly ExperienceListRepository _experienceListRepo;
         private readonly IActivityOrderService _activityOrderService;
 
-        public DiaryItemsController(DiaryItemListRepository diaryItemsRepo, IActivityOrderService activityOrderService)
+        public ExperiencesController(ExperienceListRepository experienceListRepo, IActivityOrderService activityOrderService)
         {
-            _diaryItemsRepo = diaryItemsRepo;
+            _experienceListRepo = experienceListRepo;
             _activityOrderService = activityOrderService;
         }
 
         [HttpGet]
-        public IEnumerable<DiaryItem> Recent()
+        public IEnumerable<Experience> Recent()
         {
-            return _diaryItemsRepo.GetRecentExperiences(PageSize.Ten);
+            var x = _experienceListRepo.GetRecentExperiences(PageSize.Ten);
+            return x;
         }
 
         [HttpGet, Route("[Action]/{page:int}")]
-        public IEnumerable<DiaryItem> PageNumber(int page = 0)
+        public IEnumerable<Experience> PageNumber(int page = 0)
         {
-            return _diaryItemsRepo.GetAllByPage(PageSize.Ten, page);
+            return _experienceListRepo.GetAllByPage(PageSize.Ten, page);
         }
 
         [HttpPut("{id}")]

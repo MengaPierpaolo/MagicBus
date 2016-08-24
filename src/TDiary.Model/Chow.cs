@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace TDiary.Model
 {
-    public class Chow : DiaryItem, ILocatable
+    public class Chow : Experience, ILocatable
     {
         internal Chow() { }
 
@@ -14,7 +14,7 @@ namespace TDiary.Model
 
         public string Description { get; private set; }
 
-        public override string Experience
+        public override string Commentary
         {
             get
             {

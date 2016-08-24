@@ -8,17 +8,17 @@ namespace TDiary.Api.Controllers
     [Route("api/[controller]")]
     public class JourneysController : Controller
     {
-        private readonly DiaryItemListRepository _journeyListRepo;
+        private readonly ExperienceListRepository _experienceListRepo;
 
-        public JourneysController(DiaryItemListRepository journeyListRepo)
+        public JourneysController(ExperienceListRepository experienceListRepo)
         {
-            _journeyListRepo = journeyListRepo;
+            _experienceListRepo = experienceListRepo;
         }
 
         [HttpGet]
         public IEnumerable<Journey> Journeys()
         {
-            return _journeyListRepo.GetJourneys();
+            return _experienceListRepo.GetJourneys();
         }
     }
 }

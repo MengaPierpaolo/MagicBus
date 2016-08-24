@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TDiary
 {
-    public abstract class DiaryItemController : Controller
+    public abstract class ExperienceController : Controller
     {
-        protected internal IDiaryItemRepository _repo;
+        protected internal IExperienceRepository _repo;
 
-        public DiaryItemController(IDiaryItemRepository repo){
+        public ExperienceController(IExperienceRepository repo){
             _repo = repo;
         }
     }

@@ -46,7 +46,7 @@ namespace TDiary
        ) : base(apiProxy)
         {
             _localizer = localizer;
-            _apiProxy.SetPath("/diaryitems/");
+            _apiProxy.SetPath("/experiences/");
             _userManager = userManager;
             _signInManager = signInManager;
         }

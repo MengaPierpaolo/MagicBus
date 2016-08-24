@@ -6,9 +6,9 @@ using TDiary.Providers.ViewModel.Model;
 namespace TDiary.Api
 {
     [Route("api/[Controller]")]
-    public class ChowController : DiaryItemController
+    public class ChowController : ExperienceController
     {
-        public ChowController(IDiaryItemRepository repo) : base(repo) { }
+        public ChowController(IExperienceRepository repo) : base(repo) { }
 
         [HttpPost]
         public IActionResult Create([FromBody]ChowViewModel value)

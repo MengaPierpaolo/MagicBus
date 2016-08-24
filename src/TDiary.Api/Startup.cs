@@ -27,8 +27,8 @@ namespace TDiary.Api
 
             services.AddDbContext<DiaryContext>();
 
-            services.AddScoped<DiaryItemListRepository, DiaryItemListRepository>();
-            services.AddScoped<IDiaryItemRepository, DiaryItemRepository>();
+            services.AddScoped<ExperienceListRepository, ExperienceListRepository>();
+            services.AddScoped<IExperienceRepository, ExperienceRepository>();
             services.AddScoped<ILocationProvider, MostRecentLocationProvider>();
             services.AddScoped<IActivityOrderService, BasicActivityOrderService>();
 

@@ -29,7 +29,7 @@ namespace TDiary.Service
             SwitchDates(itemToMove, itemToSwitch);
         }
 
-        private void SwitchDates(DiaryItem item1, DiaryItem item2)
+        private void SwitchDates(Experience item1, Experience item2)
         {
             if (item1 != null && item2 != null)
             {
@@ -41,12 +41,12 @@ namespace TDiary.Service
             }
         }
 
-        private DiaryItem GetItemToMove(int activityId)
+        private Experience GetItemToMove(int activityId)
         {
             return _context.Experiences.Where(e => e.Id == activityId).Single();
         }
 
-        private DiaryItem GetItemToSwitch(DiaryItem itemToMove, SwitchDirection direction)
+        private Experience GetItemToSwitch(Experience itemToMove, SwitchDirection direction)
         {
             if (direction == SwitchDirection.Down)
                 return _context.Experiences

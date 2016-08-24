@@ -21,9 +21,13 @@
             {
                 <div class="item active">
                     <div class="carousel-caption journey" role="option">
-                        <p>
+                        <div class="journey-header">
                             @Model.Journeys.ToList()[i].Name
-                        </p>
+                        </div>
+                        <div>Trips: @Model.Journeys.ToList()[i].TripCount</div>
+                        <div>Sights: @Model.Journeys.ToList()[i].SightCount</div>
+                        <div>Meals: @Model.Journeys.ToList()[i].ChowCount</div>
+                        <div>Naps: @Model.Journeys.ToList()[i].NapCount</div>
                     </div>
                 </div>
             }
@@ -31,9 +35,13 @@
             {
                 <div class="item">
                     <div class="carousel-caption journey" role="option">
-                        <p>
+                        <div class="journey-header">
                             @Model.Journeys.ToList()[i].Name
-                        </p>
+                        </div>
+                        <div>Trips: @Model.Journeys.ToList()[i].TripCount</div>
+                        <div>Sights: @Model.Journeys.ToList()[i].SightCount</div>
+                        <div>Meals: @Model.Journeys.ToList()[i].ChowCount</div>
+                        <div>Naps: @Model.Journeys.ToList()[i].NapCount</div>
                     </div>
                 </div>
             }

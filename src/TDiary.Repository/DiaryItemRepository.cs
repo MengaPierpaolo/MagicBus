@@ -5,16 +5,16 @@ using TDiary.Model;
 
 namespace TDiary.Repository
 {
-    public class DiaryItemRepository : IDiaryItemRepository
+    public class ExperienceRepository : IExperienceRepository
     {
         private readonly DiaryContext _context;
 
-        public DiaryItemRepository(DiaryContext context)
+        public ExperienceRepository(DiaryContext context)
         {
             _context = context;
         }
 
-        public void Add(DiaryItem item)
+        public void Add(Experience item)
         {
             var lastItem = GetLastItem(item.Date);
             if (lastItem != null)
@@ -27,22 +27,29 @@ namespace TDiary.Repository
             _context.SaveChanges();
         }
 
-        public void Delete(DiaryItem chow)
+        public void Delete(Experience chow)
         {
             _context.Entry(chow).State = EntityState.Deleted;
             _context.SaveChanges();
         }
 
-        public U Get<U>(int id) where U : DiaryItem
+        public U Get<U>(int id) where U : Experience
         {
-            return _context.Experiences.OfType<U>()
+            return _context
+                .Experiences.OfType<U>()
                 .Where(e => e.Id == id)
-                .First();
+                .Include(j => j.Journey)
+                .FirstOrDefault();
         }
 
-        public void SaveChanges(DiaryItem item)
+        public void SaveChanges(Experience item)
         {
-            var currentState = _context.Experiences.AsNoTracking().Where(di => di.Id == item.Id).Single();
+            var currentState = _context
+                .Experiences
+                .AsNoTracking()
+                .Where(di => di.Id == item.Id)
+                .Single();
+
             if (item.Date.Date != currentState.Date.Date)
             {
                  var lastItem = GetLastItem(item.Date);
@@ -56,9 +63,10 @@ namespace TDiary.Repository
             _context.SaveChanges();
         }
 
-        private DiaryItem GetLastItem(DateTime date)
+        private Experience GetLastItem(DateTime date)
         {
-            return _context.Experiences
+            return _context
+                .Experiences
                 .Where(i => i.Date.Date == date)
                 .OrderByDescending(i => i.SavePosition)
                 .FirstOrDefault();

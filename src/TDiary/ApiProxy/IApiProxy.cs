@@ -9,9 +9,9 @@ namespace TDiary
     {
         void SetPath(string url);
         Task<T> Get<T>(int id) where T : ActivityViewModel;
-        Task Add(DiaryItem item);
-        Task Save(DiaryItem item);
-        Task Delete<T>(int id) where T : DiaryItem;
+        Task Add(Experience item);
+        Task Save(Experience item);
+        Task Delete<T>(int id) where T : Experience;
         Task<IEnumerable<ExperienceViewModel>> GetRecent();
         Task<IEnumerable<JourneyViewModel>> GetJourneys();
         Task<IEnumerable<ExperienceViewModel>> GetAllByPage(int pageSize, int page = 0);

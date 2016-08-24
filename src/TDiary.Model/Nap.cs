@@ -2,7 +2,7 @@ using System;
 
 namespace TDiary.Model
 {
-    public class Nap : DiaryItem, ILocatable
+    public class Nap : Experience, ILocatable
     {
         internal Nap() { }
 
@@ -13,7 +13,7 @@ namespace TDiary.Model
 
         public string Description { get; private set; }
 
-        public override string Experience
+        public override string Commentary
         {
             get
             {

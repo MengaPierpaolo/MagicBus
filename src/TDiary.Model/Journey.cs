@@ -8,6 +8,6 @@ namespace TDiary.Model
 
         public string Name { get; set; }
 
-        public ICollection<DiaryItem> Experiences { get; set; }
+        public ICollection<Experience> Experiences { get; set; }
     }
 }
