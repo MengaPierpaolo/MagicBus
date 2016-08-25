@@ -9,6 +9,7 @@ namespace TDiary.Model
         Walking,
         Bicycle,
         TukTuk,
+        Car,
         Skateboard
     }
 }
