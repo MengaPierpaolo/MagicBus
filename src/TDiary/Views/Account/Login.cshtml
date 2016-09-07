@@ -16,8 +16,12 @@
                 <div class="text-center">
                     @foreach (var provider in loginProviders)
                     {
+                        var name = provider.AuthenticationScheme.ToLower() == "microsoft" ?
+                            "windows" :
+                            provider.AuthenticationScheme.ToLower();
+
                         <button type="submit"
-                                class="btn fa fa-@provider.AuthenticationScheme.ToLower() @provider.AuthenticationScheme.ToLower()-button"
+                                class="btn fa fa-@name @name-button"
                                 name="provider"
                                 value="@provider.AuthenticationScheme"
                                 title="Sign in using your @provider.DisplayName account"></button>
