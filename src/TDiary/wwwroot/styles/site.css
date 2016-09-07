@@ -20,10 +20,10 @@ body {
     background-color: #44525f;
 }
 
-.home-carousel .carousel-inner .item {
-    width: 100%;
-    height: 400px;
-}
+    .home-carousel .carousel-inner .item {
+        width: 100%;
+        height: 400px;
+    }
 
 .journey-carousel .carousel-inner .item {
     width: 100%;
@@ -32,7 +32,6 @@ body {
 
 .journey-carousel .carousel-control {
     height: 150px;
-
 }
 
 .journey {
@@ -203,6 +202,10 @@ h3 {
     margin-top: 10px;
 }
 
+h4 {
+    font-size: 1.1em;
+    color: antiquewhite;
+}
 form {
     padding-bottom: 10px;
 }
@@ -287,10 +290,10 @@ html {
     height: 60px;
 }
 
-.google-button {
+/*.google-button {
     background: Url("../images/btn_google_signin_dark_normal_web.png") no-repeat top center;
     height: 45px;
-    width: 185px;
+    width: 300px;
     padding: 0;
     margin: 0;
     border: 0;
@@ -302,7 +305,49 @@ html {
 
     .google-button:focus {
         background: Url("../images/btn_google_signin_dark_focus_web.png") no-repeat top center;
-    }
+    }*/
+
+.facebook-button {
+    background-color: #2b4170; /* fallback color */
+    background: -moz-linear-gradient(top, #3b5998, #2b4170);
+    background: -ms-linear-gradient(top, #3b5998, #2b4170);
+    background: -webkit-linear-gradient(top, #3b5998, #2b4170);
+    border: 1px solid #2b4170;
+    text-shadow: 0 -1px -1px #1f2f52;
+    color: white;
+    width: 70px;
+}
+
+.google-button {
+    width: 70px;
+    background-color: white; /* fallback color */
+    border: 1px solid #2b4170;
+    text-shadow: 0 -1px -1px #1f2f52;
+    color: blue;
+}
+
+.twitter-button {
+    width: 70px;
+    background-color: deepskyblue; /* fallback color */
+    border: 1px solid #2b4170;
+    text-shadow: 0 -1px -1px #1f2f52;
+    color: white;
+}
+
+
+.google-button:hover {
+    background-color: antiquewhite; /* fallback color */
+    border: 1px solid #2b4170;
+    text-shadow: 0 -1px -1px #1f2f52;
+    /*color: goldenrod;*/
+}
+
+/*.facebook-button {
+    background: Url("../images/facebook-button.png") ;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}*/
 
 .about-header {
     color: goldenrod;

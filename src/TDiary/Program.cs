@@ -97,6 +97,18 @@ namespace TDiary
                     ClientId = "154065577637-8vr1fup5f9ficj41gqoj4263qsgbj92e.apps.googleusercontent.com"
                 });
 
+                app.UseFacebookAuthentication(new FacebookOptions()
+                {
+                    AppId = "188481768229413",
+                    AppSecret = "aabffbfa29077f1803e659a9a461b33c"
+                });
+
+                app.UseTwitterAuthentication(new TwitterOptions()
+                {
+                    ConsumerKey = "E7naG9MuVQr8PrhYXPOlUzRYH",
+                    ConsumerSecret = "uSGaa6lDgMsVohg2NN7494bQ9QGo1ZSpPNGAhs4mJg3hH6rKvc"
+                });
+
                 app.UseMvc(routes =>
                 {
                     routes.MapRoute("Google API Sign-in", "signin-google", new { controller = "Account", action = "ExternalLoginCallbackRedirect" });

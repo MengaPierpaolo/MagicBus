@@ -7,6 +7,27 @@
 @inject SignInManager<ApplicationUser> SignInManager
 <div class="modal-dialog">
     <h3>Please Log in or @Html.ActionLink("Register", "Register", "Account")</h3>
+    @{
+        var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
+        if (loginProviders.Count != 0)
+        {
+            <h4>You can sign in with one of your existing accounts:</h4>
+            <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+                <div class="text-center">
+                    @foreach (var provider in loginProviders)
+                    {
+                        <button type="submit"
+                                class="btn fa fa-@provider.AuthenticationScheme.ToLower() @provider.AuthenticationScheme.ToLower()-button"
+                                name="provider"
+                                value="@provider.AuthenticationScheme"
+                                title="Sign in using your @provider.DisplayName account"></button>
+                    }
+                </div>
+            </form>
+            <h3>or use your Magic Bus account</h3>
+        }
+    }
+
     <form class="form" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group">
@@ -21,24 +42,4 @@
         </div>
         <input name="SubmitButtonUsed" type="submit" class="btn btn-primary btn-block" value="Log in">
     </form>
-    <div class="text-center magic-bus-description">or</div>
-    @{
-        var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
-        if (loginProviders.Count != 0)
-        {
-            <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                <div class="text-center">
-                        @foreach (var provider in loginProviders)
-                        {
-                            <button type="submit" 
-                                    class="btn google-button" 
-                                    name="provider" 
-                                    value="@provider.AuthenticationScheme" 
-                                    title="Log in using your @provider.DisplayName account">
-                            </button>
-                        }
-                </div>
-            </form>
-        }
-    }
 </div>

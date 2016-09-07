@@ -6,28 +6,29 @@
 
 @model TDiary.Providers.ViewModel.Model.RegisterViewModel
 <div class="modal-dialog">
+    <h3>Please register to use Magic Bus (It'll be worth it, honestly!)</h3>
     @{
         var loginProviders = SignInManager.GetExternalAuthenticationSchemes().ToList();
         if (loginProviders.Count != 0)
         {
-            <h3>You can:</h3>
+            <h4>You can sign in with one of your existing accounts:</h4>
             <div class="text-center">
                 <form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
                     <div class="text-center">
                         @foreach (var provider in loginProviders)
                         {
                             <button type="submit"
-                                    class="btn google-button"
+                                    class="btn fa fa-@provider.AuthenticationScheme.ToLower() @provider.AuthenticationScheme.ToLower()-button"
                                     name="provider"
                                     value="@provider.AuthenticationScheme"
-                                    title="Log in using your @provider.DisplayName account"></button>
+                                    title="Sign in using your @provider.DisplayName account"></button>
                         }
                     </div>
                 </form>
             </div>
         }
     }
-    <h3>Or register with magic bus:</h3>
+    <h3>or you can register an account with Magic Bus:</h3>
     <form class="form" asp-action="Register">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group">
