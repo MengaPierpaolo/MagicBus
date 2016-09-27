@@ -62,13 +62,13 @@ The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 3
 1. `git clone https://github.com/jakimber/MagicBus`
 1. `cd .\MagicBus\`
 1. `dotnet restore`
-1. `cd .\src\MagicBus\`
+1. `cd .\src\MagicBus.UI.MVC\`
 1. `bower install`
 1. `cd ..\MagicBus.Api`
 1. `dotnet ef database update --context MigrationsContext`
 1. To develop the WebApi, `dotnet run`
 1. To develop the Web UI, make sure the above WebApi setup is completed and that you are running it in a second instance of your editor
-1. `cd ..\MagicBus`
+1. `cd ..\MagicBus.UI.MVC`
 1. `dotnet ef database update --context UserDbContext` will create the users.db for AspNet Identity.
 1. `dotnet ef database update --context LocalizationDbContext` will create the localization.db for language localization.
 1. `dotnet run` (or run the project in your editor)
