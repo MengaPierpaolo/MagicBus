@@ -15,7 +15,6 @@ launchSettings.json
 project.lock.json
 
 # project specific
-src/TDiary/wwwroot/lib/
-src/TDiary/Properties/PublishProfiles/
-
-src/TDiary.Api/Properties/PublishProfiles/
+src/MagicBus.UI.MVC/wwwroot/lib/
+src/MagicBus.UI.MVC/Properties/PublishProfiles/
+src/MagicBus.Api/Properties/PublishProfiles/
