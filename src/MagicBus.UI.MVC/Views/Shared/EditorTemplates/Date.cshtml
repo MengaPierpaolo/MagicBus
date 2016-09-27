@@ -1,9 +1,15 @@
+@using System;
+@using System.Globalization;
+@using System.Threading;
+
 @model System.DateTime
+
 
 <div class="form-group">
     <label asp-for="@Model"></label>
+    <button type="submit" name="SubmitButtonUsed" value="Select Date" class="link-button" formnovalidate>(Use last entered date)</button>
     <div class="input-group date" id="datetimepicker1">
-        <input type="text" asp-for="@Model" class="form-control" />
+        <input type="text" asp-for="@Model" class="form-control" value='@Model.ToString("d")' />
         <span class="input-group-addon">
             <button onclick="return false;" class="glyphicon glyphicon-calendar" formnovalidate></button>
         </span>

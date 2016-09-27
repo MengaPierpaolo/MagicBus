@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using MagicBus.Migrations;
 using Microsoft.Extensions.Logging;
+using MagicBus.Providers.LastDate;
 
 namespace MagicBus
 {
@@ -65,6 +66,7 @@ namespace MagicBus
 
                 services.AddScoped<IApiProxy, ApiProxy>();
                 services.AddScoped<ILocationProvider, ApiLocationProvider>();
+                services.AddScoped<ILastDateProvider, ApiLastdateProvider>();
                 services.AddScoped<IViewModelProvider<Chow, ChowViewModel>, ChowViewModelProvider>();
                 services.AddScoped<IViewModelProvider<Sight, SightViewModel>, SightViewModelProvider>();
                 services.AddScoped<IViewModelProvider<Trip, TripViewModel>, TripViewModelProvider>();

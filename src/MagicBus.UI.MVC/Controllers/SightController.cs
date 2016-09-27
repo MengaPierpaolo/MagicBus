@@ -28,7 +28,7 @@ namespace MagicBus
                 await _apiProxy.Add(new Sight(vm.Date, vm.Name) { Location = vm.Location, Rating = vm.Rating, Journey = vm.Journey });
             }
 
-            if (vm.LocationPressed)
+            if (vm.LocationPressed || vm.DatePressed)
             {
                 ModelState.ClearValidationState("Name");
                 return View(await _viewModelProvider.RefreshAddViewModel(vm));

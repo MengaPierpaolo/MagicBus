@@ -28,7 +28,7 @@ namespace MagicBus
                 await _apiProxy.Add(new Nap(vm.Date, vm.Description) { Location = vm.Location, Rating = vm.Rating, Journey = vm.Journey });
             }
 
-            if (vm.LocationPressed)
+            if (vm.LocationPressed || vm.DatePressed)
             {
                 ModelState.ClearValidationState("Description");
                 return View(await _viewModelProvider.RefreshAddViewModel(vm));

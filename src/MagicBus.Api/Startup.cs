@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MagicBus.Providers.Location;
+using MagicBus.Providers.LastDate;
 using MagicBus.Repository;
 using MagicBus.Service;
 
@@ -30,6 +31,7 @@ namespace MagicBus.Api
             services.AddScoped<ExperienceListRepository, ExperienceListRepository>();
             services.AddScoped<IExperienceRepository, ExperienceRepository>();
             services.AddScoped<ILocationProvider, LocationProvider>();
+            services.AddScoped<ILastDateProvider, LastDateProvider>();
             services.AddScoped<IActivityOrderService, BasicActivityOrderService>();
 
             services.AddCors(options => options.AddPolicy("Allow-All",

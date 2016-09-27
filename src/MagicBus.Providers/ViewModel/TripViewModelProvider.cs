@@ -4,15 +4,22 @@ using MagicBus.Model;
 using MagicBus.Providers.Location;
 using MagicBus.Providers.ViewModel.Model;
 using System;
+using MagicBus.Providers.LastDate;
 
 namespace MagicBus.Providers.ViewModel
 {
     public class TripViewModelProvider : ViewModelProvider<TripViewModel>, IViewModelProvider<Trip, TripViewModel>
     {
         private ILocationProvider _locationProvider;
+        private ILastDateProvider _dateProvider;
 
-        public TripViewModelProvider(ILocationProvider locationProvider, IStringLocalizer localizer) : base(localizer)
+        public TripViewModelProvider(
+            ILocationProvider locationProvider,
+            ILastDateProvider dateProvider,
+            IStringLocalizer localizer
+        ) : base(localizer)
         {
+            _dateProvider = dateProvider;
             _locationProvider = locationProvider;
         }
 
@@ -29,10 +36,20 @@ namespace MagicBus.Providers.ViewModel
         public async Task<TripViewModel> RefreshAddViewModel(TripViewModel item)
         {
             item.Localize(_localizer);
-            if (item.Date != DateTime.MinValue)
+
+            if (item.LocationPressed)
             {
-                item.From = await _locationProvider.GetLocation(item.Date);
+                if (item.Date != DateTime.MinValue)
+                {
+                    item.From = await _locationProvider.GetLocation(item.Date);
+                }
             }
+
+            if (item.DatePressed)
+            {
+                item.Date = await _dateProvider.GetLastDate();
+            }
+
             return AddTitles(item);
         }
 

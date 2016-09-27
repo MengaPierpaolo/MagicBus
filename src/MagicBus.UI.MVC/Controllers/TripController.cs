@@ -24,12 +24,12 @@ namespace MagicBus
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid)
-                    return View(_viewModelProvider.RefreshAddViewModel(vm));
+                    return View(await _viewModelProvider.RefreshAddViewModel(vm));
 
                 await _apiProxy.Add(new Trip(vm.Date, vm.From, vm.To, vm.By) { Rating = vm.Rating, Journey = vm.Journey });
             }
 
-            if (vm.LocationPressed)
+            if (vm.LocationPressed || vm.DatePressed)
             {
                 ModelState.ClearValidationState("To");
                 return View(await _viewModelProvider.RefreshAddViewModel(vm));
