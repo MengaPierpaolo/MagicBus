@@ -23,9 +23,15 @@ namespace MagicBus
             if (vm.SavePressed)
             {
                 if (!ModelState.IsValid)
-                    return View(_viewModelProvider.RefreshAddViewModel(vm));
+                    return View(await _viewModelProvider.RefreshAddViewModel(vm));
 
                 await _apiProxy.Add(new Sight(vm.Date, vm.Name) { Location = vm.Location, Rating = vm.Rating, Journey = vm.Journey });
+            }
+
+            if (vm.LocationPressed)
+            {
+                ModelState.ClearValidationState("Name");
+                return View(await _viewModelProvider.RefreshAddViewModel(vm));
             }
 
             return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController)));

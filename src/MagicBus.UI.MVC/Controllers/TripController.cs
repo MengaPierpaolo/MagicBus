@@ -29,6 +29,12 @@ namespace MagicBus
                 await _apiProxy.Add(new Trip(vm.Date, vm.From, vm.To, vm.By) { Rating = vm.Rating, Journey = vm.Journey });
             }
 
+            if (vm.LocationPressed)
+            {
+                ModelState.ClearValidationState("To");
+                return View(await _viewModelProvider.RefreshAddViewModel(vm));
+            }
+
             return RedirectToAction(nameof(HomeController.Index), GetRedirectController(nameof(HomeController)));
         }
 

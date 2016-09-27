@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MagicBus.Model;
 using MagicBus.Providers.Location;
 using MagicBus.Providers.ViewModel.Model;
+using System;
 
 namespace MagicBus.Providers.ViewModel
 {
@@ -25,9 +26,13 @@ namespace MagicBus.Providers.ViewModel
             return AddTitles(item);
         }
 
-        public TripViewModel RefreshAddViewModel(TripViewModel item)
+        public async Task<TripViewModel> RefreshAddViewModel(TripViewModel item)
         {
             item.Localize(_localizer);
+            if (item.Date != DateTime.MinValue)
+            {
+                item.From = await _locationProvider.GetLocation(item.Date);
+            }
             return AddTitles(item);
         }
 

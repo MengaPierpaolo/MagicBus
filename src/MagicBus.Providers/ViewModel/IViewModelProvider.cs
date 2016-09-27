@@ -7,7 +7,7 @@ namespace MagicBus.Providers.ViewModel
     public interface IViewModelProvider<T, U> where T : Experience where U : ActivityViewModel
     {
         Task<U> CreateAddViewModel();
-        U RefreshAddViewModel(U item);
+        Task<U> RefreshAddViewModel(U item);
         U RefreshEditViewModel(U item);
     }
 }

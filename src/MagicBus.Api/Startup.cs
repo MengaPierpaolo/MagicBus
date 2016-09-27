@@ -29,7 +29,7 @@ namespace MagicBus.Api
 
             services.AddScoped<ExperienceListRepository, ExperienceListRepository>();
             services.AddScoped<IExperienceRepository, ExperienceRepository>();
-            services.AddScoped<ILocationProvider, MostRecentLocationProvider>();
+            services.AddScoped<ILocationProvider, LocationProvider>();
             services.AddScoped<IActivityOrderService, BasicActivityOrderService>();
 
             services.AddCors(options => options.AddPolicy("Allow-All",

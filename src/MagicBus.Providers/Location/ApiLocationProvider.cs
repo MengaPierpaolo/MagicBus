@@ -32,5 +32,17 @@ namespace MagicBus.Providers.Location
 
             return responseData;
         }
+
+        public async Task<string> GetLocation(DateTime forWhen)
+        {
+            string responseData = string.Empty;
+            HttpResponseMessage responseMessage = await client.GetAsync(_url + "/" + forWhen.Ticks);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                responseData = responseMessage.Content.ReadAsStringAsync().Result;
+            }
+
+            return responseData;
+        }
     }
 }

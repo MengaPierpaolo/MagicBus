@@ -85,6 +85,14 @@ namespace MagicBus.Providers.ViewModel.Model
             }
         }
 
+        public bool LocationPressed
+        {
+            get
+            {
+                return SubmitButtonUsed == "Select it!";
+            }
+        }
+
         internal void Localize(IStringLocalizer localizer)
         {
             _localizer = localizer;
