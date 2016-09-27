@@ -6,10 +6,7 @@ See a working prototype version at our [Pre-Production publish location](<http:/
 
 ## Summary
 
-Using the dotnet core command line, trying to use just VSCode (to prove it's possible),
-and relying on Visual Studio when the reliable old friend helps avoid a headache,
-here's a sample application using the theme of a Travel Diary as it's domain.
-This has helped to learn and find issues much quicker than using the very simple quick-start projects that i have found dotted around.
+Using the dotnet core 1.0.0 command line tools and VSCode here's a sample application using the theme of a Travel Diary as it's domain.
 
 *Note: Please see the Issues log in Github for known issues and enhancements that are still in progress.
 
@@ -19,9 +16,6 @@ The project consists of two main parts.
 
 1. The Web UI - An ASP.NET Core MVC application intended to be the UI for the application.  In other GitHub repositories, I have created Angular2 and ReactJs versions of the UI too.
 1. An Asp.Net Core WebApi that is used to serve and save data from the UI of choice into (for now) a SQLite Database created using Entity Framework Core Code Migrations.
-
-The solution has then been divided into different dotnet projects to match a tried and tested
-architecture which provides for relative ease of maintenance and optional swapping of component pieces.
 
 ## Editor Choice
 
@@ -34,13 +28,13 @@ The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 3
 ### VS Code
 
 * Visual Studio Code 1.1+
-* Microsoft .NET Core 1.0.0 SDK
+* Microsoft .NET Core 1.0.1 SDK
 
 ### If you prefer Visual Studio
 
 * Visual Studio 2015 Update 3
-* Microsoft .NET Core 1.0.0 SDK
-* Microsoft .NET Core 1.0.0 VS 2015 Tooling Preview 2
+* Microsoft .NET Core 1.0.1 SDK
+* Microsoft .NET Core 1.0.1 VS 2015 Tooling Preview 2
 
 ### Extra Tools required
 
@@ -60,12 +54,8 @@ The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 3
 ## Initial setup instructions
 
 ---
-*Note:* It is recommended to run the projects with the assistance of a local instance
-of IIS rather than two seperate instances of VSCode or Visual Studio
 
 ### VSCode
-
-Note:  I have an [outstanding issue] (<https://github.com/aspnet/EntityFramework/issues/5894>) with migrations after EF Core v1.0.0.  I am having to rename the table name in the migration file, and then rename it in the db (sqlite.exe) once it's created.  Waiting on response to issue.  You will need to `ALTER TABLE Experience RENAME TO Experiences` in sqlite.exe for this to work past point 7.
 
 1. `git clone https://github.com/jakimber/tdiary`
 1. `cd .\tdiary\`
@@ -84,8 +74,6 @@ Note:  I have an [outstanding issue] (<https://github.com/aspnet/EntityFramework
 ---
 
 ### Visual Studio
-
-Note:  I have an [outstanding issue] (<https://github.com/aspnet/EntityFramework/issues/5894>) with migrations after EF Core v1.0.0.  I am having to rename the table name in the migration file, and then rename it in the db (sqlite.exe) once it's created.  Waiting on response to issue.  You will need to `ALTER TABLE Experience RENAME TO Experiences` in sqlite.exe for this to work past point 4.
 
 1. `git clone https://github.com/jakimber/tdiary`
 1. Open .\src\TDiary.Api\TDiary.Api.xproj in VS

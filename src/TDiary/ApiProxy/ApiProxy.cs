@@ -123,7 +123,7 @@ namespace TDiary
             }
 
             // TODO: log non-happy path
-            return default(List<JourneyViewModel>);
+            return new List<JourneyViewModel>();
         }
     }
 }

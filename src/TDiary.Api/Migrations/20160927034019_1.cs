@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TDiary.Api.Migrations
 {
-    public partial class Journey : Migration
+    public partial class _1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,7 +22,7 @@ namespace TDiary.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Experience",
+                name: "Experiences",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -52,7 +52,7 @@ namespace TDiary.Api.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Experiences_JourneyId",
-                table: "Experience",
+                table: "Experiences",
                 column: "JourneyId");
         }
 

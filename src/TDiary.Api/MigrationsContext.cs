@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TDiary.Model;
 
-namespace TDiary
+namespace TDiary.Api
 {
     // This is here because .NET core doesn't support migrations in a different class library yet
     public class MigrationsContext : DbContext

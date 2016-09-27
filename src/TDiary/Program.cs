@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using TDiary.Migrations;
+using Microsoft.Extensions.Logging;
 
 namespace TDiary
 {
@@ -50,6 +51,7 @@ namespace TDiary
 
             public void ConfigureServices(IServiceCollection services)
             {
+
                 services.Configure<ApplicationSettings>(Configuration.GetSection("AppSettings"));
 
                 services.AddDbContext<UserDbContext>(options =>
@@ -85,8 +87,10 @@ namespace TDiary
                 .AddDataAnnotationsLocalization();
             }
 
-            public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+            public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
             {
+                loggerFactory.AddConsole(LogLevel.Error);
+
                 app.UseStaticFiles();
 
                 app.UseIdentity();
@@ -118,7 +122,7 @@ namespace TDiary
                     routes.MapRoute("chow", "{culture}/Chow/Edit/{id:int}", new { Controller = "Chow", Action = "Edit" });
                     routes.MapRoute("nap", "{culture}/Nap/Edit/{id:int}", new { Controller = "Nap", Action = "Edit" });
 
-                    routes.MapRoute("default", "{culture=en-GB}/{controller=Home}/{action=Index}");
+                    routes.MapRoute("default", "{culture=en-GB}/{controller=ExperienceList}/{action=Index}");
                     routes.MapRoute("login", "{controller=Account}/{action=Login}");
                 });
 

@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "NETStandard.Library": "1.6.0",
-    "Microsoft.EntityFrameworkCore": "1.0.0",
+    "Microsoft.EntityFrameworkCore": "1.0.1",
     "Microsoft.Extensions.Localization.Abstractions": "1.0.0",
     "Microsoft.Extensions.Options": "1.0.0",
     "TDiary.Model": "1.0.0-*",

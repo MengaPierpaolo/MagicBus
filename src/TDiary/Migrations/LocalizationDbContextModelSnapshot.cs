@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using TDiary.Migrations;
 
-namespace TDiary.Migrations.LocalizationDb
+namespace TDiary.Migrations
 {
     [DbContext(typeof(LocalizationDbContext))]
     partial class LocalizationDbContextModelSnapshot : ModelSnapshot
@@ -13,7 +13,7 @@ namespace TDiary.Migrations.LocalizationDb
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
+                .HasAnnotation("ProductVersion", "1.0.1");
 
             modelBuilder.Entity("TDiary.MyStringData", b =>
                 {

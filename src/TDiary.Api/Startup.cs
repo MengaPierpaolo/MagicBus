@@ -41,13 +41,7 @@ namespace TDiary.Api
         public void Configure(IApplicationBuilder app)
         {
             app.UseCors("Allow-All");
-            app.UseMvc(
-            //     config =>
-            // {
-            //     config.MapRoute("DefaultApi", "api/{controller}/");
-            //     config.MapRoute("actionable", "Api/{controller}/{action}/");
-            // });
-            );
+            app.UseMvc();
         }
     }
 }

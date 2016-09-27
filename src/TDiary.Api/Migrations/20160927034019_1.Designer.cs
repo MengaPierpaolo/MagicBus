@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using TDiary;
+using TDiary.Api;
 
 namespace TDiary.Api.Migrations
 {
     [DbContext(typeof(MigrationsContext))]
-    [Migration("20160824140437_Journey")]
-    partial class Journey
+    [Migration("20160927034019_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

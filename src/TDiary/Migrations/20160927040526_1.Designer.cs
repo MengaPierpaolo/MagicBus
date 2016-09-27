@@ -5,16 +5,16 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using TDiary.Migrations;
 
-namespace TDiary.Migrations.LocalizationDb
+namespace TDiary.Migrations
 {
     [DbContext(typeof(LocalizationDbContext))]
-    [Migration("20160718040403_Initial")]
-    partial class Initial
+    [Migration("20160927040526_1")]
+    partial class _1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431");
+                .HasAnnotation("ProductVersion", "1.0.1");
 
             modelBuilder.Entity("TDiary.MyStringData", b =>
                 {
