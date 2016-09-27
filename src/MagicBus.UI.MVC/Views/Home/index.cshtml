@@ -1,0 +1,17 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using MagicBus
+
+@model MagicBus.Providers.ViewModel.Model.HomeViewModel
+@inject SignInManager<ApplicationUser> SignInManager
+
+<div>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @Html.Partial("_dashboard", Model)
+    }
+    else
+    {
+        @Html.Partial("_carousel", Model)
+        @Html.Partial("_about", Model)
+    }
+</div>

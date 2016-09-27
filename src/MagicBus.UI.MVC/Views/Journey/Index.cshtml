@@ -1,0 +1,35 @@
+﻿@{ Layout = "~/Views/Shared/_EditorLayout.cshtml"; }
+
+@model MagicBus.Providers.ViewModel.Model.JourneyListViewModel
+
+@if (Model.Journeys.Count() == 0)
+{
+    <h3>You haven't been on any Journeys yet, better get going!</h3>
+}
+else
+{
+    <h3>Your Journeys</h3>
+    @foreach (var journey in Model.Journeys)
+    {
+        <div class="experience">
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="#">
+                        @journey.Name
+                    </a>
+                </div>
+                <div class="col-sm-1">Trips: @journey.TripCount</div>
+                <div class="col-sm-1">Sights: @journey.SightCount</div>
+                <div class="col-sm-1">Meals: @journey.ChowCount</div>
+                <div class="col-sm-1">Naps: @journey.NapCount</div>
+                <div class="col-sm-5 pull-right">
+                    <a href="#">Show</a>
+                    <a href="#">Rename</a>
+                    <a href="#">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+}
+<br />
+<input name="SubmitButtonUsed" type="submit" class="btn btn-info" value="Add a Journey">

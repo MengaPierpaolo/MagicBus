@@ -1,0 +1,10 @@
+@model MagicBus.Providers.ViewModel.Model.ActivityViewModel
+
+<input type="hidden" asp-for="SavePosition">
+<div class="text-danger" asp-validation-summary="All"></div>
+@Html.EditorFor(m => m.Date)
+
+<div class="form-group">
+    <label asp-for="Journey"></label>
+    <select asp-for="Journey.Id" asp-items="@(new SelectList(Model.Journeys,"Key","Value"))" class="form-control"></select>
+</div>

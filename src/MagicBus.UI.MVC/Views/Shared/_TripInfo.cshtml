@@ -1,0 +1,16 @@
+@model MagicBus.Providers.ViewModel.Model.TripViewModel
+
+@Html.Partial("_ActivityInfo")
+<div class="form-group">
+    <label asp-for="From"></label>
+    <input class="form-control" type="text" asp-for="From" autocomplete="off">
+</div>
+<div class="form-group">
+    <label asp-for="To"></label>
+    <input class="form-control" type="text" asp-for="To" autocomplete="off">
+</div>
+<div class="form-group">
+    <label asp-for="By"></label>
+    <select asp-for="By" asp-items="Html.GetEnumSelectList<MagicBus.Model.ModeOfTransport>()" class="form-control"></select>
+</div>
+@Html.Partial("_ActivityToolbar")
