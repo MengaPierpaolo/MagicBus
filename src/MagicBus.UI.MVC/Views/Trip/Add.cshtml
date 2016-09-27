@@ -1,0 +1,10 @@
+@model MagicBus.Providers.ViewModel.Model.TripViewModel
+@{ Layout = "~/Views/Shared/_EditorLayout.cshtml"; }
+
+<div class="content">
+    <form class="form" role="form" asp-action="Add">
+        @{
+            Html.RenderPartial("_TripInfo", Model);
+        }
+    </form>
+</div>

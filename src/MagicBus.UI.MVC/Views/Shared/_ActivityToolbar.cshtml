@@ -1,0 +1,11 @@
+@model MagicBus.Providers.ViewModel.Model.ActivityViewModel
+<div class="form-group">
+    <label asp-for="Rating"></label>
+    <select asp-for="Rating" asp-items="@(new SelectList(Model.Ratings,"Key","Value"))" class="form-control"></select>
+</div>
+<input name="SubmitButtonUsed" type="submit" class="btn btn-primary" value="Save it!">
+@if (Model.DeleteButtonVisible)
+{
+    <input name="SubmitButtonUsed" type="submit" class="btn btn-danger" value="Delete it!">
+}
+<input name="SubmitButtonUsed" type="submit" class="btn btn-info" value="Changed my mind" formnovalidate>

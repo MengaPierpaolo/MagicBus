@@ -1,0 +1,10 @@
+@model MagicBus.Providers.ViewModel.Model.NapViewModel
+@{ Layout = "~/Views/Shared/_EditorLayout.cshtml"; }
+
+<div class="content">
+    <form class="form" asp-action="Add">
+        @{
+            Html.RenderPartial("_NapInfo", Model);
+        }
+    </form>
+</div>
