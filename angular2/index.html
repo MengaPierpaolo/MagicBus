@@ -1,0 +1,39 @@
+<html>
+
+<head>
+  <title>Magic Bus</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Required Angular2 Base HREF -->
+  <base href="/">
+
+  <!-- Styles -->
+  <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <link href="site.css" rel="stylesheet">
+  <link href="nav.css" rel="stylesheet">
+
+  <!-- Load libraries -->
+  <script src="node_modules/core-js/client/shim.min.js"></script>
+  <script src="node_modules/zone.js/dist/zone.js"></script>
+  <script src="node_modules/reflect-metadata/Reflect.js"></script>
+  <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <!-- Configure SystemJS -->
+  <script src="systemjs.config.js"></script>
+  <script>
+      System.import('app').catch(function(err){ console.error(err); });
+    </script>
+</head>
+
+<!-- Display the application -->
+
+<body class="container-fluid">
+  <tdiary-app></tdiary-app>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<page-title [title]="'Life is a journey!'" [subTitle]="'Add your travel details.'"></page-title>
+<div class="content">
+    <form class="form" (ngSubmit)="onSubmit()" #thisForm="ngForm">
+        <div class="form-group">
+            <label for="date">On</label>
+            <input type="text" class="form-control" [(ngModel)]="model.date" name="date" required #date="ngModel">
+            <div [hidden]="date.valid || date.pristine" class="alert alert-danger">
+                date is required
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="from">You travelled from</label>
+            <input type="text" class="form-control" [(ngModel)]="model.from" name="from" required #from="ngModel">
+            <div [hidden]="from.valid || from.pristine" class="alert alert-danger">
+                The You travelled from field is required
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="to">You travelled to</label>
+            <input type="text" class="form-control" [(ngModel)]="model.to" name="to" required #to="ngModel">
+            <div [hidden]="to.valid || to.pristine" class="alert alert-danger">
+                The You travelled to field is required
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="by">Your mode of transport was</label>
+            <select class="form-control" [(ngModel)]="model.by" name="by" required>
+              <option *ngFor="let t of transport" [value]="t">{{t}}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!thisForm.form.valid">Save it!</button>
+        <button type="button" class="btn btn-info" (click)="goBack()">Changed my mind</button>
+    </form>
+</div>
