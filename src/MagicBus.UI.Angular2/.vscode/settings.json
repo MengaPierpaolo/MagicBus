@@ -1,8 +1,0 @@
-// Workspace settings
-{
-    // Hide the following when working in vscode
-    "files.exclude": {
-        "app/**/*.js": true,
-        "app/**/*.js.map": true
-    }
-}
