@@ -2,9 +2,6 @@
 
 ## .NET Core Sample Project
 
-See a working prototype version at our
-[Pre-Production publish location](<http://magicbus.azurewebsites.net/> "See a working prototype")
-
 ## Summary
 
 Using the dotnet core 1.0.1 SDK command line tools and VSCode here's a sample application using
@@ -16,10 +13,14 @@ the theme of a Travel Diary as it's domain.
 
 The project consists of two main parts.
 
-1. The Web UI - An ASP.NET Core MVC application intended to be the UI for the application.  In other GitHub repositories, I have created Angular2 and ReactJs versions of the UI too.
 1. An Asp.Net Core WebApi that is used to serve and save data from the UI of choice into (for now) a SQLite Database created using Entity Framework Core Code Migrations.
 
-## Editor Choice
+1. The Web UI.  One of three options all using the same WebApi as the datasource:
+  1. An ASP.NET Core 1.0.1 MVC application.
+  1. A ReactJS SPA UI.
+  1. An Angular2 SPA UI.
+
+## Code Editor Choice
 
 The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 3
 
@@ -56,8 +57,6 @@ The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 3
 ## Initial setup instructions
 
 ---
-
-### VSCode
 
 1. `git clone https://github.com/jakimber/MagicBus`
 1. `cd .\MagicBus\`
