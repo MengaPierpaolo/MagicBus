@@ -70,6 +70,8 @@ To develop the Web UIs, make sure the WebApi setup is completed and that you are
 1. `dotnet run` (or run the project in your editor)
 
 ### ReactJS UI
+[See the relevant project page for further information](https://github.com/jakimber/MagicBus/src/MagicBus.UI.React "MagicBus ReactJS UI")
 
 ### Angular2 UI
+[See the relevant project page for further information](https://github.com/jakimber/MagicBus/src/MagicBus.UI.Angular2 "MagicBus Angular2 UI")
 
