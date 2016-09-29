@@ -10,7 +10,7 @@ A React.js version of the Magic Bus Travel Diary UI first developed as a dotnet 
 1. Set up an instance of the [MagicBus Api](https://github.com/jakimber/MagicBus "Magic Bus Project"))
 1. `cd ./src/MagicBus.UI.React` 
 1. `npm install`
-4. There is a currently hard-coded path in app.jsx to the WebApi for the data - manually change this according to the port where you are running the instance of the Api
+4. There is currently a hard-coded Api path in for the data - manually change this according to the port where you are running the instance of the Api.
 5. `npm run webpack`
 6. in a second command window `npm start`
 
