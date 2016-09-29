@@ -9,10 +9,10 @@ import { Observable } from 'rxjs/Observable';
 export class DataService {
     constructor(private http: Http) { }
 
-    private baseUrl = 'http://localhost:8002/api';
+    private baseUrl = 'http://localhost:5050/api';
 
     getRecentExperiences(): Observable<ActivityViewModel[]> {
-        return this.http.get(this.baseUrl + '/diaryitems')
+        return this.http.get(this.baseUrl + '/experiences')
             .map(this.extractData)
             .catch(this.handleError);
     }
