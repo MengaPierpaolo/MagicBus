@@ -24,9 +24,7 @@ The project consists of two main parts.
 
 The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 3
 
----
-
-## Requirements
+## Development Requirements
 
 ### VS Code
 
@@ -52,22 +50,26 @@ The projects an be edited using VSCode 1.1+ or Visual Studio 2015 Update 3
 * jquery-validation
 * jquery-validation-unotrusive
 
----
-
 ## Initial setup instructions
 
----
+To develop the Web UIs, make sure the WebApi setup is completed and that you are running it in a second instance of your editor or a local instance of IIS.  There are further instructions in the relevant UI subfolders.
 
+### WeAbpi
 1. `git clone https://github.com/jakimber/MagicBus`
-1. `cd .\MagicBus\`
+1. `cd src\MagicBus\`
 1. `dotnet restore`
-1. `cd .\src\MagicBus.UI.MVC\`
-1. `bower install`
 1. `cd ..\MagicBus.Api`
 1. `dotnet ef database update --context MigrationsContext`
-1. To develop the WebApi, `dotnet run`
-1. To develop the Web UI, make sure the above WebApi setup is completed and that you are running it in a second instance of your editor
-1. `cd ..\MagicBus.UI.MVC`
+1. `dotnet run` (or run the project in your editor)
+
+### MVC UI
+1. `cd .\src\MagicBus.UI.MVC\`
+1. `bower install`
 1. `dotnet ef database update --context UserDbContext` will create the users.db for AspNet Identity.
 1. `dotnet ef database update --context LocalizationDbContext` will create the localization.db for language localization.
 1. `dotnet run` (or run the project in your editor)
+
+### ReactJS UI
+
+### Angular2 UI
+
