@@ -16,7 +16,7 @@ export function addActivity() {
 }
 
 export function saveActivity(type, item, id) {
-    var baseUrl = 'http://localhost:8002/api';
+    var baseUrl = 'http://localhost:5050/api';
     if (id > 0) {
         axios.put(
             baseUrl + '/' + type + '/' + id,
@@ -46,7 +46,7 @@ export function saveActivity(type, item, id) {
     }
 }
 export function deleteActivity(type, id) {
-    var baseUrl = 'http://localhost:8002/api';
+    var baseUrl = 'http://localhost:5050/api';
 
     axios.delete(baseUrl + '/' + type + '/' + encodeURIComponent(id))
         .then(function (response) {
