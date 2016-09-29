@@ -1,0 +1,12 @@
+{
+    "files.exclude": {
+        "node_modules": true,
+        "build/": true,
+
+        ".gitignore": true,
+        "README.md": true,
+        "webpack.config.js": true,
+        "jsconfig.json": true
+    },
+    "javascript.validate.enable": false
+}
