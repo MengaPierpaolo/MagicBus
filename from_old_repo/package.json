@@ -1,0 +1,42 @@
+{
+  "name": "tdiary.react",
+  "version": "0.1.0",
+  "license": "GPL-3.0",
+  "repository": "github.com/jakimber/tdiary.react",
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0",
+      "react"
+    ]
+  },
+  "scripts": {
+    "webpack": "webpack --watch",
+    "start": "browser-sync --port 4000 start --server --files \"**/*.html\" \"build/**/*.css\" \"build/**/*.js\" "
+  },
+  "dependencies": {
+    "moment": "^2.14.1",
+    "axios": "^0.12.0",
+    "bootstrap": "^3.3.6",
+    "flux": "^2.1.1",
+    "jquery": "2.2.2",
+    "react": "^15.2.0",
+    "react-bootstrap": "^0.29.4",
+    "react-dom": "^15.1.0",
+    "react-router": "^2.5.2",
+    "font-awesome": "4.6.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-preset-react": "^6.11.1",
+    "browser-sync": "^2.13.0",
+    "webpack": "^1.13.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "css-loader": "^0.23.1",
+    "style-loader": "^0.13.1",
+    "file-loader": "^0.9.0"
+  }
+}
