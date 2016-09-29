@@ -73,5 +73,6 @@ To develop the Web UIs, make sure the WebApi setup is completed and that you are
 [See the relevant project page for further information](https://github.com/jakimber/MagicBus/tree/master/src/MagicBus.UI.React "MagicBus ReactJS UI")
 
 ### Angular2 UI
-[See the relevant project page for further information](https://github.com/jakimber/MagicBus/tree/master/src/MagicBus.UI.Angular2 "MagicBus Angular2 UI")
+Deprecated Angular2 RC4 code. [See the relevant project page for further information](https://github.com/jakimber/MagicBus/tree/316b795eb504fb25458d586dcd93534c36a7fdaf "MagicBus Angular2 UI")
 
+For a more up todate example of Angular2 see the GoFish repository
