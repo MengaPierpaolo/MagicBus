@@ -27,6 +27,7 @@ namespace MagicBus.Api
             services.Configure<ApplicationSettings>(Configuration.GetSection("AppSettings"));
 
             services.AddDbContext<DiaryContext>();
+            services.AddDbContext<MigrationsContext>(); // See note in MigrationsContext.cs
 
             services.AddScoped<ExperienceListRepository, ExperienceListRepository>();
             services.AddScoped<IExperienceRepository, ExperienceRepository>();
@@ -44,6 +45,10 @@ namespace MagicBus.Api
         {
             app.UseCors("Allow-All");
             app.UseMvc();
+
+            app.ApplicationServices
+                .GetService<MigrationsContext>()
+                .Migrate();
         }
     }
 }

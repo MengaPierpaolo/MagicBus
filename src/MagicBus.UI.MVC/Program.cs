@@ -142,7 +142,8 @@ namespace MagicBus
                     SupportedUICultures = supportedCultures
                 });
 
-                app.ApplicationServices.GetService<LocalizationDbContext>().EnsureSeedData();
+                app.ApplicationServices.GetService<LocalizationDbContext>().SeedData();
+                app.ApplicationServices.GetService<UserDbContext>().Migrate();
             }
         }
     }

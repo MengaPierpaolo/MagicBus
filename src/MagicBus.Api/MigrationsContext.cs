@@ -25,4 +25,12 @@ namespace MagicBus.Api
             base.OnModelCreating(modelBuilder);
         }
     }
+
+    public static class MigrationsContextExtensions
+    {
+        public static void Migrate(this MigrationsContext context)
+        {
+            context.Database.Migrate();
+        }
+    }
 }

@@ -15,8 +15,10 @@ namespace MagicBus.Migrations
 
     public static class LocalizerExtensions
     {
-        public static void EnsureSeedData(this LocalizationDbContext context)
+        public static void SeedData(this LocalizationDbContext context)
         {
+            context.Database.Migrate();
+
             if (context.LocalizedStrings.Any())
                 DeleteLocalization(context);
 
