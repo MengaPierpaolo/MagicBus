@@ -57,6 +57,7 @@ NOTE: To develop the Web UIs, make sure the WebApi setup is completed and that y
 ### WeAbpi
 1. `git clone https://github.com/jakimber/MagicBus`
 1. `dotnet restore .\MagicBus`
+1. `cd .\MagicBus\src\MagicBus.Api\`
 1. `dotnet run` (or run the project in your editor)
 
 ### MVC UI
