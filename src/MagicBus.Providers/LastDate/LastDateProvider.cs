@@ -8,9 +8,9 @@ namespace MagicBus.Providers.LastDate
 {
     public class LastDateProvider : ILastDateProvider
     {
-        private readonly DiaryContext _context;
+        private readonly DiaryDbContext _context;
 
-        public LastDateProvider(DiaryContext context)
+        public LastDateProvider(DiaryDbContext context)
         {
             _context = context;
         }

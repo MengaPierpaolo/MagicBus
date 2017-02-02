@@ -4,11 +4,13 @@ using MagicBus.Model;
 
 namespace MagicBus.Repository
 {
-    public class DiaryContext : DbContext
+    public class DiaryDbContext : DbContext
     {
         private readonly IOptions<ApplicationSettings> _options;
 
-        public DiaryContext(IOptions<ApplicationSettings> options)
+        public DiaryDbContext() { }
+
+        public DiaryDbContext(IOptions<ApplicationSettings> options)
         {
             _options = options;
         }

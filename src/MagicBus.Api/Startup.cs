@@ -30,7 +30,7 @@ namespace MagicBus.Api
         {
             services.Configure<ApplicationSettings>(Configuration.GetSection("AppSettings"));
 
-            services.AddDbContext<DiaryContext>();
+            services.AddDbContext<DiaryDbContext>();
             services.AddDbContext<MigrationsContext>(); // See note in MigrationsContext.cs
 
             services.AddScoped<ExperienceListRepository, ExperienceListRepository>();

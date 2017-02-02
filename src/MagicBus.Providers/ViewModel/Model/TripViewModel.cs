@@ -6,7 +6,7 @@ namespace MagicBus.Providers.ViewModel.Model
 {
     public class TripViewModel : ActivityViewModel
     {
-        internal TripViewModel() { }
+        public TripViewModel() { }
         public TripViewModel(IStringLocalizer _localizer) : base(_localizer) { }
 
         [Required]

@@ -7,9 +7,9 @@ namespace MagicBus.Repository
 {
     public class ExperienceRepository : IExperienceRepository
     {
-        private readonly DiaryContext _context;
+        private readonly DiaryDbContext _context;
 
-        public ExperienceRepository(DiaryContext context)
+        public ExperienceRepository(DiaryDbContext context)
         {
             _context = context;
         }

@@ -6,9 +6,9 @@ namespace MagicBus.Repository
 {
     public class JourneyListRepository
     {
-        private readonly DiaryContext _context;
+        private readonly DiaryDbContext _context;
 
-        public JourneyListRepository(DiaryContext context)
+        public JourneyListRepository(DiaryDbContext context)
         {
             _context = context;
         }

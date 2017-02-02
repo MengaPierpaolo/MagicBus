@@ -6,9 +6,9 @@ namespace MagicBus.Service
 {
     public class BasicActivityOrderService : IActivityOrderService
     {
-        private readonly DiaryContext _context;
+        private readonly DiaryDbContext _context;
 
-        public BasicActivityOrderService(DiaryContext context)
+        public BasicActivityOrderService(DiaryDbContext context)
         {
             _context = context;
         }

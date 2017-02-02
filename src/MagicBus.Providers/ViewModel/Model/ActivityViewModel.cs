@@ -11,7 +11,7 @@ namespace MagicBus.Providers.ViewModel.Model
         private DateTime _date = DateTime.UtcNow;
         protected internal IStringLocalizer _localizer;
 
-        internal ActivityViewModel() { }
+        protected internal ActivityViewModel() { }
         public ActivityViewModel(IStringLocalizer localizer)
         {
             _localizer = localizer;
