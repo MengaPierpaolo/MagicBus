@@ -1,11 +1,12 @@
+﻿using MagicBus.Providers.LastDate;
+using MagicBus.Providers.Location;
+using MagicBus.Repository;
+using MagicBus.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MagicBus.Providers.Location;
-using MagicBus.Providers.LastDate;
-using MagicBus.Repository;
-using MagicBus.Service;
+using Microsoft.Extensions.Logging;
 
 namespace MagicBus.Api
 {
@@ -13,15 +14,18 @@ namespace MagicBus.Api
     {
         public IConfigurationRoot Configuration { get; }
 
-        public Startup(IHostingEnvironment environment)
+        public Startup(IHostingEnvironment env)
         {
-            var configBuilder = new ConfigurationBuilder()
-                .SetBasePath(environment.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
 
-            Configuration = configBuilder.Build();
+            Configuration = builder.Build();
         }
 
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<ApplicationSettings>(Configuration.GetSection("AppSettings"));
@@ -41,9 +45,23 @@ namespace MagicBus.Api
             services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app)
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
+
             app.UseCors("Allow-All");
+
             app.UseMvc();
 
             app.ApplicationServices

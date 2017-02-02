@@ -1,9 +1,6 @@
 {
     "files.exclude": {
         "bin/": true,
-        "obj/": true,
-        "*.xproj" : true,
-        "*.xproj.*" : true,
-        "*.lock.json": true
+        "obj/": true
     }
 }
