@@ -5,7 +5,7 @@ namespace MagicBus.Providers.ViewModel.Model
 {
     public class ChowViewModel : ActivityViewModel
     {
-        internal ChowViewModel() { }
+        public ChowViewModel() { }
         public ChowViewModel(IStringLocalizer _localizer) : base(_localizer) { }
 
         [Required]

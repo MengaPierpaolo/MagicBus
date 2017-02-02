@@ -23,7 +23,9 @@ namespace MagicBus.Api
         [HttpGet("{id}")]
         public IActionResult Read(int id)
         {
-            return new ObjectResult(_repo.Get<Trip>(id));
+            var x = _repo.Get<Trip>(id);
+            var or = new ObjectResult(x);
+            return or;
         }
 
         [HttpPut("{id}")]

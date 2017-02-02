@@ -102,7 +102,7 @@ namespace MagicBus
 
         public async Task<IEnumerable<ExperienceViewModel>> GetAllByPage(int pageSize, int page = 0)
         {
-            HttpResponseMessage responseMessage = await client.GetAsync(client.BaseAddress + "/pagenumber/" + page.ToString());
+            HttpResponseMessage responseMessage = await client.GetAsync(client.BaseAddress + "pageNumber/" + page.ToString());
             if (responseMessage.IsSuccessStatusCode)
             {
                 var responseData = await responseMessage.Content.ReadAsStringAsync();
