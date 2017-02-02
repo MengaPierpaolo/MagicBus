@@ -5,7 +5,7 @@ namespace MagicBus.Providers.ViewModel.Model
 {
     public class SightViewModel : ActivityViewModel
     {
-        internal SightViewModel() { }
+        public SightViewModel() { }
         public SightViewModel(IStringLocalizer _localizer) : base(_localizer) { }
 
         [Required]

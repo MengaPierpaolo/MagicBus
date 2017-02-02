@@ -5,7 +5,7 @@ namespace MagicBus.Providers.ViewModel.Model
 {
     public class NapViewModel : ActivityViewModel
     {
-        internal NapViewModel() { }
+        public NapViewModel() { }
         public NapViewModel(IStringLocalizer _localizer) : base(_localizer) { }
 
         [Required]
