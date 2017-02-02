@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MagicBus.Model;
+using System.Linq;
 
 namespace MagicBus.Api
 {
@@ -31,6 +32,11 @@ namespace MagicBus.Api
         public static void Migrate(this MigrationsContext context)
         {
             context.Database.Migrate();
+            if (context.Journeys.Count() == 0)
+            {
+                context.Journeys.Add(new Journey { Id = 1, Name = "Canada"});
+                context.SaveChanges();
+            }
         }
     }
 }
