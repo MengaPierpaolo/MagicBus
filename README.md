@@ -2,7 +2,7 @@
 
 ## Summary
 
-Using the dotnet core command line tools and VSCode here's a sample application using the theme of a Travel Diary as it's domain.
+Using dotnet core and ReactJS here's a sample application using the theme of a Travel Diary as it's domain.
 
 *Note: Please see the Issues log in Github for known issues and enhancements that are still in progress.
 
