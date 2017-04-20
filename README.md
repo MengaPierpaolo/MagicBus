@@ -1,17 +1,14 @@
 # Magic Bus Travel Diary
 
-## .NET Core Sample Project
-
 ## Summary
 
-Using the dotnet core command line tools and VSCode here's a sample application using
-the theme of a Travel Diary as it's domain.
+Using the dotnet core command line tools and VSCode here's a sample application using the theme of a Travel Diary as it's domain.
 
 *Note: Please see the Issues log in Github for known issues and enhancements that are still in progress.
 
 ## Architecture Overview
 
-The project consists of two main parts.
+The project consists of two parts.
 
 1. An Asp.Net Core WebApi that is used to serve and save data from the UI of choice into (for now) a SQLite Database created using Entity Framework Core Code Migrations.
 
@@ -22,17 +19,17 @@ The project consists of two main parts.
 ## Development Requirements
 
 * Visual Studio Code
-* Microsoft .NET Core 1.1 SDK
-* Node.js 4+
+* Microsoft .NET Core 1.1.1 SDK
+* Node.js
 * Bower
 
 ### Client Dependencies in use
 
-* jquery 2.2.2
+* jquery
 * font-awesome
 * jquery-validation
 * jquery-validation-unotrusive
-* bootstrap 3.3.6 + datepicker
+* bootstrap + datepicker
 
 ## Initial setup instructions
 
@@ -56,9 +53,3 @@ NOTE: To develop the Web UIs, make sure the WebApi setup is completed and that y
 ### ReactJS UI
 
 [See the relevant project page for further information](https://github.com/jakimber/MagicBus/tree/master/src/MagicBus.UI.React "MagicBus ReactJS UI")
-
-### Angular2 UI
-
-The Angular 2 UI was deprecated as it was written using Angular2 RC4 code and the upgrade path is too monumental for this project. [See the relevant github commit](https://github.com/jakimber/MagicBus/tree/316b795eb504fb25458d586dcd93534c36a7fdaf/src/MagicBus.UI.Angular2 "MagicBus Angular2 RC4 UI") if you are interested in seeing the code.
-
-Magicbus will now only be developed in Asp.Net Core MVC and ReactJS.
